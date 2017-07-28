@@ -1,0 +1,25 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" name="koma-ear:ear exploded">
+    <output-path>$PROJECT_DIR$/koma-ear/target/koma-ear</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="koma-ear/javaeeApplication/JavaEE" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/koma-ear/target/koma-ear/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="dir-copy" path="$PROJECT_DIR$/koma-ear/src/main/application" />
+      <element id="archive" name="koma-web.war">
+        <element id="artifact" artifact-name="koma-web:war exploded" />
+      </element>
+      <element id="archive" name="koma-ejb.jar">
+        <element id="artifact" artifact-name="koma-ejb:ejb exploded" />
+      </element>
+      <element id="directory" name="lib">
+        <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jboss/spec/javax/transaction/jboss-transaction-api_1.2_spec/1.0.0.Final/jboss-transaction-api_1.2_spec-1.0.0.Final.jar" output-file-name="jboss-transaction-api_1.2_spec.jar" />
+        <element id="file-copy" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.20/slf4j-api-1.7.20.jar" output-file-name="slf4j-api.jar" />
+        <element id="file-copy" path="$MAVEN_REPOSITORY$/ch/qos/logback/logback-classic/1.1.7/logback-classic-1.1.7.jar" output-file-name="logback-classic.jar" />
+        <element id="file-copy" path="$MAVEN_REPOSITORY$/ch/qos/logback/logback-core/1.1.7/logback-core-1.1.7.jar" output-file-name="logback-core.jar" />
+        <element id="file-copy" path="$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.40/mysql-connector-java-5.1.40.jar" output-file-name="mysql-connector-java.jar" />
+      </element>
+    </root>
+  </artifact>
+</component>

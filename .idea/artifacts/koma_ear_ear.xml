@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="ear" name="koma-ear:ear">
+    <output-path>$PROJECT_DIR$/koma-ear/target</output-path>
+    <root id="archive" name="koma-ear.ear">
+      <element id="artifact" artifact-name="koma-ear:ear exploded" />
+    </root>
+  </artifact>
+</component>

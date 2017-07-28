@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/WEB-INF/templates/template-base.xhtml">
+	<ui:define name="content">
+
+		<h:form id="new_form">
+
+			<h1>Schlüsselkompetenz bearbeiten</h1>
+			<p:messages id="messages" showDetail="true" closable="true" />
+			<p:panel id="new_sk" title="Neue Schlüsselkompetenz anlegen">
+
+				<h:panelGrid id="panelG" columns="2" cellpadding="5"
+					styleClass="ui-grid">
+					<h:outputLabel for="name"
+						value="#{schluesselKompCRUDCtrl.schluesselKomp.name}" />
+					<p:inputText id="name"
+						value="#{schluesselKompCRUDCtrl.schluesselKomp.name}" />
+
+					<h:outputLabel for="kommentar" value="Kommentar:  " />
+					<p:inputTextarea id="kommentar" rows="4" cols="42"
+						value="#{schluesselKompCRUDCtrl.schluesselKomp.kommentar}" />
+				</h:panelGrid>
+				<p:panelGrid id="forautowidth" columns="1">
+					<p:dataTable id="chec_kboxDT" rendered="#{not empty kompBereiche}"
+						var="_kb" value="#{kompBereichListProducer.kompBereiche}"
+						selection="#{schluesselKompCRUDCtrl.selectedKompBereiche}"
+						rowKey="#{_kb.id}" tableStyle="width:auto" reflow="true" rows="5"
+						paginator="true">
+						<f:facet name="header">           Kompetenzbereiche       </f:facet>
+						<p:column selectionMode="multiple"
+							style="width:16px;text-align:center" />
+						<p:column headerText="Name">
+							<h:outputText value="#{_kb.name}" />
+						</p:column>
+						<p:column headerText="Kommentar">
+							<h:outputText value="#{_kb.kommentar}" />
+						</p:column>
+					</p:dataTable>
+
+				</p:panelGrid>
+				<p:commandButton value="#{i18n['crud.break']}"
+					action="#{SchluesselKompListCtrl.goBack()}" type="submit"
+					update=":new_form:new_sk" />
+				<p:commandButton value="#{i18n['crud.create']}"
+					action="#{schluesselKompCRUDCtrl.update()}"
+					update=":new_form:messages   :new_form:new_sk" type="submit" />
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

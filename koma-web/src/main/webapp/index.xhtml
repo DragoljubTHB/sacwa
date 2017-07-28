@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/WEB-INF/templates/template-base.xhtml">
+	<ui:define name="content">
+
+		<div>
+			<p:breadCrumb>
+				<p:menuitem value="Startseite" url="index.xhtml" />
+			</p:breadCrumb>
+			<h:form id="et-form">
+				<h:panelGrid>
+
+					<h:panelGrid>
+						<h:column>
+							<p:commandButton action="#{startCtrl.createSchluesselKomp}"
+								value="Schluesselkompetenz" type="submit" />
+						</h:column>
+						<h:column>
+							<p:commandButton action="#{startCtrl.createKompBereich}"
+								value="Kompetenzbereich" type="submit" />
+						</h:column>
+						<h:column>
+							<p:commandButton action="#{startCtrl.createKomp}"
+								value="Kompetenz" type="submit" />
+						</h:column>
+						<h:column>
+							<p:commandButton action="#{startCtrl.createKompNiveau}"
+								value="Niveau" type="submit" />
+						</h:column>
+						<h:column>
+							<p:commandButton action="#{startCtrl.createKlasse}"
+								value="Klassenstufe" type="submit" />
+						</h:column>
+						<h:column>
+							<p:commandButton action="#{startCtrl.createFach}" value="Fach"
+								type="submit" />
+						</h:column>
+						<h:column>
+							<p:commandButton action="#{startCtrl.createFertigkeit}"
+								value="Fertigkeit" type="submit" />
+						</h:column>
+						<h:column>
+							<p:commandButton action="#{startCtrl.createSequenz}"
+								value="Sequenz" type="submit" />
+						</h:column>
+						<h:column>
+							<p:commandButton action="#{startCtrl.createStunde}"
+								value="Stunde" type="submit" />
+						</h:column>
+
+					</h:panelGrid>
+				</h:panelGrid>
+			</h:form>
+		</div>
+
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,11 @@
+buildscript {
+    repositories{
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+allprojects{
+    group = 'de.thb.koma'
+    version = '0.0.1-SNAPSHOT'
+}

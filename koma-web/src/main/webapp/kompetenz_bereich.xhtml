@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<!-- 	<link rel="stylesheet" type="text/css" href="table.css" /> -->
+</h:head>
+<h:body>
+	<div>
+		<h:form id="create-form">
+			<p:messages id="messages" />
+			<p:panel id="panel" header="Kompetenzbereich hinzufügen"
+				style="margin-bottom:10px;">
+
+				<h:outputLabel for="name" value="#{i18n['entity.name']}: " />
+				<p:inputText id="name"
+					value="#{kompetenzBereichCtrl.kompBereich.name}" />
+
+			</p:panel>
+
+			<p:commandButton value="abbrechen"
+				actionListener="#{kompetenzBereichCtrl.kompBereich}"
+				process="create-form messages " ajax="true" />
+			<p:commandButton value="create"
+				update="create-form messages list-bereich"
+				actionListener="#{kompetenzBereichCtrl.create}" ajax="true" />
+		</h:form>
+	</div>
+	<p />
+	<p:panel id="panel_table" header="Liste aller Einzelthemen"
+		style="margin-bottom:10px;">
+		<h:form id="list-bereich">
+			<p:dataTable id="list-dt" var="_kb"
+				rendered="#{not empty kompBereiche}"
+				value="#{kompetenzBereichListCtrl.kompetenzBereichDisplays}"
+				tableStyle="width:auto">
+
+				<p:column>
+					<f:facet name="header">Id</f:facet>
+					<h:outputText value="#{_kb.kompBereich.id}" />
+				</p:column>
+
+				<p:column sortBy="#{_kb.name}">
+					<f:facet name="header">Name</f:facet>
+					<h:outputText value="#{_kb.kompBereich.name}"
+						rendered="#{not _kb.editable}" />
+					<p:inputText value="#{_kb.kompBereich.name}"
+						rendered="#{ _kb.editable}" />
+				</p:column>
+
+				<p:column rendered="#{not _kb.editable}">
+
+					<p:commandLink
+						actionListener="#{kompetenzBereichListCtrl.editAction(_kb)}"
+						update="list-bereich">
+						<h:outputText value="#{i18n['crud.edit']}" />
+					</p:commandLink>
+				</p:column>
+				<p:column rendered="#{not _kb.editable}">
+					<p:commandLink
+						actionListener="#{kompetenzBereichListCtrl.delete(_kb)}"
+						value="Delete" update="list-bereich">
+						<h:outputText value="#{i18n['crud.delete']}" />
+					</p:commandLink>
+				</p:column>
+
+				<p:column rendered="#{_kb.editable}">
+					<f:facet name="header">Save</f:facet>
+					<p:commandLink
+						actionListener="#{kompetenzBereichListCtrl.update(_kb)}"
+						update="list-bereich">
+						<h:outputText value="#{i18n['crud.update']}" />
+					</p:commandLink>
+				</p:column>
+
+			</p:dataTable>
+
+			<p:panelGrid>
+				<p:commandButton value="#{i18n['crud.update']}"
+					actionListener="#{kompetenzBereichListCtrl.refreshList}"
+					update="list-bereich">
+				</p:commandButton>
+			</p:panelGrid>
+
+		</h:form>
+	</p:panel>
+</h:body>
+</html>

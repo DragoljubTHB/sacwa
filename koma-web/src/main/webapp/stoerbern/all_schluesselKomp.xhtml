@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Schlüsselkomponenten</title>
+</h:head>
+<h:body>
+
+<f:metadata>
+	<f:viewParam name=""></f:viewParam>
+</f:metadata>
+
+	<h:form id="form">
+		<p:messages id="messages" />
+		<p:dataGrid var="_sk"
+			value="#{schluesselKompListCtrl.schluesselDisplays}" columns="4"
+			layout="grid" rows="12" paginator="true" id="_sks"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="8,16,36">
+
+			<f:facet name="header">
+            		Alle Schlüsselkompetenzen
+        		</f:facet>
+			<p:panel style="text-align:center">
+				<f:facet name="header">
+					<p:commandLink id="ajax" update=":form:messages"
+						action="#{navigationStackSessionCtrl.doNavigate2(_sk.schluesselKomp)}">
+						<h:outputText value="#{_sk.schluesselKomp.name}" />
+					</p:commandLink>
+				</f:facet>
+
+				<h:panelGrid columns="3" style="width:100%">
+
+					<p:commandButton
+						rendered="#{not empty _sk.schluesselKomp.kommentar}"
+						icon="ui-icon-search" update=":form:_skDetail"
+						oncomplete="PF('_skDialog').show()" title="Details anzeigen">
+						<f:setPropertyActionListener value="#{_sk.schluesselKomp}"
+							target="#{schluesselKompCRUDCtrl.schluesselKomp}" />
+					</p:commandButton>
+
+					<p:commandButton icon="ui-icon-pencil" update=":form:_skDetail"
+						action="#{schluesselKompCRUDCtrl.update}" title="Bearbeiten">
+						<f:setPropertyActionListener value="#{_sk}"
+							target="#{schluesselKompCRUDCtrl.schluesselKomp}" />
+					</p:commandButton>
+
+					<p:commandButton icon="ui-icon-trash" update=":form:_sks"
+						action="#{schluesselKompListCtrl.delete(_sk)}"
+						title="#{i18n['crud.delete']}">
+						<p:confirm header="Element löschen"
+							message="Soll die Schlüsselkompetenz #{_sk.schluesselKomp.name} wirklich gelöscht werden?"
+							icon="ui-icon-trash" />
+					</p:commandButton>
+
+
+				</h:panelGrid>
+			</p:panel>
+
+		</p:dataGrid>
+		<hr/>
+		<p/>
+		<hr/>
+		<!-- KOMPBEREICHE -->
+		<p:dataGrid var="_kb"
+			value="#{kompBereichListCtrl.kompetenzBereichDisplays}" columns="4"
+			layout="grid" rows="12" paginator="true" id="_kbs"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="8,16,36">
+
+			<f:facet name="header">
+            		Alle Kompetenz Bereiche
+        		</f:facet>
+			<p:panel style="text-align:center">
+				<f:facet name="header">
+					<p:commandLink id="ajax" update=":form:messages"
+						action="#{navigationStackSessionCtrl.doNavigate2(_kb.kompBereich)}">
+						<h:outputText value="#{_kb.kompBereich.name}" />
+					</p:commandLink>
+				</f:facet>
+
+				<h:panelGrid columns="3" style="width:100%">
+
+					<p:commandButton
+						rendered="#{not empty _kb.kompBereich.kommentar}"
+						icon="ui-icon-search" update=":form:"
+						oncomplete="PF('_kbDialog').show()" title="Details anzeigen">
+						<f:setPropertyActionListener value="#{_kb.kompBereich}"
+							target="#{kompBereichCRUDCtrl.kompBereich}" />
+					</p:commandButton>
+
+					<p:commandButton icon="ui-icon-pencil" update=":form:"
+						action="#{kompBereichCRUDCtrl.update}" title="Bearbeiten">
+						<f:setPropertyActionListener value="#{_kb}"
+							target="#{kompBereichCRUDCtrl.kompBereich}" />
+					</p:commandButton>
+
+					<p:commandButton icon="ui-icon-trash" update=":form:_kbs"
+						action="#{kompBereichListCtrl.delete(_kb)}"
+						title="#{i18n['crud.delete']}">
+						<p:confirm header="Element löschen"
+							message="Soll die Schlüsselkompetenz #{_kb.kompBereich.name} wirklich gelöscht werden?"
+							icon="ui-icon-trash" />
+					</p:commandButton>
+
+
+				</h:panelGrid>
+			</p:panel>
+
+		</p:dataGrid>
+		
+		
+		<!-- DIALOG -->
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="No" type="button"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			<p:commandButton value="Yes" type="button" update=":form:_sks"
+				styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
+				action="#{schluesselKompListCtrl.delete(_sk)}" />
+		</p:confirmDialog>
+
+		<p:dialog header="Kommentar" widgetVar="_skDialog" modal="true"
+			showEffect="fade" hideEffect="fade" resizable="false">
+			<p:outputPanel id="_skDetail" style="text-align:center;">
+				<h:outputText
+					value="#{schluesselKompCRUDCtrl.schluesselKomp.kommentar}" />
+
+			</p:outputPanel>
+		</p:dialog>
+	</h:form>
+
+</h:body>
+</html>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/WEB-INF/templates/template-base.xhtml">
+	<ui:define name="content">
+		<h:form id="form">
+			<p:breadCrumb>
+				<p:menuitem value="Startseite" url="index.xhtml" />
+				<p:menuitem value="Schlüsselkompetenzen"
+					url="all_schluesselKomp.xhtml" />
+			</p:breadCrumb>
+			<p />
+
+
+			<p />
+			<p:dataGrid id="_sks" var="_sk"
+				value="#{fertigkeitListCtrl.fertigkeitDisplayList}" columns="4"
+				layout="grid" rows="12" paginator="true"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="8,16,36">
+
+				<f:facet name="header">
+            		Alle Fertigkeiten
+        		</f:facet>
+				<p:panel style="text-align:center">
+					<f:facet name="header">
+						<h:commandLink id="ajax" update=":new_form:messages"
+							actionListener="#{navigationSessionCtrl.lastSelectedFertigkeit(_sk.fertigkeit)}"
+							action="#{schluesselKompListCtrl.goToKompBereich()}">
+							<!-- TODO -->
+							<h:outputText value="#{_sk.fertigkeit.name}" />
+						</h:commandLink>
+					</f:facet>
+
+					<h:panelGrid columns="3" style="width:100%">
+
+						<p:commandButton rendered="#{not empty _sk.fertigkeit.kommentar}"
+							icon="ui-icon-search" update=":form:_skDetail"
+							oncomplete="PF('_skDialog').show()" title="Details anzeigen">
+							<f:setPropertyActionListener value="#{_sk.fertigkeit}"
+								target="#{fertigkeitCRUDCtrl.fertigkeit}" />
+						</p:commandButton>
+
+						<p:commandButton icon="ui-icon-pencil" update=":form:_sks"
+							action="#{schluesselKompListCtrl.goToEdit}" title="Bearbeiten">
+							<f:setPropertyActionListener value="#{_sk.fertigkeit}"
+								target="#{fertigkeitCRUDCtrl.fertigkeit}" />
+						</p:commandButton>
+
+
+						<p:commandButton rendered="#{empty _sk.fertigkeit.massID}"
+							icon="ui-icon-trash" update=":form:_sks"
+							action="#{fertigkeitCRUDCtrl.delete(_sk)}"
+							title="#{i18n['crud.delete']}">
+							<p:confirm header="Element löschen"
+								message="Soll die Schlüsselkompetenz #{_sk.fertigkeit.name} wirklich gelöscht werden?"
+								icon="ui-icon-trash" />
+						</p:commandButton>
+
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+							<p:commandButton value="No" type="button"
+								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+							<p:commandButton value="Yes" type="button" update=":form:_sks"
+								styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
+								action="#{fertigkeitCRUDCtrl.deleteWithKB(_sk)}" />
+						</p:confirmDialog>
+
+					</h:panelGrid>
+				</p:panel>
+
+			</p:dataGrid>
+
+
+
+			<p:commandButton value="#{i18n['crud.update']}"
+				action="#{fertigkeitListCtrl.refreshList}"
+				update=":new_form:messages :form:_sks" type="submit">
+			</p:commandButton>
+
+			<p />
+
+
+			<p:dialog header="Kommentar" widgetVar="_skDialog" modal="true"
+				showEffect="fade" hideEffect="fade" resizable="false">
+				<p:outputPanel id="_skDetail" style="text-align:center;">
+					<h:outputText value="#{fertigkeitCRUDCtrl.fertigkeit.kommentar}" />
+
+				</p:outputPanel>
+			</p:dialog>
+		</h:form>
+		<h:form id="new_form">
+
+			<h1>Neue Fertigkeit anlegen</h1>
+			<p:messages id="messages" showDetail="true" closable="true" />
+			<p:panel id="new_sk" title="Neue Fertigkeit anlegen">
+
+				<h:panelGrid id="panelG" columns="2" cellpadding="5"
+					styleClass="ui-grid">
+					<h:outputLabel for="name" value="#{i18n['entity.name']}: " />
+					<p:inputText id="name"
+						value="#{fertigkeitCRUDCtrl.fertigkeit.name}"
+						pt:placeholder="#{i18n['entity.name']}" />
+
+					<h:outputLabel for="kommentar" value="Kommentar:  " />
+					<p:inputTextarea id="kommentar" rows="4" cols="42"
+						value="#{fertigkeitCRUDCtrl.fertigkeit.kommentar}"
+						pt:placeholder="Kommentar" />
+				</h:panelGrid>
+				<!--  Find All - Set One STUFF -->
+
+			
+
+<!-- Select One Kompetenz Niveau / Kompetenz -->
+		<p></p>
+		<p:messages autoUpdate="true" />
+ 
+    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+        <p:outputLabel for="kompNiveau" value="Kompetenz Niveau:" />
+        <p:selectOneMenu id="kompNiveau" value="#{fertigkeitListCtrl.kompNiveau.name}" style="width:125px">
+        	<c:forEach items="#{kompNiveauListProducer.kompNiveaus}" var="_kn">
+        		<f:selectItem itemLabel="#{_kn.name}" itemValue="#{_kn.name}"/>
+        	</c:forEach>
+        </p:selectOneMenu>
+ 
+        <p:outputLabel for="kompetenz" value="Kompetenz:"  />
+        <p:selectOneMenu id="kompetenz"  var="t" value="#{fertigkeitListCtrl.kompetenz}" converter="themeConverter" 
+        					panelStyle="width:180px" effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith">
+                        
+            <f:selectItems value="#{kompetenzProducer.kompetenzen}" var="theme" itemLabel="#{theme.name}" itemValue="#{theme}" />
+ 
+            <p:column style="width:10%">
+                <h:outputText styleClass="ui-theme ui-theme-#{t.name}" />
+            </p:column>
+ 
+            <p:column>
+                <h:outputText value="#{t.name}" />
+            </p:column>
+        </p:selectOneMenu>
+    </h:panelGrid>
+ 
+<!--     <p:commandButton value="Submit" update="display" oncomplete="PF('dlg').show()" icon="ui-icon-check" /> -->
+ 
+<!--     <p:dialog header="Values" modal="true" showEffect="bounce" widgetVar="dlg" resizable="false"> -->
+<!--         <p:panelGrid columns="2" id="display" columnClasses="label,value"> -->
+<!--             <h:outputText value="Basic:" /> -->
+<!--             <h:outputText value="#{fertigkeitListCtrl.kompNiveau.name}" /> -->
+ 
+<!--             <h:outputText value="Advanced:" /> -->
+<!--             <h:outputText value="#{fertigkeitListCtrl.kompetenz.name}" /> -->
+<!--         </p:panelGrid> -->
+<!--     </p:dialog> -->
+
+<!-- END NEW  -->
+				<p:commandButton value="#{i18n['crud.break']}"
+					action="#{fertigkeitCRUDCtrl.clean()}" type="submit"
+					update=":new_form:new_sk" />
+				<p:commandButton value="#{i18n['crud.create']}"
+					action="#{fertigkeitCRUDCtrl.doCreate()}"
+					update=":new_form:messages :form:_sks  :new_form:new_sk"
+					oncomplete="PF('dlg').show()"
+					icon="ui-icon-check"
+					type="submit" />
+			</p:panel>
+
+		</h:form>
+
+	
+	
+
+	</ui:define>
+</ui:composition>
