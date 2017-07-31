@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="koma-web:war">
-    <output-path>$PROJECT_DIR$/koma-web/target</output-path>
-    <root id="archive" name="koma-web.war">
-      <element id="artifact" artifact-name="koma-web:war exploded" />
-    </root>
-  </artifact>
-</component>

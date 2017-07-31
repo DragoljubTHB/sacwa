@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="ejb-jar" name="koma-ejb:ejb">
-    <output-path>$PROJECT_DIR$/koma-ejb/target</output-path>
-    <root id="archive" name="koma-ejb.jar">
-      <element id="artifact" artifact-name="koma-ejb:ejb exploded" />
-    </root>
-  </artifact>
-</component>
