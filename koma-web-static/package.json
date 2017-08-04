@@ -9,9 +9,9 @@
   },
   "scripts": {
     "start": "ws",
-    "create_bucket": "aws --profile dado-admin --region us-west-2 s3 mb 's3://org.dado.website' > conf/s3/endpoint.txt",
-    "deploy_bucket": "aws --profile dado-admin --region us-west-2 s3 sync . 's3://org.dado.website' --acl public-read",
-    "webify_bucket": "aws --profile dado-admin --region us-west-2 s3 website --index-document index.html --error-document error.html 's3://org.dado.website'",
+    "create_bucket": "aws --profile dado-admin --region us-west-2 s3 mb 's3://koma.thb.de' > conf/s3/endpoint.txt",
+    "deploy_bucket": "aws --profile dado-admin --region us-west-2 s3 sync . 's3://koma.thb.de' --acl public-read",
+    "webify_bucket": "aws --profile dado-admin --region us-west-2 s3 website --index-document index.html --error-document error.html 's3://koma.thb.de'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "dado",

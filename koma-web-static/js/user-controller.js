@@ -38,14 +38,9 @@ var userController = {
     this.wireEvents();
   },
   configureAuthenticatedRequests: function() {
-   // var that = this;
     $.ajaxSetup({
       'beforeSend': function(xhr) {
           xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('userToken'));
-
- //         if(that.data.config.apiBaseUrl.contains('amazonaws') && that.data.config.apiBaseUrl.contains('api')){
- //           xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('userToken'));
- //       }
       }
     });
   },
@@ -96,9 +91,10 @@ var userController = {
       var url = that.data.config.apiBaseUrl + '/userprofile';
 
       $.get(url, function(data, status) {
-        //alert(JSON.stringify(data));
-        $('#user-profile-raw-json').text(JSON.stringify(data, null, 2));
-        $('#user-profile-modal').modal();
+        console.log(JSON.stringify(data));
+        alert(JSON.stringify(data));
+        //$('#user-profile-raw-json').text(JSON.stringify(data, null, 2));
+        //$('#user-profile-modal').modal();
       })
     });
   }
