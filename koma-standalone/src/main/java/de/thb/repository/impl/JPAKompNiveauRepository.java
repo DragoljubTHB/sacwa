@@ -15,13 +15,6 @@ public class JPAKompNiveauRepository implements KompNiveauRepository {
 	@PersistenceContext
 	private EntityManager em;
 
-	/**
-	 * "select k from KompNiveau k where k.name = '" + name +"'" CriteriaQuery
-	 * bringt entkopplung zwischen JPA und DB
-	 * 
-	 * @param aString
-	 * @return the found entity
-	 */
 	@Override
 	public KompNiveau findByCriteria(String aString) {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -34,7 +27,7 @@ public class JPAKompNiveauRepository implements KompNiveauRepository {
 	}
 
 	@Override
-	public void update(@NotNull KompNiveau kompNiveau) {
+	public void update(KompNiveau kompNiveau) {
 		if(find(kompNiveau.getId()) != null){
 			em.merge(kompNiveau);
 		}

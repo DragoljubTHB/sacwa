@@ -1,0 +1,11 @@
+{
+  "name": "email",
+  "version": "1.0.0",
+  "description": "sends email after a change in s3",
+  "main": "email.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dado",
+  "license": "ISC"
+}

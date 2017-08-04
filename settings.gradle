@@ -1,10 +1,9 @@
 
 // aws
-include 'functions-java'
-include 'functions-js'
 
 // java ee
 include 'koma-ear'
 include 'koma-ejb'
 include 'koma-web'
 include 'koma-jpa'
+include 'koma-standalone'
