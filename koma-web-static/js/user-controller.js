@@ -93,8 +93,8 @@ var userController = {
       var url = that.data.config.apiBaseUrl + '/userprofile';
 
       $.get(url, function(data, status) {
-        console.log(JSON.stringify(data));
-        alert(JSON.stringify(data));
+        //console.log(JSON.stringify(data));
+        //alert(JSON.stringify(data));
         //$('#user-profile-raw-json').text(JSON.stringify(data, null, 2));
         //$('#user-profile-modal').modal();
       })
@@ -102,12 +102,9 @@ var userController = {
 
     this.uiElements.s3InfoButton.click(function (e) {
       var url = that.data.config.apiBaseUrl + '/s3info';
-      //arn:aws:lambda:us-west-2:309837773135:function:s3-info
-      //https://bkqaqy0eri.execute-api.us-west-2.amazonaws.com/dev
       $.get(url, function (data, status) {
-          console.log(data);
-          console.log(JSON.stringify(data, null, 2));
-          alert(JSON.stringify(data))
+        console.log(data);
+          alert(JSON.stringify(data, null, 2));
       })
     })
   }
