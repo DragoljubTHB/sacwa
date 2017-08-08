@@ -9,7 +9,8 @@ var userController = {
     logoutButton: null,
     profileButton: null,
     profileNameLabel: null,
-    profileImage: null
+    profileImage: null,
+    s3InfoButton: null
   },
   init: function(config) {
     var that = this;
@@ -19,6 +20,7 @@ var userController = {
     this.uiElements.profileButton = $('#user-profile');
     this.uiElements.profileNameLabel = $('#profilename');
     this.uiElements.profileImage = $('#profilepicture');
+    this.uiElements.s3InfoButton = $('#s3info');
 
     this.data.config = config;
     this.data.auth0Lock = new Auth0Lock(config.auth0.clientId, config.auth0.domain);
@@ -97,5 +99,16 @@ var userController = {
         //$('#user-profile-modal').modal();
       })
     });
+
+    this.uiElements.s3InfoButton.click(function (e) {
+      var url = that.data.config.apiBaseUrl + '/s3info';
+      //arn:aws:lambda:us-west-2:309837773135:function:s3-info
+      //https://bkqaqy0eri.execute-api.us-west-2.amazonaws.com/dev
+      $.get(url, function (data, status) {
+          console.log(data);
+          console.log(JSON.stringify(data, null, 2));
+          alert(JSON.stringify(data))
+      })
+    })
   }
 };
