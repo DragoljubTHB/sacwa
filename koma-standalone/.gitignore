@@ -1,4 +1,5 @@
 src/main/resources/WEB-INF/*
+catalog-v001.xml
 # Created by https://www.gitignore.io/api/maven,gradle,intellij+all
 
 ### Intellij+all ###
