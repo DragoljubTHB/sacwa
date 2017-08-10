@@ -300,10 +300,54 @@
     
 
 
+    <!-- https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Einen_Schreibprozess_planvoll_gestalten -->
+
+    <owl:NamedIndividual rdf:about="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Einen_Schreibprozess_planvoll_gestalten">
+        <rdf:type rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Kompetenz"/>
+        <unterordnet_sich_in rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Schreiben"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Englisch -->
 
     <owl:NamedIndividual rdf:about="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Englisch">
         <rdf:type rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Fach"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Fertigkeit_MassID_EinenSchreibprozess -->
+
+    <owl:NamedIndividual rdf:about="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Fertigkeit_MassID_EinenSchreibprozess">
+        <rdf:type rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Fertigkeit"/>
+        <besteht_aus rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#MassID_EinenSchreibprozess_planvoll_gestallten"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#KlassFachID_Deutsch_K5 -->
+
+    <owl:NamedIndividual rdf:about="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#KlassFachID_Deutsch_K5">
+        <rdf:type rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#KlasseFachID"/>
+        <definiert_durch rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Deutsch"/>
+        <definiert_durch rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Klassenstufe_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Klassenstufe_5 -->
+
+    <owl:NamedIndividual rdf:about="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Klassenstufe_5">
+        <rdf:type rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Klassenstufe"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#KompetenzNiveau_Einen_Schreibprozess_planvoll_gestalten -->
+
+    <owl:NamedIndividual rdf:about="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#KompetenzNiveau_Einen_Schreibprozess_planvoll_gestalten">
+        <rdf:type rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#KompetenzNiveau"/>
     </owl:NamedIndividual>
     
 
@@ -319,12 +363,48 @@
     
 
 
+    <!-- https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#MassID_EinenSchreibprozess_planvoll_gestallten -->
+
+    <owl:NamedIndividual rdf:about="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#MassID_EinenSchreibprozess_planvoll_gestallten">
+        <rdf:type rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#MassID"/>
+        <definiert_durch rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Einen_Schreibprozess_planvoll_gestalten"/>
+        <definiert_durch rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#KompetenzNiveau_Einen_Schreibprozess_planvoll_gestalten"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Mathematik -->
 
     <owl:NamedIndividual rdf:about="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Mathematik">
         <rdf:type rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Fach"/>
         <id rdf:datatype="http://www.w3.org/2001/XMLSchema#int">777</id>
         <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">this is a data property of Individual of type String</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Schreiben -->
+
+    <owl:NamedIndividual rdf:about="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Schreiben">
+        <rdf:type rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#KompetenzBereich"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Schreiben_und_Zuhören -->
+
+    <owl:NamedIndividual rdf:about="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Schreiben_und_Zuhören">
+        <rdf:type rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#KompetenzBereich"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Sequencz_Stunde_Fertigkeit_MassID_EinenSchreibprozess -->
+
+    <owl:NamedIndividual rdf:about="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Sequencz_Stunde_Fertigkeit_MassID_EinenSchreibprozess">
+        <rdf:type rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Sequenz"/>
+        <besteht_aus rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#KlassFachID_Deutsch_K5"/>
+        <sammelt rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Stunde_Fertigkeit_MassID_EinenSchreibprozess"/>
     </owl:NamedIndividual>
     
 
@@ -336,6 +416,25 @@
         <lernt rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Englisch"/>
         <lernt rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Mathematik"/>
         <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Student1 name data property</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Stunde_Fertigkeit_MassID_EinenSchreibprozess -->
+
+    <owl:NamedIndividual rdf:about="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Stunde_Fertigkeit_MassID_EinenSchreibprozess">
+        <rdf:type rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Stunde"/>
+        <erzeugt_neu rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Fertigkeit_MassID_EinenSchreibprozess"/>
+        <gehört_zu rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Sequencz_Stunde_Fertigkeit_MassID_EinenSchreibprozess"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Sachbezogen,_situationsangemessen_und_adressatengerecht_vor_anderen_sprechen_sowie_verstehend_zuhören -->
+
+    <owl:NamedIndividual rdf:about="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Sachbezogen,_situationsangemessen_und_adressatengerecht_vor_anderen_sprechen_sowie_verstehend_zuhören">
+        <rdf:type rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Kompetenz"/>
+        <unterordnet_sich_in rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Schreiben_und_Zuhören"/>
     </owl:NamedIndividual>
 </rdf:RDF>
 
