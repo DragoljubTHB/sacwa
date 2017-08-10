@@ -1,0 +1,14 @@
+{
+  "name": "insert-dynamodb",
+  "version": "1.0.0",
+  "description": "inserts data to dynamodb",
+  "main": "insert-to-dynamodb.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dado",
+  "license": "ISC",
+  "devDependencies": {
+    "aws-sdk": "^2.95.0"
+  }
+}
