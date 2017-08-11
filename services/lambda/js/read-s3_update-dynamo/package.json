@@ -1,0 +1,14 @@
+{
+  "name": "read-s3_update-dynamo",
+  "version": "1.0.0",
+  "description": "reads ontology from s3 and updates dynamodb",
+  "main": "readS3UpdateDynamo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dado",
+  "license": "ISC",
+  "devDependencies": {
+    "aws-sdk": "^2.96.0"
+  }
+}

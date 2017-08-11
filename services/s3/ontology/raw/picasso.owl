@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/picasso-turtle.owl#"
-     xml:base="https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/picasso-turtle.owl"
+<rdf:RDF xmlns="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/picasso.owl#"
+     xml:base="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/picasso.owl"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:picasso="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/picasso.owl#">
-    <owl:Ontology rdf:about="https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/picasso-turtle.owl"/>
+    <owl:Ontology rdf:about="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/picasso.owl"/>
     
 
 
@@ -120,7 +120,7 @@
     <!-- https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/picasso.owl#guernica -->
 
     <owl:NamedIndividual rdf:about="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/picasso.owl#guernica">
-        <picasso:exhibitedIn rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/picasso.owl#reinasofia"/>
+        <exhibitedIn rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/picasso.owl#reinasofia"/>
     </owl:NamedIndividual>
     
 
@@ -141,8 +141,8 @@
 
     <owl:NamedIndividual rdf:about="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/picasso.owl#picasso">
         <rdf:type rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/picasso.owl#cubist"/>
-        <picasso:paints rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/picasso.owl#guernica"/>
-        <picasso:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pablo</picasso:firstName>
+        <paints rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/picasso.owl#guernica"/>
+        <firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pablo</firstName>
     </owl:NamedIndividual>
     
 
@@ -150,7 +150,7 @@
     <!-- https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/picasso.owl#reinasofia -->
 
     <owl:NamedIndividual rdf:about="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/picasso.owl#reinasofia">
-        <picasso:locatedIn rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/picasso.owl#madrid"/>
+        <locatedIn rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/picasso.owl#madrid"/>
     </owl:NamedIndividual>
     
 
@@ -159,8 +159,8 @@
 
     <owl:NamedIndividual rdf:about="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/picasso.owl#rodin">
         <rdf:type rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/picasso.owl#sculptor"/>
-        <picasso:creates rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/picasso.owl#thethinker"/>
-        <picasso:firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Auguste</picasso:firstName>
+        <creates rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/picasso.owl#thethinker"/>
+        <firstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Auguste</firstName>
     </owl:NamedIndividual>
     
 
@@ -168,7 +168,7 @@
     <!-- https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/picasso.owl#thethinker -->
 
     <owl:NamedIndividual rdf:about="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/picasso.owl#thethinker">
-        <picasso:exhibitedIn rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/picasso.owl#museerodin"/>
+        <exhibitedIn rdf:resource="https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/picasso.owl#museerodin"/>
     </owl:NamedIndividual>
 </rdf:RDF>
 

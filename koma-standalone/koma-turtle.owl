@@ -1,0 +1,293 @@
+@prefix : <https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix koma-turtle: <https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#> .
+@base <https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl> .
+
+<https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#besteht_aus
+koma-turtle:besteht_aus rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf owl:topObjectProperty ;
+                        rdfs:domain koma-turtle:KlasseFachID ;
+                        rdfs:range koma-turtle:Fach ,
+                                   koma-turtle:Klassenstufe .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#definiert_durch
+koma-turtle:definiert_durch rdf:type owl:ObjectProperty ;
+                            rdfs:domain koma-turtle:MassID ;
+                            rdfs:range koma-turtle:Kompetenz ,
+                                       koma-turtle:KompetenzNiveau .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#erzeugt_neu
+koma-turtle:erzeugt_neu rdf:type owl:ObjectProperty ;
+                        rdfs:domain koma-turtle:Stunde ;
+                        rdfs:range koma-turtle:Fertigkeit .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#gehört_zu
+koma-turtle:gehört_zu rdf:type owl:ObjectProperty ;
+                      rdfs:domain koma-turtle:Schlüsselkompetenz ;
+                      rdfs:range koma-turtle:KompetenzBereich .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#gemessen_durch
+koma-turtle:gemessen_durch rdf:type owl:ObjectProperty ;
+                           rdfs:domain koma-turtle:Fertigkeit ;
+                           rdfs:range koma-turtle:MassID .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#lernt
+koma-turtle:lernt rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  rdfs:domain koma-turtle:Student ;
+                  rdfs:range koma-turtle:Fach .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#sammelt
+koma-turtle:sammelt rdf:type owl:ObjectProperty ;
+                    rdfs:domain koma-turtle:KompetenzBereich ;
+                    rdfs:range koma-turtle:Kompetenz ,
+                               koma-turtle:Schlüsselkompetenz .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#unterordnet_sich_in
+koma-turtle:unterordnet_sich_in rdf:type owl:ObjectProperty ;
+                                rdfs:domain koma-turtle:Kompetenz ;
+                                rdfs:range koma-turtle:KompetenzBereich .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#unterrichtet
+koma-turtle:unterrichtet rdf:type owl:ObjectProperty ;
+                         rdfs:domain koma-turtle:Lehrer ;
+                         rdfs:range koma-turtle:Fach .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#id
+koma-turtle:id rdf:type owl:DatatypeProperty ;
+               rdfs:domain koma-turtle:Fach ,
+                           koma-turtle:Fertigkeit ,
+                           koma-turtle:Klassenstufe ,
+                           koma-turtle:Kompetenz ,
+                           koma-turtle:KompetenzBereich ,
+                           koma-turtle:KompetenzNiveau ,
+                           koma-turtle:Schlüsselkompetenz ,
+                           koma-turtle:Sequenz ,
+                           koma-turtle:Stunde ;
+               rdfs:range xsd:int .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#inhalt
+koma-turtle:inhalt rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf owl:topDataProperty ;
+                   rdfs:domain koma-turtle:Stunde ;
+                   rdfs:range xsd:string .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#name
+koma-turtle:name rdf:type owl:DatatypeProperty ;
+                 rdfs:domain koma-turtle:Fach ,
+                             koma-turtle:Fertigkeit ,
+                             koma-turtle:Klassenstufe ,
+                             koma-turtle:Kompetenz ,
+                             koma-turtle:KompetenzBereich ,
+                             koma-turtle:KompetenzNiveau ,
+                             koma-turtle:Lehrer ,
+                             koma-turtle:Schlüsselkompetenz ,
+                             koma-turtle:Sequenz ,
+                             koma-turtle:Student ,
+                             koma-turtle:Stunde ;
+                 rdfs:range xsd:string .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#ordnung
+koma-turtle:ordnung rdf:type owl:DatatypeProperty ;
+                    rdfs:domain koma-turtle:Sequenz ,
+                                koma-turtle:Stunde ;
+                    rdfs:range xsd:int .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#rang
+koma-turtle:rang rdf:type owl:DatatypeProperty ;
+                 rdfs:domain koma-turtle:KompetenzNiveau .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#Fach
+koma-turtle:Fach rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#Fertigkeit
+koma-turtle:Fertigkeit rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#KlasseFachID
+koma-turtle:KlasseFachID rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#Klassenstufe
+koma-turtle:Klassenstufe rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#Kompetenz
+koma-turtle:Kompetenz rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#KompetenzBereich
+koma-turtle:KompetenzBereich rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#KompetenzNiveau
+koma-turtle:KompetenzNiveau rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#Lehrer
+koma-turtle:Lehrer rdf:type owl:Class ;
+                   rdfs:subClassOf koma-turtle:Person .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#MassID
+koma-turtle:MassID rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#Person
+koma-turtle:Person rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#Schlüsselkompetenz
+koma-turtle:Schlüsselkompetenz rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#Sequenz
+koma-turtle:Sequenz rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#Student
+koma-turtle:Student rdf:type owl:Class ;
+                    rdfs:subClassOf koma-turtle:Person .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#Stunde
+koma-turtle:Stunde rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#Deutsch
+koma-turtle:Deutsch rdf:type owl:NamedIndividual ,
+                             koma-turtle:Fach .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#Einen_Schreibprozess_planvoll_gestalten
+koma-turtle:Einen_Schreibprozess_planvoll_gestalten rdf:type owl:NamedIndividual ,
+                                                             koma-turtle:Kompetenz ;
+                                                    koma-turtle:unterordnet_sich_in koma-turtle:Schreiben .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#Englisch
+koma-turtle:Englisch rdf:type owl:NamedIndividual ,
+                              koma-turtle:Fach .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#Fertigkeit_MassID_EinenSchreibprozess
+koma-turtle:Fertigkeit_MassID_EinenSchreibprozess rdf:type owl:NamedIndividual ,
+                                                           koma-turtle:Fertigkeit ;
+                                                  koma-turtle:besteht_aus koma-turtle:MassID_EinenSchreibprozess_planvoll_gestallten .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#KlassFachID_Deutsch_K5
+koma-turtle:KlassFachID_Deutsch_K5 rdf:type owl:NamedIndividual ,
+                                            koma-turtle:KlasseFachID ;
+                                   koma-turtle:definiert_durch koma-turtle:Deutsch ,
+                                                               koma-turtle:Klassenstufe_5 .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#Klassenstufe_5
+koma-turtle:Klassenstufe_5 rdf:type owl:NamedIndividual ,
+                                    koma-turtle:Klassenstufe .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#KompetenzNiveau_Einen_Schreibprozess_planvoll_gestalten
+koma-turtle:KompetenzNiveau_Einen_Schreibprozess_planvoll_gestalten rdf:type owl:NamedIndividual ,
+                                                                             koma-turtle:KompetenzNiveau .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#Lehrer1
+koma-turtle:Lehrer1 rdf:type owl:NamedIndividual ,
+                             koma-turtle:Lehrer ;
+                    koma-turtle:unterrichtet koma-turtle:Englisch ,
+                                             koma-turtle:Mathematik ;
+                    koma-turtle:name "Lehrer 1 data prop"^^xsd:string .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#MassID_EinenSchreibprozess_planvoll_gestallten
+koma-turtle:MassID_EinenSchreibprozess_planvoll_gestallten rdf:type owl:NamedIndividual ,
+                                                                    koma-turtle:MassID ;
+                                                           koma-turtle:definiert_durch koma-turtle:Einen_Schreibprozess_planvoll_gestalten ,
+                                                                                       koma-turtle:KompetenzNiveau_Einen_Schreibprozess_planvoll_gestalten .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#Mathematik
+koma-turtle:Mathematik rdf:type owl:NamedIndividual ,
+                                koma-turtle:Fach ;
+                       koma-turtle:id "777"^^xsd:int ;
+                       koma-turtle:name "this is a data property of Individual of type String"^^xsd:string .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#Schreiben
+koma-turtle:Schreiben rdf:type owl:NamedIndividual ,
+                               koma-turtle:KompetenzBereich .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#Schreiben_und_Zuhören
+koma-turtle:Schreiben_und_Zuhören rdf:type owl:NamedIndividual ,
+                                           koma-turtle:KompetenzBereich .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#Sequencz_Stunde_Fertigkeit_MassID_EinenSchreibprozess
+koma-turtle:Sequencz_Stunde_Fertigkeit_MassID_EinenSchreibprozess rdf:type owl:NamedIndividual ,
+                                                                           koma-turtle:Sequenz ;
+                                                                  koma-turtle:besteht_aus koma-turtle:KlassFachID_Deutsch_K5 ;
+                                                                  koma-turtle:sammelt koma-turtle:Stunde_Fertigkeit_MassID_EinenSchreibprozess .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#Student1
+koma-turtle:Student1 rdf:type owl:NamedIndividual ,
+                              koma-turtle:Student ;
+                     koma-turtle:lernt koma-turtle:Englisch ,
+                                       koma-turtle:Mathematik ;
+                     koma-turtle:name "Student1 name data property"^^xsd:string .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#Stunde_Fertigkeit_MassID_EinenSchreibprozess
+koma-turtle:Stunde_Fertigkeit_MassID_EinenSchreibprozess rdf:type owl:NamedIndividual ,
+                                                                  koma-turtle:Stunde ;
+                                                         koma-turtle:erzeugt_neu koma-turtle:Fertigkeit_MassID_EinenSchreibprozess ;
+                                                         koma-turtle:gehört_zu koma-turtle:Sequencz_Stunde_Fertigkeit_MassID_EinenSchreibprozess .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/raw/koma-turtle.owl#_situationsangemessen_und_adressatengerecht_vor_anderen_sprechen_sowie_verstehend_zuhören
+koma-turtle:_situationsangemessen_und_adressatengerecht_vor_anderen_sprechen_sowie_verstehend_zuhören rdf:type owl:NamedIndividual ,
+                                                                                                               koma-turtle:Kompetenz ;
+                                                                                                      koma-turtle:unterordnet_sich_in koma-turtle:Schreiben_und_Zuhören .
+
+
+###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi

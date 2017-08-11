@@ -1,0 +1,292 @@
+@prefix : <https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl> .
+
+<https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#besteht_aus
+:besteht_aus rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdfs:domain :KlasseFachID ;
+             rdfs:range :Fach ,
+                        :Klassenstufe .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#definiert_durch
+:definiert_durch rdf:type owl:ObjectProperty ;
+                 rdfs:domain :MassID ;
+                 rdfs:range :Kompetenz ,
+                            :KompetenzNiveau .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#erzeugt_neu
+:erzeugt_neu rdf:type owl:ObjectProperty ;
+             rdfs:domain :Stunde ;
+             rdfs:range :Fertigkeit .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#gehört_zu
+:gehört_zu rdf:type owl:ObjectProperty ;
+           rdfs:domain :Schlüsselkompetenz ;
+           rdfs:range :KompetenzBereich .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#gemessen_durch
+:gemessen_durch rdf:type owl:ObjectProperty ;
+                rdfs:domain :Fertigkeit ;
+                rdfs:range :MassID .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#lernt
+:lernt rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf owl:topObjectProperty ;
+       rdfs:domain :Student ;
+       rdfs:range :Fach .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#sammelt
+:sammelt rdf:type owl:ObjectProperty ;
+         rdfs:domain :KompetenzBereich ;
+         rdfs:range :Kompetenz ,
+                    :Schlüsselkompetenz .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#unterordnet_sich_in
+:unterordnet_sich_in rdf:type owl:ObjectProperty ;
+                     rdfs:domain :Kompetenz ;
+                     rdfs:range :KompetenzBereich .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#unterrichtet
+:unterrichtet rdf:type owl:ObjectProperty ;
+              rdfs:domain :Lehrer ;
+              rdfs:range :Fach .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#id
+:id rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Fach ,
+                :Fertigkeit ,
+                :Klassenstufe ,
+                :Kompetenz ,
+                :KompetenzBereich ,
+                :KompetenzNiveau ,
+                :Schlüsselkompetenz ,
+                :Sequenz ,
+                :Stunde ;
+    rdfs:range xsd:int .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#inhalt
+:inhalt rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf owl:topDataProperty ;
+        rdfs:domain :Stunde ;
+        rdfs:range xsd:string .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#name
+:name rdf:type owl:DatatypeProperty ;
+      rdfs:domain :Fach ,
+                  :Fertigkeit ,
+                  :Klassenstufe ,
+                  :Kompetenz ,
+                  :KompetenzBereich ,
+                  :KompetenzNiveau ,
+                  :Lehrer ,
+                  :Schlüsselkompetenz ,
+                  :Sequenz ,
+                  :Student ,
+                  :Stunde ;
+      rdfs:range xsd:string .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#ordnung
+:ordnung rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Sequenz ,
+                     :Stunde ;
+         rdfs:range xsd:int .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#rang
+:rang rdf:type owl:DatatypeProperty ;
+      rdfs:domain :KompetenzNiveau .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Fach
+:Fach rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Fertigkeit
+:Fertigkeit rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#KlasseFachID
+:KlasseFachID rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Klassenstufe
+:Klassenstufe rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Kompetenz
+:Kompetenz rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#KompetenzBereich
+:KompetenzBereich rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#KompetenzNiveau
+:KompetenzNiveau rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Lehrer
+:Lehrer rdf:type owl:Class ;
+        rdfs:subClassOf :Person .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#MassID
+:MassID rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Person
+:Person rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Schlüsselkompetenz
+:Schlüsselkompetenz rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Sequenz
+:Sequenz rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Student
+:Student rdf:type owl:Class ;
+         rdfs:subClassOf :Person .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Stunde
+:Stunde rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Deutsch
+:Deutsch rdf:type owl:NamedIndividual ,
+                  :Fach .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Einen_Schreibprozess_planvoll_gestalten
+:Einen_Schreibprozess_planvoll_gestalten rdf:type owl:NamedIndividual ,
+                                                  :Kompetenz ;
+                                         :unterordnet_sich_in :Schreiben .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Englisch
+:Englisch rdf:type owl:NamedIndividual ,
+                   :Fach .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Fertigkeit_MassID_EinenSchreibprozess
+:Fertigkeit_MassID_EinenSchreibprozess rdf:type owl:NamedIndividual ,
+                                                :Fertigkeit ;
+                                       :besteht_aus :MassID_EinenSchreibprozess_planvoll_gestallten .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#KlassFachID_Deutsch_K5
+:KlassFachID_Deutsch_K5 rdf:type owl:NamedIndividual ,
+                                 :KlasseFachID ;
+                        :definiert_durch :Deutsch ,
+                                         :Klassenstufe_5 .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Klassenstufe_5
+:Klassenstufe_5 rdf:type owl:NamedIndividual ,
+                         :Klassenstufe .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#KompetenzNiveau_Einen_Schreibprozess_planvoll_gestalten
+:KompetenzNiveau_Einen_Schreibprozess_planvoll_gestalten rdf:type owl:NamedIndividual ,
+                                                                  :KompetenzNiveau .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Lehrer1
+:Lehrer1 rdf:type owl:NamedIndividual ,
+                  :Lehrer ;
+         :unterrichtet :Englisch ,
+                       :Mathematik ;
+         :name "Lehrer 1 data prop"^^xsd:string .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#MassID_EinenSchreibprozess_planvoll_gestallten
+:MassID_EinenSchreibprozess_planvoll_gestallten rdf:type owl:NamedIndividual ,
+                                                         :MassID ;
+                                                :definiert_durch :Einen_Schreibprozess_planvoll_gestalten ,
+                                                                 :KompetenzNiveau_Einen_Schreibprozess_planvoll_gestalten .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Mathematik
+:Mathematik rdf:type owl:NamedIndividual ,
+                     :Fach ;
+            :id "777"^^xsd:int ;
+            :name "this is a data property of Individual of type String"^^xsd:string .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Schreiben
+:Schreiben rdf:type owl:NamedIndividual ,
+                    :KompetenzBereich .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Schreiben_und_Zuhören
+:Schreiben_und_Zuhören rdf:type owl:NamedIndividual ,
+                                :KompetenzBereich .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Sequencz_Stunde_Fertigkeit_MassID_EinenSchreibprozess
+:Sequencz_Stunde_Fertigkeit_MassID_EinenSchreibprozess rdf:type owl:NamedIndividual ,
+                                                                :Sequenz ;
+                                                       :besteht_aus :KlassFachID_Deutsch_K5 ;
+                                                       :sammelt :Stunde_Fertigkeit_MassID_EinenSchreibprozess .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Student1
+:Student1 rdf:type owl:NamedIndividual ,
+                   :Student ;
+          :lernt :Englisch ,
+                 :Mathematik ;
+          :name "Student1 name data property"^^xsd:string .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Stunde_Fertigkeit_MassID_EinenSchreibprozess
+:Stunde_Fertigkeit_MassID_EinenSchreibprozess rdf:type owl:NamedIndividual ,
+                                                       :Stunde ;
+                                              :erzeugt_neu :Fertigkeit_MassID_EinenSchreibprozess ;
+                                              :gehört_zu :Sequencz_Stunde_Fertigkeit_MassID_EinenSchreibprozess .
+
+
+###  https://s3-us-west-2.amazonaws.com/org.dado.s3/ontology/koma/koma.owl#Sachbezogen,_situationsangemessen_und_adressatengerecht_vor_anderen_sprechen_sowie_verstehend_zuhören
+:_situationsangemessen_und_adressatengerecht_vor_anderen_sprechen_sowie_verstehend_zuhören rdf:type owl:NamedIndividual ,
+                                                                                                    :Kompetenz ;
+                                                                                           :unterordnet_sich_in :Schreiben_und_Zuhören .
+
+
+###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi

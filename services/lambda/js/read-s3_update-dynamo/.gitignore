@@ -1,0 +1,6 @@
+.idea
+node_modules
+.npmignore
+package-lock.json
+*.zip
+meta.json
