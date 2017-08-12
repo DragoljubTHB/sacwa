@@ -316,9 +316,25 @@ a
 
 \chapter{Grundlagen}
 \label{chap:principles}
+Software Architektur: "What's important". Frühe, un-/schwer- veränderbare Entscheidungen.
+
+Design: Lambda Orchestrator -> Pool of Lambdas to use
+
+\section{KOMA}{Beispiel Anwenung}
 
 
-\chapter{DB Auswahl}
+Kompetenz Matrix:
+Ziel: Grundmodell von \glqq European Qualifications Framework \grqq Semantics.
+Chars: Übertragbar auf Deutsche Qualifikationsrahmen.
+
+Kern: Nach eine Unterrichtsstunde sind Fertigkeiten vergeben.
+Stunde findet in einer Klassenstufe und Fach statt.
+Fertigkeit gehört zu eine Kompetenz
+
+So kann man herausfinden wann eine Fertigkeit entstanden ist.
+
+
+\section{Datenhaltung Analyse und Auswahl}
 pattern : lambda: compute as a back end 
 ontology: Formale Darstellung von Wissen durch eine Menge von Konzepten innerhalb eines Domänes und dessen Beziehungen -zwischen Konzepten-.
 %https://de.slideshare.net/UscholdM/ontologies-and-db-schema-whats-the-difference
@@ -330,6 +346,31 @@ ontology: Formale Darstellung von Wissen durch eine Menge von Konzepten innerhal
 
 %nosql: https://de.wikipedia.org/wiki/NoSQL
 
+Semantics: relationships between signifiers
+De-notation: precise literal meaning of signifier
+Con-notation: associated meanings of signifier
+
+Da die Konnotationen von beispielsweise Schlusselkompetenzen von Kontext zu Kontext unterschiedlich sind,
+bietet sich eine Ontologische Datenspeicherung an. Extensible, Migriation ok. Consistency ko.
+
+Um die Konsistenz der Semantic des Grundmodells zu bewahren wird ein Relationale schema für die Ontologie benutzt.
+
+\section{Functionen}
+
+Einloggen: 0Auth Google gibt token, der wird in Lambda überprüft, Session in oauth.com verwaltet
+Query: SparQL ?x, ?y, ?z WHERE ...
+Datenspecherung Architektur:
+DynamoDB: speichert :individual als Schlussel und seine relative URL
+Ś3: speichert die .owl Dateien.
+
+Lambda Funktion: Maps zwischen S3 und DynamoDB.
+
+\section{Patterns}
+Valet Key
+
+Static Content Hosting ok
+
+Sharding ok
 
 \chapter{Ergebnis und Auswertung}
 
@@ -359,7 +400,7 @@ Im Vergleich zur manuellen Speicherverwaltung benötigt \ac{GC} mehr Ressourcen.
 
 Ich versichere hiermit, dass ich die von mir eingereichte Masterarbeit selbstständig verfasst, ausschließlich die angegebenen Hilfsmittel benutzt und sowohl wörtliche, als auch sinngemäße entlehnte Stellen als solche kenntlich gemacht habe. Die Arbeit hat in gleicher oder ähnlicher Form noch keiner anderen Prüfungsbehörde vorgelegen.
 
-Ort, XX. Monat 20XX
+Brandenburg an der Havel, XX. Monat 2017
 
 \vspace{3cm}
 

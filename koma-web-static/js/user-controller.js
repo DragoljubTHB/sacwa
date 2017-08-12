@@ -10,7 +10,8 @@ var userController = {
     profileButton: null,
     profileNameLabel: null,
     profileImage: null,
-    s3InfoButton: null
+    s3InfoButton: null,
+    readS3UpdateDynamo: null
   },
   init: function(config) {
     var that = this;
@@ -21,6 +22,7 @@ var userController = {
     this.uiElements.profileNameLabel = $('#profilename');
     this.uiElements.profileImage = $('#profilepicture');
     this.uiElements.s3InfoButton = $('#s3info');
+    this.uiElements.readS3UpdateDynamo = $('#readS3UpdateDynamo');
 
     this.data.config = config;
     this.data.auth0Lock = new Auth0Lock(config.auth0.clientId, config.auth0.domain);
@@ -106,6 +108,13 @@ var userController = {
         console.log(data);
           alert(JSON.stringify(data, null, 2));
       })
-    })
+    });
+    this.uiElements.readS3UpdateDynamo.click(function (e) {
+        var url = that.data.config.apiBaseUrl + '/readS3UpdateDynamo';
+        $.get(url, function (data, status) {
+            alert(JSON.stringify(data));
+        })
+    });
+
   }
 };
