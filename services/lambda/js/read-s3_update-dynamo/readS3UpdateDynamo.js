@@ -65,6 +65,7 @@ function createBucketParams(next) {
 }
 
 function getObjectFromS3(params, next) {
+    console.log("attempt to read object from S3");
     s3.getObject(params, function (err, data) {
         if(err){
             console.log(err, err.stack);
@@ -76,6 +77,8 @@ function getObjectFromS3(params, next) {
 }
 
 function parseOntology(data, next) {
+    console.log("attempt to parse ontology");
+
     // passed in request param
     // located at s3 under milasino account because of aws:role -> policy
     var file = 'raw/picasso-turtle.owl';
@@ -105,9 +108,11 @@ function parseOntology(data, next) {
 }
 
 function writeToDynamoDB(params, next) {
+    console.log("attempt to write to dynamoDB");
+
     dynamodb.batchWriteItem(params, function(err, data) {
         if (err) next(err);
-        else next(next, data);
+        else next(null, data);
     });
 }
 
@@ -122,5 +127,4 @@ exports.handler = function (event, context, callback) {
             if(err) callback(createErrorResponse(500, err));
             else callback(null, createSuccessResponse(200, result));
         });
-
 };
