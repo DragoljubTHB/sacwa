@@ -4,7 +4,7 @@
   "description": "reads ontology from s3 and updates dynamodb",
   "main": "readS3UpdateDynamo.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "run-local-lambda --file readS3UpdateDynamo.js –-event event.json",
     "create": "aws lambda create-function --function-name readS3UpdateDynamo --handler readS3UpdateDynamo.handler --memory-size 128 --runtime nodejs6.10 --role arn:aws:iam::309837773135:role/lambda-s3-execution-role --timeout 3 --publish --zip-file fileb://Lambda-Deployment.zip",
     "deploy": "aws lambda update-function-code --function-name readS3UpdateDynamo --zip-file fileb://Lambda-Deployment.zip",
     "precreate": "zip -r Lambda-Deployment.zip * -x *.zip *.json *.log",
@@ -15,6 +15,8 @@
   "devDependencies": {
     "async": "^2.5.0",
     "aws-sdk": "^2.96.0",
-    "n3": "^0.11.1"
+    "install": "^0.10.1",
+    "n3": "^0.11.1",
+    "run-local-lambda": "^1.1.1"
   }
 }

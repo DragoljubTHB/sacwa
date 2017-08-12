@@ -5,14 +5,15 @@ const AWS = require('aws-sdk');
 var async = require('async');
 var N3 = require('n3');
 var s3 = new AWS.S3();
-var dynamodb = new AWS.DynamoDB.DocumentClient({region: 'us-west-2'});
+var ddb = new AWS.DynamoDB.DocumentClient({region: 'us-west-2'});
+var ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
 
 
 function createErrorResponse(code, message) {
     var response = {
         'statusCode': code,
         'headers' : {'Access-Control-Allow-Origin' : '*'},
-        'body' : JSON.stringify({'code': code, 'messsage' : message})
+        'body' : JSON.stringify({'code': code, 'messsage' : message}, null, 2)
     };
 
     return response;
@@ -22,7 +23,7 @@ function createSuccessResponse(result) {
     var response = {
         'statusCode': 200,
         'headers' : {'Access-Control-Allow-Origin' : '*'},
-        'body' : JSON.stringify(result)
+        'body' : JSON.stringify(result, null, 2)
     };
 
     return response;
@@ -50,8 +51,6 @@ function addItemToDynamoPutRequest(keyName, keyValue) {
     item.Item[keyName] = keyValue;
     putReq.PutRequest = item;
 
-    console.log(JSON.stringify(item));
-
     return putReq;
 
 }
@@ -71,7 +70,7 @@ function getObjectFromS3(params, next) {
             console.log(err, err.stack);
             next(err);
         }else {
-            next(null, data);
+            next(null, data.Body.toString('utf8'));
         }
     });
 }
@@ -87,30 +86,36 @@ function parseOntology(data, next) {
     var predicateItems = [];
     var objectItems = [];
 
-
     var first = true;
+    var done = false;
+    var c = 0;
     var parser = new N3.Parser();
     parser.parse(data, function (error, triple, prefixes) {
-        if(!first && triple){
-            subjectItems.push(addItemToDynamoPutRequest(lastWordOf(triple.subject), file));
-            predicateItems.push(addItemToDynamoPutRequest(lastWordOf(triple.predicate), file));
-            objectItems.push(addItemToDynamoPutRequest(lastWordOf(triple.object), file));
+        console.log("parsing");
 
-            reqItems.RequestItems['Subject'] = subjectItems;
-            reqItems.RequestItems['Predicate'] = predicateItems;
-            reqItems.RequestItems['Object'] = objectItems;
-            console.log(JSON.stringify(reqItems));
+        if(triple){
+            if(!first){
+                subjectItems.push(addItemToDynamoPutRequest(lastWordOf(triple.subject), file));
+                predicateItems.push(addItemToDynamoPutRequest(lastWordOf(triple.predicate), file));
+                objectItems.push(addItemToDynamoPutRequest(lastWordOf(triple.object), file));
 
+                reqItems.RequestItems['Subject'] = subjectItems;
+                reqItems.RequestItems['Predicate'] = predicateItems;
+                reqItems.RequestItems['Object'] = objectItems;
+            }
+            first = false;
+        } else {
+            console.log("reqItems", reqItems);
+            next(null, reqItems);
         }
-        first = false;
     });
-    next(null, reqItems);
 }
 
 function writeToDynamoDB(params, next) {
     console.log("attempt to write to dynamoDB");
+    console.log(JSON.stringify("params: ", params));
 
-    dynamodb.batchWriteItem(params, function(err, data) {
+    ddb.batchWriteItem(params, function(err, data) {
         if (err) next(err);
         else next(null, data);
     });
@@ -124,7 +129,8 @@ exports.handler = function (event, context, callback) {
                     , parseOntology
                     , writeToDynamoDB],
         function (err, result) {
-            if(err) callback(createErrorResponse(500, err));
+        console.log("attempt to create response message");
+            if(err) console.log((createErrorResponse(500, err)));
             else callback(null, createSuccessResponse(200, result));
         });
 };
