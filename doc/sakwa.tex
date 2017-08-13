@@ -309,7 +309,7 @@ Start::Chars: Arch + Domän Flexibilität - Schnelle Arch Änderungen
 
 \section{Ziel}
 \label{sec:task}
-a
+Identify Generic Functions with-/out Architecture Pattern
 
 \section{Aufbau der Arbeit}
 \label{sec:layout}
@@ -317,6 +317,8 @@ a
 \chapter{Grundlagen}
 \label{chap:principles}
 Software Architektur: "What's important". Frühe, un-/schwer- veränderbare Entscheidungen.
+p.6 Studies in computational intlligen Ontologies: Level 4 SaaS :
+Scalable, Configurable, and Multitenant
 
 Design: Lambda Orchestrator -> Pool of Lambdas to use
 
@@ -372,11 +374,17 @@ Static Content Hosting ok
 
 Sharding ok
 
+Compute Resource Consolidation 
+
+Command and Query Responsability Segregation CQRS <- readS3UpdateDynamo.js
+
 \chapter{Ergebnis und Auswertung}
 
 cons:
 viel Konfiguration, kaum Konveniton -> .json 4 everything
 local testing braucht event-symulation.json
+
+Entwurfsmuster von Frameworks wie JEE durch eine Annotation generisch eingesetzt sind neu zu implementieren in der Cloud
 
 
 \chapter{Zusammenfassung und Ausblick}
