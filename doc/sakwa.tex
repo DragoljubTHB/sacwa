@@ -291,34 +291,30 @@ Serverless Arch AWS :: Main :: lambda: compute as a back end
 \setcounter{page}{1}
 \label{chap:introduction}
 
-Beispielhaftes Bild \autoref{fig:example-flame-graph}
+Welche Factoren Interessieren beim Anfang der technologischen Umsetzung einer Idee? 
+Time-To-Market
+Kost of Human Resources:: Skill shortage
+Prof of Concept
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{pics/example-flame-graph.eps}
-	\caption{Beispiel Flame-Graph eines Node.js Skripts}
-	\label{fig:example-flame-graph}
-\end{figure}
 
-Beispielhaftes Code-Snippet siehe \autoref{lst:sample}.
-
-\begin{lstlisting}[language=bash,caption={Aufnahme der \glqq real\grqq-Zeit},label={lst:sample}]
-START=$(date +%s.%N)
-node ${JS_FILE}
-END=$(date +%s.%N)
-DIFF=$(echo "$END - $START" | bc)
-\end{lstlisting}
-
-Hier kommt eine Bibliography-Referenz: \cite{booch2007object}
 
 \section{Motivation}
-Ausnutzung der Architektonischen -Arch- Gestalltungsmittel von AWS.
+
+Auf dem Weg zur technologischen Umsetzung einer neuen Idee liegen unbekannte Schwierigkeiten mit der Entscheidungen über die Architektur der Anwendung/Projekt/Umsetzung?, der Drittanbieter von Software, der Auswahl der Infrastruktur usw. Schwierigkeiten die von spezialisierten Kompetenzen, Fertigkeiten und \glqq Know-How\grqq bedürfen. Gehören jedoch nicht immer zum Problem des Domäns der Anwendung. 
+
+
+Auf diesen Problem wurde \glqq FaaS\grqq als Lösung unter der Rubrik \glqq Serverless\grqq von den Hauptanbieter von \glqq Cloud\grqq Technologien vorgestellt. 
+
+
+
+\section{Ziel}
+\label{sec:task}
+
+Untersuchung von architektonischen Entwurfsmuster mit ausschließlich Serverless Technologien am beispiel von KOMA mit AWS. 
 
 Start : MVP Minimal Viable Product  
 Start::Chars: Arch + Domän Flexibilität - Schnelle Arch Änderungen
 
-\section{Ziel}
-\label{sec:task}
 Umsetzung der Kernfunktionalität einer Beispielanwendung mit ausschließlich \glqq Serverlosen\grqq Architekturen.
 wenn Zeit: Identifizieren von unverzichtbare Generische Funktionen für Serverless Anwendungen.
 %Identify Generic Functions with-/out Architecture Pattern
@@ -329,13 +325,18 @@ wenn Zeit: Identifizieren von unverzichtbare Generische Funktionen für Serverle
 
 \chapter{Grundlagen}
 \label{chap:principles}
+Stand der Technik: 
+Vorgehensweise bei Traditionelle Webanwendungen:  
+% Coursera -> Startup Engeneering -> from Idea to Product
 Software Architektur: "What's important". Frühe, un-/schwer- veränderbare Entscheidungen.
-p.6 Studies in computational intlligen Ontologies: Level 4 SaaS :
-Scalable, Configurable, and Multitenant
+%@Glossar: 
+Web Services are processes that expose their interfaces to the Web so that users can invoke them. Facilitate service discovery and meaning encoded in schemas
+
 
 Design: Lambda Orchestrator -> Pool of Lambdas to use
 
 \section{KOMA}{Beispiel Anwendung}
+
 \glqq KOMA\grqq ist ein Akronym für Kompetenz-Matrix. Die Umsetzung der Anwendung soll die von einem Individuum erworbene und zu erwerbenden Fertigkeiten, Kompetenzen und deren Niveau nachvollziehen. <-- ? \\
 
 Das Modell von KOMA basiert auf dem Grundmodell von \glqq European Qualifications Framework Semantics\grqq und dem deutschen Qualifikationsrahmen. 
@@ -345,8 +346,36 @@ Ein Nutzungs-Fall aka. Use-Case:
 
 -Als Professor, will ich das Kompetenzniveau einer Kompetenz und derer Fertigkeiten abrufen können.
 
+\section{Anforderungen Analyse}
+Von Browser abrufbar. 
+
+Private Datenspeicherung.
+
+Zukünftige Erweiterungen berücksichtigen.
+
+Konsistenz Prüfung mit Unterschiedlichen Konnotationen zwischen dargestellten Konzepten. 
+
+
+
 \section{Datenhaltung Analyse und Auswahl}
-ontology: Formale Darstellung von Wissen durch eine Menge von Konzepten innerhalb eines Domänes und dessen Beziehungen -zwischen Konzepten-.
+
+--> Tabelle 
+Vergleich:: Relationale : NoSQL : Ontology
+Konsistenz
+Erweiterbarkeit
+Migration
+Bedeutung
+
+
+Da die Konnotationen von beispielsweise Schlusselkompetenzen von Kontext zu Kontext unterschiedlich sind,
+bietet sich eine Ontologische Datenspeicherung an. Extensible, Migriation ok. Consistency ko.
+
+Um die Konsistenz der Semantic desRDF Grundmodells zu bewahren wird ein Relationale schema für die Ontologie benutzt.
+%@Glossar
+%ontology: Formale Darstellung von Wissen durch eine Menge von Konzepten innerhalb eines Domänes und dessen Beziehungen -zwischen Konzepten-. way to mix together different descriptive vocabularies in a consistent way. Vocabularies can be created by distinct communities and groups as appropriate and mixed together as required, without needing any centralized agreement on how terms from different vocabularies can be written down in XM
+
+%p.6 Studies in computational intlligen Ontologies: Level 4 SaaS :Scalable, Configurable, and Multitenant
+
 %https://de.slideshare.net/UscholdM/ontologies-and-db-schema-whats-the-difference
 %https://www.youtube.com/watch?v=bGPVCkuKTo4
 %https://www.youtube.com/watch?v=n1hwsclr0Eg
@@ -356,14 +385,10 @@ ontology: Formale Darstellung von Wissen durch eine Menge von Konzepten innerhal
 
 %nosql: https://de.wikipedia.org/wiki/NoSQL
 
-Semantics: relationships between signifiers
-De-notation: precise literal meaning of signifier
-Con-notation: associated meanings of signifier
-
-Da die Konnotationen von beispielsweise Schlusselkompetenzen von Kontext zu Kontext unterschiedlich sind,
-bietet sich eine Ontologische Datenspeicherung an. Extensible, Migriation ok. Consistency ko.
-
-Um die Konsistenz der Semantic des Grundmodells zu bewahren wird ein Relationale schema für die Ontologie benutzt.
+%@Glossar
+%Semantics: relationships between signifiers
+%De-notation: precise literal meaning of signifier
+%Con-notation: associated meanings of signifier
 
 \section{Functionen}
 
@@ -397,6 +422,27 @@ Entwurfsmuster von Frameworks wie JEE durch eine Annotation generisch eingesetzt
 
 
 \chapter{Zusammenfassung und Ausblick}
+
+
+Beispielhaftes Bild \autoref{fig:example-flame-graph}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{pics/example-flame-graph.eps}
+	\caption{Beispiel Flame-Graph eines Node.js Skripts}
+	\label{fig:example-flame-graph}
+\end{figure}
+
+Beispielhaftes Code-Snippet siehe \autoref{lst:sample}.
+
+\begin{lstlisting}[language=bash,caption={Aufnahme der \glqq real\grqq-Zeit},label={lst:sample}]
+START=$(date +%s.%N)
+node ${JS_FILE}
+END=$(date +%s.%N)
+DIFF=$(echo "$END - $START" | bc)
+\end{lstlisting}
+
+Hier kommt eine Bibliography-Referenz: \cite{booch2007object}
 
 \lstlistoflistings
 
