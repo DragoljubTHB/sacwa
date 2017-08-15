@@ -284,7 +284,7 @@ Man Trade Offs Arch :: Auswertung + Design guide  <- self-adaptive arch??
 AWS Sol. Arch :: Best Practices AWS vs Patterns general 
 Amazon Web Services in Action :: Best Practices Arch
 Impl Cloud Design-Patterns for AWS :: Patterns list
-Serverless Arch AWS :: Main
+Serverless Arch AWS :: Main :: lambda: compute as a back end 
 
 
 \chapter{Einleitung}
@@ -319,7 +319,10 @@ Start::Chars: Arch + Domän Flexibilität - Schnelle Arch Änderungen
 
 \section{Ziel}
 \label{sec:task}
-Identify Generic Functions with-/out Architecture Pattern
+Umsetzung der Kernfunktionalität einer Beispielanwendung mit ausschließlich \glqq Serverlosen\grqq Architekturen.
+wenn Zeit: Identifizieren von unverzichtbare Generische Funktionen für Serverless Anwendungen.
+%Identify Generic Functions with-/out Architecture Pattern
+
 
 \section{Aufbau der Arbeit}
 \label{sec:layout}
@@ -332,22 +335,17 @@ Scalable, Configurable, and Multitenant
 
 Design: Lambda Orchestrator -> Pool of Lambdas to use
 
-\section{KOMA}{Beispiel Anwenung}
+\section{KOMA}{Beispiel Anwendung}
+\glqq KOMA\grqq ist ein Akronym für Kompetenz-Matrix. Die Umsetzung der Anwendung soll die von einem Individuum erworbene und zu erwerbenden Fertigkeiten, Kompetenzen und deren Niveau nachvollziehen. <-- ? \\
 
+Das Modell von KOMA basiert auf dem Grundmodell von \glqq European Qualifications Framework Semantics\grqq und dem deutschen Qualifikationsrahmen. 
 
-Kompetenz Matrix:
-Ziel: Grundmodell von \glqq European Qualifications Framework \grqq Semantics.
-Chars: Übertragbar auf Deutsche Qualifikationsrahmen.
+Ein Nutzungs-Fall aka. Use-Case: 
+-Als Professor, will ich eine Auflistung der erworbene Fertigkeiten einer Klassenstufe abrufen können.
 
-Kern: Nach eine Unterrichtsstunde sind Fertigkeiten vergeben.
-Stunde findet in einer Klassenstufe und Fach statt.
-Fertigkeit gehört zu eine Kompetenz
-
-So kann man herausfinden wann eine Fertigkeit entstanden ist.
-
+-Als Professor, will ich das Kompetenzniveau einer Kompetenz und derer Fertigkeiten abrufen können.
 
 \section{Datenhaltung Analyse und Auswahl}
-pattern : lambda: compute as a back end 
 ontology: Formale Darstellung von Wissen durch eine Menge von Konzepten innerhalb eines Domänes und dessen Beziehungen -zwischen Konzepten-.
 %https://de.slideshare.net/UscholdM/ontologies-and-db-schema-whats-the-difference
 %https://www.youtube.com/watch?v=bGPVCkuKTo4
