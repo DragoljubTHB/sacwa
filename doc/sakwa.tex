@@ -323,11 +323,11 @@ Für dieses Problem wurde \glqq FaaS\grqq als Lösung unter der Rubrik \glqq Ser
 \section{Ziel}
 \label{sec:task}
 
-Im Rahmen des Cloud-Computing handelt es in dieser Arbeit um eine Untersuchung der Serverless Architekturen am Beispiel einer Konventionellen Webanwendung. Dabei wird besonders geachtet ob und wie solche Technologien die Umsetzung erleichtern.
+Im Rahmen des Cloud-Computing handelt es in dieser Arbeit um eine Untersuchung der Serverless Architekturen am Beispiel einer Konventionellen Webanwendung. Dabei wird besonders geachtet ob und wie solche Technologien die Umsetzung erleichtern. Die Entwurfsmuster und die Kernfunktionalität werden mit ausschließlich Serverless Technologien am Beispiel von KOMA mit AWS umgesetzt. 
 
-Untersuchung von architektonischen Entwurfsmuster mit ausschließlich Serverless Technologien am Beispiel von KOMA mit AWS. 
+@acronym MVP Minimal Viable Product : \cite{rady2016serverless}
+Als Ergebnis wird ein MVP Minimal Viable Product in form eine @acronym SPA Single Page Application vor zur Verfügung gestellt.
 
-Start : MVP Minimal Viable Product  
 Start::Chars: Arch + Domän Flexibilität - Schnelle Arch Änderungen
 
 Umsetzung der Kernfunktionalität einer Beispielanwendung mit ausschließlich \glqq Serverlosen\grqq Architekturen.
@@ -338,12 +338,33 @@ wenn Zeit: Identifizieren von unverzichtbare Generische Funktionen für Serverle
 \section{Aufbau der Arbeit}
 \label{sec:layout}
 
-Zuerst wird den Leser in die Serverless Technologien eingeführt. 
-Es wird KOMA \ref{sec:KOMA} als vorläufiges Beispielanwendung und deren Anforderungen vorgestellt. 
+Zuerst wird den Leser in die Serverless \ref{sec:serverless} Technologien eingeführt, das Programmiermodell vorgestellt und die Entscheidungsprinzipien erläutert. 
+Als Zweites wird KOMA \ref{sec:KOMA} als vorläufiges Beispielanwendung und deren Anforderungen vorgestellt. 
+Eine Zahl von möglichen Kombinationen von aktuellen Technologien mit Serverless werden beispielhaft dargestellt.
+Hinzu wird derer Analyse und Umsetzung angeführt? durchgeführt. 
 
 \chapter{Grundlagen}
 \label{chap:principles}
-Serverless ist ein Web Dienst/Service von Cloud-Anbieter, wird auch als FaaS bezeichnet. Deren Serverinfrastruktur wird vom Cloud-Anbieter wie Amazon Web Services verwaltet. Komplexe Probleme wie horizontale und vertikale Skalierbarkeit, Fehlertoleranz, Flexibilität werden von Kunden nur noch nach bedarf Konfiguriert. 
+
+Serverless ist ein @Glossar Web Dienst/Service von Cloud-Anbieter, wird auch als @Glossar FaaS bezeichnet. Deren Serverinfrastruktur wird vom Cloud-Anbieter wie Amazon Web Services verwaltet. Komplexe Probleme wie horizontale und vertikale Skalierbarkeit, Fehlertoleranz, Flexibilität werden von Kunden nur noch nach bedarf Konfiguriert. 
+
+
+\section{Serverless}
+\label{sec:serverless}
+Prinzipien von Serverless Architeturen: \cite{sbarski2017serverless}
+Rechen-Dienst nach Anfrage dass in isoliert, unabhängig und granular ausgeführt wrid. 
+. . .
+
+
+
+Programmiermodell 
+Dienste werden nach Anfrage ausgeführt. 
+Die Kosten werden nach Ausführung abgerechnet. 
+
+One size fits NOT all
+
+Vergleich mit Microservices.
+
 
 Stand der Technik: 
 Vorgehensweise bei Traditionelle Webanwendungen:  
@@ -359,7 +380,7 @@ Design: Lambda Orchestrator -> Pool of Lambdas to use
 
 \glqq KOMA\grqq ist ein Akronym für Kompetenz-Matrix. Die Umsetzung der Anwendung soll die von einem Individuum erworbene und zu erwerbenden Fertigkeiten, Kompetenzen und deren Niveau nachvollziehen. <-- ? \\
 
-Das Modell von KOMA basiert auf dem Grundmodell von \glqq European Qualifications Framework Semantics\grqq und dem deutschen Qualifikationsrahmen. 
+Das Modell von KOMA basiert auf dem Grundmodell von @ref \glqq European Qualifications Framework Semantics\grqq und dem deutschen Qualifikationsrahmen. 
 
 Ein Nutzungs-Fall aka. Use-Case: 
 -Als Professor, will ich eine Auflistung der erworbene Fertigkeiten einer Klassenstufe abrufen können.
@@ -369,13 +390,16 @@ Ein Nutzungs-Fall aka. Use-Case:
 \section{Anforderungen Analyse}
 Von Browser abrufbar. 
 
-Private Datenspeicherung.
+Private Datenspeicherung. Daher Login.
 
 Zukünftige Erweiterungen berücksichtigen.
 
-Konsistenz Prüfung mit Unterschiedlichen Konnotationen zwischen dargestellten Konzepten. 
+Konsistenz Prüfung mit Unterschiedlichen Konnotationen zwischen dargestellten Konzepten. <-- zu viel
 
-
+\section{Serverless Kombiniert}
+Spring Boot + Lambda
+Wildfly Swarm REST + Lambda
+Django + Lambda
 
 \section{Datenhaltung Analyse und Auswahl}
 
@@ -410,7 +434,15 @@ Um die Konsistenz der Semantic desRDF Grundmodells zu bewahren wird ein Relation
 %De-notation: precise literal meaning of signifier
 %Con-notation: associated meanings of signifier
 
-\section{Functionen}
+\chapter{Umsetzung}
+
+\section{Komponenten}
+@Diagramm
+
+
+
+\section{Einloggen}
+
 
 Einloggen: 0Auth Google gibt token, der wird in Lambda überprüft, Session in oauth.com verwaltet
 Query: SparQL ?x, ?y, ?z WHERE ...
@@ -421,7 +453,7 @@ DynamoDB: speichert :individual als Schlussel und seine relative URL
 Lambda Funktion: Maps zwischen S3 und DynamoDB.
 
 \section{Patterns}
-Valet Key
+Valet Key \cite{homer2014cloud}
 
 Static Content Hosting ok
 
@@ -493,6 +525,7 @@ Im Vergleich zur manuellen Speicherverwaltung benötigt \ac{GC} mehr Ressourcen.
 
 \bibliographystyle{alpha}
 \bibliography{sources}
+
 
 \chapter*{Eidesstattliche Erklärung}
 
