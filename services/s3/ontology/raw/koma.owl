@@ -85,6 +85,10 @@
 :LearnActivity rdf:type owl:Class .
 
 
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#LehrVeranstaltung
+:LehrVeranstaltung rdf:type owl:Class .
+
+
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Other
 :Other rdf:type owl:Class ;
        rdfs:subClassOf :SingleCompetence .
@@ -112,9 +116,15 @@
 #    Individuals
 #################################################################
 
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#ALGODAT
+:ALGODAT rdf:type owl:NamedIndividual ,
+                  :LehrVeranstaltung .
+
+
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#BSRN
 :BSRN rdf:type owl:NamedIndividual ,
-               :Fach .
+               :LehrVeranstaltung .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Bit-Byte-MB
@@ -140,6 +150,16 @@
                        :MündlicheProduktion .
 
 
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Englisch_I
+:Englisch_I rdf:type owl:NamedIndividual ,
+                     :LehrVeranstaltung .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#FSAT
+:FSAT rdf:type owl:NamedIndividual ,
+               :LehrVeranstaltung .
+
+
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#FeedbackMethoden
 :FeedbackMethoden rdf:type owl:NamedIndividual ,
                            :Competence .
@@ -163,6 +183,11 @@
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#HörSehVerstehen
 :HörSehVerstehen rdf:type owl:NamedIndividual ,
                           :SingleCompetence .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#INFOLOG
+:INFOLOG rdf:type owl:NamedIndividual ,
+                  :LehrVeranstaltung .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Inerview
@@ -200,9 +225,14 @@
                                 :SingleCompetence .
 
 
-###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Mathematik
-:Mathematik rdf:type owl:NamedIndividual ,
-                     :Fach .
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Mathematik_I
+:Mathematik_I rdf:type owl:NamedIndividual ,
+                       :LehrVeranstaltung .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Mathematik_II
+:Mathematik_II rdf:type owl:NamedIndividual ,
+                        :LehrVeranstaltung .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#MündlicheProduktion
@@ -235,6 +265,16 @@
                                    :Competence .
 
 
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Programmierung_I
+:Programmierung_I rdf:type owl:NamedIndividual ,
+                           :LehrVeranstaltung .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Programmierung_II
+:Programmierung_II rdf:type owl:NamedIndividual ,
+                            :LehrVeranstaltung .
+
+
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#RDFs
 :RDFs rdf:type owl:NamedIndividual ,
                :Knowledge .
@@ -257,6 +297,11 @@
                         :achieve :RSA-Algorithm .
 
 
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Rechnerorganisation
+:Rechnerorganisation rdf:type owl:NamedIndividual ,
+                              :LehrVeranstaltung .
+
+
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Ride-Bike
 :Ride-Bike rdf:type owl:NamedIndividual ,
                     :LearnActivity .
@@ -269,6 +314,36 @@
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#SelbständigesAnwenden
 :SelbständigesAnwenden rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Sem_I
+:Sem_I rdf:type owl:NamedIndividual ,
+                :KlassenStufe .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Sem_II
+:Sem_II rdf:type owl:NamedIndividual ,
+                 :KlassenStufe .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Sem_III
+:Sem_III rdf:type owl:NamedIndividual ,
+                  :KlassenStufe .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Sem_IV
+:Sem_IV rdf:type owl:NamedIndividual ,
+                 :KlassenStufe .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Sem_V
+:Sem_V rdf:type owl:NamedIndividual ,
+                :KlassenStufe .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Sem_VI
+:Sem_VI rdf:type owl:NamedIndividual ,
+                 :KlassenStufe .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Talk
@@ -284,6 +359,11 @@
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Walk
 :Walk rdf:type owl:NamedIndividual ,
                :Other .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#WebComputing
+:WebComputing rdf:type owl:NamedIndividual ,
+                       :LehrVeranstaltung .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#WebDeveloper
