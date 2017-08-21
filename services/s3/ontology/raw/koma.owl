@@ -13,10 +13,16 @@
 #    Object Properties
 #################################################################
 
-###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#mapsTo
-:mapsTo rdf:type owl:ObjectProperty ;
-        rdfs:domain :CompetenceProfile ;
-        rdfs:range :Competence .
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#achieve
+:achieve rdf:type owl:ObjectProperty ;
+         rdfs:domain :LearnActivity ;
+         rdfs:range :SingleCompetence .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#besteht-aus
+:besteht-aus rdf:type owl:ObjectProperty ;
+             rdfs:domain :CompetenceProfile ;
+             rdfs:range :SingleCompetence .
 
 
 #################################################################
@@ -126,9 +132,21 @@
                         :Knowledge .
 
 
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Englisch
+:Englisch rdf:type owl:NamedIndividual ,
+                   :CompetenceProfile ;
+          :besteht-aus :HörSehVerstehen ,
+                       :LeseVerstehen ,
+                       :MündlicheProduktion .
+
+
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#FeedbackMethoden
 :FeedbackMethoden rdf:type owl:NamedIndividual ,
                            :Competence .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#FreiesSprechen
+:FreiesSprechen rdf:type owl:NamedIndividual .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Gangsters
@@ -140,6 +158,21 @@
 :Globales_Text_Verständnis rdf:type owl:NamedIndividual ,
                                     :Competence ;
                            :definition "Text als Ganzes verstehen."^^xsd:string .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#HörSehVerstehen
+:HörSehVerstehen rdf:type owl:NamedIndividual ,
+                          :SingleCompetence .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Inerview
+:Inerview rdf:type owl:NamedIndividual ,
+                   :LearnActivity .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Interkulturelle
+:Interkulturelle rdf:type owl:NamedIndividual ,
+                          :SingleCompetence .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Java-Programming
@@ -157,9 +190,24 @@
                          :Competence .
 
 
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#LeseVerstehen
+:LeseVerstehen rdf:type owl:NamedIndividual ,
+                        :SingleCompetence .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#LiteralischÄsthetisch
+:LiteralischÄsthetisch rdf:type owl:NamedIndividual ,
+                                :SingleCompetence .
+
+
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Mathematik
 :Mathematik rdf:type owl:NamedIndividual ,
                      :Fach .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#MündlicheProduktion
+:MündlicheProduktion rdf:type owl:NamedIndividual ,
+                              :SingleCompetence .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#OWL
@@ -199,17 +247,24 @@
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#RSA-Algorithm
 :RSA-Algorithm rdf:type owl:NamedIndividual ,
-                        :Skill .
+                        :Skill ;
+               :achieve :MündlicheProduktion .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#RSA-Algorithm-Programm
 :RSA-Algorithm-Programm rdf:type owl:NamedIndividual ,
-                                 :LearnActivity .
+                                 :LearnActivity ;
+                        :achieve :RSA-Algorithm .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Ride-Bike
 :Ride-Bike rdf:type owl:NamedIndividual ,
                     :LearnActivity .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#SchriftlicheProduktion
+:SchriftlicheProduktion rdf:type owl:NamedIndividual ,
+                                 :SingleCompetence .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#SelbständigesAnwenden
