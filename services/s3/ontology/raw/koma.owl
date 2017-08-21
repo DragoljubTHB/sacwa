@@ -116,7 +116,6 @@
 #    Individuals
 #################################################################
 
-
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#ALGODAT
 :ALGODAT rdf:type owl:NamedIndividual ,
                   :LehrVeranstaltung .
@@ -313,7 +312,8 @@
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#SelbständigesAnwenden
-:SelbständigesAnwenden rdf:type owl:NamedIndividual .
+:SelbständigesAnwenden rdf:type owl:NamedIndividual ,
+                                :SingleCompetence .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Sem_I
