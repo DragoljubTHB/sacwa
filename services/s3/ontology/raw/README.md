@@ -17,6 +17,32 @@ Constructors
 ##shroid -> owl2
 syntax -> turtle
 Individuals: Class, NamedIndividual (existence on his own)
+Properties: Obj-> link to another Resource DataType-> link to literal
+          : can restrict domain -> range 
+Class:
+:s owl:disjointWith :p .
+[] a owl:AllDisjointClasses ; owl:members { :c1 :c2 ... } .
+:s owl:equivalentWith :p .
+
+ClosedClasses ( Nominals ):
+:s owl:oneOf ( :c1, :c2 ) .
+
+ClassCTORS : 
+:s a owl:Class; owl:intersectionOf (:c1 :c2) . 
+:s a owl:Class; owl:equivalentClass [owl:unionOf (:c1 :c2)] .
+:s a owl:Class; rdfs:subClassOf [ owl:complementOf :c1 ] .
+
+Props Restrict: owl: 
+vals: hasValue - allValuesFrom - someValuesFrom @4_4
+cardinality, nums: - minCardinality - maxCardinality
+Prop Rel
+Trans Sym asym funct inverFunct Reflex Irreflex
+
+Relationships::
+Individuals:: 
+:s owl:sameAs/differentFrom :p .
+[] a owl:AllDifferent ; owl:distinctMembers { :c1 :c2 ... } .
+
 
 
 #debugging: 
