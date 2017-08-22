@@ -3,6 +3,28 @@
 # https://ec.europa.eu/esco/resources/data/static/model/html/model.xhtml#Skill
 # notes on web-semantics
 
+#ontol-eng 101
+determine-scope: 
+Umsetzung der Rahmenlehrpläne in eine Ontologie
+
+Consider reuse: aktuell keine Ontologie veröffentlicht
+Enumerate Terms:  Terminologie
+Kompetenz: 
+KompetenzProfil: 
+Skill/Fertigkeit: 
+Wissen/Knowledge: 
+Andere/Other: 
+KompetenzNiveau/Level: 
+
+LehrVeranstalltung:
+KlassenStufe: 
+LearnActivity: 
+
+Define Classes and Hierarchies:
+
+
+Define Properties/Attributes of Classes: 
+
 #ontol- engineering for methodology 
 types : top - domain - app
 semantic gap:: how to find out whether 2 ontologies mean the same thing
@@ -24,6 +46,7 @@ knowledge acquisition - eval - integr - merge - align->map - doc - config man
 welche stand von kompetenzen hat eine Klassenstufe?
 kompetenz-rückstände/auffälligkeit von eine Klassenstufe?
 gegeben sein ein stand, welche leistung kann ich von Klassenstufe erwarten?
+wurde skill-x zu Klassenstuf-y vergeben? 
 
 
 #owl: 
@@ -88,3 +111,21 @@ RDF document with description of Alice
 #ManyToMany unique-link
 multivalued relation repr with: b-node with same properties
 states: exists smth with specific props
+
+# example code
+:lv_I :seq ( :la_I :la_II :la_III ) .
+
+:lv_I :seq _:ID1, _:ID2 .
+
+_:ID1 :hasAtendant :s_I ; :hasDate "2017-08-22"^^xsd:date .
+_:ID2 :hasAtendant :s_II ; :hasDate "2017-08-22"^^xsd:date .
+
+:lv_I rdf:type owl:NamedIndividual ,
+               :LV ;
+      :seq [ :hasAtendant :s_I ;
+             :hasDate "2017-08-22"^^xsd:date .
+           ] ,
+           [ :hasAtendant "att_1"^^xsd:string ;
+             :hasDate "2017-08-22"^^xsd:date .
+           ] ,
+           "la"^^xsd:string .

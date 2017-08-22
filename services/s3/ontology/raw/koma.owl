@@ -1,4 +1,5 @@
 @prefix : <http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
@@ -19,10 +20,24 @@
          rdfs:range :SingleCompetence .
 
 
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#attend
+:attend rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf owl:topObjectProperty ;
+        rdfs:domain :KlassenStufe ;
+        rdfs:range :LehrVeranstaltung ;
+        rdfs:comment "A group of Students attend to a Class" .
+
+
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#besteht-aus
 :besteht-aus rdf:type owl:ObjectProperty ;
              rdfs:domain :CompetenceProfile ;
              rdfs:range :SingleCompetence .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#hasSequence
+:hasSequence rdf:type owl:ObjectProperty ;
+             rdfs:domain :LehrVeranstaltung ;
+             rdfs:range :LearnActivity .
 
 
 #################################################################
@@ -126,6 +141,26 @@
                :LehrVeranstaltung .
 
 
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#BSRN_Seq_1
+:BSRN_Seq_1 rdf:type owl:NamedIndividual ,
+                     :Sequence .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#BSRN_Seq_2
+:BSRN_Seq_2 rdf:type owl:NamedIndividual ,
+                     :Sequence .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#BSRN_Seq_3
+:BSRN_Seq_3 rdf:type owl:NamedIndividual ,
+                     :Sequence .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#BSRN_Seq_4
+:BSRN_Seq_4 rdf:type owl:NamedIndividual ,
+                     :Sequence .
+
+
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Bit-Byte-MB
 :Bit-Byte-MB rdf:type owl:NamedIndividual ,
                       :Sequence .
@@ -224,14 +259,86 @@
                                 :SingleCompetence .
 
 
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Math_Learn_I
+:Math_Learn_I rdf:type owl:NamedIndividual ,
+                       :LearnActivity ;
+              :achieve (:ModuleRechnung :PolinomialeFunctionen ).
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Math_Learn_II
+:Math_Learn_II rdf:type owl:NamedIndividual ,
+                        :LearnActivity .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Math_Learn_III
+:Math_Learn_III rdf:type owl:NamedIndividual ,
+                         :LearnActivity .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Math_Seq_1
+:Math_Seq_1 rdf:type owl:NamedIndividual ,
+                     :Sequence .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Math_Seq_2
+:Math_Seq_2 rdf:type owl:NamedIndividual ,
+                     :Sequence .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Math_Seq_3
+:Math_Seq_3 rdf:type owl:NamedIndividual ,
+                     :Sequence .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Math_Seq_4
+:Math_Seq_4 rdf:type owl:NamedIndividual ,
+                     :Sequence .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Math_Seq_5
+:Math_Seq_5 rdf:type owl:NamedIndividual ,
+                     :Sequence .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Math_Seq_6
+:Math_Seq_6 rdf:type owl:NamedIndividual ,
+                     :Sequence .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Math_Seq_7
+:Math_Seq_7 rdf:type owl:NamedIndividual ,
+                     :Sequence .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Math_learn_IV
+:Math_learn_IV rdf:type owl:NamedIndividual ,
+                        :LearnActivity .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Math_learn_V
+:Math_learn_V rdf:type owl:NamedIndividual ,
+                       :LearnActivity .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Math_learn_VI
+:Math_learn_VI rdf:type owl:NamedIndividual ,
+                        :LearnActivity .
+
+
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Mathematik_I
 :Mathematik_I rdf:type owl:NamedIndividual ,
-                       :LehrVeranstaltung .
+                       :LehrVeranstaltung ;
+              :hasSequence [ ] .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Mathematik_II
 :Mathematik_II rdf:type owl:NamedIndividual ,
                         :LehrVeranstaltung .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#ModuleRechnung
+:ModuleRechnung rdf:type owl:NamedIndividual ,
+                         :Skill .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#MündlicheProduktion
@@ -252,6 +359,11 @@
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Police
 :Police rdf:type owl:NamedIndividual ,
                  :KlassenStufe .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#PolinomaileFunctionen
+:PolinomaileFunctionen rdf:type owl:NamedIndividual ,
+                                :Skill .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#PonziFilosophy
@@ -318,7 +430,8 @@
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Sem_I
 :Sem_I rdf:type owl:NamedIndividual ,
-                :KlassenStufe .
+                :KlassenStufe ;
+       :attend :Mathematik_I .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-38#Sem_II
