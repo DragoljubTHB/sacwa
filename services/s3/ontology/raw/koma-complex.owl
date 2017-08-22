@@ -1,0 +1,245 @@
+@prefix : <http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56> .
+
+<http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56> rdf:type owl:Ontology ;
+                                                                          owl:imports <http://www.w3.org/2004/02/skos/core> .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#actionPerformed
+:actionPerformed rdf:type owl:ObjectProperty ;
+                 rdfs:domain :EvidenceSource ;
+                 rdfs:range :Action .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#artifactProduced
+:artifactProduced rdf:type owl:ObjectProperty ;
+                  rdfs:domain :EvidenceSource ;
+                  rdfs:range :Resource .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#associatedActor
+:associatedActor rdf:type owl:ObjectProperty ;
+                 rdfs:domain :CompetencyRecord ;
+                 rdfs:range :Actor .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#associatedCompetency
+:associatedCompetency rdf:type owl:ObjectProperty ;
+                      rdfs:domain :CompetencyRecord ;
+                      rdfs:range :Competency .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#associatedEvidenceRecord
+:associatedEvidenceRecord rdf:type owl:ObjectProperty ;
+                          rdfs:domain :CompetencyRecord ;
+                          rdfs:range :EvidenceRecord .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#consistsOf
+:consistsOf rdf:type owl:ObjectProperty ;
+            rdfs:domain :CompetencyModel ;
+            rdfs:range :Competency .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#creator
+:creator rdf:type owl:ObjectProperty ;
+         rdfs:domain :CompetencyRecord ;
+         rdfs:range :Actor .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#evidenceSource
+:evidenceSource rdf:type owl:ObjectProperty ;
+                rdfs:domain :CompetencyRecord ;
+                rdfs:range :EvidenceSource .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#hasCompetency
+:hasCompetency rdf:type owl:ObjectProperty ;
+               rdfs:domain :CompetencyProfileElement ;
+               rdfs:range :Competency .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#hasCompetencyProfileElement
+:hasCompetencyProfileElement rdf:type owl:ObjectProperty ;
+                             rdfs:domain :CompetencyProfile ;
+                             rdfs:range :CompetencyProfileElement .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#hasContext
+:hasContext rdf:type owl:ObjectProperty ;
+            rdfs:domain :Competency ;
+            rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#hasKnowledge
+:hasKnowledge rdf:type owl:ObjectProperty ;
+              rdfs:domain :Competency ;
+              rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#hasPerformanceIndicator
+:hasPerformanceIndicator rdf:type owl:ObjectProperty ;
+                         rdfs:domain :Competency ;
+                         rdfs:range :PerformanceIndicator .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#hasProficiencyLevel
+:hasProficiencyLevel rdf:type owl:ObjectProperty ;
+                     rdfs:domain :Competency ;
+                     rdfs:range :ProficiencyLevel .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#hasSkill
+:hasSkill rdf:type owl:ObjectProperty ;
+          rdfs:domain :Competency ;
+          rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#isComposedOf
+:isComposedOf rdf:type owl:ObjectProperty ;
+              rdfs:domain :Competency ;
+              rdfs:range :Competency .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#name
+:name rdf:type owl:ObjectProperty ;
+      rdfs:domain :Competency .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#requires
+:requires rdf:type owl:ObjectProperty ;
+          rdfs:domain :Competency ;
+          rdfs:range :Competency .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#similarTo
+:similarTo rdf:type owl:ObjectProperty ;
+           rdfs:domain :Competency ;
+           rdfs:range :Competency .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#statement
+:statement rdf:type owl:ObjectProperty ;
+           rdfs:domain :Competency .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#subsumes
+:subsumes rdf:type owl:ObjectProperty ;
+          rdfs:domain :Competency ;
+          rdfs:range :Competency .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Action
+:Action rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Activity
+:Activity rdf:type owl:Class ;
+          rdfs:subClassOf :Action .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Actor
+:Actor rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Autonomy
+:Autonomy rdf:type owl:Class ;
+          rdfs:subClassOf :PerformanceIndicator .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Competency
+:Competency rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#CompetencyModel
+:CompetencyModel rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#CompetencyProfile
+:CompetencyProfile rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#CompetencyProfileElement
+:CompetencyProfileElement rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#CompetencyRecord
+:CompetencyRecord rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Complexity
+:Complexity rdf:type owl:Class ;
+            rdfs:subClassOf :PerformanceIndicator .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Course
+:Course rdf:type owl:Class ;
+        rdfs:subClassOf :Activity .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Evaluation
+:Evaluation rdf:type owl:Class ;
+            rdfs:subClassOf :Activity .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#EvidenceRecord
+:EvidenceRecord rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#EvidenceSource
+:EvidenceSource rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Familiarity
+:Familiarity rdf:type owl:Class ;
+             rdfs:subClassOf :PerformanceIndicator .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#LV
+:LV rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Learner
+:Learner rdf:type owl:Class ;
+         rdfs:subClassOf :Actor .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#PerformanceIndicator
+:PerformanceIndicator rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Plan
+:Plan rdf:type owl:Class ;
+      rdfs:subClassOf :Action .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#ProficiencyLevel
+:ProficiencyLevel rdf:type owl:Class ;
+                  rdfs:comment "Bezugsnormorientierung: Criterial:" .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#ProficiencyScale
+:ProficiencyScale rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Resource
+:Resource rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Sequence
+:Sequence rdf:type owl:Class .
+
+
+###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi
