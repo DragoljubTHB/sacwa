@@ -92,6 +92,11 @@ Individuals::
 [] a owl:AllDifferent ; owl:distinctMembers { :c1 :c2 ... } .
 
 
+Schema 
+ALC :: Description Logics TBOX + ABOX :: Concepts + roles, Individual + Operators/Combinators
+ALC :: Atomic Types + Constructors
+
+
 
 #debugging: 
 cURL to check operability for:

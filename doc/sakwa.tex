@@ -425,29 +425,34 @@ Django + Lambda
 
 \section{Datenhaltung Analyse und Auswahl}
 
-Um einen anerkenntbaren Kompetenzprofil zu gestallten, soll dieser von dritten erkenntbaren Kompetenzdefinitionen bestehen.
 
 --> Tabelle 
 Vergleich:: DB Schema                       : Ontology
 Welt-Annahme Existiert nur Abbild           : mindestens Abbild
-Individual=Instanz  muss unique             : kann >= 1
+Individual=Instanz muss unique              : kann >= 1
 Info Ableitung = x                          : ja
 Oritentation    Data                        : Bedeutung
 
-
-Da die Konnotationen von beispielsweise Schlusselkompetenzen von Kontext zu Kontext unterschiedlich sind,
-bietet sich eine Ontologische Datenspeicherung an. Extensible, Migriation ok. Consistency ko.
-
-Um die Konsistenz der Semantic des RDF Grundmodells zu bewahren wird ein Relationale schema für die Ontologie benutzt.
+Es wurden folgende Faktoren für die Entwicklung einer Ontologie erkannt:
+%@list
+Equivalenzklassen zwischen KOMA und andere Ontologie soll die Anerkennung von erworbenen Kompetenzen ermöglichen.
+Die Begriffe der Kompetenzen können sich ändern oder die Ontologie soll erweitert werden.
+Die Verbindung zu externen Ontologien kann neues Wissen ableiten.
 
 
 \subsection{Ontology}
-Eine Ontologie ist eine formale Spezifikation von eine geteilten Konzeptualisation. Wird mit RDF beschrieben. 
 
+Das \glqq Semantic Web\grqq ist eine Erweiterung des herkömmlichen Web, in der Informationen mit eindeutigen Bedeutungen versehen werden@Cite. Die Bedeutung wird für Maschinen durch Ontologien ausgedruckt. Die Ontologien werden in OWL 2 beschrieben. 
+%@Def
+Eine Ontologie ist eine Darstellung von Wissen. Präziser: eine formale Spezifikation über eine Konzeptualisierung.
+%@Cite :  R. Studer, R. Benjamins, and D. Fensel. Knowledge engineering: Principles andmethods.Data & Knowledge Engineering, 25(1–2):161–198, 1998
 
-Schema 
-ALC :: Description Logics TBOX + ABOX :: Concepts + roles, Individual + Operators/Combinators
-ALC :: Atomic Types + Constructors
+Der Entwurf der Ontologie wurde nach Ontology-Engineering-101 durchgefuhrt: 
+%@Citehttps://protege.stanford.edu/publications/ontology_development/ontology101-noy-mcguinness.html
+
+%@Def
+Eine Kompetenz ist...
+
 
 \chapter{Umsetzung}
 
