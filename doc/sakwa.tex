@@ -278,6 +278,8 @@ Zweitbetreuer: & Jonas Brüstel, M.Sc.\tabularnewline
 \pagestyle{scrheadings}   
 
 \chapter{Quellen}
+Extending Moodle Functionalities with Ontology-based Competency Management
+Ontology Suported Competency System
 OpsWorks AWS :: Deployment Strategy
 Cloud Design patterns :: Profi Patterns
 Man Trade Offs Arch :: Auswertung + Design guide  <- self-adaptive arch?? 
@@ -313,17 +315,22 @@ Profitability
 \section{Motivation}
 
 
-Auf dem Weg zur technologischen Umsetzung einer neuen Idee liegen unbekannte Schwierigkeiten mit der Entscheidungen über die Architektur der Anwendung/Projekt/Umsetzung?, der Drittanbieter von Software, der Auswahl der Infrastruktur usw. Schwierigkeiten die von spezialisierten Kompetenzen, Fertigkeiten und \glqq Know-How\grqq bedürfen. Gehören jedoch nicht immer zum Problem des Domäns der Anwendung. 
+Auf dem Weg zur technologischen Umsetzung einer neuen Idee liegen unbekannte Schwierigkeiten
+bei der Entscheidungen über die Architektur der Anwendung/Projekt/Umsetzung?,
+der Drittanbieter von Software, der Auswahl der Infrastruktur usw.
+Schwierigkeiten die von spezialisierten Kompetenzen, Fertigkeiten und \glqq Know-How\grqq bedürfen.
+Gehören jedoch nicht immer zum Problem des Domäns der Anwendung.
 
+Um sich von diesem spezialisierten wissen aufzulösen wurde ...
 
-Für dieses Problem wurde \glqq FaaS\grqq als Lösung unter der Rubrik \glqq Serverless\grqq von den Hauptanbieter von \glqq Cloud\grqq Technologien vorgestellt. 
+Für dieses Problem wurde \glqq FaaS\grqq als Lösung unter der Rubrik \glqq Serverless\grqq von den Hauptanbieter von \glqq Cloud\grqq Technologien vorgestellt.
 
+Im Rahmen des Cloud-Computing handelt es in dieser Arbeit um eine Untersuchung der Serverless Architekturen am Beispiel einer Konventionellen Webanwendung. Dabei wird besonders geachtet ob und wie solche Technologien die Umsetzung erleichtern. Die Entwurfsmuster und die Kernfunktionalität werden mit ausschließlich Serverless Technologien am Beispiel von KOMA mit AWS umgesetzt.
 
 
 \section{Ziel}
 \label{sec:task}
 
-Im Rahmen des Cloud-Computing handelt es in dieser Arbeit um eine Untersuchung der Serverless Architekturen am Beispiel einer Konventionellen Webanwendung. Dabei wird besonders geachtet ob und wie solche Technologien die Umsetzung erleichtern. Die Entwurfsmuster und die Kernfunktionalität werden mit ausschließlich Serverless Technologien am Beispiel von KOMA mit AWS umgesetzt. 
 
 @acronym MVP Minimal Viable Product : \cite{rady2016serverless}
 Als Ergebnis wird ein MVP Minimal Viable Product in form eine @acronym SPA Single Page Application vor zur Verfügung gestellt.
@@ -338,10 +345,11 @@ wenn Zeit: Identifizieren von unverzichtbare Generische Funktionen für Serverle
 \section{Aufbau der Arbeit}
 \label{sec:layout}
 
-Zuerst wird den Leser in die Serverless \ref{sec:serverless} Technologien eingeführt, das Programmiermodell vorgestellt und die Entscheidungsprinzipien erläutert. 
-Als Zweites wird KOMA \ref{sec:KOMA} als vorläufiges Beispielanwendung und deren Anforderungen vorgestellt. 
+Zuerst wird den Leser in die Serverless \ref{sec:serverless} Technologien eingeführt, das Programmiermodell vorgestellt
+und die Entscheidungsprinzipien erläutert.
+%Als Zweites wird KOMA \ref{sec:KOMA} als vorläufiges Beispielanwendung und deren Anforderungen vorgestellt.<-- nice to have
 Eine Zahl von möglichen Kombinationen von aktuellen Technologien mit Serverless werden beispielhaft dargestellt.
-Hinzu wird derer Analyse und Umsetzung angeführt? durchgeführt. 
+Hinzu wird derer Analyse und Umsetzung durchgeführt und erläutert.
 
 \chapter{Grundlagen}
 \label{chap:principles}
@@ -378,9 +386,23 @@ Design: Lambda Orchestrator -> Pool of Lambdas to use
 \section{KOMA}{Beispiel Anwendung}
 \label{sec:KOMA}
 
-\glqq KOMA\grqq ist ein Akronym für Kompetenz-Matrix. Die Umsetzung der Anwendung soll die von einem Individuum erworbene und zu erwerbenden Fertigkeiten, Kompetenzen und deren Niveau nachvollziehen. <-- ? \\
+Die heutige Rahmenlehrpläne sind nicht mehr fachlich sondern kompetenz orientiert. @cite Deren ziel ist Kompetenzprofile
+für Lerner zu gestallten. Das Modell von KOMA basiert auf dem Grundmodell von
+@ref \glqq European Qualifications Framework Semantics\grqq und dem deutschen Qualifikationsrahmen. <-- really?
 
-Das Modell von KOMA basiert auf dem Grundmodell von @ref \glqq European Qualifications Framework Semantics\grqq und dem deutschen Qualifikationsrahmen. 
+\glqq KOMA\grqq ist ein Akronym für Kompetenz-Matrix. Die Umsetzung der Anwendung soll die von einem Individuum oder Schuler
+erworbene und zu erwerbenden Kompetenzen und deren Niveau nachvollziehen. <-- ?
+Der Kompetenzstand einer Person ist mit dem EQF-Rahmen vergleichbar, und daher Internationell anerkenntbar.
+Wenn diese Anwendung in Bildungsintitutionen eingesetzt wird, dienen die Rahmenlehrpläne als Leitphad für die belegung der einzelnen Kompetenzen
+und KOMA für die Organisation der einzelnen Fachrichtungen. Der Kern solcher Org. ist die Zuweisung von Aktivitäten auf vordefinierten Kompetenzen.
+Aktivitäten lassen sich einzeln oder in einer Sequenz anordnen. Sequenzen werden in LVen zusammengestellt. So können Aktivitäten, Sequenzen und Kompetenzen
+als gestalltungsmittel für LV benutzt. Das Modell verfügt von eine Figur um die erledigte Aktivitäten auszuwerten, nämlich Evaluation.
+
+Beispiel:
+Der Lehrplan fordert die Kompetenzen K in K1, K2, K3 .. Kn für den Bachelordiplom. Nach deren Manuellen Eingabe werden automatisch
+ihren Requirenments/Abhängigkeiten Baum erzeugt. Dadurch können bereiche des Baums als LV betrachtet werden und Kompetenzen aufeinander
+bauend für eine Klassenstufe/Semestergang sequenziert werden. Die Auswertung der Ergebnisse der Aktivitäten und die Aktualisierung des Kompetenzstands
+des Schulers folgen.
 
 Ein Nutzungs-Fall aka. Use-Case: 
 -Als Professor, will ich eine Auflistung der erworbene Fertigkeiten einer Klassenstufe abrufen können.
@@ -388,13 +410,13 @@ Ein Nutzungs-Fall aka. Use-Case:
 -Als Professor, will ich das Kompetenzniveau einer Kompetenz und derer Fertigkeiten abrufen können.
 
 \section{Anforderungen Analyse}
+Mit dem EQF vergleichbare Kompetenzendefinitionen.
+
 Von Browser abrufbar. 
 
 Private Datenspeicherung. Daher Login.
 
 Zukünftige Erweiterungen berücksichtigen.
-
-Konsistenz Prüfung mit Unterschiedlichen Konnotationen zwischen dargestellten Konzepten. <-- zu viel
 
 \section{Serverless Kombiniert}
 Spring Boot + Lambda
@@ -403,12 +425,14 @@ Django + Lambda
 
 \section{Datenhaltung Analyse und Auswahl}
 
+Um einen anerkenntbaren Kompetenzprofil zu gestallten, soll dieser von dritten erkenntbaren Kompetenzdefinitionen bestehen.
+
 --> Tabelle 
-Vergleich:: Relationale : NoSQL : Ontology
-Konsistenz
-Erweiterbarkeit
-Migration
-Bedeutung
+Vergleich:: DB Schema                       : Ontology
+Welt-Annahme Existiert nur Abbild           : mindestens Abbild
+Individual=Instanz  muss unique             : kann >= 1
+Info Ableitung = x                          : ja
+Oritentation    Data                        : Bedeutung
 
 
 Da die Konnotationen von beispielsweise Schlusselkompetenzen von Kontext zu Kontext unterschiedlich sind,

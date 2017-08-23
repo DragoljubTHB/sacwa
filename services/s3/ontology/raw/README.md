@@ -8,7 +8,8 @@ Intelligent Learning Infrastructures in Knowledge Intensive Organizations: A Sem
 determine-scope: 
 Umsetzung der Rahmenlehrpläne in eine Ontologie
 
-Consider reuse: aktuell keine Ontologie veröffentlicht
+Consider reuse: aktuell keine umgesetzte Ontologie veröffentlicht: 
+mix von moodle - RCD
 Enumerate Terms:  Terminologie
 Kompetenz: 
 KompetenzProfil: 

@@ -61,6 +61,12 @@
                 rdfs:range :EvidenceSource .
 
 
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#hasAction
+:hasAction rdf:type owl:ObjectProperty ;
+           rdfs:domain :Sequence ;
+           rdfs:range :Action .
+
+
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#hasCompetency
 :hasCompetency rdf:type owl:ObjectProperty ;
                rdfs:domain :CompetencyProfileElement ;
@@ -95,6 +101,12 @@
 :hasProficiencyLevel rdf:type owl:ObjectProperty ;
                      rdfs:domain :Competency ;
                      rdfs:range :ProficiencyLevel .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#hasSequence
+:hasSequence rdf:type owl:ObjectProperty ;
+             rdfs:domain :LV ;
+             rdfs:range :Sequence .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#hasSkill
@@ -186,6 +198,7 @@
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Course
 :Course rdf:type owl:Class ;
+        owl:equivalentClass :LV ;
         rdfs:subClassOf :Activity .
 
 
@@ -208,7 +221,11 @@
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#LV
-:LV rdf:type owl:Class .
+:LV rdf:type owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                      owl:onProperty :hasSequence ;
+                      owl:allValuesFrom :Sequence
+                    ] .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Learner
@@ -240,6 +257,104 @@
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Sequence
 :Sequence rdf:type owl:Class .
+
+
+###  http://www.w3.org/2004/02/skos/core#Concept
+<http://www.w3.org/2004/02/skos/core#Concept> rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Alice
+:Alice rdf:type owl:NamedIndividual ,
+                :Learner .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#BSRN
+:BSRN rdf:type owl:NamedIndividual ,
+               :LV .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Bob
+:Bob rdf:type owl:NamedIndividual ,
+              :Learner .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Charlie
+:Charlie rdf:type owl:NamedIndividual ,
+                  :Learner .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_II_Seq_I
+:Math_II_Seq_I rdf:type owl:NamedIndividual ,
+                        :Sequence .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_II_Seq_II
+:Math_II_Seq_II rdf:type owl:NamedIndividual ,
+                         :Sequence .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_II_Seq_III
+:Math_II_Seq_III rdf:type owl:NamedIndividual ,
+                          :Sequence .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_I_Seq_I
+:Math_I_Seq_I rdf:type owl:NamedIndividual ,
+                       :Sequence .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_I_Seq_II
+:Math_I_Seq_II rdf:type owl:NamedIndividual ,
+                        :Sequence .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_I_Seq_III
+:Math_I_Seq_III rdf:type owl:NamedIndividual ,
+                         :Sequence .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_I_Seq_I_Act_I
+:Math_I_Seq_I_Act_I rdf:type owl:NamedIndividual ,
+                             :Action .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Mathematik_I
+:Mathematik_I rdf:type owl:NamedIndividual ,
+                       :LV .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Mathematik_II
+:Mathematik_II rdf:type owl:NamedIndividual ,
+                        :LV .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Mathematik_III
+:Mathematik_III rdf:type owl:NamedIndividual ,
+                         :LV .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Programmierung_I
+:Programmierung_I rdf:type owl:NamedIndividual ,
+                           :LV .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Programmierung_II
+:Programmierung_II rdf:type owl:NamedIndividual ,
+                            :LV .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Programmierung_III
+:Programmierung_III rdf:type owl:NamedIndividual ,
+                             :LV .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#WebComputing
+:WebComputing rdf:type owl:NamedIndividual ,
+                       :LV .
 
 
 ###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi
