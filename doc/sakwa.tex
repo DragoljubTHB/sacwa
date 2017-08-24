@@ -409,6 +409,8 @@ Ein Nutzungs-Fall aka. Use-Case:
 
 -Als Professor, will ich das Kompetenzniveau einer Kompetenz und derer Fertigkeiten abrufen können.
 
+-Als Student, will ich mein KompetenzProfil für meinen Lebenslauf benutzen.
+
 \section{Anforderungen Analyse}
 Mit dem EQF vergleichbare Kompetenzendefinitionen.
 
@@ -426,13 +428,14 @@ Django + Lambda
 \section{Datenhaltung Analyse und Auswahl}
 
 
---> Tabelle 
+%@Pre-Dev--> Tabelle 
 Vergleich:: DB Schema                       : Ontology
 Welt-Annahme Existiert nur Abbild           : mindestens Abbild
 Individual=Instanz muss unique              : kann >= 1
 Info Ableitung = x                          : ja
 Oritentation    Data                        : Bedeutung
 
+%@Pre-Dev::Feasibility Study
 Es wurden folgende Faktoren für die Entwicklung einer Ontologie erkannt:
 %@list
 Equivalenzklassen zwischen KOMA und andere Ontologie soll die Anerkennung von erworbenen Kompetenzen ermöglichen.
@@ -447,9 +450,63 @@ Das \glqq Semantic Web\grqq ist eine Erweiterung des herkömmlichen Web, in der 
 Eine Ontologie ist eine Darstellung von Wissen. Präziser: eine formale Spezifikation über eine Konzeptualisierung.
 %@Cite :  R. Studer, R. Benjamins, and D. Fensel. Knowledge engineering: Principles andmethods.Data & Knowledge Engineering, 25(1–2):161–198, 1998
 
+%@Pre-Dev::Environ
+Software platform ? 
+Die Clients : REST: sparql Endpoints
+
+
 Der Entwurf der Ontologie wurde nach Ontology-Engineering-101 durchgefuhrt: 
 %@Citehttps://protege.stanford.edu/publications/ontology_development/ontology101-noy-mcguinness.html
 
+ontol-eng 101
+1-determine-scope: 
+Umsetzung der Rahmenlehrpläne in eine Ontologie. 
+Von Typ Task, informal IS-A
+
+2-Consider reuse: aktuell keine umgesetzte Ontologie veröffentlicht: 
+mix von moodle - RCD
+%@pic: own mix for both
+
+3-Enumerate Terms:  Terminologie
+Kompetenz: 
+KompetenzProfil: 
+Skill/Fertigkeit: 
+Wissen/Knowledge: 
+Andere/Other: 
+KompetenzNiveau/Level: 
+
+LehrVeranstalltung:
+KlassenStufe: 
+LearnActivity: 
+
+4-Define Classes and Hierarchies:
+
+
+5-Define Properties/Attributes of Classes: 
+
+#ontol- engineering for methodology 
+types : top - domain - app
+semantic gap:: how to find out whether 2 ontologies mean the same thing
+ontologies enable interoperability of metadata: 
+design for develop
+mapping for comparison
+merging for efficient combination of ontologies
+learning for learn new ontos from given sets
+
+desing: 
+activities: management - develop - support
+###management
+scheduling - control - quality assurance
+###development
+pre - develop - post
+###suport
+knowledge acquisition - eval - integr - merge - align->map - doc - config man
+
+## design:app
+welche stand von kompetenzen hat eine Klassenstufe?
+kompetenz-rückstände/auffälligkeit von eine Klassenstufe?
+gegeben sein ein stand, welche leistung kann ich von Klassenstufe erwarten?
+wurde skill-x zu Klassenstuf-y vergeben? 
 %@Def
 Eine Kompetenz ist...
 

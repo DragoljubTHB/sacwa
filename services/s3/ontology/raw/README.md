@@ -112,8 +112,9 @@ http://www.example.com/data/alice
 RDF document with description of Alice
 
 #Turtle syntax: 
-. -> end statement
-; -> next attrib
+. -> pred + subj
+; -> pred      
+
 
 #ManyToMany unique-link
 multivalued relation repr with: b-node with same properties
