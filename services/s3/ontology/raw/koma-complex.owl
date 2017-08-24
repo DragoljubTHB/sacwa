@@ -10,6 +10,14 @@
                                                                           owl:imports <http://www.w3.org/2004/02/skos/core> .
 
 #################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
 #    Object Properties
 #################################################################
 
@@ -118,7 +126,10 @@
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#isComposedOf
 :isComposedOf rdf:type owl:ObjectProperty ;
               rdfs:domain :Competency ;
-              rdfs:range :Competency .
+              rdfs:range [ rdf:type owl:Restriction ;
+                           owl:onProperty :isComposedOf ;
+                           owl:someValuesFrom :Competency
+                         ] .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#name
@@ -146,7 +157,10 @@
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#subsumes
 :subsumes rdf:type owl:ObjectProperty ;
           rdfs:domain :Competency ;
-          rdfs:range :Competency .
+          rdfs:range [ rdf:type owl:Restriction ;
+                       owl:onProperty :subsumes ;
+                       owl:allValuesFrom :Competency
+                     ] .
 
 
 #################################################################
@@ -172,7 +186,9 @@
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Competency
-:Competency rdf:type owl:Class .
+:Competency rdf:type owl:Class ;
+            <http://purl.org/dc/terms/creator> "" ;
+            rdfs:comment "owl:equivalentClass ; [ owl:unionOf ( :skill :knowledge :context ) ] ." .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#CompetencyModel
@@ -256,7 +272,11 @@
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Sequence
-:Sequence rdf:type owl:Class .
+:Sequence rdf:type owl:Class ;
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasAction ;
+                            owl:allValuesFrom :Action
+                          ] .
 
 
 ###  http://www.w3.org/2004/02/skos/core#Concept
@@ -294,7 +314,14 @@
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_COMP
 :Math_COMP rdf:type owl:NamedIndividual ,
-                    :Competency .
+                    :Competency ;
+           :hasKnowledge :Math_Know_I ;
+           :hasSkill :Math_Skill_I ,
+                     :Math_Skill_II ;
+           :isComposedOf :Math_C ,
+                         :Math_M ,
+                         :Math_O ,
+                         :Math_P .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_I
@@ -364,11 +391,27 @@
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_K_VI
 :Math_K_VI rdf:type owl:NamedIndividual ,
-                    :Competency .
+                    :Competency ;
+           :hasKnowledge :Math_Know_II ;
+           :subsumes :Math_K_I ,
+                     :Math_K_II ,
+                     :Math_K_III ,
+                     :Math_K_IV ,
+                     :Math_K_V .
 
 
-###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_N
-:Math_N rdf:type owl:NamedIndividual ,
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_Know_I
+:Math_Know_I rdf:type owl:NamedIndividual ,
+                      <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_Know_II
+:Math_Know_II rdf:type owl:NamedIndividual ,
+                       <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_M
+:Math_M rdf:type owl:NamedIndividual ,
                  :Competency .
 
 
@@ -380,6 +423,16 @@
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_P
 :Math_P rdf:type owl:NamedIndividual ,
                  :Competency .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_Skill_I
+:Math_Skill_I rdf:type owl:NamedIndividual ,
+                       <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_Skill_II
+:Math_Skill_II rdf:type owl:NamedIndividual ,
+                        <http://www.w3.org/2004/02/skos/core#Concept> .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Mathematik_I
