@@ -287,6 +287,21 @@
                   :Learner .
 
 
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_C
+:Math_C rdf:type owl:NamedIndividual ,
+                 :Competency .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_COMP
+:Math_COMP rdf:type owl:NamedIndividual ,
+                    :Competency .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_I
+:Math_I rdf:type owl:NamedIndividual ,
+                 :Competency .
+
+
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_II_Seq_I
 :Math_II_Seq_I rdf:type owl:NamedIndividual ,
                         :Sequence .
@@ -320,6 +335,51 @@
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_I_Seq_I_Act_I
 :Math_I_Seq_I_Act_I rdf:type owl:NamedIndividual ,
                              :Action .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_K_I
+:Math_K_I rdf:type owl:NamedIndividual ,
+                   :Competency .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_K_II
+:Math_K_II rdf:type owl:NamedIndividual ,
+                    :Competency .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_K_III
+:Math_K_III rdf:type owl:NamedIndividual ,
+                     :Competency .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_K_IV
+:Math_K_IV rdf:type owl:NamedIndividual ,
+                    :Competency .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_K_V
+:Math_K_V rdf:type owl:NamedIndividual ,
+                   :Competency .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_K_VI
+:Math_K_VI rdf:type owl:NamedIndividual ,
+                    :Competency .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_N
+:Math_N rdf:type owl:NamedIndividual ,
+                 :Competency .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_O
+:Math_O rdf:type owl:NamedIndividual ,
+                 :Competency .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_P
+:Math_P rdf:type owl:NamedIndividual ,
+                 :Competency .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Mathematik_I
