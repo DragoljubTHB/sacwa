@@ -53,8 +53,10 @@
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#consistsOf
 :consistsOf rdf:type owl:ObjectProperty ;
-            rdfs:domain :CompetencyModel ;
-            rdfs:range :Competency .
+            rdfs:domain :CompetencyModel ,
+                        :ProficiencyScale ;
+            rdfs:range :Competency ,
+                       :ProficiencyLevel .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#creator
@@ -130,6 +132,12 @@
                            owl:onProperty :isComposedOf ;
                            owl:someValuesFrom :Competency
                          ] .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#isHigherThan
+:isHigherThan rdf:type owl:ObjectProperty ;
+              rdfs:domain :ProficiencyLevel ;
+              rdfs:range :ProficiencyLevel .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#name
@@ -260,6 +268,11 @@
              rdfs:subClassOf :PerformanceIndicator .
 
 
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Frequency
+:Frequency rdf:type owl:Class ;
+           rdfs:subClassOf :PerformanceIndicator .
+
+
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#LV
 :LV rdf:type owl:Class ;
     rdfs:subClassOf [ rdf:type owl:Restriction ;
@@ -293,6 +306,11 @@
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Resource
 :Resource rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Scope
+:Scope rdf:type owl:Class ;
+       rdfs:subClassOf :PerformanceIndicator .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Sequence
@@ -398,7 +416,8 @@ owl:DataTypeProperty rdf:type owl:Class .
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_I_Seq_I
 :Math_I_Seq_I rdf:type owl:NamedIndividual ,
-                       :Sequence .
+                       :Sequence ;
+              :hasSequence :Math_I_Seq_I .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Math_I_Seq_II
@@ -490,7 +509,8 @@ owl:DataTypeProperty rdf:type owl:Class .
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Mathematik_I
 :Mathematik_I rdf:type owl:NamedIndividual ,
-                       :LV .
+                       :LV ;
+              :hasAction :Math_I_Seq_I_Act_I .
 
 
 ###  http://www.semanticweb.org/dado/ontologies/2017/7/untitled-ontology-56#Mathematik_II
