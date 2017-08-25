@@ -409,9 +409,16 @@ des Schulers folgen.
 Ein Nutzungs-Fall aka. Use-Case: 
 -Als Professor, will ich eine Auflistung der erworbene Fertigkeiten einer Klassenstufe abrufen können.
 
--Als Professor, will ich das Kompetenzniveau einer Kompetenz und derer Fertigkeiten abrufen können.
+-Als Professor, will ich das Kompetenzniveau einer Kompetenz eines Studenten und deren Fertigkeiten abrufen können.
 
--Als Student, will ich mein KompetenzProfil für meinen Lebenslauf benutzen.
+-Als Student, will ich mein Kompetenzprofil für meinen Lebenslauf benutzen.
+
+\chapter{Umsetzung}
+Die grundlegende Vorgehensweise bei der Umsetzung dieses Projekts wird Analyse, Entwurf, Implementierung und Test sein. Der Forschender Charakter dieses Projekts lässt sich nicht Testgetrieben zu implementieren. 
+
+\section{Komponenten}
+
+@Diagramm
 
 \section{Anforderungen Analyse}
 Mit dem EQF vergleichbare Kompetenzendefinitionen.
@@ -440,35 +447,46 @@ Oritentation    Data                        : Bedeutung
 %@Pre-Dev::Feasibility Study
 Es wurden folgende Faktoren für die Entwicklung einer Ontologie erkannt:
 %@list
+Zirkuläre Abhängigkeiten sind zugelassen.  
 Equivalenzklassen zwischen KOMA und andere Ontologie soll die Anerkennung von erworbenen Kompetenzen ermöglichen.
 Die Begriffe der Kompetenzen können sich ändern oder die Ontologie soll erweitert werden.
 Die Verbindung zu externen Ontologien kann neues Wissen ableiten.
 
 
-\subsection{Ontology}
+\subsection{Ontologie}
 
 Das \glqq Semantic Web\grqq ist eine Erweiterung des herkömmlichen Web, in der Informationen mit eindeutigen Bedeutungen versehen werden@Cite. Die Bedeutung wird für Maschinen durch Ontologien ausgedruckt. Die Ontologien werden in OWL 2 beschrieben. 
 %@Def
 Eine Ontologie ist eine Darstellung von Wissen. Präziser: eine formale Spezifikation über eine Konzeptualisierung.
 %@Cite :  R. Studer, R. Benjamins, and D. Fensel. Knowledge engineering: Principles andmethods.Data & Knowledge Engineering, 25(1–2):161–198, 1998
 
-%@Pre-Dev::Environ
-Software platform ? 
-Die Clients : REST: sparql Endpoints
-
 
 Der Entwurf der Ontologie wurde nach Ontology-Engineering-101 durchgefuhrt: 
 %@Citehttps://protege.stanford.edu/publications/ontology_development/ontology101-noy-mcguinness.html
 
+%@Pre-Dev::Environ
+
+Software platform ? 
+Die Clients : REST: sparql Endpoints
+
+Die Daten werden in Produktion @Anglizismus in einer \glqq Triple-Store\grqq mit grundsätzlich 4 alternativen: Monolitische Triple Speicherung, Property Werte, Vertikal Partitionierte Tables und Hexastore @Cite hpi web-sem 2.9. 
+Als Ansatz eignet sich S3 @Acro für die Speicherung von großen Datenmengen. Der nächste Schritt wird eine Indexierung der URIs jeweiliger Subject, Predicate und Object in DynamoDB @Acro .
+
+Der Zugriff auf die Ontologie wird direkt mithilfe von \glqq SPARQL\grqq  realisiert. Deren Quelldateien werden in einer Lambda @Acro ausgeführt.
+
 ontol-eng 101
 1-determine-scope: 
-Umsetzung der Rahmenlehrpläne in eine Ontologie. 
-Von Typ Task, informal IS-A
+Die Verwaltung von Fortschritten der Studierenden im Kompetenzrahmen der Lehrpläne.
 
-2-Consider reuse: aktuell keine umgesetzte Ontologie veröffentlicht: 
-mix von moodle - RCD
+2-Consider reuse: 
+Obwohl die LOD @Acro NNN Datebasis erkannt hat und Watson @Cite Begriffe wie Kompetenz in zahlreiche Ontologien gefunden hat, konnte ich einen aktuell öffentlichen graphischen Entwurf @Cite onto-moodle einer Ontologie finden. 
+%@Bild onto-moodle
+Bei der Analyse lässt der Entwurf und dessen Dokumentation freie Interpretation über Begriffe und deren Zweck bzw. bie \glqq isComposedOf\grqq, \glqq subsumes\grqq. Ein Standard zur graphischen Darstellung ist zur Zeit?? noch nicht anerkannt.@Cite research-gate graphol
+
+Anderseits wurde ein \glqq EQF Framework\grqq für Ontologien beschrieben, aber nicht öffentlich umgesetzt. Es bietet dabei eine europäisch anerkannte Definition von Kompetenz, nämlich RCD @Acro.
+
+Daher folgt eine Enumeration der auf unseren Anwendungsfall angepasste und ergänzende Interpretation der dargestellten Terminologie des Entwurfs und der RCD.
 %@pic: own mix for both
-Die Ausgansontologie@Cite wird auf KOMAs Aufgaben angepasst.
 
 3-Enumerate Terms:  Terminologie
 Competence
@@ -520,12 +538,18 @@ wurde skill-x zu Klassenstuf-y vergeben?
 Eine Kompetenz ist...
 
 
-\chapter{Umsetzung}
-
-\section{Komponenten}
-@Diagramm
 
 
+\section{Abfragen}
+
+Um den 
+
+http://www.example.com/id/alice
+Identifier for Alice, the person
+http://www.example.com/people/alice
+Alice's homepage
+http://www.example.com/data/alice
+RDF document with description of Alice
 
 \section{Einloggen}
 
