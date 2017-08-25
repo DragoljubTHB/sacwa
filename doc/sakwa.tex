@@ -392,8 +392,9 @@ für Lerner zu gestallten. Das Modell von KOMA basiert auf dem Grundmodell von
 
 \glqq KOMA\grqq ist ein Akronym für Kompetenz-Matrix. Die Umsetzung der Anwendung soll die von einem Individuum oder Schuler
 erworbene und zu erwerbenden Kompetenzen und deren Niveau nachvollziehen. <-- ?
-Der Kompetenzstand einer Person ist mit dem EQF-Rahmen vergleichbar, und daher Internationell anerkenntbar.
-Wenn diese Anwendung in Bildungsintitutionen eingesetzt wird, dienen die Rahmenlehrpläne als Leitphad für die belegung der einzelnen Kompetenzen
+Der Kompetenzstand einer Person ist mit dem EQF-Rahmen @Acro vergleichbar, und daher Internationell anerkenntbar.
+%Diese soll für die pädagogische Diagnostik und Intervention genutzt werden.
+Wenn diese Anwendung in Bildungsintitutionen eingesetzt wird, dienen die Rahmenlehrpläne als Leitpfad für die Belegung der einzelnen Kompetenzen
 und KOMA für die Organisation der einzelnen Fachrichtungen. Der Kern solcher Org. ist die Zuweisung von Aktivitäten auf vordefinierten Kompetenzen.
 Aktivitäten lassen sich einzeln oder in einer Sequenz anordnen. Sequenzen werden in LVen zusammengestellt. So können Aktivitäten, Sequenzen und Kompetenzen
 als gestalltungsmittel für LV benutzt. Das Modell verfügt von eine Figur um die erledigte Aktivitäten auszuwerten, nämlich Evaluation.
@@ -460,7 +461,6 @@ Das \glqq Semantic Web\grqq ist eine Erweiterung des herkömmlichen Web, in der 
 Eine Ontologie ist eine Darstellung von Wissen. Präziser: eine formale Spezifikation über eine Konzeptualisierung.
 %@Cite :  R. Studer, R. Benjamins, and D. Fensel. Knowledge engineering: Principles andmethods.Data & Knowledge Engineering, 25(1–2):161–198, 1998
 
-
 Der Entwurf der Ontologie wurde nach Ontology-Engineering-101 durchgefuhrt: 
 %@Citehttps://protege.stanford.edu/publications/ontology_development/ontology101-noy-mcguinness.html
 
@@ -478,7 +478,7 @@ ontol-eng 101
 1-determine-scope: 
 Die Verwaltung von Fortschritten der Studierenden im Kompetenzrahmen der Lehrpläne.
 
-2-Consider reuse: 
+%2-Consider reuse: 
 Obwohl die LOD @Acro NNN Datebasis erkannt hat und Watson @Cite Begriffe wie Kompetenz in zahlreiche Ontologien gefunden hat, konnte ich einen aktuell öffentlichen graphischen Entwurf @Cite onto-moodle einer Ontologie finden. 
 %@Bild onto-moodle
 Bei der Analyse lässt der Entwurf und dessen Dokumentation freie Interpretation über Begriffe und deren Zweck bzw. bie \glqq isComposedOf\grqq, \glqq subsumes\grqq. Ein Standard zur graphischen Darstellung ist zur Zeit?? noch nicht anerkannt.@Cite research-gate graphol
@@ -488,28 +488,83 @@ Anderseits wurde ein \glqq EQF Framework\grqq für Ontologien beschrieben, aber 
 Daher folgt eine Enumeration der auf unseren Anwendungsfall angepasste und ergänzende Interpretation der dargestellten Terminologie des Entwurfs und der RCD.
 %@pic: own mix for both
 
-3-Enumerate Terms:  Terminologie
-Competence
-CompetenceProfile: 
-Skill: 
-Knowledge: 
-Other:
-ProficiencyLevel: 
-
-
-LehrVeranstalltung:
-KlassenStufe: 
-LearnActivity: 
-
-Actor
-Learner
-
+%3-Enumerate Terms:  Terminologie
+\begin{table}[H]
+	\caption{Terminologie}
+	
+	
+	\noindent \centering{}\begin{tabular}{ccc}
+		\hline 
+		\noalign{\vskip\doublerulesep}
+		Darstellung & Begriff & Bedeutung\tabularnewline[\doublerulesep]
+		\hline
+		\noalign{\vskip\doublerulesep}
+		Competence & Kompetenz & Kontext adäquate Anwendung von Fertigkeiten \tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		CompetenceProfile & Kompetenzprofil & Sammlung von Kompetenzen \tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		Competence & Kompetenz & Kontext adäquate Anwendung von Fertigkeiten \tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		Skill & Fertigkeit & Das systematisch Tun-Können einer Aufgabe \tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		Knowledge & Wissen & Verstehen von Informationen
+		\tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		Other & Andere & Nicht kategorisiert aber zu beachten
+		\tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		ProficiencyLevel & Kompetenzniveau & Bewertung einer Kompetenz
+		\tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		PerformanceIndicator & Kompetenzmaß & Kriteria zur Auswertung
+		\tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		Course|LV & Lehrveranstaltung & Sammlung von Sequenzen
+		\tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		Sequenz & Sequenz & Sammlung von Aktivitäten
+		\tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		Activity & Aktivität & Lernaktivität
+		\tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		Action & Aktion & Lerntat
+		\tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		Actor & Täter & Aktiver Agent aka Lerner
+		\tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		Learner & Lerner & Kompetenz erwerbender Agent
+		\tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		CompetencyRecord & Kompetenzaufnahme & --
+		\tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		EvidenceRecord & Kompetenzbeweis & --
+		\tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		EvidenceSource & Kompetenzherkunft & --
+		\tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		todo & todo & todo
+		\tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		todo & todo & todo
+		\tabularnewline[\doublerulesep]
+		\hline
+	\end{tabular}
+\end{table}
 
 
 4-Define Classes and Hierarchies:
-Learner a owl:Class Actor
+Alle Klassen in einer Ontologie leiten sich von \glqq owl:Thing\grqq. ?? 
+
+@Build : ableitungs Baum von Protege
 
 5-Define Properties/Attributes of Classes: 
+
+
+
 
 ontol- engineering for methodology 
 types : top - domain - app
@@ -530,6 +585,8 @@ suport
 knowledge acquisition - eval - integr - merge - align->map - doc - config man
 
 design:app
+Konkrete Fragestellungen für die pädagogische Diagnostik und Intervention.
+
 welche stand von kompetenzen hat eine Klassenstufe?
 kompetenz-rückstände/auffälligkeit von eine Klassenstufe?
 gegeben sein ein stand, welche leistung kann ich von Klassenstufe erwarten?
@@ -617,6 +674,8 @@ Hier kommt eine Bibliography-Referenz: \cite{booch2007object}
 \lstlistoflistings
 
 \listoffigures
+
+\listoftables
 
 \chapter*{Abkürzungen}
 \markboth{Abkürzungen}{}
