@@ -7,8 +7,8 @@ repositories {
 
 dependencies {
 
-    //apache jena for sparql
-    compile 'org.apache.jena:jena-arq:3.4.0'
+    //apache jena for sparql-server:: embeded
+    compile group: 'org.apache.jena', name: 'jena-fuseki-embedded', version: '3.4.0'
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
 }

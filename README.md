@@ -1,8 +1,13 @@
 # BA : KOMA
+###Usage: 
+import ontology in protege: 
+https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl
+use snap SPARQL to execute query
+
+###api REST
+hpi 6.3 
 
 ##todo: 
-1: 
-push ontlogy to s3 
 2:
 sparql endpoint with REST api via APIGATEWAY
 
