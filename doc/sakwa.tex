@@ -485,10 +485,11 @@ Bei der Analyse lässt der Entwurf und dessen Dokumentation freie Interpretation
 
 Anderseits wurde ein \glqq EQF Framework\grqq für Ontologien beschrieben, aber nicht öffentlich umgesetzt. Es bietet dabei eine europäisch anerkannte Definition von Kompetenz, nämlich RCD @Acro.
 
-Daher folgt eine Enumeration der auf unseren Anwendungsfall angepasste und ergänzende Interpretation der dargestellten Terminologie des Entwurfs und der RCD.
+Daher folgt eine beispielhafte Enumeration der auf unseren Anwendungsfall angepasste und ergänzende Interpretation der dargestellten Terminologie des Entwurfs und der RCD.
 %@pic: own mix for both
 
 %3-Enumerate Terms:  Terminologie
+Nur Beispielhaft
 \begin{table}[H]
 	\caption{Terminologie}
 	
@@ -557,13 +558,36 @@ Daher folgt eine Enumeration der auf unseren Anwendungsfall angepasste und ergä
 
 
 4-Define Classes and Hierarchies:
-Alle Klassen in einer Ontologie leiten sich von \glqq owl:Thing\grqq. ?? 
+Um Wissen abzuleiten und Inkonsistenzen zu identifizieren werden die Klassen und Properties durch Restrictions versehen oder definiert. Folgende Restrictions wurden angewendet. 
+\begin{table}[H]
+	\caption{Klassendefinition}
+	
+	\noindent \centering{}\begin{tabular}{cc}
+		\hline 
+		\noalign{\vskip\doublerulesep}
+		Klasse & Definition \tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		LV & only Sequenz \tabularnewline[\doublerulesep]
+	\end{tabular}
+\end{table}
 
+
+Alle Klassen in einer Ontologie leiten sich von \glqq owl:Thing\grqq. ?? 
+Skill skos:Concept @Ref
 @Build : ableitungs Baum von Protege
 
 5-Define Properties/Attributes of Classes: 
-
-
+\begin{table}[H]
+	\caption{Properties}
+	
+	\noindent \centering{}\begin{tabular}{cc}
+		\hline 
+		\noalign{\vskip\doublerulesep}
+		isComposedOf & $\forall{Class} \equiv only Class$ \tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		subsumes & $\exists{Class} \equiv some Class$ \tabularnewline[\doublerulesep]
+	\end{tabular}
+\end{table}
 
 
 ontol- engineering for methodology 
@@ -591,11 +615,6 @@ welche stand von kompetenzen hat eine Klassenstufe?
 kompetenz-rückstände/auffälligkeit von eine Klassenstufe?
 gegeben sein ein stand, welche leistung kann ich von Klassenstufe erwarten?
 wurde skill-x zu Klassenstuf-y vergeben? 
-%@Def
-Eine Kompetenz ist...
-
-
-
 
 \section{Abfragen}
 
@@ -620,6 +639,22 @@ DynamoDB: speichert :individual als Schlussel und seine relative URL
 Lambda Funktion: Maps zwischen S3 und DynamoDB.
 
 \section{Patterns}
+
+Die Architekturentwurfsmuster helfen uns zu kommunizieren welches Zweck unsere Software erreichen möchte und bieten generische Lösungen für wiederkehrende Probleme bei der Softwareentwicklung.
+
+Tier vs Layer: \cite{sbarski2017serverless}
+
+Separation of concerns
+Reusable layers
+Maintenance @Schafföner JEE1
+
+Components: 
+Controller: router, handle in-req build out-res
+Service: @Transaction
+Repository: 1-1 mapping to db
+
+Wenn eine erfolgreiche Codeänderung von andere Änderung abhängt, soll die Architektur überprüft werden. 
+
 Valet Key \cite{homer2014cloud}
 
 Static Content Hosting ok

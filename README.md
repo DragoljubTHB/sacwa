@@ -1,5 +1,11 @@
 # BA : KOMA
 
+##todo: 
+1: 
+push ontlogy to s3 
+2:
+sparql endpoint with REST api via APIGATEWAY
+
 ## sparQL
 
 queries: 
