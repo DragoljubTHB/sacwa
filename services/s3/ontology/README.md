@@ -137,3 +137,5 @@ _:ID2 :hasAtendant :s_II ; :hasDate "2017-08-22"^^xsd:date .
              :hasDate "2017-08-22"^^xsd:date .
            ] ,
            "la"^^xsd:string .
+###sync s3
+aws --profile dado-admin s3 sync ontology/ s3://ontology.thb.de --acl public-read
