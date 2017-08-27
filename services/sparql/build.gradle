@@ -1,0 +1,15 @@
+apply plugin: 'java-library'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+
+    //apache jena for sparql
+    compile 'org.apache.jena:jena-arq:3.4.0'
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+}
+
