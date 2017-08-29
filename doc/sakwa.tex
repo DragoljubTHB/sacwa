@@ -452,16 +452,18 @@ Zirkuläre Abhängigkeiten sind zugelassen.
 Equivalenzklassen zwischen KOMA und andere Ontologie soll die Anerkennung von erworbenen Kompetenzen ermöglichen.
 Die Begriffe der Kompetenzen können sich ändern oder die Ontologie soll erweitert werden.
 Die Verbindung zu externen Ontologien kann neues Wissen ableiten.
-
+6.2.2 \cite{OntoCloud}Benefits on Interoperability and Linked-Data by Using
+Ontology Engineering
 
 \subsection{Ontologie}
 
 Das \glqq Semantic Web\grqq ist eine Erweiterung des herkömmlichen Web, in der Informationen mit eindeutigen Bedeutungen versehen werden@Cite. Diese Bedeutungen wirden für Maschinen durch Ontologien dargestellt. Die Ontologien werden in der OWL2 Spezifikation von W3C@Ref beschrieben. 
 %@Def
-Eine Ontologie ist eine Darstellung von Wissen. Präziser: eine formale Spezifikation über eine Konzeptualisierung.
+Eine Ontologie ist eine Darstellung von Wissen. Präziser: eine formale Spezifikation über eine Konzeptualisierung\cite{OntoWhat}.
 %@Cite :  R. Studer, R. Benjamins, and D. Fensel. Knowledge engineering: Principles andmethods.Data & Knowledge Engineering, 25(1–2):161–198, 1998
-
-Der Entwurf der Ontologie wurde nach Ontology-Engineering-101 durchgefuhrt: 
+Während der Umsetzung wurde Protege\footnote{\url{http://protege.stanford.edu}: "This work was conducted using the Protégé resource, which is supported by grant GM10331601 from the National Institute of General Medical Sciences of the United States National Institutes of Health."} benutzt.
+Der Entwurf der Ontologie wurde nach Ontology-Engineering-101
+ durchgefuhrt: 
 %@Citehttps://protege.stanford.edu/publications/ontology_development/ontology101-noy-mcguinness.html
 
 %@Pre-Dev::Environ
@@ -479,7 +481,7 @@ ontol-eng 101
 Die Verwaltung von Fortschritten der Studierenden im Kompetenzrahmen der Lehrpläne.
 
 %2-Consider reuse: 
-Obwohl die LOD @Acro NNN Datebasis erkannt hat und Watson @Cite Begriffe wie Kompetenz in zahlreiche Ontologien gefunden hat, konnte ich einen aktuell öffentlichen graphischen Entwurf @Cite onto-moodle einer Ontologie finden. 
+Obwohl die LOD @Acro NNN Datebasis erkannt hat und Watson @Cite Begriffe wie Kompetenz in zahlreiche Ontologien gefunden hat, konnte ich einen aktuell öffentlichen graphischen Entwurf\cite{OntoMoodle} @Cite onto-moodle einer Ontologie finden. 
 %@Bild onto-moodle
 Bei der Analyse lässt der Entwurf und dessen Dokumentation freie Interpretation über Begriffe und deren Zweck bzw. bie \glqq isComposedOf\grqq, \glqq subsumes\grqq. Ein Standard zur graphischen Darstellung ist zur Zeit?? noch nicht anerkannt.@Cite research-gate graphol
 
@@ -628,8 +630,8 @@ Fuseki wird Embedded benutzt.
 Fuseki entspricht der Repositoryschicht der Anwendung und wird nach Anfrage von der Ontologie in S3 mittels Sparql JSON Objekte zurückliefern. 
 Eine Lambdafunktion arbeitet als Schnittstelle zwischen Fuseki, den Client und die darunterliegende Infrastruktur. 
 
-Um sich von die durch Lambda entstandene Abhängigkeit möglichst entkoppelt zu halten, wird das Modul von Fuseki nur als externe Abhängigkeit des Lambdaprojektes zugewisen. 
-@Code : Gradle build
+Um sich von die durch Lambda entstandene Abhängigkeit möglichst entkoppelt\cite{FlowerRefactoring} zu halten, wird das Modul von Fuseki nur als externe Abhängigkeit des Lambdaprojektes zugewisen. 
+@Code : Gradle build\cite{Muschko2014}
 
 RESTful API \\
 Unter der verfügbaren SparQL endpoints Implementierungen
