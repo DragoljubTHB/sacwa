@@ -11,7 +11,7 @@ import org.apache.jena.system.Txn;
 
 import javax.xml.ws.http.HTTPException;
 
-public class Main {
+public class SparqlFuseki {
     /**
      * IRI <- IRI Version :: defined at runtime 1: lambda as param 2:config file
      */
@@ -42,10 +42,6 @@ public class Main {
             "\t\t?crec koma:creator ?learn .\n" +
             "}\n" +
             "ORDER BY ASC (?comp) ";
-    public static void main(String[] args) {
-        Main main = new Main();
-        main.server();
-    }
 
     public void server() {
         Dataset ds = DatasetFactory.createTxnMem();
