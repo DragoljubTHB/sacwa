@@ -1,1 +1,3 @@
 
+include ':sparql'
+project(':sparql').projectDir = new File(settingsDir, '../sparql')
