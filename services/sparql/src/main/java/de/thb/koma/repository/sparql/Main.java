@@ -1,21 +1,31 @@
 package de.thb.koma.repository.sparql;
 
-import org.apache.jena.fuseki.FusekiLib;
-import org.apache.jena.fuseki.FusekiLogging;
+import org.apache.jena.atlas.web.HttpException;
 import org.apache.jena.fuseki.embedded.FusekiServer;
-import org.apache.jena.query.*;
+import org.apache.jena.query.Dataset;
+import org.apache.jena.query.DatasetFactory;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdfconnection.RDFConnection;
 import org.apache.jena.rdfconnection.RDFConnectionFactory;
-import org.apache.jena.sparql.core.DatasetGraph;
-import org.apache.jena.sparql.core.DatasetGraphFactory;
 import org.apache.jena.system.Txn;
+
+import javax.xml.ws.http.HTTPException;
 
 public class Main {
     /**
      * IRI <- IRI Version :: defined at runtime 1: lambda as param 2:config file
      */
+    String localUri = "./src/main/resources/ds";
     String uri = "https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl";
+    String querySimple = "" +
+            "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" +
+            "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+            "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+            "\n" +
+            "SELECT ?comp WHERE {\n" +
+            "\t?comp rdf:type owl:Class .\n" +
+            "}\n" +
+            "ORDER BY ?label";
     String query = "" +
             "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" +
             "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
@@ -39,18 +49,19 @@ public class Main {
 
     public void server() {
         Dataset ds = DatasetFactory.createTxnMem();
-        FusekiServer server = FusekiServer.create()
-                .add("./src/main/resources/ds", ds)
+        FusekiServer server = FusekiServer.create().setPort(8080)
                 .build();
         server.start();
         try (RDFConnection conn = RDFConnectionFactory.connect(uri)) {
             Txn.executeRead(conn, ()->{
-                conn.querySelect(query, qs -> {
+                conn.querySelect(querySimple, qs -> {
                             Resource subject = qs.getResource("s");
                             System.out.println("Subject: " + subject);
                         }
                 );
             });
+        }catch (Exception e){
+            e.printStackTrace();
         }
 
         server.stop();
