@@ -6,7 +6,7 @@ repositories {
 }
 
 dependencies {
-    compile project(':services:sparql')
+    compile project(':sparql')
     compile group: 'com.amazonaws', name: 'aws-lambda-java-core', version: '1.0.0'
 
     testImplementation 'junit:junit:4.12'
