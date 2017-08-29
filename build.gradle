@@ -9,3 +9,7 @@ allprojects{
     group = 'de.thb.koma'
     version = '0.0.1-SNAPSHOT'
 }
+
+task wrapper(type: Wrapper){
+    gradleVersion '4.0'
+}

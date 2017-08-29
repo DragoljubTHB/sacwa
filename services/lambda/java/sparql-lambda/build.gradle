@@ -1,4 +1,4 @@
-apply plugin: 'java-library'
+apply plugin: 'java'
 
 repositories {
     mavenLocal()
@@ -6,8 +6,8 @@ repositories {
 }
 
 dependencies {
-    compile project(':sparql')
-    compile group: 'com.amazonaws', name: 'aws-java-sdk-lambda', version: '1.11.184'
+    compile project(':services:sparql')
+    compile group: 'com.amazonaws', name: 'aws-lambda-java-core', version: '1.0.0'
 
     testImplementation 'junit:junit:4.12'
 }

@@ -1,6 +1,8 @@
-include 'koma-standalone'
-include ':sparql-lambda'
-include ':sparql'
+rootProject.name = 'sacwa'
 
-project(':sparql-lambda').projectDir = file('services/lambda/java/sparql-lambda')
-project(':sparql').projectDir = file('services/sparql')
+include 'koma-standalone'
+include ':services:lambda:java:sparql-lambda'
+include ':services:sparql'
+
+//project(':sparql-lambda').projectDir = file('services/lambda/java/sparql-lambda')
+//project(':sparql').projectDir = file('services/sparql')
