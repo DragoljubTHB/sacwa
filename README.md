@@ -11,8 +11,18 @@ hpi 6.3
 2:
 sparql endpoint with REST api via APIGATEWAY
 
-## sparQL
+## sparQL over http
+SPARQL Query
 
+ARQ's QueryExecutionFactory.sparqlService can be used.
+
+SPARQL Update
+
+See UpdateExecutionFactory.createRemote
+
+SPARQL HTTP
+
+See DatasetAccessor
 queries: 
 all competencies of Alice
 competencies of Alice in Fach

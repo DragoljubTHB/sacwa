@@ -9,6 +9,8 @@
   },
   "scripts": {
     "start": "ws",
+    "build": "browserify js/main.js -o js/main-bundle.js",
+    "watch": "watchify js/main.js -o js/main-bundle.js",
     "create_bucket": "aws --profile dado-admin --region us-west-2 s3 mb 's3://koma.thb.de' > conf/s3/endpoint.txt",
     "deploy_bucket": "aws --profile dado-admin --region us-west-2 s3 sync . 's3://koma.thb.de' --acl public-read",
     "webify_bucket": "aws --profile dado-admin --region us-west-2 s3 website --index-document index.html --error-document error.html 's3://koma.thb.de'",
@@ -17,7 +19,9 @@
   "author": "dado",
   "license": "ISC",
   "devDependencies": {
-    "local-web-server": "^2.2.3"
+    "browserify": "^14.4.0",
+    "local-web-server": "^2.2.3",
+    "watchify": "^3.9.0"
   },
   "dependencies": {
     "sparqljs": "^1.5.1"
