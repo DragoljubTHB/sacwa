@@ -3,7 +3,6 @@ package de.thb.koma.service.sparql.impl.lambda;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import de.thb.koma.repository.sparql.SparqlFuseki;
 
 public class Handler implements RequestHandler<Object, String> {
 
