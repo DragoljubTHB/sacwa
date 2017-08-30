@@ -15,7 +15,9 @@
     width: 20px;
 }
 
-
+#selectEntityMultiple, #sparqlNativeQuery {
+    height: 150px;
+}
 
 
 

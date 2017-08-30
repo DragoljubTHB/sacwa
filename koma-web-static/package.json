@@ -18,5 +18,8 @@
   "license": "ISC",
   "devDependencies": {
     "local-web-server": "^2.2.3"
+  },
+  "dependencies": {
+    "sparqljs": "^1.5.1"
   }
 }

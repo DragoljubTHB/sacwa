@@ -11,7 +11,8 @@ var userController = {
     profileNameLabel: null,
     profileImage: null,
     s3InfoButton: null,
-    readS3UpdateDynamo: null
+    readS3UpdateDynamo: null,
+    sparqlNativeQueryButton: null
   },
   init: function(config) {
     var that = this;
@@ -23,6 +24,7 @@ var userController = {
     this.uiElements.profileImage = $('#profilepicture');
     this.uiElements.s3InfoButton = $('#s3info');
     this.uiElements.readS3UpdateDynamo = $('#readS3UpdateDynamo');
+    this.uiElements.sparqlNativeQueryButton = $('#sparqlNativeQueryButton');
 
     this.data.config = config;
     this.data.auth0Lock = new Auth0Lock(config.auth0.clientId, config.auth0.domain);
@@ -115,6 +117,22 @@ var userController = {
             alert(JSON.stringify(data));
         })
     });
+    this.uiElements.sparqlNativeQueryButton.click(function (e) {
+        var url = that.data.config.apiBaseUrl + '/sparql';
+        var txt = $('#sparqlNativeQuery').val();
 
+        var SparqlParser = require('sparqljs').Parser;
+        var parser = new SparqlParser();
+        var parsedQuery = parser.parse(txt);
+
+// Regenerate a SPARQL query from a JSON object
+        var SparqlGenerator = require('sparqljs').Generator;
+        var generator = new SparqlGenerator();
+        query.variables = ['?mickey'];
+        var generatedQuery = generator.stringify(query);
+        console.log(generatedQuery);
+
+
+    });
   }
 };
