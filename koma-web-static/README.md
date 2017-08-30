@@ -1,1 +1,1 @@
-# access point for owl .rdf 
+# KOMA UI

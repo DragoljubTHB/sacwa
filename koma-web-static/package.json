@@ -1,7 +1,7 @@
 {
-  "name": "dado-website",
+  "name": "koma-web-static",
   "version": "1.0.0",
-  "description": "middle steps",
+  "description": "Competency assessment",
   "main": "main.js",
   "local-web-server": {
     "port": 8000,
