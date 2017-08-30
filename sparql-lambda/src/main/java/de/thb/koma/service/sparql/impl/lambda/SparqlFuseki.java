@@ -1,6 +1,7 @@
 package de.thb.koma.service.sparql.impl.lambda;
 
 import org.apache.jena.fuseki.embedded.FusekiServer;
+import org.apache.jena.query.ARQ;
 import org.apache.jena.query.Dataset;
 import org.apache.jena.query.DatasetFactory;
 import org.apache.jena.rdf.model.Resource;
@@ -42,6 +43,7 @@ public class SparqlFuseki {
 
     public void server() {
         //Dataset ds = DatasetFactory.createTxnMem();
+        ARQ.init();
         FusekiServer server = FusekiServer.create().setPort(8080)
                 .build();
         server.start();

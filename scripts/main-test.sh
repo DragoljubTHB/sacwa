@@ -18,6 +18,7 @@ function help() {
   echo
   echo "examples: "
   echo "jar tf some.jar  -> shows the classes in a jar file"
+  echo "s3 sync ./sparql-lambda/build/libs/ 's3://code.dado.org'"
   echo
 }
 
