@@ -16,6 +16,9 @@ function help() {
   echo
   echo "Where <action> is one of:"
   echo
+  echo "examples: "
+  echo "jar tf some.jar  -> shows the classes in a jar file"
+  echo
 }
 
 action=${1:-"help"}

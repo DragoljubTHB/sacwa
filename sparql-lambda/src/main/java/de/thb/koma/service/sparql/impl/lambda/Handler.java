@@ -11,6 +11,7 @@ public class Handler implements RequestHandler<Object, String> {
         LambdaLogger logger = context.getLogger();
         logger.log("handleRequest "+input);
         SparqlFuseki fuseki = new SparqlFuseki();
+        logger.log("Fuseki instantiated");
         fuseki.server();
         logger.log("server() end");
 

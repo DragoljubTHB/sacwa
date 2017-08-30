@@ -41,7 +41,7 @@ public class SparqlFuseki {
             "ORDER BY ASC (?comp) ";
 
     public void server() {
-        Dataset ds = DatasetFactory.createTxnMem();
+        //Dataset ds = DatasetFactory.createTxnMem();
         FusekiServer server = FusekiServer.create().setPort(8080)
                 .build();
         server.start();
