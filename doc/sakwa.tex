@@ -469,10 +469,11 @@ Der Entwurf der Ontologie wurde nach Ontology-Engineering-101
 %@Pre-Dev::Environ
 
 Software platform ? 
+Die Comsumer/Verbraucher der Anwendung wird ein SparQL-Endpoint\cite{SparqlLearn}.
 Die Clients : REST: sparql Endpoints
 
 Die Daten werden in Produktion @Anglizismus in einer \glqq Triple-Store\grqq mit grundsätzlich 4 alternativen: Monolitische Triple Speicherung, Property Werte, Vertikal Partitionierte Tables und Hexastore @Cite hpi web-sem 2.9. 
-Als Ansatz eignet sich S3 @Acro für die Speicherung von großen Datenmengen. Der nächste Schritt wird eine Indexierung der URIs jeweiliger Subject, Predicate und Object in DynamoDB @Acro .
+Für die Entwicklung und als Ansatz eignet sich S3 @Acro für die Speicherung von großen Datenmengen. Der nächste Schritt wird eine Indexierung der URIs jeweiliger Subject, Predicate und Object in DynamoDB @Acro .
 
 Der Zugriff auf die Ontologie wird direkt mithilfe von \glqq SPARQL\grqq  realisiert. Deren Quelldateien werden in einer Lambda @Acro ausgeführt.
 
