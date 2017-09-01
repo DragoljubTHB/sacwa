@@ -16,5 +16,8 @@ dependencies {
     //apache jena for sparql-server:: embeded
     compile group: 'org.apache.jena', name: 'jena-fuseki-embedded', version: '3.4.0'
 
+    // https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-s3
+    compile group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.11.185'
+
 }
 

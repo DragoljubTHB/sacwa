@@ -1,6 +1,5 @@
 package de.thb.koma.repository.sparql;
 
-import org.apache.jena.atlas.web.HttpException;
 import org.apache.jena.fuseki.embedded.FusekiServer;
 import org.apache.jena.query.Dataset;
 import org.apache.jena.query.DatasetFactory;
