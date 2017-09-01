@@ -14,16 +14,18 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class GetObject {
-    public GetObject(String credentials, String bucket, String file) {
 
+    private String credentialsFile;
+
+    public GetObject(String credentials) {
+        this.credentialsFile = credentials;
     }
-    private static String bucketName = "ontology.thb.de";
-    private static String key = "koma-complex.owl";
 
-    public static void main(String[] args) throws IOException {
+    public void get(String bucketName, String key){
+
         AmazonS3 s3Client = AmazonS3ClientBuilder
                 .standard()
-                .withCredentials(new MyAWSCredentialsProvider("credentials.txt"))
+                .withCredentials(new MyAWSCredentialsProvider(credentialsFile))
                 .withRegion(Regions.US_WEST_2)
                 .build();
 
@@ -31,19 +33,7 @@ public class GetObject {
             System.out.println("Downloading an object");
             S3Object s3object = s3Client.getObject(new GetObjectRequest(
                     bucketName, key));
-            System.out.println("Content-Type: " +
-                    s3object.getObjectMetadata().getContentType());
             displayTextInputStream(s3object.getObjectContent());
-
-            // Get a range of bytes from an object.
-
-            GetObjectRequest rangeObjectRequest = new GetObjectRequest(
-                    bucketName, key);
-            rangeObjectRequest.setRange(0, 10);
-            S3Object objectPortion = s3Client.getObject(rangeObjectRequest);
-
-            System.out.println("Printing bytes retrieved.");
-            displayTextInputStream(objectPortion.getObjectContent());
 
         } catch (AmazonServiceException ase) {
             System.out.println("Caught an AmazonServiceException, which" +
@@ -62,10 +52,12 @@ public class GetObject {
                     "communicate with S3, " +
                     "such as not being able to access the network.");
             System.out.println("Error Message: " + ace.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    private static void displayTextInputStream(InputStream input)
+    private void displayTextInputStream(InputStream input)
             throws IOException {
         // Read one text line at a time and display.
         BufferedReader reader = new BufferedReader(new
@@ -76,6 +68,7 @@ public class GetObject {
 
             System.out.println("    " + line);
         }
+        reader.close();
         System.out.println();
     }
 }

@@ -9,12 +9,14 @@ import java.util.Scanner;
 public class MyAWSCredentialsProvider implements com.amazonaws.auth.AWSCredentialsProvider {
 
     private String credentials;
-    public MyAWSCredentialsProvider(String credentials){
-        this.credentials = credentials;
+
+    public MyAWSCredentialsProvider(String credentialsFile) {
+        this.credentials = credentialsFile;
     }
 
     @Override
-    public AWSCredentials getCredentials() { return new MyAWSCredentials("credentials.txt");
+    public AWSCredentials getCredentials() {
+        return new MyAWSCredentials(credentials);
     }
 
     @Override
@@ -27,44 +29,46 @@ public class MyAWSCredentialsProvider implements com.amazonaws.auth.AWSCredentia
         private String secret;
 
         MyAWSCredentials(String resourcesFile) {
-
+            init(resourcesFile);
         }
 
-        private String getFile( String fileName) {
+        private void init(String fileName) {
 
             StringBuilder result = new StringBuilder("");
-
-            //Get file from resources folder
-            ClassLoader classLoader = getClass().getClassLoader();
-            File file = new File(classLoader.getResource(fileName).getFile());
+            File file = new File(fileName);
 
             try (Scanner scanner = new Scanner(file)) {
 
-                String line = scanner.nextLine();
-                setKey(line.substring(line.lastIndexOf(" ") + 1));
-                line = scanner.nextLine();
-                setSecret(line.substring(line.lastIndexOf(" ") + 1));
+                String line;
+                boolean k = false, s = false; //
+                while (!k || !s) {
+                    line = scanner.nextLine();
+                    if (line.contains("aws_access_key_id")) {
+                        setKey(line.substring(line.lastIndexOf(" ") + 1));
+                        k = true;
+                    }
+                    if (line.contains("aws_secret_access_key")) {
+                        setSecret(line.substring(line.lastIndexOf(" ") + 1));
+                        s = true;
+                    }
+                }
 
                 scanner.close();
+
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            return result.toString();
-
         }
-
-
 
         @Override
         public String getAWSAccessKeyId() {
-            return getKey();
+            return getSecret();
         }
 
         @Override
         public String getAWSSecretKey() {
-            return getSecret();
+            return getKey();
         }
 
         public String getKey() {
