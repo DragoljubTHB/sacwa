@@ -25,6 +25,9 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.PrintWriter;
 
+/**
+ * config:: 512 x ~ 18s first run
+ */
 public class Handler implements RequestHandler<OntologyKey, String> {
     String expectedEnv = "BUCKET";
 

@@ -12,7 +12,6 @@ import org.apache.jena.riot.RDFDataMgr;
 import org.apache.jena.riot.system.StreamRDF;
 import org.apache.jena.util.FileManager;
 
-import java.io.File;
 import java.io.InputStream;
 import java.io.PrintWriter;
 
