@@ -40,10 +40,13 @@ public class FileTest {
                 .add("/dataset", ds)
                 .build();
         server.start();
-        printMeta(server.server);
 
+        // upload a model
         DatasetAccessor accessor = connectToService();
         accessor.putModel(model);
+
+        accessor.getModel().write(new PrintWriter(System.out));
+
 
         server.stop();
     }
@@ -54,7 +57,7 @@ public class FileTest {
         for (Connector connector : server.getConnectors()) {
             System.out.println(connector.toString());
         }
-        System.out.println( server.toString());;
+        System.out.println( server.toString());
 
     }
     static DatasetAccessor connectToService()
