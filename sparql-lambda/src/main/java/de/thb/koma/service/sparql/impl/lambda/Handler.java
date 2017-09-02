@@ -12,9 +12,16 @@ import org.apache.jena.query.DatasetAccessor;
 import org.apache.jena.query.DatasetAccessorFactory;
 import org.apache.jena.query.DatasetFactory;
 import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.riot.Lang;
+import org.apache.jena.riot.RDFDataMgr;
 import org.apache.jena.riot.RDFLanguages;
+import org.apache.jena.riot.system.StreamRDF;
 import org.apache.jena.util.FileManager;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.PrintWriter;
 
 public class Handler implements RequestHandler<Object, String> {
@@ -26,13 +33,12 @@ public class Handler implements RequestHandler<Object, String> {
 
         S3Object s3Object = AmazonS3ClientBuilder.defaultClient()
                 .getObject("ontology.koma.de", "koma-complex.owl");
-        logger.log(String.valueOf(s3Object.getObjectContent()));
 
         FusekiController ctrl = new FusekiController();
         ctrl.initServer();
+        logger.log("server init");
 
-        //ctrl.uploadFileToServer(String.valueOf(s3Object.getObjectContent()), RDFLanguages.strLangTurtle);
-
+        ctrl.uploadModelToServer(ctrl.getModelFrom(s3Object.getObjectContent()));
 
         ctrl.stopServer();
 

@@ -6,8 +6,14 @@ import org.apache.jena.query.DatasetAccessor;
 import org.apache.jena.query.DatasetAccessorFactory;
 import org.apache.jena.query.DatasetFactory;
 import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.riot.Lang;
+import org.apache.jena.riot.RDFDataMgr;
+import org.apache.jena.riot.system.StreamRDF;
 import org.apache.jena.util.FileManager;
 
+import java.io.File;
+import java.io.InputStream;
 import java.io.PrintWriter;
 
 public class FusekiController {
@@ -15,10 +21,18 @@ public class FusekiController {
     String uriKoma = "https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl";
     FusekiServer server;
 
-    private Model getFileFrom(String uri, String rdfSyntax) {
+    public Model getModelFrom(String uri, String rdfSyntax) {
         return FileManager.get().loadModel(uri, "TURTLE");
     }
+    public Model getModelFrom(InputStream in){
 
+        Model m = ModelFactory.createDefaultModel();
+        RDFDataMgr.read(m, in, Lang.TURTLE);
+
+        //StreamRDF streamRDF = RDFDataMgr.createIteratorTriples()
+
+        return m;
+    }
     public void initServer(){
         Dataset ds = DatasetFactory.createTxnMem();
         server = FusekiServer.create()
@@ -33,12 +47,9 @@ public class FusekiController {
 
     /**
      * Server shoud be running
-     * @param uri
+     * @param model
      */
-    public void uploadFileToServer(String uri, String rdfSyntax) {
-        Model model = getFileFrom(uri, rdfSyntax);
-
-        // upload a model
+    public void uploadModelToServer(Model model) {
         DatasetAccessor accessor = connectToService();
         accessor.putModel(model);
 
