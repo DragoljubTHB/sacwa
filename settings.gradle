@@ -6,3 +6,4 @@ include ':sparql'
 
 //project(':sparql-lambda').projectDir = file('services/lambda/java/sparql-lambda')
 //project(':sparql').projectDir = file('services/sparql')
+include 's3-lambda'
