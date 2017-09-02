@@ -4,7 +4,11 @@ import com.amazonaws.auth.AWSCredentials;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class MyAWSCredentialsProvider implements com.amazonaws.auth.AWSCredentialsProvider {
 
@@ -34,6 +38,7 @@ public class MyAWSCredentialsProvider implements com.amazonaws.auth.AWSCredentia
 
         private void init(String fileName) {
 
+
             StringBuilder result = new StringBuilder("");
             File file = new File(fileName);
 
@@ -59,6 +64,7 @@ public class MyAWSCredentialsProvider implements com.amazonaws.auth.AWSCredentia
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
         }
 
         @Override
