@@ -118,23 +118,11 @@ var userController =  {
     });
     this.uiElements.sparqlNativeQueryButton.click(function (e) {
         var url = that.data.config.apiBaseUrl + '/sparql';
-        //var txt = $('#sparqlNativeQuery').val();
-        var SparqlParser = require('sparqljs').Parser;
-        var parser = new SparqlParser();
-        var parsedQuery = parser.parse('PREFIX foaf: <http://xmlns.com/foaf/0.1/> ' +
-            'SELECT * { ?mickey foaf:name "Mickey Mouse"@en; foaf:knows ?other. }');
-
-// Regenerate a SPARQL query from a JSON object
-        var SparqlGenerator = require('sparqljs').Generator;
-        var generator = new SparqlGenerator();
-        query.variables = ['?mickey'];
-        var generatedQuery = generator.stringify(query);
-        console.log(generatedQuery);
+        var txt = $('#sparqlNativeQuery').val();
         console.log(txt);
     });
   }
 };
-module.exports = userController;
 
 
 /*
