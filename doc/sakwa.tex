@@ -336,9 +336,10 @@ wenn Zeit: Identifizieren von unverzichtbare Generische Funktionen für Serverle
 
 Zuerst wird den Leser in die Serverless \ref{sec:serverless} Technologien eingeführt, das Programmiermodell vorgestellt
 und die Entscheidungsprinzipien erläutert.
-%Als Zweites wird KOMA \ref{sec:KOMA} als vorläufiges Beispielanwendung und deren Anforderungen vorgestellt.<-- nice to have
-Eine Zahl von möglichen Kombinationen von aktuellen Technologien mit Serverless werden beispielhaft dargestellt.
-Hinzu wird derer Analyse und Umsetzung durchgeführt und erläutert.
+Als Zweites wird KOMA \ref{sec:KOMA} als vorläufiges Beispielanwendung und deren Anforderungen vorgestellt.
+
+%Eine Zahl von möglichen Kombinationen von aktuellen Technologien mit Serverless werden beispielhaft dargestellt.<-- nice to have
+%Hinzu wird derer Analyse und Umsetzung durchgeführt und erläutert.
 
 \chapter{Grundlagen}
 \label{chap:principles}
@@ -349,7 +350,7 @@ Serverless ist ein @Glossar Web Dienst/Service von Cloud-Anbieter, wird auch als
 \section{Serverless}
 \label{sec:serverless}
 Prinzipien von Serverless Architeturen: \cite{sbarski2017serverless}
-Rechen-Dienst nach Anfrage dass in isoliert, unabhängig und granular ausgeführt wird. 
+Rechen-Dienst nach Anfrage dass isoliert, unabhängig und granular ausgeführt wird. 
 . . .
 
 
@@ -419,11 +420,6 @@ Private Datenspeicherung. Daher Login.
 
 Zukünftige Erweiterungen berücksichtigen.
 
-\section{Serverless Kombiniert}
-Spring Boot + Lambda
-Wildfly Swarm REST + Lambda
-Django + Lambda
-
 \section{Datenhaltung Analyse und Auswahl}
 
 
@@ -444,7 +440,8 @@ Die Verbindung zu externen Ontologien kann neues Wissen ableiten.
 6.2.2 \cite{OntoCloud}Benefits on Interoperability and Linked-Data by Using
 Ontology Engineering
 
-Es handelt sich daher um eine \glqq Linked Data Driven Web Application\grqq.
+Es handelt sich daher um eine \glqq Linked Data Driven Web Application\grqq.%@href 
+Dieser Begriff gehört zum \glqq Semantic Web\grqq,der in der Sektion der Ontologie weiter erläutert wird. 
 
 \subsection{Ontologie}
 
@@ -453,8 +450,7 @@ Das \glqq Semantic Web\grqq ist eine Erweiterung des herkömmlichen Web, in der 
 Eine Ontologie ist eine Darstellung von Wissen. Präziser: eine formale Spezifikation über eine Konzeptualisierung\cite{OntoWhat}.
 %@Cite :  R. Studer, R. Benjamins, and D. Fensel. Knowledge engineering: Principles andmethods.Data & Knowledge Engineering, 25(1–2):161–198, 1998
 Während der Umsetzung wurde Protege\footnote{\url{http://protege.stanford.edu}: "This work was conducted using the Protégé resource, which is supported by grant GM10331601 from the National Institute of General Medical Sciences of the United States National Institutes of Health."} benutzt.
-Der Entwurf der Ontologie wurde nach Ontology-Engineering-101
- durchgefuhrt: 
+Der Entwurf der Ontologie wurde nach Ontology-Engineering-101 durchgefuhrt: 
 %@Citehttps://protege.stanford.edu/publications/ontology_development/ontology101-noy-mcguinness.html
 
 %@Pre-Dev::Environ
@@ -463,7 +459,7 @@ Software platform ?
 Die Comsumer/Verbraucher der Anwendung wird ein SparQL-Endpoint\cite{SparqlLearn}.
 Die Clients : REST: sparql Endpoints
 
-Die Daten werden in Produktion @Anglizismus in einer \glqq Triple-Store\grqq mit grundsätzlich 4 alternativen: Monolitische Triple Speicherung, Property Werte, Vertikal Partitionierte Tables und Hexastore @Cite hpi web-sem 2.9. 
+Die Daten können in Produktion @Anglizismus in einer \glqq Triple-Store\grqq mit grundsätzlich 4 alternativen umgesetzt: Monolitische Triple Speicherung, Property Werte, Vertikal Partitionierte Tables und Hexastore @Cite hpi web-sem 2.9. 
 Für die Entwicklung und als Ansatz eignet sich S3 @Acro für die Speicherung von großen Datenmengen. Der nächste Schritt wird eine Indexierung der URIs jeweiliger Subject, Predicate und Object in DynamoDB @Acro .
 
 Der Zugriff auf die Ontologie wird direkt mithilfe von \glqq SPARQL\grqq  realisiert. Deren Quelldateien werden in einer Lambda @Acro ausgeführt.
