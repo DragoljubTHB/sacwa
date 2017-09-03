@@ -9,8 +9,6 @@ var userController =  {
     profileButton: null,
     profileNameLabel: null,
     profileImage: null,
-    s3InfoButton: null,
-    readS3UpdateDynamo: null,
     sparqlNativeQueryButton: null
   },
   init: function(config) {
@@ -21,8 +19,6 @@ var userController =  {
     this.uiElements.profileButton = $('#user-profile');
     this.uiElements.profileNameLabel = $('#profilename');
     this.uiElements.profileImage = $('#profilepicture');
-    this.uiElements.s3InfoButton = $('#s3info');
-    this.uiElements.readS3UpdateDynamo = $('#readS3UpdateDynamo');
     this.uiElements.sparqlNativeQueryButton = $('#sparqlNativeQueryButton');
 
     this.data.config = config;
@@ -91,7 +87,6 @@ var userController =  {
       that.uiElements.profileButton.hide();
       that.uiElements.loginButton.show();
     });
-
     this.uiElements.profileButton.click(function(e) {
       var url = that.data.config.apiBaseUrl + '/userprofile';
 
@@ -102,24 +97,13 @@ var userController =  {
         //$('#user-profile-modal').modal();
       })
     });
-
-    this.uiElements.s3InfoButton.click(function (e) {
-      var url = that.data.config.apiBaseUrl + '/s3info';
-      $.get(url, function (data, status) {
-        console.log(data);
-          alert(JSON.stringify(data, null, 2));
-      })
-    });
-    this.uiElements.readS3UpdateDynamo.click(function (e) {
-        var url = that.data.config.apiBaseUrl + '/readS3UpdateDynamo';
-        $.get(url, function (data, status) {
-            alert(JSON.stringify(data));
-        })
-    });
     this.uiElements.sparqlNativeQueryButton.click(function (e) {
         var url = that.data.config.apiBaseUrl + '/sparql';
-        var txt = $('#sparqlNativeQuery').val();
-        console.log(txt);
+        var data = $('#sparqlNativeQuery').val();
+        $.get(url, function (data, status) {
+            console.log(data);
+            alert(JSON.stringify(data, null, 2));
+        })
     });
   }
 };
@@ -137,3 +121,18 @@ var userController =  {
     var generatedQuery = generator.stringify(query);
     console.log(generatedQuery);
  */
+/*
+    this.uiElements.s3InfoButton.click(function (e) {
+      var url = that.data.config.apiBaseUrl + '/s3info';
+      $.get(url, function (data, status) {
+        console.log(data);
+          alert(JSON.stringify(data, null, 2));
+      })
+    });
+    this.uiElements.readS3UpdateDynamo.click(function (e) {
+        var url = that.data.config.apiBaseUrl + '/readS3UpdateDynamo';
+        $.get(url, function (data, status) {
+            alert(JSON.stringify(data));
+        })
+    });
+*/
