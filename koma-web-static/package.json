@@ -19,11 +19,7 @@
   "author": "dado",
   "license": "ISC",
   "devDependencies": {
-    "browserify": "^14.4.0",
-    "local-web-server": "^2.2.3",
-    "watchify": "^3.9.0"
+    "local-web-server": "^2.2.3"
   },
-  "dependencies": {
-    "sparqljs": "^1.5.1"
-  }
+  "dependencies": {}
 }
