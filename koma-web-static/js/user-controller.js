@@ -99,7 +99,12 @@ var userController =  {
     });
     this.uiElements.sparqlNativeQueryButton.click(function (e) {
         var url = that.data.config.apiBaseUrl + '/sparql';
-        var data = $('#sparqlNativeQuery').val();
+        var query = $('#sparqlNativeQuery').val();
+        $.ajaxSetup({
+           'beforeSend': function (xhr) {
+               xhr.setRequestHeader('query', query)
+           }
+        });
         $.get(url, function (data, status) {
             console.log(data);
             alert(JSON.stringify(data, null, 2));
