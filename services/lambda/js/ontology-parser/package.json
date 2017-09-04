@@ -1,0 +1,11 @@
+{
+  "name": "ontology-parser",
+  "version": "1.0.0",
+  "description": "reads ontology from s3, responds parsed item in json",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dado",
+  "license": "ISC"
+}
