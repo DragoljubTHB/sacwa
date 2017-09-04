@@ -1,0 +1,16 @@
+{
+  "name": "feedback",
+  "version": "1.0.0",
+  "description": "return hello as starting point",
+  "main": "handler.js",
+  "scripts": {
+    "create": "aws lambda create-function --function-name feedback --handler handler.handler --memory-size 128 --runtime nodejs6.10 --role arn:aws:iam::309837773135:role/lambda_basic_execution --timeout 3 --publish --zip-file fileb://Lambda-Deployment.zip",
+    "deploy": "aws lambda update-function-code --function-name feedback --zip-file fileb://Lambda-Deployment.zip",
+    "predeploy": "zip -r Lambda-Deployment.zip * -x *.zip *.json *.log",
+    "precreate": "zip -r Lambda-Deployment.zip * -x *.zip *.json *.log",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dado",
+  "license": "ISC",
+  "dependencies": {}
+}

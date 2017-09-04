@@ -4,6 +4,10 @@
   "description": "reads ontology from s3, responds parsed item in json",
   "main": "handler.js",
   "scripts": {
+    "create": "aws lambda create-function --function-name ontology-parser --handler handler.handler --memory-size 128 --runtime nodejs6.10 --role arn:aws:iam::309837773135:role/s3-full --timeout 5 --publish --zip-file fileb://Lambda-Deployment.zip",
+    "deploy": "aws lambda update-function-code --function-name ontology-parser --zip-file fileb://Lambda-Deployment.zip",
+    "predeploy": "zip -r Lambda-Deployment.zip * -x *.zip *.json *.log",
+    "precreate": "zip -r Lambda-Deployment.zip * -x *.zip *.json *.log",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "dado",
