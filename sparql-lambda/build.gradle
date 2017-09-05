@@ -30,3 +30,6 @@ shadowJar {
     mergeServiceFiles()
 
 }
+/*
+lambda get-function --function-name koma-repo-sparql >> fn-info.json
+ */
