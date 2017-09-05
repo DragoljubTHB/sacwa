@@ -21,7 +21,7 @@ function parseOntology(data, params, next) {
     next(null, data)
 }
 
-exports.handler = function (event, context, callback) {
+exports.handler = function (event, context, callback)  {
     console.log(event.params('sourceKey'));
     console.log(event.params('individual'));
 
@@ -37,4 +37,4 @@ exports.handler = function (event, context, callback) {
             }
         }
     );
-};
+}
