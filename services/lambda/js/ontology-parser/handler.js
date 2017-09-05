@@ -1,5 +1,6 @@
 'use strict';
 
+var res = require('./lib/stdResponse');
 var async = require('async');
 var reader = require('./lib/getS3Object');
 var parser = require('./lib/parser');
@@ -30,9 +31,9 @@ exports.handler = function (event, context, callback)  {
         ],
         function (err, result) {
             if (err) {
-                callback(err);
+                callback(res.createErrorResponse(500, err));
             } else {
-                callback(null, result);
+                callback(null, res.createSuccessResponse(200, result));
             }
         }
     );
