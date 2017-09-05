@@ -12,5 +12,8 @@
   },
   "author": "dado",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "util": "^0.10.3"
+  }
 }

@@ -9,7 +9,8 @@ var userController = {
         profileButton: null,
         profileNameLabel: null,
         profileImage: null,
-        sparqlNativeQueryButton: null
+        sparqlNativeQueryButton: null,
+        feedbackButton: null
     },
     init: function (config) {
         var that = this;
@@ -20,6 +21,7 @@ var userController = {
         this.uiElements.profileNameLabel = $('#profilename');
         this.uiElements.profileImage = $('#profilepicture');
         this.uiElements.sparqlNativeQueryButton = $('#sparqlNativeQueryButton');
+        this.uiElements.feedbackButton = $('#feedbackButton');
 
         this.data.config = config;
         this.data.auth0Lock = new Auth0Lock(config.auth0.clientId, config.auth0.domain);
@@ -44,6 +46,7 @@ var userController = {
                 xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('userToken'));
             }
         });
+        console.log($.ajaxSetup.toString())
     },
     showUserAuthenticationDetails: function (profile) {
         var showAuthenticationElements = !!profile;
@@ -101,17 +104,28 @@ var userController = {
             var url = that.data.config.apiBaseUrl + '/sparql';
             var ontology = $('#ontologyUrl').val();
             var query = $('#sparqlNativeQuery').val();
+            /*
             $.ajaxSetup({
                 'beforeSend': function (xhr) {
                     xhr.setRequestHeader('ontology', ontology.toString());
                     xhr.setRequestHeader('query', query.toString())
                 }
             });
+            */
             $.get(url, function (data, status) {
                 console.log(data);
                 alert(JSON.stringify(data, null, 2));
             })
         });
+        this.uiElements.feedbackButton.click(function (e) {
+            const name = $('#feedbackInput').val();
+            var url = that.data.config.apiBaseUrl + '/feedback' + '/'+name.toString();
+            console.log(url);
+            $.get(url, function (data, status) {
+                console.log(data);
+                console.log(status);
+            })
+        })
     }
 };
 /*
