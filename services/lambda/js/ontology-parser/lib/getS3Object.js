@@ -1,7 +1,7 @@
 'use strict';
 
 var AWS = require('aws-sdk');
-var s3 = AWS.S3();
+var s3 = new AWS.S3();
 
 function read(params) {
     s3.getObject(params, function (err, data) {

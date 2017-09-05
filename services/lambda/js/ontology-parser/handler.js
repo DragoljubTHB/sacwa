@@ -4,29 +4,28 @@ var async = require('async');
 var reader = require('./lib/getS3Object');
 var parser = require('./lib/parser');
 
-function createBucketParams(params, next) {
+var reqIndividual;
+
+function createBucketParams(next) {
     var bucket = {
         Bucket: process.env.BUCKET,
-        Key: params('sourceKey'),
-        EncodingType: 'url'
+        Key: process.env.SOURCE_KEY
     };
-    next(null, bucket, params);
+    next(null, bucket);
 }
-function getS3ObjectBody(bucket, params, next) {
+function getS3ObjectBody(bucket, next) {
     var body = reader.read(bucket);
-    next(null, body, params);
+    next(null, body);
 }
-function parseOntology(data, params, next) {
-    parser.parseBy(params('individual'), data);
+function parseOntology(data, next) {
+    parser.parseBy(reqIndividual, data);
     next(null, data)
 }
 
 exports.handler = function (event, context, callback)  {
-    console.log(event.params('sourceKey'));
-    console.log(event.params('individual'));
-
-    async.waterfall([createBucketParams(event.params)
-            , getS3Object
+    reqIndividual = event.individual;
+    async.waterfall([createBucketParams
+            , getS3ObjectBody
             , parseOntology
         ],
         function (err, result) {
@@ -37,4 +36,4 @@ exports.handler = function (event, context, callback)  {
             }
         }
     );
-}
+};
