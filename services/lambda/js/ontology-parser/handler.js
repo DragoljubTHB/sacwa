@@ -18,7 +18,7 @@ function createBucketParams(next) {
 
 function getS3ObjectBody(bucket, next) {
     console.log("attempt to read object from S3");
-    s3.getObject(params, function (err, data) {
+    s3.getObject(bucket, function (err, data) {
         if (err) {
             console.log(err, err.stack);
             next(err);
@@ -30,6 +30,7 @@ function getS3ObjectBody(bucket, next) {
 
 function parseOntology(data, next) {
     parser.parseBy(reqIndividual, data);
+    parser.searchBy(reqIndividual, data);
     next(null, data)
 }
 
