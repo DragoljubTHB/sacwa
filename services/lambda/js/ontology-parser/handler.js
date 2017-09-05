@@ -1,8 +1,9 @@
 'use strict';
 
+var AWS = require('aws-sdk');
+var s3 = new AWS.S3();
 var res = require('./lib/stdResponse');
 var async = require('async');
-var reader = require('./lib/getS3Object');
 var parser = require('./lib/parser');
 
 var reqIndividual;
@@ -14,16 +15,25 @@ function createBucketParams(next) {
     };
     next(null, bucket);
 }
+
 function getS3ObjectBody(bucket, next) {
-    var body = reader.read(bucket);
-    next(null, body);
+    console.log("attempt to read object from S3");
+    s3.getObject(params, function (err, data) {
+        if (err) {
+            console.log(err, err.stack);
+            next(err);
+        } else {
+            next(null, data.Body.toString('utf8'));
+        }
+    });
 }
+
 function parseOntology(data, next) {
     parser.parseBy(reqIndividual, data);
     next(null, data)
 }
 
-exports.handler = function (event, context, callback)  {
+exports.handler = function (event, context, callback) {
     reqIndividual = event.individual;
     async.waterfall([createBucketParams
             , getS3ObjectBody
