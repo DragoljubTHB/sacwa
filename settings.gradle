@@ -2,3 +2,4 @@ rootProject.name = 'sacwa'
 
 include ':koma-standalone'
 include ':sparql-lambda'
+include ':services:lambda:js:feedback-java'

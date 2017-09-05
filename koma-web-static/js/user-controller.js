@@ -119,7 +119,7 @@ var userController = {
         });
         this.uiElements.feedbackButton.click(function (e) {
             const name = $('#feedbackInput').val();
-            var url = that.data.config.apiBaseUrl + '/feedback' + '/'+name.toString();
+            var url = that.data.config.apiBaseUrl + '/feedback/java' + '/'+name.toString();
             console.log(url);
             $.get(url, function (data, status) {
                 console.log(data);

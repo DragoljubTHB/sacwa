@@ -6,5 +6,5 @@ exports.handler = function (event, context, callback) {
     console.log(opts);
     console.log("got event.name: "+event.name);
 
-    callback(null, opts);
+    callback(null, event.name);
 };
