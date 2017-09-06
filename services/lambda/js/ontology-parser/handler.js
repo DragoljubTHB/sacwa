@@ -32,12 +32,17 @@ function getS3ObjectBody(bucket, next) {
 function parseOntology(data, next) {
     var iri = baseUrl + '/' + process.env.BUCKET + '/' + process.env.SOURCE_KEY + '#' + reqIndividual;
     console.log(iri);
-    parser.parse(reqIndividual, data, next);
+    if(typeof reqIndividual !== undefined || reqIndividual === '') {
+        parser.parse(reqIndividual, data, next);
+    } else {
+        console.log("get All ----------- ");
+        parser.getAllSPO(data, next);
+    }
     //parser.searchBy(reqIndividual, data);
 }
 
 exports.handler = function (event, context, callback) {
-    reqIndividual = event.individual;
+    reqIndividual = event.individual; // check possible exception
     async.waterfall([createBucketParams
             , getS3ObjectBody
             , parseOntology

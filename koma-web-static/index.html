@@ -12,6 +12,8 @@
     <!--
         <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
     -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css" rel="stylesheet" type="text/css" />
+
     <style>
         body {
             padding-top: 50px;
@@ -100,8 +102,19 @@
     <button id="feedbackButton" type="button" class="btn btn-primary">feedback</button>
 
 </div>
-
 <hr>
+
+<div id="searchResults">
+    <table id="table" class="table">
+        <thead>
+        <tr>
+            <th data-field="subject">Subject</th>
+            <th data-field="predicate">Predicate</th>
+            <th data-field="object">Object</th>
+        </tr>
+        </thead>
+    </table>
+</div>
 
 <footer>
     <p>&copy; Copy, Right?</p>
@@ -118,6 +131,7 @@
 <script src="js/vendor/bootstrap.min.js"></script>
 -->
 <script src="https://cdn.auth0.com/js/lock-9.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.js"></script>
 
 
 <script src="js/user-controller.js"></script>

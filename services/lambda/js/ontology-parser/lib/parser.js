@@ -2,9 +2,21 @@
 var N3 = require('n3');
 var async = require('async');
 
-function searchBy(individual, data) {
+function getAllSPO(data, callback) {
+    var parser = N3.Parser();
     var store = N3.Store();
-    var triple = store.getTriples(individual, null, null, null)[0];
+    parser.parse(data, function (error, triple, prefixes) {
+        if (triple) {
+            store.addTriple(triple);
+        } else {
+            callback(null, store.getTriples());
+        }
+    });
+}
+
+function searchBy(individual, data) { // by iri
+    var store = N3.Store();
+    var triple = store.find(individual, null, null)[0];
     if (triple) {
         console.log(triple.subject + " : " + triple.property + " : " + triple.object)
     } else {
@@ -45,5 +57,6 @@ function parse(individual, data, callback) {
 
 module.exports = {
     parse: parse,
+    getAllSPO: getAllSPO,
     searchBy: searchBy
 };

@@ -119,10 +119,15 @@ var userController = {
         });
         this.uiElements.feedbackButton.click(function (e) {
             const name = $('#feedbackInput').val();
-            var url = that.data.config.apiBaseUrl + '/feedback/java' + '/'+name.toString();
+            var url = that.data.config.apiBaseUrl + '/page' + '/'+name.toString();
             console.log(url);
             $.get(url, function (data, status) {
-                console.log(data);
+                $(function () {
+                    $('#table').bootstrapTable({
+                        data: data
+                    });
+                });
+                console.log(JSON.parse(data));
                 console.log(status);
             })
         })
