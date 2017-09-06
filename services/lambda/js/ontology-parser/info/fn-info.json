@@ -1,0 +1,23 @@
+{
+    "Configuration": {
+        "FunctionName": "ontology-parser",
+        "FunctionArn": "arn:aws:lambda:us-west-2:309837773135:function:ontology-parser",
+        "Runtime": "nodejs6.10",
+        "Role": "arn:aws:iam::309837773135:role/s3-full",
+        "Handler": "handler.handler",
+        "CodeSize": 4755062,
+        "Description": "",
+        "Timeout": 5,
+        "MemorySize": 128,
+        "LastModified": "2017-09-04T22:21:01.250+0000",
+        "CodeSha256": "L0wCFd5Vkw+KJOeWJX/FuX8js4/IWfHll6SSEu7b1f4=",
+        "Version": "$LATEST",
+        "TracingConfig": {
+            "Mode": "PassThrough"
+        }
+    },
+    "Code": {
+        "RepositoryType": "S3",
+        "Location": "https://awslambda-us-west-2-tasks.s3-us-west-2.amazonaws.com/snapshots/309837773135/ontology-parser-5f836c4f-e932-4335-9188-fd34a8c463f3?X-Amz-Security-Token=FQoDYXdzEEwaDI2W0j19a28NHZwCJiK3A%2BXoo94NMbXeGiuvUgxzaN5hG%2BcPfhwLBW6EOwtJ7E48ZQs%2B15FF6gH0C0DGoLW6Ll1OhiyhTSS9UBb%2BWVxza4VjAIjySOr9zs%2BJtN5ymiGgWcZfp7khRmVB2Bq%2F8iSqPC9%2FePgQRiOElyJTix2RUWLSbDzYwHLM8LVUDYnH4RUJQRpu7fKnjZdlNldtndOLY1tI9GGkYlr37JFnM8Xn0cgZk3vfk1hY06ycOMJQlPJbaSH8ckLx%2Fv%2FdLEHKyM9hlVtCFJD7rFg%2F15yfnj4awuM70bXU%2F%2FrbGkKmGuUU6Cyu0DST%2FXYHdz0waXz64Felklb8q6L5HhoXAervYATFizMgbGpOGU7mOYWhSm6OY9wLmy84R0g7GSkBWkeDccOnGz%2B7MIaYVzr7YHTVwOho7QdI67T5HCZOWN%2FL1ie%2F3p8sLb9Zsvs6UkCDukZyJbItmoXqiCrtdYx58sgkAV7Ys%2BVlAhRlRk7NvvGHXoVWvMf7T%2F%2B6RiqPzWcev84Y2evqX8Ut9lnGwJBBcCX%2FQr%2FuCHJkim7Kp2n1wlY5AKsCPQkv9k%2Ba2WThOI0q%2BQGR61dgbtiRBQWQUDwosNq7zQU%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20170905T194107Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=ASIAIMUC56MVXQAOYXBQ%2F20170905%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=3d02e3f1dad87b06d5facf87a8581dddc824d019d7b98368bb5c4a2d6d328ad3"
+    }
+}

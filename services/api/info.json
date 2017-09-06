@@ -1,0 +1,100 @@
+{
+    "items": [
+        {
+            "id": "24fd00",
+            "parentId": "otrxa3",
+            "pathPart": "{individual}",
+            "path": "/page/{individual}",
+            "resourceMethods": {
+                "GET": {},
+                "OPTIONS": {}
+            }
+        },
+        {
+            "id": "9j0xq3",
+            "parentId": "corjxvzn6g",
+            "pathPart": "userprofile",
+            "path": "/userprofile",
+            "resourceMethods": {
+                "GET": {},
+                "OPTIONS": {}
+            }
+        },
+        {
+            "id": "abe3q2",
+            "parentId": "nlxctc",
+            "pathPart": "{entity}",
+            "path": "/ontology/{entity}",
+            "resourceMethods": {
+                "GET": {},
+                "OPTIONS": {}
+            }
+        },
+        {
+            "id": "corjxvzn6g",
+            "path": "/"
+        },
+        {
+            "id": "d0phif",
+            "parentId": "corjxvzn6g",
+            "pathPart": "feedback",
+            "path": "/feedback",
+            "resourceMethods": {
+                "GET": {},
+                "OPTIONS": {},
+                "POST": {}
+            }
+        },
+        {
+            "id": "enuoai",
+            "parentId": "corjxvzn6g",
+            "pathPart": "sparql",
+            "path": "/sparql",
+            "resourceMethods": {
+                "GET": {},
+                "POST": {}
+            }
+        },
+        {
+            "id": "fh2ery",
+            "parentId": "g5l0e0",
+            "pathPart": "{name}",
+            "path": "/feedback/java/{name}",
+            "resourceMethods": {
+                "GET": {},
+                "OPTIONS": {}
+            }
+        },
+        {
+            "id": "g5l0e0",
+            "parentId": "d0phif",
+            "pathPart": "java",
+            "path": "/feedback/java"
+        },
+        {
+            "id": "nlxctc",
+            "parentId": "corjxvzn6g",
+            "pathPart": "ontology",
+            "path": "/ontology"
+        },
+        {
+            "id": "otrxa3",
+            "parentId": "corjxvzn6g",
+            "pathPart": "page",
+            "path": "/page",
+            "resourceMethods": {
+                "GET": {}
+            }
+        },
+        {
+            "id": "y7tfrr",
+            "parentId": "d0phif",
+            "pathPart": "{name}",
+            "path": "/feedback/{name}",
+            "resourceMethods": {
+                "GET": {},
+                "OPTIONS": {}
+            }
+        }
+    ]
+}
