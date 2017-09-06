@@ -103,21 +103,18 @@ var userController = {
             })
         });
         this.uiElements.sparqlNativeQueryButton.click(function (e) {
+            var table = $('#table');
             var url = that.data.config.apiBaseUrl + '/sparql';
-            var ontology = $('#ontologyUrl').val();
             var query = $('#sparqlNativeQuery').val();
-            /*
-            $.ajaxSetup({
-                'beforeSend': function (xhr) {
-                    xhr.setRequestHeader('ontology', ontology.toString());
-                    xhr.setRequestHeader('query', query.toString())
-                }
+            $.post(url, {"query": query}, function (result) {
+                $(function () {
+                    table.bootstrapTable('destroy');
+                    table.bootstrapTable({
+                        data: result
+                    });
+                });
+                console.log(result)
             });
-            */
-            $.get(url, function (data, status) {
-                console.log(data);
-                alert(JSON.stringify(data, null, 2));
-            })
         });
         this.uiElements.selectEntityMultipleButton.click(function (e) {
             var table = $('#table');
