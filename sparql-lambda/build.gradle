@@ -8,22 +8,14 @@ repositories {
 }
 
 dependencies {
-    //compile project(':sparql')
+    compile group: 'com.fasterxml.jackson.jr', name: 'jackson-jr-objects', version: '2.9.0'
 
     // logging impl for jena
     compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
-
-    //apache jena for sparql-server:: embeded
     compile group: 'org.apache.jena', name: 'jena-fuseki-embedded', version: '3.4.0'
 
     compile group: 'com.amazonaws', name: 'aws-lambda-java-core', version: '1.0.0'
-    // https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-lambda
-    //compile group: 'com.amazonaws', name: 'aws-java-sdk-lambda', version: '1.11.186'
-
     compile group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.11.185'
-
-
-    testImplementation 'junit:junit:4.12'
 }
 
 shadowJar {

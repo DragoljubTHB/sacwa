@@ -36,6 +36,7 @@ public class Handler implements RequestHandler<OntologyKey, String> {
         LambdaLogger logger = context.getLogger();
         logger.log("handleRequest " + input);
 
+
         FusekiController ctrl = new FusekiController();
         ctrl.initServer();
         logger.log("server init");

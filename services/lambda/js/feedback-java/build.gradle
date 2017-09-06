@@ -10,8 +10,11 @@ repositories {
 
 dependencies {
     compile group: 'com.amazonaws', name: 'aws-lambda-java-core', version: '1.0.0'
+    compile group: 'com.fasterxml.jackson.jr', name: 'jackson-jr-objects', version: '2.9.0'
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
 }
-
+shadowJar {
+    mergeServiceFiles()
+}
