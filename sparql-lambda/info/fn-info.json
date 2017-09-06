@@ -1,0 +1,32 @@
+{
+    "Configuration": {
+        "FunctionName": "koma-repo-sparql",
+        "FunctionArn": "arn:aws:lambda:us-west-2:309837773135:function:koma-repo-sparql",
+        "Runtime": "java8",
+        "Role": "arn:aws:iam::309837773135:role/s3-full",
+        "Handler": "de.thb.koma.service.sparql.impl.lambda.Handler::handleRequest",
+        "CodeSize": 19896025,
+        "Description": "koma-sparql-endpoint-fuseki-embedded",
+        "Timeout": 60,
+        "MemorySize": 512,
+        "LastModified": "2017-09-02T21:40:00.296+0000",
+        "CodeSha256": "SmBrgocluAnk3CP5QVIgyuURgw1eKqeQhrM6NDurWwM=",
+        "Version": "$LATEST",
+        "VpcConfig": {
+            "SubnetIds": [],
+            "SecurityGroupIds": []
+        },
+        "Environment": {
+            "Variables": {
+                "BUCKET": "ontology.thb.de"
+            }
+        },
+        "TracingConfig": {
+            "Mode": "PassThrough"
+        }
+    },
+    "Code": {
+        "RepositoryType": "S3",
+        "Location": "https://awslambda-us-west-2-tasks.s3-us-west-2.amazonaws.com/snapshots/309837773135/koma-repo-sparql-f209cf03-b485-4b3d-b042-9d9cc2460936?X-Amz-Security-Token=FQoDYXdzEEwaDDH%2BwEAkhhGAkxsSFyK3AxzLtB5KYlwTkUJZHM0tTOWuRFjRLgw5%2B%2FpvvMRA%2FohT8lUXP0nYtZ2mK70zT5xwDy49LYL%2FEceaKda4whZyJPAB2OB6BCTGbNW7ZV3oG62sDkgvae16P5C5ujEA%2BDk1Ad%2Bg8EY7AywedV1m%2B8DX956VwKQOJBJ3FniOS5N5JMHwkqfI9Y1j1ymgEBPCXshH02wmhb52fRkB2XDbZ6SMQKpGU22%2FmR5vvhZRn8jMjRFpJ5qLcHmJnaFxWpoO0UhaR9FL7tUqKNrKqPIxNB5n83M3NsSGH7u2aigMAeJBvR7lhW93glFr7rMQ9ecIp4ltreZ0VqGb5QxdIPi1W0j9D6bWp5nT%2FVCGAnmB5SPCVnUBiiCE6fF3QV7fzP19KgoO5FLYj%2F5km%2BUJPDMu8et20zdG4X%2BcUaWAEFD3mmWtZJY%2BnHxr3%2F2ZZ5AZdQHnWlMVHhY%2F5A1CgffZ3hKswIJFx%2B5qu%2FFlrZySVYeH%2FunKIqQZhk5qFvQ3SS%2FaOQXeQuX%2Fnf3Iqolsko56etztVljuD7xqY5dePCYf2UGMmU5SZ7uynfRItzg97m60BpW50Ht25qgZ93nvvqYoleu7zQU%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20170905T194441Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=ASIAJLN2UXET4EW266HQ%2F20170905%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=1819077f028a39d3a100733df4b3e99818654a28a0aaceb835fed70b32426632"
+    }
+}

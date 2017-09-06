@@ -1,4 +1,0 @@
-rootProject.name = 'sacwa'
-
-include ':koma-standalone'
-include ':sparql-lambda'

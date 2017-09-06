@@ -1,0 +1,4 @@
+{
+  "entity": "$input.params('entity')",
+  "sourceKey": "$input.params('sourceKey')"
+}
