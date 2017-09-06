@@ -1,12 +1,8 @@
 package de.thb.koma.service.sparql.impl.lambda;
 
 import org.apache.jena.fuseki.embedded.FusekiServer;
-import org.apache.jena.query.Dataset;
-import org.apache.jena.query.DatasetAccessor;
-import org.apache.jena.query.DatasetAccessorFactory;
-import org.apache.jena.query.DatasetFactory;
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.query.*;
+import org.apache.jena.rdf.model.*;
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
 import org.apache.jena.riot.system.StreamRDF;
@@ -19,6 +15,21 @@ public class FusekiController {
 
     String uriKoma = "https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl";
     FusekiServer server;
+    Model mModel;
+
+    public void execQuery(String aQuery){
+        Query query = QueryFactory.create(aQuery);
+        try(QueryExecution qexec = QueryExecutionFactory.create(query, mModel)){
+            ResultSet results = qexec.execSelect();
+            for ( ; results.hasNext() ; )
+            {
+                QuerySolution soln = results.nextSolution() ;
+                RDFNode x = soln.get("varName") ;       // Get a result variable by name.
+                Resource r = soln.getResource("VarR") ; // Get a result variable - must be a resource
+                Literal l = soln.getLiteral("VarL") ;   // Get a result variable - must be a literal
+            }
+        }
+    }
 
     public Model getModelFrom(String uri, String rdfSyntax) {
         return FileManager.get().loadModel(uri, "TURTLE");
@@ -29,7 +40,7 @@ public class FusekiController {
         RDFDataMgr.read(m, in, Lang.TURTLE);
 
         //StreamRDF streamRDF = RDFDataMgr.createIteratorTriples()
-
+        this.mModel = m;
         return m;
     }
     public void initServer(){
