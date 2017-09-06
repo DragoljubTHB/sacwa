@@ -9,6 +9,7 @@ var userController = {
         profileButton: null,
         profileNameLabel: null,
         profileImage: null,
+        selectEntityMultipleButton: null,
         sparqlNativeQueryButton: null,
         feedbackButton: null
     },
@@ -20,6 +21,7 @@ var userController = {
         this.uiElements.profileButton = $('#user-profile');
         this.uiElements.profileNameLabel = $('#profilename');
         this.uiElements.profileImage = $('#profilepicture');
+        this.uiElements.selectEntityMultipleButton = $('#selectEntityMultipleButton');
         this.uiElements.sparqlNativeQueryButton = $('#sparqlNativeQueryButton');
         this.uiElements.feedbackButton = $('#feedbackButton');
 
@@ -117,20 +119,35 @@ var userController = {
                 alert(JSON.stringify(data, null, 2));
             })
         });
-        this.uiElements.feedbackButton.click(function (e) {
-            const name = $('#feedbackInput').val();
+        this.uiElements.selectEntityMultipleButton.click(function (e) {
+            var table = $('#table');
+            var name = $('#selectEntityMultiple').val();
             var url = that.data.config.apiBaseUrl + '/page' + '/'+name.toString();
             console.log(url);
             $.get(url, function (data, status) {
-                console.log(data['body']);
-
                 $(function () {
-                    $('#table').bootstrapTable({
+                    table.bootstrapTable('destroy');
+                    table.bootstrapTable({
                         data: data['body']
                     });
                 });
             })
-        })
+
+        });
+        this.uiElements.feedbackButton.click(function (e) {
+            var table = $('#table');
+            var name = $('#feedbackInput').val();
+            var url = that.data.config.apiBaseUrl + '/page' + '/'+name.toString();
+            console.log(url);
+            $.get(url, function (data, status) {
+                $(function () {
+                    table.bootstrapTable('destroy');
+                    table.bootstrapTable({
+                        data: data['body']
+                    });
+                });
+            })
+        });
     }
 };
 /*
@@ -141,7 +158,6 @@ PREFIX owl: <http://www.w3.org/2002/07/owl#>
                             ?comp rdf:type owl:Class .
                             }
                             ORDER BY ?label
-                        </textarea>
  */
 
 /*
