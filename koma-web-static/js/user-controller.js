@@ -122,13 +122,13 @@ var userController = {
             var url = that.data.config.apiBaseUrl + '/page' + '/'+name.toString();
             console.log(url);
             $.get(url, function (data, status) {
+                console.log(data['body']);
+
                 $(function () {
                     $('#table').bootstrapTable({
-                        data: data
+                        data: data['body']
                     });
                 });
-                console.log(JSON.parse(data));
-                console.log(status);
             })
         })
     }

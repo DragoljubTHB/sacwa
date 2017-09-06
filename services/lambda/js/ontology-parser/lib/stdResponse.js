@@ -15,7 +15,7 @@ function createSuccessResponse(result) {
     var response = {
         'statusCode': 200,
         'headers' : {'Access-Control-Allow-Origin' : '*'},
-        'body' : JSON.stringify(result, null, 2)
+        'body' : result
     };
 
     return response;
