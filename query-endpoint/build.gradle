@@ -1,0 +1,17 @@
+apply plugin: 'java-library'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+
+    compile group: 'com.amazonaws', name: 'aws-lambda-java-core', version: '1.0.0'
+    compile group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.11.185'
+
+    compile group: 'com.fasterxml.jackson.jr', name: 'jackson-jr-objects', version: '2.9.0'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    compile group: 'org.apache.jena', name: 'jena-fuseki-embedded', version: '3.4.0'
+    testImplementation 'junit:junit:4.12'
+}
+
