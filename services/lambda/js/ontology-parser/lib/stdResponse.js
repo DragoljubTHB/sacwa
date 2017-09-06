@@ -22,6 +22,6 @@ function createSuccessResponse(result) {
 }
 
 module.exports = {
-    createErrorResponse: createSuccessResponse,
+    createErrorResponse: createErrorResponse,
     createSuccessResponse: createSuccessResponse
 };

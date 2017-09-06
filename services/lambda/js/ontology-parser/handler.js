@@ -2,10 +2,11 @@
 
 var AWS = require('aws-sdk');
 var s3 = new AWS.S3();
+var parser = require('./lib/parser');
 var res = require('./lib/stdResponse');
 var async = require('async');
-var parser = require('./lib/parser');
 
+const baseUrl = 'https://s3-us-west-2.amazonaws.com';
 var reqIndividual;
 
 function createBucketParams(next) {
@@ -29,9 +30,10 @@ function getS3ObjectBody(bucket, next) {
 }
 
 function parseOntology(data, next) {
-    parser.parseBy(reqIndividual, data);
-    parser.searchBy(reqIndividual, data);
-    next(null, data)
+    var iri = baseUrl + '/' + process.env.BUCKET + '/' + process.env.SOURCE_KEY + '#' + reqIndividual;
+    console.log(iri);
+    parser.parse(reqIndividual, data, next);
+    //parser.searchBy(reqIndividual, data);
 }
 
 exports.handler = function (event, context, callback) {
@@ -44,7 +46,11 @@ exports.handler = function (event, context, callback) {
             if (err) {
                 callback(res.createErrorResponse(500, err));
             } else {
-                callback(null, res.createSuccessResponse(200, result));
+                if (Object.keys(result).length === 0 && result.constructor === Object) {
+                    callback(null, res.createErrorResponse(404, "there was no result on the search"));
+                } else {
+                    callback(null, res.createSuccessResponse(result));
+                }
             }
         }
     );
