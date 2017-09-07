@@ -96,10 +96,6 @@ var userController = {
             var url = that.data.config.apiBaseUrl + '/userprofile';
 
             $.get(url, function (data, status) {
-                console.log(JSON.stringify(data));
-                alert(JSON.stringify(data));
-                //$('#user-profile-raw-json').text(JSON.stringify(data, null, 2));
-                //$('#user-profile-modal').modal();
             })
         });
         this.uiElements.sparqlNativeQueryButton.click(function (e) {
@@ -124,7 +120,7 @@ var userController = {
                             data: data['body']
                         });
                     });
-                    console.log(JSON.stringify(data['body']))
+                    console.log(JSON.stringify(data))
                 },
                 error: function( jqXhr, textStatus, errorThrown ){
                     console.log( errorThrown );
