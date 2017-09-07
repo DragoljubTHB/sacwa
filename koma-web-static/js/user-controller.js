@@ -105,13 +105,10 @@ var userController = {
         this.uiElements.sparqlNativeQueryButton.click(function (e) {
             var table = $('#table');
             var url = that.data.config.apiBaseUrl + '/sparql';
-            console.log(url);
             var reqBody = {};
             var query = $('#sparqlNativeQuery').val();
             reqBody.bucketKey = "koma-complex.owl";
             reqBody.query = query;
-
-            console.log(reqBody);
 
             $.ajax({
                 url: url,
@@ -121,23 +118,19 @@ var userController = {
                 data: JSON.stringify( reqBody ),
                 processData: false,
                 success: function( data, textStatus, jQxhr ){
-                    console.log(JSON.stringify(data))
+                    $(function () {
+                        table.bootstrapTable('destroy');
+                        table.bootstrapTable({
+                            data: data['body']
+                        });
+                    });
+                    console.log(JSON.stringify(data['body']))
                 },
                 error: function( jqXhr, textStatus, errorThrown ){
                     console.log( errorThrown );
                 }
             });
-/*
-            $.post(url, JSON.stringify(reqBody), function (result) {
-                $(function () {
-                    table.bootstrapTable('destroy');
-                    table.bootstrapTable({
-                        data: result['body']
-                    });
-                });
-                console.log(result['body'])
-            });
-            */
+
         });
         this.uiElements.selectEntityMultipleButton.click(function (e) {
             var table = $('#table');
