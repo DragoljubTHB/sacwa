@@ -320,16 +320,11 @@ Im Rahmen des Cloud-Computing handelt es in dieser Arbeit um eine Untersuchung d
 \section{Ziel}
 \label{sec:task}
 
+@acronym MVP Minimal Viable Product : \cite{rady2016serverless} Das Ziel ist ein MVP Minimal Viable Product in form eine @acronym SPA Single Page Application mit ausschließlich \glqq Serverlosen\grqq Architekturen vor zur Verfügung zu stellen.
 
-@acronym MVP Minimal Viable Product : \cite{rady2016serverless}
-Als Ergebnis wird ein MVP Minimal Viable Product in form eine @acronym SPA Single Page Application vor zur Verfügung gestellt.
+Nach der Umsetzung werden die Erfahrungen und Ergebnisse ausgewertet, um dem Leser bei dem Entscheidungsprozess bei der Umsetzung einer Webanwendung besser zu Informieren. 
 
-Start::Chars: Arch + Domän Flexibilität - Schnelle Arch Änderungen
-
-Umsetzung der Kernfunktionalität einer Beispielanwendung mit ausschließlich \glqq Serverlosen\grqq Architekturen.
-wenn Zeit: Identifizieren von unverzichtbare Generische Funktionen für Serverless Anwendungen.
-%Identify Generic Functions with-/out Architecture Pattern
-
+Die Webanwendung soll möglichst für zukünftige Änderungen flexibel sein. 
 
 \section{Aufbau der Arbeit}
 \label{sec:layout}
@@ -337,18 +332,29 @@ wenn Zeit: Identifizieren von unverzichtbare Generische Funktionen für Serverle
 Zuerst wird den Leser in die Serverless \ref{sec:serverless} Technologien eingeführt, das Programmiermodell vorgestellt
 und die Entscheidungsprinzipien erläutert.
 Als Zweites wird KOMA \ref{sec:KOMA} als vorläufiges Beispielanwendung und deren Anforderungen vorgestellt.
-
-%Eine Zahl von möglichen Kombinationen von aktuellen Technologien mit Serverless werden beispielhaft dargestellt.<-- nice to have
-%Hinzu wird derer Analyse und Umsetzung durchgeführt und erläutert.
+Nach dem Überblick, lässt sich die Umsetzung besser \glqq Bottom-Up\grqq verstehen. 
+Am Ende wird es darüber diskutiert, welche TradeOffs entstehen und die Zukünftperspektiven von Serveless Technologien/ Architekturen.
 
 \chapter{Grundlagen}
 \label{chap:principles}
+\label{chap:introduction}
+\epigraph{\textit{\textquotedbl{}
+		There are only two hard things in computer science: cache invalidation
+		and naming things.\textquotedbl{}}}{
+	Phil Karlton }
 
-Serverless ist ein @Glossar Web Dienst/Service von Cloud-Anbieter, wird auch als @Glossar FaaS bezeichnet. Deren Serverinfrastruktur wird vom Cloud-Anbieter wie Amazon Web Services verwaltet. Komplexe Probleme wie horizontale und vertikale Skalierbarkeit, Fehlertoleranz, Flexibilität werden von Kunden nur noch nach bedarf Konfiguriert. 
+Service Orientierte Architektur SOA unterlegt die Annahme dass, ein System aus mehreren kleinen, austauschbaren und entkoppelten Diensten bestehen kann. Microservices und Serverless versuchen die Komplexität der SOA anzusprechen. Beide Ansätze zwingen auf Separation of Concerns, häufige Deployments und Heterogeneous DSL Domain Specific Language selection. 
+Auf einer Seite Microservices können ihren Zustand und Daten halten und werden mithilfe von \glqq Frameworks\grqq implementiert. Auf der anderen Seite Serverless sind Zustandlos.
 
+\section{Architekturen} 
+Für Konventionelle Webanwendung wird hier damit gehalten, als ein System das über Presentation, Data, and Application/Logik Tiers/Stufe verfügt. Jede Stufe kann mehreren Logik-Layers/Lagen enthalten, die für unterschiedlichen Funktionalitäten des Domäns verantwortlich sind. Logging wäre ein beispiel für Cross-Cutting Concern der Layers hinaus ausspannt.
 
 \section{Serverless}
 \label{sec:serverless}
+
+Serverless ist ein @Glossar Web Dienst/Service von Cloud-Anbieter, wird auch als @Glossar FaaS bezeichnet. Welcher grundlegende Serverinfrastruktur vom Cloud-Anbieter wie Amazon Web Services verwaltet wird. Komplexe Probleme wie horizontale und vertikale Skalierbarkeit, Fehlertoleranz, Flexibilität werden von Kunden und Benutzer nur noch nach bedarf Konfiguriert. 
+
+
 Prinzipien von Serverless Architeturen: \cite{sbarski2017serverless}
 Rechen-Dienst nach Anfrage dass isoliert, unabhängig und granular ausgeführt wird. 
 . . .
@@ -456,6 +462,7 @@ Der Entwurf der Ontologie wurde nach Ontology-Engineering-101 durchgefuhrt:
 %@Pre-Dev::Environ
 
 Software platform ? 
+Die für KOMA unterstutzende Infrastruktur wird ein Rechner mit Browser wie Firefox oder Chrome und die AWS Dienste wie Lambda, API Gateway und S3. D
 Die Comsumer/Verbraucher der Anwendung wird ein SparQL-Endpoint\cite{SparqlLearn}.
 Die Clients : REST: sparql Endpoints
 
@@ -477,7 +484,9 @@ Anderseits wurde ein \glqq EQF Framework\grqq für Ontologien beschrieben, aber 
 
 Daher folgt eine beispielhafte Enumeration der auf unseren Anwendungsfall angepasste und ergänzende Interpretation der dargestellten Terminologie des Entwurfs und der RCD.
 %@pic: own mix for both
-
+Kompetenzanforderung: 
+Aspekte, Abstufung, Entwicklungsverlauf von Kompetenz
+Kompetenz: verfügbare oder erlernbare
 %3-Enumerate Terms:  Terminologie
 Nur Beispielhaft
 \begin{table}[H]
@@ -627,7 +636,7 @@ GET https://<host>
 
 GET https://<host>/sparql raw-sparql-query    2xx/5xx     tab x? y? z?
 
-GET https://<host>/page/individual 2xx/5xx Individuals page db artig
+GET https://<host>/page/individual 2xx/5xx Individuals page db artig\cite{Hunter2017}
 GET https://<host>/ontology/entitytype 2xx/5xx  page db artig
 GET https://<host>/ontology/propertytype 2xx/5xx  page db artig
 
