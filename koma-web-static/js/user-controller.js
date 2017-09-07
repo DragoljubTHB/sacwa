@@ -105,16 +105,39 @@ var userController = {
         this.uiElements.sparqlNativeQueryButton.click(function (e) {
             var table = $('#table');
             var url = that.data.config.apiBaseUrl + '/sparql';
+            console.log(url);
+            var reqBody = {};
             var query = $('#sparqlNativeQuery').val();
-            $.post(url, {"query": query}, function (result) {
+            reqBody.bucketKey = "koma-complex.owl";
+            reqBody.query = query;
+
+            console.log(reqBody);
+
+            $.ajax({
+                url: url,
+                dataType: 'json',
+                type: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify( reqBody ),
+                processData: false,
+                success: function( data, textStatus, jQxhr ){
+                    console.log(JSON.stringify(data))
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    console.log( errorThrown );
+                }
+            });
+/*
+            $.post(url, JSON.stringify(reqBody), function (result) {
                 $(function () {
                     table.bootstrapTable('destroy');
                     table.bootstrapTable({
-                        data: result
+                        data: result['body']
                     });
                 });
-                console.log(result)
+                console.log(result['body'])
             });
+            */
         });
         this.uiElements.selectEntityMultipleButton.click(function (e) {
             var table = $('#table');
@@ -147,40 +170,3 @@ var userController = {
         });
     }
 };
-/*
-PREFIX owl: <http://www.w3.org/2002/07/owl#>
-                            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-                            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-                            SELECT ?comp WHERE {
-                            ?comp rdf:type owl:Class .
-                            }
-                            ORDER BY ?label
- */
-
-/*
-    var SparqlParser = require('sparqljs').Parser;
-    var parser = new SparqlParser();
-    var parsedQuery = parser.parse(txt);
-
-// Regenerate a SPARQL query from a JSON object
-    var SparqlGenerator = require('sparqljs').Generator;
-    var generator = new SparqlGenerator();
-    query.variables = ['?mickey'];
-    var generatedQuery = generator.stringify(query);
-    console.log(generatedQuery);
- */
-/*
-    this.uiElements.s3InfoButton.click(function (e) {
-      var url = that.data.config.apiBaseUrl + '/s3info';
-      $.get(url, function (data, status) {
-        console.log(data);
-          alert(JSON.stringify(data, null, 2));
-      })
-    });
-    this.uiElements.readS3UpdateDynamo.click(function (e) {
-        var url = that.data.config.apiBaseUrl + '/readS3UpdateDynamo';
-        $.get(url, function (data, status) {
-            alert(JSON.stringify(data));
-        })
-    });
-*/
