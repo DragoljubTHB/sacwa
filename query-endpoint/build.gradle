@@ -12,7 +12,10 @@ dependencies {
     compile group: 'com.amazonaws', name: 'aws-lambda-java-core', version: '1.0.0'
     compile group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.11.185'
 
-    compile group: 'com.fasterxml.jackson.jr', name: 'jackson-jr-objects', version: '2.9.0'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.0'
+
+
+    //compile group: 'com.fasterxml.jackson.jr', name: 'jackson-jr-objects', version: '2.9.0'
     compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
     compile group: 'org.apache.jena', name: 'jena-arq', version: '3.4.0'
 
