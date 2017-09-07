@@ -12,6 +12,7 @@ import org.apache.jena.riot.RDFDataMgr;
 
 import java.io.InputStream;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Controller {
@@ -36,6 +37,7 @@ public class Controller {
                 new QueryResultWithMap();
 
         Query query = QueryFactory.create(aQuery);
+        List<String> vars = query.getResultVars();
         try (QueryExecution qexec = QueryExecutionFactory.create(query, model)) {
 
             Map<String, String> yeah = new LinkedHashMap<>();
@@ -44,10 +46,7 @@ public class Controller {
             ResultSet results = qexec.execSelect();
             while (results.hasNext()) {
 
-                QuerySolution soln = results.nextSolution();
-                Resource r = soln.getResource("comp");
-
-                yeah.put("x", r.toString());
+                vars.forEach(v -> yeah.put(v, results.nextSolution().getResource(v).toString()));
 
                 resultWithMap.getBody().add(yeah);
 
