@@ -294,10 +294,17 @@ Zweitbetreuer: & Jonas Brüstel, M.Sc.\tabularnewline
 Die vorantreibende Aspekte solcher Zustandsmaschine sind die Ausführung/Umsetzung der Idee bis zum Produkt und derer Beziehung zum Markt. Deren Details sind jedoch unbekannt und variabel. 
 
 Die Faktoren am Anfang einer technologischen Umsetzung einer Idee sind: 
+\begin{itemize}
+	\item Prof of Concept
+	\item Time-To-Market
+	\item Kost of Human Resources:: Skill-shortage
+	\item Technical technological details	
+	\item Profitability
+\end{itemize}
+
 Time-To-Market
-Kost of Human Resources:: Skill shortage
+Kost of Human Resources:: Skill-shortage
 Prof of Concept
-Technical technological details
 Profitability
 
 
@@ -346,6 +353,22 @@ Auf einer Seite Microservices können ihren Zustand und Daten halten und werden 
 ConnectWise\footnote{ConnectWise: \url{https://aws.amazon.com/solutions/case-studies/connectwise/}}, Netflix\footnote{Netflix: \url{https://aws.amazon.com/solutions/case-studies/netflix-and-aws-lambda/}} und UNLESS\footnote{UNLESS: \url{https://unless.com/}} sind beispiele von Unternehmen die von Serverless Architekturen profitieren.
 
 \section{Architekturen} 
+
+Die Architekturentwurfsmuster helfen uns zu kommunizieren welches Zweck unsere Software erreichen möchte und bieten generische Lösungen für wiederkehrende Probleme bei der Softwareentwicklung.
+
+Separation of concerns
+Reusable layers
+Maintenance @Schafföner JEE1
+
+Components: 
+Controller: router, handle in-req build out-res
+Service: @Transaction
+Repository: 1-1 mapping to db
+
+Wenn eine erfolgreiche Codeänderung von andere Änderung abhängt, soll die Architektur überprüft werden. 
+
+
+
 Für Konventionelle Webanwendung wird hier damit gehalten, als ein System das über Presentation, Data, and Application/Logik Tiers/Stufe verfügt. Jede Stufe kann mehreren Logik-Layers/Lagen enthalten, die für unterschiedlichen Funktionalitäten des Domäns verantwortlich sind. Logging wäre ein beispiel für Cross-Cutting Concern der Layers hinaus ausspannt. Die Komplexität wächst mit der Beschichtung zusammen.\\
 Tier = Major Component System eg. Presentation Data
 Layer = Logical Responsability or Funtionality Domain
@@ -405,7 +428,7 @@ Wegen der Kompetenzorientierung, wird Kompetenz als Unit-Of-Work betrachtet für
 
 Beispiel:
 Der Lehrplan fordert die Kompetenzen K in K1, K2, K3 .. Kn für den Bachelordiplom. Nach deren Manuellen Eingabe werden automatisch
-ihren Requirenments/Abhängigkeiten Baum erzeugt. Dadurch können bereiche des Baums als LV betrachtet werden und Kompetenzen aufeinander
+ihren Requirenments/Anforderungen/Abhängigkeiten Baum erzeugt. Dadurch können bereiche des Baums als LV betrachtet werden und Kompetenzen aufeinander
 bauend für eine Klassenstufe/Semestergang sequenziert werden. Die Auswertung der Ergebnisse der Aktivitäten und die Aktualisierung des Kompetenzstands
 des Schulers folgen.
 
@@ -690,21 +713,6 @@ Lambda Funktion: Maps zwischen S3 und DynamoDB.
 
 \section{Patterns}
 
-Die Architekturentwurfsmuster helfen uns zu kommunizieren welches Zweck unsere Software erreichen möchte und bieten generische Lösungen für wiederkehrende Probleme bei der Softwareentwicklung.
-
-Tier vs Layer: \cite{sbarski2017serverless}
-
-Separation of concerns
-Reusable layers
-Maintenance @Schafföner JEE1
-
-Components: 
-Controller: router, handle in-req build out-res
-Service: @Transaction
-Repository: 1-1 mapping to db
-
-Wenn eine erfolgreiche Codeänderung von andere Änderung abhängt, soll die Architektur überprüft werden. 
-
 Valet Key \cite{homer2014cloud}
 
 Static Content Hosting ok
@@ -717,7 +725,7 @@ Command and Query Responsability Segregation CQRS <- readS3UpdateDynamo.js
 
 \chapter{Ergebnis und Auswertung}
 Risiko: 
-Entickler brauchen einen guten Testplan und eine gute DevOps Strategie.
+Entickler brauchen einen guten Testplan und eine gute DevOps Strategie.<- skills shortage
 
 Vorteile
 
@@ -796,7 +804,13 @@ Hier kommt eine Bibliography-Referenz: \cite{booch2007object}
 %De-notation: precise literal meaning of signifier
 %Con-notation: associated meanings of signifier
 
+\underline{Kompetenzanforderungen}. Sie legen fest, über welche Kompetenzen ein Schüler, eine Schülerin verfügen muss, wenn wichtige Ziele der Schule als erreicht gelten sollen. Systematisch geordnet werden diese Anforderungengen in Kompetenzmodellen, die Aspekte, Abstufungen und Entwicklungsverläufe von Kompetenzen darstellen.
 
+Nach Weinert (2001, S. 27f.) versteht man \textbf{Kompetenzen} als „die bei Individuen verfügbaren oder durch sie erlernbaren kognitiven Fähigkeiten und Fertigkeiten, um bestimmte Probleme zu lösen, sowie die damit verbundenen motivationalen, volitionalen und sozialen Bereitschaf-ten und Fähigkeiten, um die Problemlösungen in variablen Situationen erfolgreich und verantwortungsvoll nutzen zu können“
+
+Beispielsweise drückt sich die Kompetenz beim Erwerb einer Fremdsprache – wenn mankommunikative Handlungsfähigkeit als Bildungsziel vorgibt – darin aus, wie gut man kommu-nikative Situationen bewältigt, wie gut man Texteunterschiedlicher Art verstehen und selbst adressatengerecht Texte verfassen kann, aberunter anderem auch in der Fähigkeit, gram-matische Strukturen korrekt aufzubauen und bei Bedarf zu korrigieren, oder in der Fähigkeitund Bereitschaft, sich offen und akzeptierend mit anderen Kulturenauseinander zu setzen. Standards für das Fremdsprachenlernen müssen diese Teilkompetenzen darstellen und je-weils verschiedene Niveaustufenunterscheiden (vgl. Anlage a). Hierbei spielen nicht nurkognitive Wissensinhalte eineRolle;diese sind vielmehr– wie Weinert im obigen Zitat her-vorhebt und das zuletzt genannte Beispiel der sog. Interkulturellen Kompetenz besonders deutlich macht – mit Einstellungen, Werten und Motiven verknüpft.
+Kompetenzen spiegeln diegrundlegenden Handlungsanforderungen, denenSchülerinnen und Schüler in der Domäneausgesetzt sind. Durch vielfältige, flexible und variable Nutzung und zunehmende Vernetzungvon konkreten, bereichsbezogenen Kompetenzenkönnen sich auch „Schlüsselkompetenzen“entwickeln, aber der Erwerb von Kompetenzen muss – wie Weinert (2001) hervorhebt – beimsystematischen Aufbau von „intelligentem Wissen“ in einer Domäne beginnen.
+- Jede Kompetenzstufe ist durchkognitive Prozesse und Handlungen von bestimmterQualität spezifiziert, die Schüler auf dieser Stufe bewältigenkönnen, nicht aber Schüler auf niedrigeren Stufen. Zum Bildungsstandard gehört, dass für einzelne Jahrgänge festgelegtwird, welcheStufen die Schülerinnen und Schüler erreichen sollen.
 \begin{acronym}[Bash]
 	
 
