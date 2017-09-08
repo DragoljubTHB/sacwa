@@ -60,10 +60,9 @@
 </nav>
 
 <div id="sparqlManualSelectQueryContainer" class="container">
-    <div class="row">
-        <div class="form-group col-md-4">
+    <div class="row form-group">
+        <div class=" col-md-4">
             <form>
-                <div class="form-group">
                     <label for="querySelectSubject">Subject</label>
 
                     <select multiple class="form-control" id="querySelectSubject">
@@ -73,13 +72,11 @@
                         <option>isComposedOf</option>
                         <option>Course</option>
                     </select>
-                </div>
             </form>
 
         </div>
         <div class="col-md-4">
             <form>
-                <div class="form-group">
                     <label for="querySelectPredicate">Predicate</label>
 
                     <select multiple class="form-control" id="querySelectPredicate">
@@ -89,14 +86,12 @@
                         <option>isComposedOf</option>
                         <option>Course</option>
                     </select>
-                </div>
             </form>
 
         </div>
         <div class="col-md-4">
             <form>
-                <div class="form-group">
-                    <label for="selectEntityMultiple">Object</label>
+                    <label for="querySelectObject">Object</label>
 
                     <select multiple class="form-control" id="querySelectObject">
                         <option>Competency</option>
@@ -105,10 +100,10 @@
                         <option>isComposedOf</option>
                         <option>Course</option>
                     </select>
-                </div>
             </form>
 
         </div>
+        <button type="button" id="querySelectButton" class="btn btn-primary">Guess What...</button>
     </div>
 </div>
 
@@ -159,7 +154,7 @@
 
 <div id="searchResults">
     <table id="table" class="table">
-
+<!-- dynamically created table -->
     </table>
 </div>
 

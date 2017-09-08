@@ -19,7 +19,9 @@
     height: 150px;
 }
 
-
+#querySelectSubject, #querySelectObject, #querySelectPredicate {
+    height: 150px;
+}
 
 
 

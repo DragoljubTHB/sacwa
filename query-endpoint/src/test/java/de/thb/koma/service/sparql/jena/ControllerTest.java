@@ -7,6 +7,8 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.RDFNode;
+import org.apache.jena.sparql.core.Var;
 import org.apache.jena.util.FileManager;
 import org.junit.Test;
 
@@ -20,6 +22,7 @@ import java.util.Map;
 public class ControllerTest {
     final String uriKoma = "https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl";
     final String rdfSyntax = "TURTLE";
+
     @Test
     public void query_owl() {
         Model model = getOntologyTurtle(uriKoma, rdfSyntax);
@@ -33,11 +36,16 @@ public class ControllerTest {
         Query query = QueryFactory.create(queryString);
         try (QueryExecution qexec = QueryExecutionFactory.create(query, model)) {
             ResultSet results = qexec.execSelect();
+
             results.getResultVars().forEach(System.out::println);
             while (results.hasNext()) {
                 QuerySolution soln = results.nextSolution();
-                results.getResultVars().forEach(v-> ng
-                        .put(v, soln.get(v).toString()));
+                results.getResultVars().forEach(v -> {
+                    RDFNode node = soln.get(v);
+                    ng.put(v, node.isResource() ?
+                            soln.getResource(v).getLocalName() :
+                            soln.getLiteral(v).getString());
+                });
                 ba.getBody().add(ng);
 
                 //QuerySolution soln = results.nextSolution();

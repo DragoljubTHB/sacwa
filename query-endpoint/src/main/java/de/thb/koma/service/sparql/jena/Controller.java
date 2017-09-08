@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
@@ -46,7 +47,13 @@ public class Controller {
             ResultSet results = qexec.execSelect();
             while (results.hasNext()) {
                 QuerySolution soln = results.nextSolution();
-                vars.forEach(v -> yeah.put(v, soln.get(v).toString()));
+
+                vars.forEach(v -> {
+                    RDFNode node = soln.get(v);
+                    yeah.put(v, node.isResource() ?
+                            soln.getResource(v).getLocalName() :
+                            soln.getLiteral(v).getString());
+                });
                 resultWithMap.getBody().add(yeah);
 
             }
