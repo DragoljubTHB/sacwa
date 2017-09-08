@@ -359,7 +359,7 @@ Die Architekturentwurfsmuster helfen uns zu kommunizieren welches Zweck unsere S
 Separation of concerns
 Reusable layers
 Maintenance @Schafföner JEE1
-
+Koma standalone snapshot
 Components: 
 Controller: router, handle in-req build out-res
 Service: @Transaction
@@ -410,6 +410,8 @@ Die Verkettung von Funktionen mittels \glqq Pipes\grqq erlaubt die mehrfache Fil
 
 \section{KOMA}{Beispiel Anwendung}
 \label{sec:KOMA}
+addon: 
+
 
 Die heutige Rahmenlehrpläne sind nicht mehr fachlich sondern kompetenz orientiert. @cite Deren ziel ist Kompetenzprofile
 für Lerner zu gestallten. Das Modell von KOMA basiert auf dem Grundmodell von
@@ -724,6 +726,14 @@ Compute Resource Consolidation
 Command and Query Responsability Segregation CQRS <- readS3UpdateDynamo.js
 
 \chapter{Ergebnis und Auswertung}
+Transaktionen können nicht parallel ausgeführt werden. Sequenciel aka Messaging Pattern.
+Zusammenspiel Arch. interfaces prog.modell und FW
+Arch 1st -> def interfaces and interactions. to program to a inteface
+
+
+Eventual consistency -> event driven + ontology quality 
+Consistenty -> koma-standalone <- transaction mgm
+
 Risiko: 
 Entickler brauchen einen guten Testplan und eine gute DevOps Strategie.<- skills shortage
 
@@ -749,6 +759,9 @@ viel Konfiguration, kaum Konveniton -> .json 4 everything
 local testing braucht event-symulation.json
 
 \chapter{Zusammenfassung und Ausblick}
+
+Docke container + Load Balancer
+als möglichkeit.
 
 
 Beispielhaftes Bild \autoref{fig:example-flame-graph}
