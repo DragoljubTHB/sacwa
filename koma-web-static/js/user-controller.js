@@ -92,15 +92,16 @@ var userController = {
             that.uiElements.loginButton.show();
         });
         this.uiElements.profileButton.click(function (e) {
-            var url = that.data.config.apiBaseUrl + '/userprofile';
+            let url = that.data.config.apiBaseUrl + '/userprofile';
             $.get(url, function (data, status) {
                 alert(JSON.stringify(data))
             })
         });
         this.uiElements.sparqlNativeQueryButton.click(function (e) {
-            var url = that.data.config.apiBaseUrl + '/sparql';
-            var reqBody = {};
-            var query = $('#sparqlNativeQuery').val();
+            $('#dyn').remove();
+            let url = that.data.config.apiBaseUrl + '/sparql';
+            let reqBody = {};
+            let query = $('#sparqlNativeQuery').val();
             reqBody.bucketKey = "koma-complex.owl";
             reqBody.query = query;
             $.ajax({
@@ -112,11 +113,11 @@ var userController = {
                 processData: false,
                 success: function (data, textStatus, jQxhr) {
                     $(function () {
-                        var table = $('#table');
-                        var parsedData = JSON.parse(data);
+                        let table = $('#table');
+                        let parsedData = JSON.parse(data);
 
                         table.bootstrapTable('destroy');
-                        table.append(buildTableHeaders(parsedData['body'][0]));
+                        table.append(thFrom(parsedData['body'][0]));
                         table.bootstrapTable({
                             data: parsedData['body']
                         });
@@ -128,15 +129,16 @@ var userController = {
             });
         });
         this.uiElements.selectEntityMultipleButton.click(function (e) {
-            var name = $('#selectEntityMultiple').val();
-            var url = that.data.config.apiBaseUrl + '/page' + '/' + name.toString();
+            $('#dyn').remove();
+            let name = $('#selectEntityMultiple').val();
+            let url = that.data.config.apiBaseUrl + '/page' + '/' + name.toString();
             console.log(url);
             $.get(url, function (data, status) {
                 $(function () {
                     var table = $('#table');
 
                     table.bootstrapTable('destroy');
-                    table.append(buildTableHeaders(data['body'][0]));
+                    table.append(thFrom(data['body'][0]));
                     table.bootstrapTable({
                         data: data['body']
                     });
@@ -145,6 +147,7 @@ var userController = {
 
         });
         this.uiElements.feedbackButton.click(function (e) {
+            $('#dyn').remove();
             var table = $('#table');
             var name = $('#feedbackInput').val();
             var url = that.data.config.apiBaseUrl + '/page' + '/' + name.toString();
@@ -152,24 +155,30 @@ var userController = {
             $.get(url, function (data, status) {
                 $(function () {
                     table.bootstrapTable('destroy');
+                    table.append(thFrom(data['body'][0]));
                     table.bootstrapTable({
                         data: data['body']
                     });
                 });
             })
         });
+
+        /**
+         *
+         * @param cleanJson: the keys are the <th> : parsed stringified Json
+         * @returns {string}: the table headers for the json keys
+         */
+        let thFrom = function buildTableHeaders(cleanJson) {
+            let dynamic = "<thead id='dyn'>\n" +"<tr>\n";
+            Object.keys(cleanJson).forEach(function (t) {
+                console.log(t+"\n");
+                dynamic += "<th data-field=\"" +t+ "\" \>" +t+ "</th>\n"
+            });
+
+            dynamic += "</tr>\n" + "</thead>\n";
+
+            return dynamic;
+
+        }
     }
 };
-function buildTableHeaders(cleanJson) {
-    var dynamic = "<thead>\n" +"<tr>\n";
-
-    Object.keys(cleanJson).forEach(function (t) {
-        console.log(t+"\n");
-        dynamic += "<th data-field=\"" +t+ "\" \>" +t+ "</th>\n"
-    });
-
-    dynamic += "</tr>\n" + "</thead>\n";
-
-    return dynamic;
-
-}
