@@ -98,8 +98,6 @@ var userController = {
             })
         });
         this.uiElements.sparqlNativeQueryButton.click(function (e) {
-            var dynTable = "<thead>\n" +"<tr>\n";
-            var table = $('#table');
             var url = that.data.config.apiBaseUrl + '/sparql';
             var reqBody = {};
             var query = $('#sparqlNativeQuery').val();
@@ -114,22 +112,15 @@ var userController = {
                 processData: false,
                 success: function (data, textStatus, jQxhr) {
                     $(function () {
+                        var table = $('#table');
                         var parsedData = JSON.parse(data);
-                        /*
-                        console.log(Object.keys(parsedData['body'][0]));
 
-                        Object.keys(parsedData['body'][0]).forEach(function (t) {
-                            dynTable += "<th data-field=\"" +t+ "\"> t </th>\n"
-                        });
-                        dynTable += "</tr>\n" + "</thead>\n";
-*/
                         table.bootstrapTable('destroy');
                         table.append(buildTableHeaders(parsedData['body'][0]));
                         table.bootstrapTable({
                             data: parsedData['body']
                         });
                     });
-                    console.log(JSON.stringify(data))
                 },
                 error: function (jqXhr, textStatus, errorThrown) {
                     console.log(errorThrown);
@@ -137,13 +128,15 @@ var userController = {
             });
         });
         this.uiElements.selectEntityMultipleButton.click(function (e) {
-            var table = $('#table');
             var name = $('#selectEntityMultiple').val();
             var url = that.data.config.apiBaseUrl + '/page' + '/' + name.toString();
             console.log(url);
             $.get(url, function (data, status) {
                 $(function () {
+                    var table = $('#table');
+
                     table.bootstrapTable('destroy');
+                    table.append(buildTableHeaders(data['body'][0]));
                     table.bootstrapTable({
                         data: data['body']
                     });
@@ -171,7 +164,8 @@ function buildTableHeaders(cleanJson) {
     var dynamic = "<thead>\n" +"<tr>\n";
 
     Object.keys(cleanJson).forEach(function (t) {
-        dynamic += "<th data-field=\"" +t+ "\"> t </th>\n"
+        console.log(t+"\n");
+        dynamic += "<th data-field=\"" +t+ "\" \>" +t+ "</th>\n"
     });
 
     dynamic += "</tr>\n" + "</thead>\n";
