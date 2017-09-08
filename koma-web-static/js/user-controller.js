@@ -98,7 +98,6 @@ var userController = {
             })
         });
         this.uiElements.sparqlNativeQueryButton.click(function (e) {
-            $('#dyn').remove();
             let url = that.data.config.apiBaseUrl + '/sparql';
             let reqBody = {};
             let query = $('#sparqlNativeQuery').val();
@@ -112,13 +111,15 @@ var userController = {
                 data: JSON.stringify(reqBody),
                 processData: false,
                 success: function (data, textStatus, jQxhr) {
+                    let table = $('#table');
+
                     $(function () {
-                        let table = $('#table');
-                        let parsedData = JSON.parse(data);
+                        const parsedData = JSON.parse(data);
+                        let columns = buildTableHeaders(parsedData['body'][0]);
 
                         table.bootstrapTable('destroy');
-                        table.append(thFrom(parsedData['body'][0]));
                         table.bootstrapTable({
+                            columns: columns,
                             data: parsedData['body']
                         });
                     });
@@ -129,17 +130,19 @@ var userController = {
             });
         });
         this.uiElements.selectEntityMultipleButton.click(function (e) {
-            $('#dyn').remove();
             let name = $('#selectEntityMultiple').val();
             let url = that.data.config.apiBaseUrl + '/page' + '/' + name.toString();
             console.log(url);
             $.get(url, function (data, status) {
+                let table = $('#table');
+                let columns = buildTableHeaders(data['body'][0]);
                 $(function () {
-                    var table = $('#table');
 
                     table.bootstrapTable('destroy');
-                    table.append(thFrom(data['body'][0]));
+                    //table.append(thFrom(data['body'][0]));
+
                     table.bootstrapTable({
+                        columns: columns,
                         data: data['body']
                     });
                 });
@@ -147,16 +150,25 @@ var userController = {
 
         });
         this.uiElements.feedbackButton.click(function (e) {
-            $('#dyn').remove();
-            var table = $('#table');
-            var name = $('#feedbackInput').val();
-            var url = that.data.config.apiBaseUrl + '/page' + '/' + name.toString();
+            let table = $('#table');
+            let name = $('#feedbackInput').val();
+            let url = that.data.config.apiBaseUrl + '/page' + '/' + name.toString();
             console.log(url);
             $.get(url, function (data, status) {
+                let columns = [];
+                Object.keys(data['body'][0]).forEach(function (t){
+                    columns.push({
+                        field: t,
+                        title: t,
+                        sortable: true
+                    });
+                });
+
                 $(function () {
                     table.bootstrapTable('destroy');
-                    table.append(thFrom(data['body'][0]));
+                    //table.append(thFrom(data['body'][0]));
                     table.bootstrapTable({
+                        columns: columns,
                         data: data['body']
                     });
                 });
@@ -165,20 +177,19 @@ var userController = {
 
         /**
          *
-         * @param cleanJson: the keys are the <th> : parsed stringified Json
-         * @returns {string}: the table headers for the json keys
+         * @param cleanJson
+         * @returns {Array}
          */
-        let thFrom = function buildTableHeaders(cleanJson) {
-            let dynamic = "<thead id='dyn'>\n" +"<tr>\n";
-            Object.keys(cleanJson).forEach(function (t) {
-                console.log(t+"\n");
-                dynamic += "<th data-field=\"" +t+ "\" \>" +t+ "</th>\n"
+        function buildTableHeaders(cleanJson) {
+            let columns = [];
+            Object.keys(cleanJson).forEach(function (t){
+                columns.push({
+                    field: t,
+                    title: t,
+                    sortable: true
+                });
             });
-
-            dynamic += "</tr>\n" + "</thead>\n";
-
-            return dynamic;
-
+            return columns
         }
     }
 };
