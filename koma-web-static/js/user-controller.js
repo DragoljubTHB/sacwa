@@ -48,7 +48,6 @@ var userController = {
                 xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('userToken'));
             }
         });
-        console.log($.ajaxSetup.toString())
     },
     showUserAuthenticationDetails: function (profile) {
         var showAuthenticationElements = !!profile;
@@ -94,8 +93,8 @@ var userController = {
         });
         this.uiElements.profileButton.click(function (e) {
             var url = that.data.config.apiBaseUrl + '/userprofile';
-
             $.get(url, function (data, status) {
+                alert(JSON.stringify(data))
             })
         });
         this.uiElements.sparqlNativeQueryButton.click(function (e) {
@@ -105,7 +104,6 @@ var userController = {
             var query = $('#sparqlNativeQuery').val();
             reqBody.bucketKey = "koma-complex.owl";
             reqBody.query = query;
-
             $.ajax({
                 url: url,
                 dataType: 'json',
@@ -126,7 +124,6 @@ var userController = {
                     console.log( errorThrown );
                 }
             });
-
         });
         this.uiElements.selectEntityMultipleButton.click(function (e) {
             var table = $('#table');
