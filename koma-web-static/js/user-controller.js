@@ -98,6 +98,7 @@ var userController = {
             })
         });
         this.uiElements.sparqlNativeQueryButton.click(function (e) {
+            var dynTable = "<thead>\n" +"<tr>\n";
             var table = $('#table');
             var url = that.data.config.apiBaseUrl + '/sparql';
             var reqBody = {};
@@ -109,26 +110,34 @@ var userController = {
                 dataType: 'json',
                 type: 'post',
                 contentType: 'application/json',
-                data: JSON.stringify( reqBody ),
+                data: JSON.stringify(reqBody),
                 processData: false,
-                success: function( data, textStatus, jQxhr ){
+                success: function (data, textStatus, jQxhr) {
                     $(function () {
+                        var parsedData = JSON.parse(data);
+                        console.log(Object.keys(parsedData['body'][0]));
+                        Object.keys(parsedData['body'][0]).forEach(function (t) {
+                            dynTable += "<th data-field=\"" +t+ "\"> t </th>\n"
+                        });
+                        dynTable += "</tr>\n" + "</thead>\n";
+
                         table.bootstrapTable('destroy');
+                        table.append(dynTable);
                         table.bootstrapTable({
-                            data: data['body']
+                            data: parsedData['body']
                         });
                     });
                     console.log(JSON.stringify(data))
                 },
-                error: function( jqXhr, textStatus, errorThrown ){
-                    console.log( errorThrown );
+                error: function (jqXhr, textStatus, errorThrown) {
+                    console.log(errorThrown);
                 }
             });
         });
         this.uiElements.selectEntityMultipleButton.click(function (e) {
             var table = $('#table');
             var name = $('#selectEntityMultiple').val();
-            var url = that.data.config.apiBaseUrl + '/page' + '/'+name.toString();
+            var url = that.data.config.apiBaseUrl + '/page' + '/' + name.toString();
             console.log(url);
             $.get(url, function (data, status) {
                 $(function () {
@@ -143,7 +152,7 @@ var userController = {
         this.uiElements.feedbackButton.click(function (e) {
             var table = $('#table');
             var name = $('#feedbackInput').val();
-            var url = that.data.config.apiBaseUrl + '/page' + '/'+name.toString();
+            var url = that.data.config.apiBaseUrl + '/page' + '/' + name.toString();
             console.log(url);
             $.get(url, function (data, status) {
                 $(function () {
