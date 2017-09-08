@@ -410,16 +410,19 @@ Die Verkettung von Funktionen mittels \glqq Pipes\grqq erlaubt die mehrfache Fil
 
 \section{KOMA}{Beispiel Anwendung}
 \label{sec:KOMA}
-addon: 
 
-
-Die heutige Rahmenlehrpläne sind nicht mehr fachlich sondern kompetenz orientiert. @cite Deren ziel ist Kompetenzprofile
-für Lerner zu gestallten. Das Modell von KOMA basiert auf dem Grundmodell von
+Die heutige Rahmenlehrpläne sind nicht mehr fachlich sondern nach Kompetenzentwicklung orientiert, um Kompetenzprofile für Lerner zu gestallten. @cite aber wenn?
+Das Modell von KOMA basiert auf dem Grundmodell von
 @ref \glqq European Qualifications Framework Semantics\grqq und dem deutschen Qualifikationsrahmen. <-- really?
 
-\glqq KOMA\grqq ist ein Akronym für Kompetenz-Matrix. Die Umsetzung der Anwendung soll die von einem Individuum oder Schuler
-erworbene und zu erwerbenden Kompetenzen und deren Niveau nachvollziehen. <-- ?
-Der Kompetenzstand einer Person ist mit dem EQF-Rahmen @Acro vergleichbar, und daher Internationell anerkenntbar.
+\glqq KOMA\grqq ist ein Akronym für Kompetenz-Matrix. Die Umsetzung der Anwendung soll die von einem Individuum oder Schüler
+erworbene und zu erwerbenden Kompetenzen und deren Niveau nachvollziehen. 
+Der Kompetenzstand einer Person ist mit dem EQF-Rahmen @Acro vergleichbar, und daher International anerkennbar.
+
+\underline{Kompetenzanforderungen}. Sie legen fest, über welche Kompetenzen ein Schüler, eine Schülerin verfügen muss, wenn wichtige Ziele der Schule als erreicht gelten sollen. Systematisch geordnet werden diese Anforderungengen in Kompetenzmodellen, die Aspekte, Abstufungen und Entwicklungsverläufe von Kompetenzen darstellen\cite{Competence}.
+Nach Weinert (2001, S. 27f.) versteht man \textbf{Kompetenzen} als „die bei Individuen verfügbaren oder durch sie erlernbaren kognitiven Fähigkeiten und Fertigkeiten, um bestimmte Probleme zu lösen, sowie die damit verbundenen motivationalen, volitionalen und sozialen Bereitschaf-ten und Fähigkeiten, um die Problemlösungen in variablen Situationen erfolgreich und verantwortungsvoll nutzen zu können“\cite{Competence}
+
+
 %Diese soll für die pädagogische Diagnostik und Intervention genutzt werden.
 Wenn diese Anwendung in Bildungsintitutionen eingesetzt wird, dienen die Rahmenlehrpläne als Leitpfad für die Belegung der einzelnen Kompetenzen
 und KOMA für die Organisation der einzelnen Fachrichtungen. Der Kern solcher Org. ist die Zuweisung von Aktivitäten auf vordefinierten Kompetenzen.
@@ -443,8 +446,12 @@ Ein Nutzungs-Fall aka. Use-Case:
 
 \chapter{Umsetzung}
 Die grundlegende Vorgehensweise bei der Umsetzung dieses Projekts wird Analyse, Entwurf, Implementierung und Test sein. Der Forschender Charakter dieses Projekts lässt sich nicht Testgetrieben implementieren. 
+Das 
 
 \section{Komponenten}
+
+Um dem Leser einen Anhaltspunkt zu verleihen, werden hier die Softwarekomponenten beschrieben.
+
 legacy api proxy\cite{sbarski2017serverless}
 lambda<convert/invoke> fuseki-server\label{komponenten:fuseki}
 
@@ -453,20 +460,41 @@ nice: graphQL= json matcher over multiple DBs
 @Diagramm
 
 \section{Anforderungen Analyse}
-Mit dem EQF vergleichbare Kompetenzendefinitionen.
 
-Von Browser abrufbar. 
+Zu den Anforderungen 
+\begin{itemize}
+	\item Mit dem EQF vergleichbare Kompetenzeindefinitionen
+	\item Von Browser abrufbar
+	\item Private Datenspeicherung u.d Login
+	\item Zukünftige Erweiterungen berücksichtigen
+	\item Ertrag von großen Nutzlastschwankungen
+\end{itemize}
 
-Private Datenspeicherung. Daher Login.
-
-Zukünftige Erweiterungen berücksichtigen.
 
 \section{Datenhaltung Analyse und Auswahl}
 
+Die Polymorphe Gestaltung von Kompetenzmodellen und deren zukünftige Weiterentwicklung stellt die Benutzung des traditionellen RDBMS in Frage. Im Folgendem werden die Eigenschaften von relationalen mit ontologischen Schemas verglichen.
+\begin{table}
+	\caption{Vergleich relationalem mit ontologischem Schema}
+	
+	\centering{}
+	\begin{tabular}{ccc}
+		\noalign{\vskip\doublerulesep}
+		Eigenschaft & Relational & Ontologisch \tabularnewline[\doublerulesep]
+		\hline\noalign{\vskip\doublerulesep}
+		Darstellung Welt-Annahme & Existiert nur & Existiert mindestens \tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		Individual & muss Unique & kann Mehrdeutig \tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		Info & Ableitung = x & ja \tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		Individual & muss Unique & kann Mehrdeutig \tabularnewline[\doublerulesep]
 
+	\end{tabular}
+\end{table}
 %@Pre-Dev--> Tabelle 
 Vergleich:: DB Schema                       : Ontology
-Welt-Annahme Existiert nur Abbild           : mindestens Abbild
+Welt-Annahme Existiert nur Abbild           : 
 Individual=Instanz muss unique              : kann >= 1
 Info Ableitung = x                          : ja
 Oritentation    Data                        : Bedeutung
@@ -825,8 +853,8 @@ Hier kommt eine Bibliography-Referenz: \cite{booch2007object}
 
 Nach Weinert (2001, S. 27f.) versteht man \textbf{Kompetenzen} als „die bei Individuen verfügbaren oder durch sie erlernbaren kognitiven Fähigkeiten und Fertigkeiten, um bestimmte Probleme zu lösen, sowie die damit verbundenen motivationalen, volitionalen und sozialen Bereitschaf-ten und Fähigkeiten, um die Problemlösungen in variablen Situationen erfolgreich und verantwortungsvoll nutzen zu können“
 
-Beispielsweise drückt sich die Kompetenz beim Erwerb einer Fremdsprache – wenn mankommunikative Handlungsfähigkeit als Bildungsziel vorgibt – darin aus, wie gut man kommu-nikative Situationen bewältigt, wie gut man Texteunterschiedlicher Art verstehen und selbst adressatengerecht Texte verfassen kann, aberunter anderem auch in der Fähigkeit, gram-matische Strukturen korrekt aufzubauen und bei Bedarf zu korrigieren, oder in der Fähigkeitund Bereitschaft, sich offen und akzeptierend mit anderen Kulturenauseinander zu setzen. Standards für das Fremdsprachenlernen müssen diese Teilkompetenzen darstellen und je-weils verschiedene Niveaustufenunterscheiden (vgl. Anlage a). Hierbei spielen nicht nurkognitive Wissensinhalte eineRolle;diese sind vielmehr– wie Weinert im obigen Zitat her-vorhebt und das zuletzt genannte Beispiel der sog. Interkulturellen Kompetenz besonders deutlich macht – mit Einstellungen, Werten und Motiven verknüpft.
-Kompetenzen spiegeln diegrundlegenden Handlungsanforderungen, denenSchülerinnen und Schüler in der Domäneausgesetzt sind. Durch vielfältige, flexible und variable Nutzung und zunehmende Vernetzungvon konkreten, bereichsbezogenen Kompetenzenkönnen sich auch „Schlüsselkompetenzen“entwickeln, aber der Erwerb von Kompetenzen muss – wie Weinert (2001) hervorhebt – beimsystematischen Aufbau von „intelligentem Wissen“ in einer Domäne beginnen.
+Beispielsweise drückt sich die Kompetenz beim Erwerb einer Fremdsprache – wenn man kommunikative Handlungsfähigkeit als Bildungsziel vorgibt – darin aus, wie gut man kommu-nikative Situationen bewältigt, wie gut man Texteunterschiedlicher Art verstehen und selbst adressatengerecht Texte verfassen kann, aberunter anderem auch in der Fähigkeit, gram-matische Strukturen korrekt aufzubauen und bei Bedarf zu korrigieren, oder in der Fähigkeitund Bereitschaft, sich offen und akzeptierend mit anderen Kulturenauseinander zu setzen. Standards für das Fremdsprachenlernen müssen diese Teilkompetenzen darstellen und je-weils verschiedene Niveaustufenunterscheiden (vgl. Anlage a). Hierbei spielen nicht nurkognitive Wissensinhalte eineRolle;diese sind vielmehr– wie Weinert im obigen Zitat her-vorhebt und das zuletzt genannte Beispiel der sog. Interkulturellen Kompetenz besonders deutlich macht – mit Einstellungen, Werten und Motiven verknüpft.
+Kompetenzen spiegeln diegrundlegenden Handlungsanforderungen, denen Schülerinnen und Schüler in der Domäneausgesetzt sind. Durch vielfältige, flexible und variable Nutzung und zunehmende Vernetzungvon konkreten, bereichsbezogenen Kompetenzen können sich auch „Schlüsselkompetenzen“entwickeln, aber der Erwerb von Kompetenzen muss – wie Weinert (2001) hervorhebt – beim systematischen Aufbau von „intelligentem Wissen“ in einer Domäne beginnen.
 - Jede Kompetenzstufe ist durchkognitive Prozesse und Handlungen von bestimmterQualität spezifiziert, die Schüler auf dieser Stufe bewältigenkönnen, nicht aber Schüler auf niedrigeren Stufen. Zum Bildungsstandard gehört, dass für einzelne Jahrgänge festgelegtwird, welcheStufen die Schülerinnen und Schüler erreichen sollen.
 \begin{acronym}[Bash]
 	
