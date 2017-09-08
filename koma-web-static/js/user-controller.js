@@ -115,14 +115,16 @@ var userController = {
                 success: function (data, textStatus, jQxhr) {
                     $(function () {
                         var parsedData = JSON.parse(data);
+                        /*
                         console.log(Object.keys(parsedData['body'][0]));
+
                         Object.keys(parsedData['body'][0]).forEach(function (t) {
                             dynTable += "<th data-field=\"" +t+ "\"> t </th>\n"
                         });
                         dynTable += "</tr>\n" + "</thead>\n";
-
+*/
                         table.bootstrapTable('destroy');
-                        table.append(dynTable);
+                        table.append(buildTableHeaders(parsedData['body'][0]));
                         table.bootstrapTable({
                             data: parsedData['body']
                         });
@@ -165,3 +167,15 @@ var userController = {
         });
     }
 };
+function buildTableHeaders(cleanJson) {
+    var dynamic = "<thead>\n" +"<tr>\n";
+
+    Object.keys(cleanJson).forEach(function (t) {
+        dynamic += "<th data-field=\"" +t+ "\"> t </th>\n"
+    });
+
+    dynamic += "</tr>\n" + "</thead>\n";
+
+    return dynamic;
+
+}
