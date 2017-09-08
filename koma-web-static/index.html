@@ -12,7 +12,8 @@
     <!--
         <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
     -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css" rel="stylesheet"
+          type="text/css"/>
 
     <style>
         body {
@@ -58,6 +59,58 @@
     </div>
 </nav>
 
+<div id="sparqlManualSelectQueryContainer" class="container">
+    <div class="row">
+        <div class="form-group col-md-4">
+            <form>
+                <div class="form-group">
+                    <label for="querySelectSubject">Subject</label>
+
+                    <select multiple class="form-control" id="querySelectSubject">
+                        <option>Competency</option>
+                        <option>CompetencyRecord</option>
+                        <option>Math_I</option>
+                        <option>isComposedOf</option>
+                        <option>Course</option>
+                    </select>
+                </div>
+            </form>
+
+        </div>
+        <div class="col-md-4">
+            <form>
+                <div class="form-group">
+                    <label for="querySelectPredicate">Predicate</label>
+
+                    <select multiple class="form-control" id="querySelectPredicate">
+                        <option>Competency</option>
+                        <option>CompetencyRecord</option>
+                        <option>Math_I</option>
+                        <option>isComposedOf</option>
+                        <option>Course</option>
+                    </select>
+                </div>
+            </form>
+
+        </div>
+        <div class="col-md-4">
+            <form>
+                <div class="form-group">
+                    <label for="selectEntityMultiple">Object</label>
+
+                    <select multiple class="form-control" id="querySelectObject">
+                        <option>Competency</option>
+                        <option>CompetencyRecord</option>
+                        <option>Math_I</option>
+                        <option>isComposedOf</option>
+                        <option>Course</option>
+                    </select>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
 
 <div id="it-form">
     <div id="sparqlContainer" class="container">
@@ -81,16 +134,16 @@
             <div class="col-md-8">
                 <form>
                     <div class="form-group">
-                    <label for="sparqlNativeQuery">SparQL native Abfrage</label>
-                    <textarea class="form-control" rows="5" id="sparqlNativeQuery">
+                        <label for="sparqlNativeQuery">SparQL native Abfrage</label>
+                        <textarea class="form-control" rows="5" id="sparqlNativeQuery">
 
                         </textarea>
-                    <button id="sparqlNativeQueryButton" type="button" class="btn btn-primary">Ausführen</button>
+                        <button id="sparqlNativeQueryButton" type="button" class="btn btn-primary">Ausführen</button>
+                    </div>
+                </form>
             </div>
-            </form>
         </div>
     </div>
-</div>
 </div>
 
 <hr>
