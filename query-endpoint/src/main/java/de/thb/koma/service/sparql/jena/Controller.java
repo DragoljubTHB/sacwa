@@ -46,7 +46,7 @@ public class Controller {
             ResultSet results = qexec.execSelect();
             while (results.hasNext()) {
                 QuerySolution soln = results.nextSolution();
-                vars.forEach(v -> yeah.put(v, soln.getResource(v).toString()));
+                vars.forEach(v -> yeah.put(v, soln.get(v).toString()));
                 resultWithMap.getBody().add(yeah);
 
             }
