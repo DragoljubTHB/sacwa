@@ -530,7 +530,7 @@ Ontology Engineering
 Es handelt sich daher um eine \glqq Linked Data Driven Web Application\grqq.%@href 
 Dieser Begriff gehört zum \glqq Semantic Web\grqq,der in der Sektion der Ontologie\ref{subsec:ontology} weiter erläutert wird.
 
-\subsection{Semantic Web}
+\section{Semantic Web}
 
 Das \glqq Semantic Web\grqq ist eine Erweiterung des herkömmlichen Web, in der Informationen mit eindeutigen Bedeutungen versehen werden\cite{OntoWhat2}.
 set of standards and best practices for sharing data and the semantics of that data over the Web for use by applications\cite{SparqlLearn} .
@@ -544,7 +544,7 @@ Die Ontologien werden in der OWL2 Spezifikation von W3C\footnote{WWW Consortium 
 	\label{fig:semantic-web-stack}
 \end{figure}
 
-\subsection{Ontologie}
+\section{Ontologie}
 \label{subsec:ontology}
 %@Def
 Eine Ontologie ist eine formale Spezifikation über eine Konzeptualisierung\cite{OntoWhat}. Die Denotation jeweiliger dargestellten Signifikanten lässt sich durch seinen weltweit eindeutigen Präfix identifizieren. Deren Beziehungen können auch zu externen Ontologie-signifikanten verweisen und dadurch ein Consensus über Begrifflichkeiten. 
@@ -704,7 +704,13 @@ subsumes & $\exists{Class} \equiv some Class$ \tabularnewline[\doublerulesep]
 
 Um aus Ontologien Informationen zu entnehmen, wird die Abfragesprache \glqq SPARQL\grqq @Acro verwendet. 
 Diese ist ähnlich zu SQL. Mit dem Programm \glqq Protétegé\grqq können SPARQL Abfragen lokal ausgeführt werden.
-@Bild Protege SPARQL query
+
+\begin{lstlisting}[language=Sparql]
+SELECT * WHERE { ?s ?p ?o .}
+...
+\end{lstlisting}
+
+Nach der Modellierung in Protégé wird die OWL Datei in einem S3 Bucket verpackt und dadurch deren Zugriffsrechte konfiguriert, so dass nur eine berechtigte Anfrage z.B. von eine Lambda Funktion oder DynamoDB angenommen wird.
 
 So dass auch die Benutzer von KOMA solche Abfragen stellen können wird ein \glqq Sparql-endpoint\grqq mit Hilfe von Apache Jena Fuseki@Cite, eine Open Source Software, zur Verfügung gestellt. Fuseki ist ein Server zur Verwaltung von Sparqlabfragen und deren Transaktionen. @Cite CRUD und ACID RDB in sparql.
 
