@@ -130,18 +130,18 @@ morestring=[b]"
 
 % create css listing style
 \lstdefinelanguage{Groovy}{
-keywords={shadowJar, as, assert, break, case, catch ,class,const,continue,def,default,do,else,enum,extends
+keywords={as, assert, break, case, catch ,class,const,continue,def,default,do,else,enum,extends
 ,false,finally,for,goto,if,implements,import,in,instanceof,interface,new,null,package,return,super
 ,switch,this,throw,throws,trait,true,try,while},
-keywordstyle=\color{blue}\bfseries,
-ndkeywords={class, export, boolean, throw, implements, import, this},
+keywordstyle=\color{Black}\bfseries,
+ndkeywords={shadowJar, class, boolean, throw, implements, import, this},
 ndkeywordstyle=\color{darkgray}\bfseries,
 identifierstyle=\color{black},
 sensitive=false,
 comment=[l]{//},
 morecomment=[s]{/*}{*/},
 commentstyle=\color{purple}\ttfamily,
-stringstyle=\color{red}\ttfamily,
+stringstyle=\color{gray}\ttfamily,
 morestring=[b]',
 morestring=[b]"
 }
@@ -713,10 +713,13 @@ Fuseki entspricht der Repositoryschicht der Anwendung und wird nach Anfrage von 
 Eine Lambdafunktion arbeitet als Schnittstelle zwischen Fuseki, den Client und die darunterliegende Infrastruktur.
 
 Um sich von die durch Lambda entstandene Abhängigkeit möglichst entkoppelt\cite{FlowerRefactoring} zu halten, wird das Modul von Fuseki nur als externe Abhängigkeit des Lambdaprojektes zugewisen.
-@Code : Gradle build\cite{Muschko2014}
+Die AWS Lambda stellt eine Interface zur Verfügung und der Nutzer die zu benutzende Bibliotheken zusammen in eine JAR Datei verpackt. Dem entsprechend wird der Buildscript von Gradle\cite{Muschko2014} angepasst\autoref{lst:gradle}. 
 
-\begin{lstlisting}[language=Groovy,caption={Abhängigkeiten für Lambda in Java},label={lst:gradle}]
-
+\begin{lstlisting}[language=Groovy,caption={Abhängigkeitenverwaltung für Lambda in Java},label={lst:gradle}]
+plugins {
+	id 'com.github.johnrengelman.shadow' version '2.0.1'
+	id 'java'
+}
 shadowJar {
 mergeServiceFiles()
 }
