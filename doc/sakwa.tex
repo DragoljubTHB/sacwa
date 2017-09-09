@@ -49,6 +49,7 @@ numbers=noenddot,version=first
 \usepackage{tabulary}
 \usepackage{lscape}
 \usepackage[nomargin,inline,marginclue,draft]{fixme}
+\usepackage{wrapfig}
 %\usepackage{minted}
 %\usepackage{fontspec}
 
@@ -470,6 +471,10 @@ Das
 
 Um dem Leser einen Anhaltspunkt zu verleihen, werden hier die Softwarekomponenten beschrieben.
 
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{pics/arch-comp.png}
+\end{figure}
+
 legacy api proxy\cite{sbarski2017serverless}
 lambda<convert/invoke> fuseki-server\label{komponenten:fuseki}
 
@@ -583,9 +588,9 @@ Die Ausführung von Abfragen auf die Ontologie wird direkt mithilfe von \glqq Je
 
 Um die Neuerfindung des Rades zu vermeiden, die Recherche ergab einen aktuell öffentlichen graphischen ontologischen Entwurf\cite{OntoMoodle} siehe\ref{fig:competence-ontology} der in Moodle mit eine Relationalen Datenbasis und PHP umgesetzt. Nach dessen Ontologien wurde mittels Watson\footnote{Watson \url{http://watson.kmi.open.ac.uk/WatsonWUI/}} und LOD\footnote{LOD Cloud \url{http://lod-cloud.net/}} nichts öffentlich gefunden. 
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
-	%\includegraphics{imagefile}
+	\includegraphics[width=\linewidth]{pics/competency-ontology.png}
 \caption{Kompetenzontologie}
 \label{fig:competence-ontology}
 \end{figure}
@@ -594,14 +599,17 @@ Bei der Analyse lässt der Entwurf und dessen Dokumentation freie Interpretation
 
 Anderseits wurde ein \glqq EQF Framework\footnote{EQF Beschreibung \url{https://ec.europa.eu/ploteus/content/descriptors-page}}\grqq für Ontologien beschrieben, aber nicht öffentlich umgesetzt. Es bietet dabei eine europäisch anerkannte Definition von Kompetenz, nämlich RCD\cite{EQFCompetency}
 
-\begin{figure}
-	\includegraphics[scale=0.5]{pics/RCD.jpg}
-\end{figure}
+
+\begin{wrapfigure}{i}{0.36\textwidth}
+	\includegraphics[width=0.9\linewidth]{pics/RCD.jpg}
+\end{wrapfigure}
+
 
 Daher folgt eine beispielhafte Auflistung der auf unseren Anwendungsfall angepasste und ergänzende Interpretation der dargestellten Terminologie des Entwurfs und der RCD.
-%@pic: own mix for both
 
-\paragraph{Auflistung der Terminologie} Die zwei Leitmotive sind auf eine Seite\\ \underline{Kompetenzanforderungen}: sie legen fest, über welche Kompetenzen ein Schüler, eine Schülerin verfügen muss, wenn wichtige Ziele der Schule als erreicht gelten sollen. Systematisch geordnet werden diese Anforderungengen in Kompetenzmodellen, die Aspekte, Abstufungen und Entwicklungsverläufe von Kompetenzen darstellen\cite{Competence}. Und auf der Anderen nach \underline{Kompetenzen} als die bei Individuen verfügbaren oder durch sie erlernbaren kognitiven Fähigkeiten und Fertigkeiten, um bestimmte Probleme zu lösen, sowie die damit verbundenen motivationalen, volitionalen und sozialen Bereitschaf-ten und Fähigkeiten, um die Problemlösungen in variablen Situationen erfolgreich und verantwortungsvoll nutzen zu können\cite{weinert2002leistungsmessungen}.
+
+
+\paragraph{Auflistung der Terminologie} Die zwei Leitmotive sind auf eine Seite \underline{Kompetenzanforderungen}: sie legen fest, über welche Kompetenzen ein Schüler, eine Schülerin verfügen muss, wenn wichtige Ziele der Schule als erreicht gelten sollen. Systematisch geordnet werden diese Anforderungengen in Kompetenzmodellen, die Aspekte, Abstufungen und Entwicklungsverläufe von Kompetenzen darstellen\cite{Competence}. Und auf der Anderen nach \underline{Kompetenzen} als die bei Individuen verfügbaren oder durch sie erlernbaren kognitiven Fähigkeiten und Fertigkeiten, um bestimmte Probleme zu lösen, sowie die damit verbundenen motivationalen, volitionalen und sozialen Bereitschaf-ten und Fähigkeiten, um die Problemlösungen in variablen Situationen erfolgreich und verantwortungsvoll nutzen zu können\cite{weinert2002leistungsmessungen}.
 
 \begin{table}[H]
 \caption{Terminologie}
@@ -700,39 +708,33 @@ subsumes & $\exists{Class} \equiv some Class$ \tabularnewline[\doublerulesep]
 \end{table}
 
 
-\section{Repository}
+Um den Datenmodell möglichst simpel abzufragen wird zunächst dessen Schnittstelle\ref{sec:rest} definiert. 
 
-Um aus Ontologien Informationen zu entnehmen, wird die Abfragesprache \glqq SPARQL\grqq @Acro verwendet. 
-Diese ist ähnlich zu SQL. Mit dem Programm \glqq Protétegé\grqq können SPARQL Abfragen lokal ausgeführt werden.
+\section{RESTful API}
+\label{sec:rest}
 
-\begin{lstlisting}[language=Sparql]
-SELECT * WHERE { ?s ?p ?o .}
-...
-\end{lstlisting}
+Die Komplexität des darunterliegenden Datenmodells erlaubt eine RESTful Schnittstelle nur einfache abfragen zu formulieren. Daher zusätzlich ein Endpunkt für Komplexe Sparql Abfragen, die im Body des HTTP Requests in JSON geschickt wird. 
 
-Nach der Modellierung in Protégé wird die OWL Datei in einem S3 Bucket verpackt und dadurch deren Zugriffsrechte konfiguriert, so dass nur eine berechtigte Anfrage z.B. von eine Lambda Funktion oder DynamoDB angenommen wird.
-
-So dass auch die Benutzer von KOMA solche Abfragen stellen können wird ein \glqq Sparql-endpoint\grqq mit Hilfe von Apache Jena Fuseki@Cite, eine Open Source Software, zur Verfügung gestellt. Fuseki ist ein Server zur Verwaltung von Sparqlabfragen und deren Transaktionen. @Cite CRUD und ACID RDB in sparql.
-
-
-Fuseki wird Embedded benutzt.
-Fuseki entspricht der Repositoryschicht der Anwendung und wird nach Anfrage von der Ontologie in S3 mittels Sparql JSON Objekte zurückliefern.
-Eine Lambdafunktion arbeitet als Schnittstelle zwischen Fuseki, den Client und die darunterliegende Infrastruktur.
-
-Um sich von die durch Lambda entstandene Abhängigkeit möglichst entkoppelt\cite{FlowerRefactoring} zu halten, wird das Modul von Fuseki nur als externe Abhängigkeit des Lambdaprojektes zugewisen.
-Die AWS Lambda stellt eine Interface zur Verfügung und der Nutzer die zu benutzende Bibliotheken zusammen in eine JAR Datei verpackt. Dem entsprechend wird der Buildscript von Gradle\cite{Muschko2014} angepasst\autoref{lst:gradle}. 
-
-\begin{lstlisting}[language=Groovy,caption={Abhängigkeitenverwaltung für Lambda in Java},label={lst:gradle}]
-plugins {
-	id 'com.github.johnrengelman.shadow' version '2.0.1'
-	id 'java'
-}
-shadowJar {
-mergeServiceFiles()
-}
-
-\end{lstlisting}
-
+\begin{table}[H]
+	\caption{RESTful API}\label{tab:rest}
+	\noindent 
+	\centering{}
+	\begin{tabular}{ccc}
+		\hline
+		\noalign{\vskip\doublerulesep}
+		Methode & URL & Rückgabe\tabularnewline[\doublerulesep]
+		\hline
+		\noalign{\vskip\doublerulesep}
+		GET & /ontology & Information über KOMA
+		\tabularnewline[\doublerulesep]\noalign{\vskip\doublerulesep}
+		GET & /page & Auflistung von Entitäten 
+		\tabularnewline[\doublerulesep]\noalign{\vskip\doublerulesep}
+		GET & /page/individual & Information über diesen Fakt
+		\tabularnewline[\doublerulesep]\noalign{\vskip\doublerulesep}
+		POST & /sparql & Abfragenergebnis
+		
+	\end{tabular}
+\end{table}
 
 RESTful API \\
 method url req.body res. header res.body
@@ -754,6 +756,40 @@ http://www.example.com/people/alice
 Alice's homepage
 http://www.example.com/data/alice
 RDF document with description of Alice
+
+\section{Repository}
+
+Um aus Ontologien Informationen zu entnehmen, wird die Abfragesprache \glqq SPARQL\grqq @Acro verwendet. 
+Diese ist ähnlich zu SQL. Mit dem Programm \glqq Protétegé\grqq können SPARQL Abfragen lokal ausgeführt werden.
+
+\begin{lstlisting}[language=Sparql]
+SELECT * WHERE { ?s ?p ?o .}
+...
+\end{lstlisting}
+
+Nach der Modellierung in Protégé wird die OWL Datei in einem S3 Bucket verpackt und dadurch deren Zugriffsrechte konfiguriert, so dass nur eine berechtigte Anfrage z.B. von eine Lambda Funktion oder DynamoDB angenommen wird.
+
+So dass auch die Benutzer von KOMA solche Abfragen stellen können wird ein \glqq Sparql-endpoint\grqq mit Hilfe von Apache Jena Fuseki@Cite, eine Open Source Software, zur Verfügung gestellt. Fuseki ist ein Server zur Verwaltung von Sparqlabfragen und deren Transaktionen. @Cite CRUD und ACID RDB in sparql.
+
+
+Fuseki wird Embedded benutzt.
+Fuseki entspricht der Repositoryschicht der Anwendung und wird nach Anfrage von der Ontologie in S3 mittels Sparql JSON Objekte zurückliefern.
+Eine Lambdafunktion arbeitet als Schnittstelle zwischen Fuseki, den Client und die darunterliegende Infrastruktur.
+
+Um sich von die durch Lambda entstandene Abhängigkeit möglichst entkoppelt\cite{FlowerRefactoring} zu halten, wird das Modul von Fuseki nur als externe Abhängigkeit des Lambdaprojektes zugewisen.
+Die AWS Lambda stellt eine Interface zur Verfügung und der Nutzer die zu benutzende Bibliotheken zusammen in eine JAR Datei verpackt. Dem entsprechend wird der Buildscript von Gradle\cite{Muschko2014} angepasst\ref{lst:gradle}. 
+
+\begin{lstlisting}[language=Groovy,caption={Abhängigkeitenverwaltung für Lambda in Java},label={lst:gradle}]
+plugins {
+	id 'com.github.johnrengelman.shadow' version '2.0.1'
+	id 'java'
+}
+shadowJar {
+mergeServiceFiles()
+}
+
+\end{lstlisting}
+
 
 \section{DevOps}
 gradle clean build shadowJar
@@ -897,6 +933,8 @@ Nach Weinert (2001, S. 27f.) versteht man \textbf{Kompetenzen} als „die bei In
 Beispielsweise drückt sich die Kompetenz beim Erwerb einer Fremdsprache – wenn man kommunikative Handlungsfähigkeit als Bildungsziel vorgibt – darin aus, wie gut man kommu-nikative Situationen bewältigt, wie gut man Texteunterschiedlicher Art verstehen und selbst adressatengerecht Texte verfassen kann, aberunter anderem auch in der Fähigkeit, gram-matische Strukturen korrekt aufzubauen und bei Bedarf zu korrigieren, oder in der Fähigkeitund Bereitschaft, sich offen und akzeptierend mit anderen Kulturenauseinander zu setzen. Standards für das Fremdsprachenlernen müssen diese Teilkompetenzen darstellen und je-weils verschiedene Niveaustufenunterscheiden (vgl. Anlage a). Hierbei spielen nicht nurkognitive Wissensinhalte eineRolle;diese sind vielmehr– wie Weinert im obigen Zitat her-vorhebt und das zuletzt genannte Beispiel der sog. Interkulturellen Kompetenz besonders deutlich macht – mit Einstellungen, Werten und Motiven verknüpft.
 Kompetenzen spiegeln diegrundlegenden Handlungsanforderungen, denen Schülerinnen und Schüler in der Domäneausgesetzt sind. Durch vielfältige, flexible und variable Nutzung und zunehmende Vernetzungvon konkreten, bereichsbezogenen Kompetenzen können sich auch „Schlüsselkompetenzen“entwickeln, aber der Erwerb von Kompetenzen muss – wie Weinert (2001) hervorhebt – beim systematischen Aufbau von „intelligentem Wissen“ in einer Domäne beginnen.
 - Jede Kompetenzstufe ist durchkognitive Prozesse und Handlungen von bestimmterQualität spezifiziert, die Schüler auf dieser Stufe bewältigenkönnen, nicht aber Schüler auf niedrigeren Stufen. Zum Bildungsstandard gehört, dass für einzelne Jahrgänge festgelegtwird, welcheStufen die Schülerinnen und Schüler erreichen sollen.
+
+
 \begin{acronym}[Bash]
 
 
