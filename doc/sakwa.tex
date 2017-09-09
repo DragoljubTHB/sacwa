@@ -496,12 +496,12 @@ Zu den Anforderungen
 
 \section{Datenhaltung Analyse und Auswahl}
 
-Die Polymorphe Gestaltung von Kompetenzmodellen und deren zukünftige Weiterentwicklung stellt die Benutzung des traditionellen RDBMS in Frage. Im Folgendem werden die Eigenschaften von relationalen mit ontologischen Schemas verglichen.
+Die Polymorphe Gestaltung von Kompetenzmodellen und deren zukünftige Weiterentwicklung stellt die Benutzung des traditionellen RDBMS für KOMA in Frage. Im Folgendem werden die Eigenschaften von relationalen mit ontologischen Schemas verglichen.
 
 
 %@Pre-Dev--> Tabelle 
 \begin{table}
-\caption{Vergleich relationalem mit ontologischem Schema}
+\caption{Vergleich relationalem mit ontologischem \ref{subsec:ontology} Schema}
 
 \centering{}
 \begin{tabular}{ccc}
@@ -522,50 +522,78 @@ Oritentation & Data & Bedeutung \tabularnewline[\doublerulesep]
 %@Pre-Dev::Feasibility Study
 Es wurden folgende Faktoren für die Entwicklung einer Ontologie erkannt:
 %@list
-Zirkuläre Abhängigkeiten sind zugelassen.
-Equivalenzklassen zwischen KOMA und andere Ontologie soll die Anerkennung von erworbenen Kompetenzen ermöglichen.
-Die Begriffe der Kompetenzen können sich ändern oder die Ontologie soll erweitert werden.
-Die Verbindung zu externen Ontologien kann neues Wissen ableiten.
+\begin{itemize}
+	\item Zirkuläre Abhängigkeiten sind zugelassen
+	\item Equivalenzklassen zwischen KOMA und andere Ontologie soll die Anerkennung von erworbenen Kompetenzen ermöglichen
+	\item Die Begriffe der Kompetenzen können sich ändern oder die Ontologie soll erweitert werden
+	\item Die Verbindung zu externen Ontologien kann neues Wissen ableiten
+\end{itemize}
+
 6.2.2 \cite{OntoCloud}Benefits on Interoperability and Linked-Data by Using
 Ontology Engineering
 
 Es handelt sich daher um eine \glqq Linked Data Driven Web Application\grqq.%@href 
-Dieser Begriff gehört zum \glqq Semantic Web\grqq,der in der Sektion der Ontologie weiter erläutert wird.
+Dieser Begriff gehört zum \glqq Semantic Web\grqq,der in der Sektion der Ontologie\ref{subsec:ontology} weiter erläutert wird.
+
+\subsection{Semantic Web}
+
+Das \glqq Semantic Web\grqq ist eine Erweiterung des herkömmlichen Web, in der Informationen mit eindeutigen Bedeutungen versehen werden\cite{OntoWhat2}.
+set of standards and best practices for sharing data and the semantics of that data over the Web for use by applications\cite{SparqlLearn} .
+ Diese Bedeutungen werden für Maschinen durch Ontologien dargestellt. 
+Die Ontologien werden in der OWL2 Spezifikation von W3C\footnote{WWW Consortium \url{https://www.w3.org/standards/semanticweb/}}beschrieben. Die hälfte der Linked Datenbasis sind veroffentlicht. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{pics/semantic_web_technology_stack.png}
+	\caption{Überblick von benutzten Technologien}
+	\label{fig:semantic-web-stack}
+\end{figure}
 
 \subsection{Ontologie}
-
-Das \glqq Semantic Web\grqq ist eine Erweiterung des herkömmlichen Web, in der Informationen mit eindeutigen Bedeutungen versehen werden@Cite. Diese Bedeutungen wirden für Maschinen durch Ontologien dargestellt. Die Ontologien werden in der OWL2 Spezifikation von W3C@Ref beschrieben.
+\label{subsec:ontology}
 %@Def
-Eine Ontologie ist eine Darstellung von Wissen. Präziser: eine formale Spezifikation über eine Konzeptualisierung\cite{OntoWhat}.
+Eine Ontologie ist eine formale Spezifikation über eine Konzeptualisierung\cite{OntoWhat}. Die Denotation jeweiliger dargestellten Signifikanten lässt sich durch seinen weltweit eindeutigen Präfix identifizieren. Deren Beziehungen können auch zu externen Ontologie-signifikanten verweisen und dadurch ein Consensus über Begrifflichkeiten. 
 
 Während der Umsetzung wurde Protege\footnote{\url{http://protege.stanford.edu}: "This work was conducted using the Protégé resource, which is supported by grant GM10331601 from the National Institute of General Medical Sciences of the United States National Institutes of Health."} benutzt.
-Der Entwurf der Ontologie wurde nach Ontology-Engineering-101 durchgefuhrt:
+Der Entwurf der Ontologie wurde nach Ontology-Engineering-101 durchgeführt:
 
 Die auf die Entwicklung vorbereitende Aufgaben folgen.
 
-Zunächst es wird die Umgebung oder Software Platform der Anwendung festgelegt.
+\paragraph{Software Plattform} Zunächst es wird die Plattform der zu entwickelnde Software der Anwendung festgelegt.
 %@Pre-Dev::Environ
-
 %Software platform ? 
-Die für KOMA unterstutzende Infrastruktur wird ein Rechner mit Browser wie Firefox oder Chrome und die AWS Dienste wie Lambda, API Gateway und S3. D
-Die Comsumer/Verbraucher der Anwendung wird ein SparQL-Endpoint\cite{SparqlLearn}.
-Die Clients : REST: sparql Endpoints
+Die Daten können in Produktion mittels einer \glqq Triple-Store\grqq mit grundsätzlich 4 alternativen gespeichert:
+\begin{itemize}
+	\item Monolitische Triple Speicherung
+	\item Property Werte
+	\item Vertikal Partitionierte Tables
+	\item Hexastore
+\end{itemize}
 
-Die Daten können in Produktion @Anglizismus in einer \glqq Triple-Store\grqq mit grundsätzlich 4 alternativen umgesetzt: Monolitische Triple Speicherung, Property Werte, Vertikal Partitionierte Tables und Hexastore @Cite hpi web-sem 2.9.
-Für die Entwicklung und als Ansatz eignet sich S3 @Acro für die Speicherung von großen Datenmengen. Der nächste Schritt wird eine Indexierung der URIs jeweiliger Subject, Predicate und Object in DynamoDB @Acro .
+Die für KOMA unterstützende Infrastruktur wird ein Rechner mit Browser wie Firefox oder Chrome und die AWS Dienste wie Lambda, API Gateway und S3. Das Kommunikationsprotokoll auf der Anwendungsebene zwischen Endpunkten ist HTTP v1.1.
+Eine Ontologie kann mittels Sparql abgefragt werden. Sparql ist eine Abrfragesprache für RDF, Spreadsheets, XML und JSON formate\cite{SparqlLearn}. Wir beschreiben die Ontologie mit dem Datenmodel RDF und der TURTLE syntax.
 
-Die Ausführung von Abfragen auf die Ontologie wird direkt mithilfe von \glqq Jena SPARQL\grqq Framework realisiert. Deren Quelldateien werden in einer Lambda @Acro Funktion ausgeführt.
+Für die Entwicklung und als MVP eignet sich S3 @Acro für die Speicherung von großen Datenmengen. Der nächste Schritt wird eine Indexierung der URIs jeweiliger Subject, Predicate und Object in DynamoDB. 
 
-ontol-eng 101
-1-determine-scope:
-Die Verwaltung von Fortschritten der Studierenden im Kompetenzrahmen der Lehrpläne.
+Die Ausführung von Abfragen auf die Ontologie wird direkt mithilfe von \glqq Jena SPARQL ARQ\grqq Framework realisiert. Deren Quelldateien werden in einer Lambda @Acro Funktion ausgeführt.
 
-%2-Consider reuse: 
-Obwohl die LOD @Acro NNN Datebasis erkannt hat und Watson @Cite Begriffe wie Kompetenz in zahlreiche Ontologien gefunden hat, konnte ich einen aktuell öffentlichen graphischen Entwurf\cite{OntoMoodle} @Cite onto-moodle einer Ontologie finden.
-%@Bild onto-moodle
-Bei der Analyse lässt der Entwurf und dessen Dokumentation freie Interpretation über Begriffe und deren Zweck bzw. bie \glqq isComposedOf\grqq, \glqq subsumes\grqq. Ein Standard zur graphischen Darstellung ist zur Zeit?? noch nicht anerkannt.@Cite research-gate graphol
+\paragraph{Der Umfang der Ontologie} ist die Verwaltung von Fortschritten der Studierenden im Kompetenzrahmen der Lehrpläne.
+Um die Neuerfindung des Rades zu vermeiden, die Recherche ergab einen aktuell öffentlichen graphischen ontologischen Entwurf\cite{OntoMoodle} siehe\ref{fig:competence-ontology} der in Moodle mit eine Relationalen Datenbasis und PHP umgesetzt. Nach dessen Ontologien wurde mittels Watson\footnote{Watson \url{http://watson.kmi.open.ac.uk/WatsonWUI/}} und LOD\footnote{LOD Cloud \url{http://lod-cloud.net/}} nichts öffentlich gefunden. 
+
+\begin{figure}
+	\centering
+	%\includegraphics{imagefile}
+\caption{Kompetenzontologie}
+\label{fig:competence-ontology}
+\end{figure}
+
+Bei der Analyse lässt der Entwurf und dessen Dokumentation freie Interpretation über Begriffe und deren Zweck, beispiele davon sind \glqq isComposedOf\grqq, \glqq subsumes\grqq. Ein Standard zur graphischen Darstellung ist zur Zeit?? noch nicht anerkannt.@Cite research-gate graphol
 
 Anderseits wurde ein \glqq EQF Framework\grqq für Ontologien beschrieben, aber nicht öffentlich umgesetzt. Es bietet dabei eine europäisch anerkannte Definition von Kompetenz, nämlich RCD @Acro.
+
+\begin{figure}
+	\includegraphics[scale=0.5]{pics/RCD.jpg}
+\end{figure}
 
 Daher folgt eine beispielhafte Enumeration der auf unseren Anwendungsfall angepasste und ergänzende Interpretation der dargestellten Terminologie des Entwurfs und der RCD.
 %@pic: own mix for both
