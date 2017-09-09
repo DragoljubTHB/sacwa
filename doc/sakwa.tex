@@ -123,8 +123,8 @@ identifierstyle=\color{black},
 sensitive=false,
 comment=[l]{//},
 morecomment=[s]{/*}{*/},
-commentstyle=\color{purple}\ttfamily,
-stringstyle=\color{red}\ttfamily,
+commentstyle=\color{black}\ttfamily,
+stringstyle=\color{black}\ttfamily,
 morestring=[b]',
 morestring=[b]"
 }
@@ -609,10 +609,10 @@ Daher folgt eine beispielhafte Auflistung der auf unseren Anwendungsfall angepas
 
 
 
-\paragraph{Auflistung der Terminologie} Die zwei Leitmotive sind auf eine Seite \underline{Kompetenzanforderungen}: sie legen fest, über welche Kompetenzen ein Schüler, eine Schülerin verfügen muss, wenn wichtige Ziele der Schule als erreicht gelten sollen. Systematisch geordnet werden diese Anforderungengen in Kompetenzmodellen, die Aspekte, Abstufungen und Entwicklungsverläufe von Kompetenzen darstellen\cite{Competence}. Und auf der Anderen nach \underline{Kompetenzen} als die bei Individuen verfügbaren oder durch sie erlernbaren kognitiven Fähigkeiten und Fertigkeiten, um bestimmte Probleme zu lösen, sowie die damit verbundenen motivationalen, volitionalen und sozialen Bereitschaf-ten und Fähigkeiten, um die Problemlösungen in variablen Situationen erfolgreich und verantwortungsvoll nutzen zu können\cite{weinert2002leistungsmessungen}.
+\paragraph{Auflistung der Terminologie}\ref{tab:terms} Die zwei Leitmotive sind auf eine Seite \underline{Kompetenzanforderungen}: sie legen fest, über welche Kompetenzen ein Schüler, eine Schülerin verfügen muss, wenn wichtige Ziele der Schule als erreicht gelten sollen. Systematisch geordnet werden diese Anforderungengen in Kompetenzmodellen, die Aspekte, Abstufungen und Entwicklungsverläufe von Kompetenzen darstellen\cite{Competence}. Und auf der Anderen nach \underline{Kompetenzen} als die bei Individuen verfügbaren oder durch sie erlernbaren kognitiven Fähigkeiten und Fertigkeiten, um bestimmte Probleme zu lösen, sowie die damit verbundenen motivationalen, volitionalen und sozialen Bereitschaf-ten und Fähigkeiten, um die Problemlösungen in variablen Situationen erfolgreich und verantwortungsvoll nutzen zu können\cite{weinert2002leistungsmessungen}.
 
 \begin{table}[H]
-\caption{Terminologie}
+\caption{Terminologie}\label{tab:terms}
 
 
 \noindent \centering{}\begin{tabular}{ccc}
@@ -696,7 +696,7 @@ LV & $only Sequenz$ \tabularnewline[\doublerulesep]
 \paragraph{Properties und Attributen von Klassen}
 
 \begin{table}[H]
-\caption{Properties}
+\caption{Properties}\label{tab:prop}
 
 \noindent \centering{}\begin{tabular}{cc}
 \hline
@@ -713,7 +713,7 @@ Um den Datenmodell möglichst simpel abzufragen wird zunächst dessen Schnittste
 \section{RESTful API}
 \label{sec:rest}
 
-Die Komplexität des darunterliegenden Datenmodells erlaubt eine RESTful Schnittstelle nur einfache abfragen zu formulieren. Daher zusätzlich ein Endpunkt für Komplexe Sparql Abfragen, die im Body des HTTP Requests in JSON geschickt wird. 
+Die Komplexität des darunterliegenden Datenmodells erlaubt eine RESTful\cite{Hunter2017} Schnittstelle nur einfache abfragen zu formulieren. Daher zusätzlich ein Endpunkt\ref{tab:rest} für Komplexe Sparql Abfragen, die im Body des HTTP Requests in JSON geschickt wird. 
 
 \begin{table}[H]
 	\caption{RESTful API}\label{tab:rest}
@@ -727,35 +727,34 @@ Die Komplexität des darunterliegenden Datenmodells erlaubt eine RESTful Schnitt
 		\noalign{\vskip\doublerulesep}
 		GET & /ontology & Information über KOMA
 		\tabularnewline[\doublerulesep]\noalign{\vskip\doublerulesep}
+		\noalign{\vskip\doublerulesep}
+		GET & /ontology/\{individual\} & RDF von Individual
+		\tabularnewline[\doublerulesep]\noalign{\vskip\doublerulesep}
 		GET & /page & Auflistung von Entitäten 
 		\tabularnewline[\doublerulesep]\noalign{\vskip\doublerulesep}
-		GET & /page/individual & Information über diesen Fakt
+		GET & /page/\{individual\} & Information über diesen Fakt
 		\tabularnewline[\doublerulesep]\noalign{\vskip\doublerulesep}
 		POST & /sparql & Abfragenergebnis
 		
 	\end{tabular}
 \end{table}
 
-RESTful API \\
-method url req.body res. header res.body
-GET https://<host>
+AWS API Gateway ermöglicht die Definition, Konfiguration und das Importieren von Schnittstellen. Beispielsweise kann die Abfrage GET https://<host>/page/\{individual\} 
 
-GET https://<host>/sparql raw-sparql-query 2xx/5xx tab x? y? z?
+\begin{lstlisting}[language=Javascript,caption={Mapping Template},label={lst:map-template}]
+GET https://<host>/page/{individual} 
+...
+{
+"individual" : "$input.params('individual')"
+}
+\end{lstlisting}
 
-GET https://<host>/page/individual 2xx/5xx Individuals page db artig\cite{Hunter2017}
-GET https://<host>/ontology/entitytype 2xx/5xx page db artig
-GET https://<host>/ontology/propertytype 2xx/5xx page db artig
+Damit wurde die zu erwartende Eingabe für den Sparql-Endpoint definiert. Der Zugang auf die Schnittstelle wird durch CORS konfiguriert um deren Ausnutzung zu vermeiden. 
 
 Dieser Endpunkt unterstützt nicht nur GET-Abrufe, sondern auch POST-Anforderungen mit einer Nutzlast.
 Unter der verfügbaren SparQL endpoints Implementierungen
 
 
-http://www.example.com/id/alice
-Identifier for Alice, the person
-http://www.example.com/people/alice
-Alice's homepage
-http://www.example.com/data/alice
-RDF document with description of Alice
 
 \section{Repository}
 
@@ -769,14 +768,28 @@ SELECT * WHERE { ?s ?p ?o .}
 
 Nach der Modellierung in Protégé wird die OWL Datei in einem S3 Bucket verpackt und dadurch deren Zugriffsrechte konfiguriert, so dass nur eine berechtigte Anfrage z.B. von eine Lambda Funktion oder DynamoDB angenommen wird.
 
-So dass auch die Benutzer von KOMA solche Abfragen stellen können wird ein \glqq Sparql-endpoint\grqq mit Hilfe von Apache Jena Fuseki@Cite, eine Open Source Software, zur Verfügung gestellt. Fuseki ist ein Server zur Verwaltung von Sparqlabfragen und deren Transaktionen. @Cite CRUD und ACID RDB in sparql.
+So dass auch die Benutzer von KOMA solche Abfragen stellen können wird ein \glqq Sparql-endpoint\grqq mit Hilfe von Apache Jena ARQ, ein Sparql-Engine, zur Verfügung gestellt. 
+%Fuseki ist ein Server zur Verwaltung von Sparqlabfragen und deren Transaktionen. @Cite CRUD und ACID RDB in sparql.
+%Fuseki wird Embedded benutzt.
+Dieser Sparql-Endpoint entspricht der Repositoryschicht der Anwendung und wird nach Anfrage von der Ontologie in S3 mittels Sparql JSON Objekte zurückliefern.
+Eine Lambdafunktion arbeitet als Schnittstelle \ref{lst:lambda-interface} zwischen die ARQ Bibliothek, den Client und die darunterliegende Infrastruktur.
 
+\begin{lstlisting}[language=Java,caption={Schnittstele Lambda},label={lst:lambda-interface}]
+public class Handler implements RequestHandler<RequestClass, String> {
 
-Fuseki wird Embedded benutzt.
-Fuseki entspricht der Repositoryschicht der Anwendung und wird nach Anfrage von der Ontologie in S3 mittels Sparql JSON Objekte zurückliefern.
-Eine Lambdafunktion arbeitet als Schnittstelle zwischen Fuseki, den Client und die darunterliegende Infrastruktur.
+@Override
+public String handleRequest(RequestClass input, Context context) {
+	return new Controller(System.getenv(ENV_BUCKET)
+						  , Regions.US_WEST_2.getName())
+								.executeQuery(request.getQuery()
+								, request.getBucketKey());
+	}
 
-Um sich von die durch Lambda entstandene Abhängigkeit möglichst entkoppelt\cite{FlowerRefactoring} zu halten, wird das Modul von Fuseki nur als externe Abhängigkeit des Lambdaprojektes zugewisen.
+}
+
+\end{lstlisting}
+
+Um sich von die durch Lambda entstandene Abhängigkeit möglichst entkoppelt\cite{FlowerRefactoring} zu halten, wird das Modul von Jena-ARQ nur als externe Abhängigkeit des Lambdaprojektes zugewisen.
 Die AWS Lambda stellt eine Interface zur Verfügung und der Nutzer die zu benutzende Bibliotheken zusammen in eine JAR Datei verpackt. Dem entsprechend wird der Buildscript von Gradle\cite{Muschko2014} angepasst\ref{lst:gradle}. 
 
 \begin{lstlisting}[language=Groovy,caption={Abhängigkeitenverwaltung für Lambda in Java},label={lst:gradle}]
@@ -785,15 +798,17 @@ plugins {
 	id 'java'
 }
 shadowJar {
-mergeServiceFiles()
+	mergeServiceFiles()
 }
-
+...
+$ gradle clean build shadowJar
 \end{lstlisting}
 
+Die AWS Console lässt die Funktionen hochladen und konfigurieren, ohne nötige Kenntnisse von der AWS-CLI. Zusätzlich muss der RESTful Pfad auf die verantwortliche Funktion in API Gateway zugewiesen werden. 
 
 \section{DevOps}
-gradle clean build shadowJar
-
+<-- hier wegen JSON konfigurationene in AWS und un endliche fefehle in AWS cli erzählen ?? 
+excurs zu Serverless Frameworks 
 
 \section{UI-IT}
 
