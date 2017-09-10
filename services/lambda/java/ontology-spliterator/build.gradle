@@ -1,0 +1,28 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '2.0.1'
+    id 'java'
+}
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+
+    compile group: 'com.amazonaws', name: 'aws-lambda-java-core', version: '1.0.0'
+    // https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-dynamodb
+    compile group: 'com.amazonaws', name: 'aws-java-sdk-dynamodb', version: '1.11.192'
+
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.0'
+
+
+    //compile group: 'com.fasterxml.jackson.jr', name: 'jackson-jr-objects', version: '2.9.0'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    compile group: 'org.apache.jena', name: 'jena-arq', version: '3.4.0'
+
+    testImplementation 'junit:junit:4.12'
+}
+
+shadowJar {
+    mergeServiceFiles()
+}

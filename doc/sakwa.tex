@@ -32,6 +32,7 @@ numbers=noenddot,version=first
 \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
 \usepackage{listings}
 \usepackage[printonlyused]{acronym}
+\usepackage{glossaries}
 \usepackage{verbatim}
 \usepackage{url}
 \usepackage{graphicx}
@@ -188,6 +189,7 @@ morestring=[b]"
 %% Schönerer Blocksatz
 \usepackage{microtype}
 
+
 %% Mehr Platz zwischen Überschrift und Tabelle
 \newcommand{\@ldtable}{}
 \let\@ldtable\table
@@ -242,6 +244,12 @@ morestring=[b]"
 \setlength{\epigraphwidth}{9cm}
 
 \makeatother
+
+%-----------------------
+%  Glossar https://www.sharelatex.com/learn/
+%-----------------------
+\makeglossaries
+
 
 \begin{document}
 \titlepage
@@ -337,8 +345,7 @@ Profitability
 
 
 Auf dem Weg zur technologischen Umsetzung einer neuen Idee liegen unbekannte Schwierigkeiten
-bei der Entscheidungen über die Architektur der Anwendung/Projekt/Umsetzung?,
-der Drittanbieter von Software, der Auswahl der Infrastruktur usw.
+bei der Entscheidungen über deren Umsetzung hinsichtlich auf den Architekturentwurf, die IT Infrastruktur, die Drittanbieter von Software, der Auswahl der Infrastruktur usw.
 Schwierigkeiten die von spezialisierten Kompetenzen, Fertigkeiten und \glqq Know-How\grqq bedürfen.
 Gehören jedoch nicht immer zum Problem des Domäns der Anwendung.
 
@@ -351,7 +358,7 @@ Im Rahmen des Cloud-Computing handelt es in dieser Arbeit um eine Untersuchung d
 
 \section{Ziel}
 \label{sec:task}
-
+\newacronym{MVP}{Mivip}{Minimal Viable Product}
 @acronym MVP Minimal Viable Product : \cite{rady2016serverless} Das Ziel ist ein MVP Minimal Viable Product in form eine @acronym SPA Single Page Application mit ausschließlich \glqq Serverlosen\grqq Architekturen vor zur Verfügung zu stellen.
 
 Nach der Umsetzung werden die Erfahrungen und Ergebnisse ausgewertet, um dem Leser bei dem Entscheidungsprozess bei der Umsetzung einer Webanwendung besser zu Informieren.
@@ -450,12 +457,21 @@ als gestalltungsmittel für LV benutzt. Das Modell verfügt von eine Figur um di
 
 Wegen der Kompetenzorientierung, wird Kompetenz als Unit-Of-Work betrachtet für Modelierungszwecke.
 
+\paragraph{Hochschule Beispiel}
 Beispiel:
 Der Lehrplan fordert die Kompetenzen K in K1, K2, K3 .. Kn für den Bachelordiplom. Nach deren Manuellen Eingabe werden automatisch
 ihren Requirenments/Anforderungen/Abhängigkeiten Baum erzeugt. Dadurch können bereiche des Baums als LV betrachtet werden und Kompetenzen aufeinander
 bauend für eine Klassenstufe/Semestergang sequenziert werden. Die Auswertung der Ergebnisse der Aktivitäten und die Aktualisierung des Kompetenzstands
 des Schulers folgen.
 
+\paragraph{Schule Beispiel}
+Allgemeines Beispiel:
+
+Beispielsweise drückt sich die Kompetenz beim Erwerb einer Fremdsprache – wenn mankommunikative Handlungsfähigkeit als Bildungsziel vorgibt – darin aus, wie gut man kommu-nikative Situationen bewältigt, wie gut man Texteunterschiedlicher Art verstehen und selbst adressatengerecht Texte verfassen kann, aberunter anderem auch in der Fähigkeit, gram-matische Strukturen korrekt aufzubauen und bei Bedarf zu korrigieren, oder in der Fähigkeitund Bereitschaft, sich offen und akzeptierend mit anderen Kulturenauseinander zu setzen. Standards für das Fremdsprachenlernen müssen diese Teilkompetenzen darstellen und je-weils verschiedene Niveaustufenunterscheiden (vgl. Anlage a). Hierbei spielen nicht nurkognitive Wissensinhalte eineRolle;diese sind vielmehr– wie Weinert im obigen Zitat her-vorhebt und das zuletzt genannte Beispiel der sog. Interkulturellen Kompetenz besonders deutlich macht – mit Einstellungen, Werten und Motiven verknüpft.
+Kompetenzen spiegeln diegrundlegenden Handlungsanforderungen, denenSchülerinnen und Schüler in der Domäneausgesetzt sind. Durch vielfältige, flexible und variable Nutzung und zunehmende Vernetzungvon konkreten, bereichsbezogenen Kompetenzenkönnen sich auch „Schlüsselkompetenzen“entwickeln, aber der Erwerb von Kompetenzen muss – wie Weinert (2001) hervorhebt – beimsystematischen Aufbau von „intelligentem Wissen“ in einer Domäne beginnen.
+- Jede Kompetenzstufe ist durchkognitive Prozesse und Handlungen von bestimmterQualität spezifiziert, die Schüler auf dieser Stufe bewältigenkönnen, nicht aber Schüler auf niedrigeren Stufen. Zum Bildungsstandard gehört, dass für einzelne Jahrgänge festgelegtwird, welcheStufen die Schülerinnen und Schüler erreichen sollen.
+
+\paragraph{Use Case}
 Ein Nutzungs-Fall aka. Use-Case:
 -Als Professor, will ich eine Auflistung der erworbene Fertigkeiten einer Klassenstufe abrufen können.
 
@@ -608,8 +624,13 @@ Anderseits wurde ein \glqq EQF Framework\footnote{EQF Beschreibung \url{https://
 Daher folgt eine beispielhafte Auflistung der auf unseren Anwendungsfall angepasste und ergänzende Interpretation der dargestellten Terminologie des Entwurfs und der RCD.
 
 
+\paragraph{Auflistung der Terminologie}\ref{tab:terms} Die zwei Leitmotive sind auf eine Seite \underline{Kompetenzanforderungen}: sie legen fest, über welche Kompetenzen ein Schüler, eine Schülerin verfügen muss, wenn wichtige Ziele der Schule als erreicht gelten sollen. Systematisch geordnet werden diese Anforderungengen in Kompetenzmodellen, die Aspekte, Abstufungen und Entwicklungsverläufe von Kompetenzen darstellen\cite{Competence}. Und auf der Anderen nach \underline{\Gls{Kompetenz}} als die bei Individuen verfügbaren oder durch sie erlernbaren kognitiven Fähigkeiten und Fertigkeiten, um bestimmte Probleme zu lösen, sowie die damit verbundenen motivationalen, volitionalen und sozialen Bereitschaften und Fähigkeiten, um die Problemlösungen in variablen Situationen erfolgreich und verantwortungsvoll nutzen zu können\cite{weinert2002leistungsmessungen}.
 
-\paragraph{Auflistung der Terminologie}\ref{tab:terms} Die zwei Leitmotive sind auf eine Seite \underline{Kompetenzanforderungen}: sie legen fest, über welche Kompetenzen ein Schüler, eine Schülerin verfügen muss, wenn wichtige Ziele der Schule als erreicht gelten sollen. Systematisch geordnet werden diese Anforderungengen in Kompetenzmodellen, die Aspekte, Abstufungen und Entwicklungsverläufe von Kompetenzen darstellen\cite{Competence}. Und auf der Anderen nach \underline{Kompetenzen} als die bei Individuen verfügbaren oder durch sie erlernbaren kognitiven Fähigkeiten und Fertigkeiten, um bestimmte Probleme zu lösen, sowie die damit verbundenen motivationalen, volitionalen und sozialen Bereitschaf-ten und Fähigkeiten, um die Problemlösungen in variablen Situationen erfolgreich und verantwortungsvoll nutzen zu können\cite{weinert2002leistungsmessungen}.
+
+\newglossaryentry{Kompetenz}{name={Kompetenz},description={die bei Individuen verfügbaren oder durch sie erlernbaren kognitiven Fähigkeiten und Fertigkeiten, um bestimmte Probleme zu lösen, sowie die damit verbundenen motivationalen, volitionalen und sozialen Bereitschaften und Fähigkeiten, um die Problemlösungen in variablen Situationen erfolgreich und verantwortungsvoll nutzen zu können}}
+
+
+
 
 \begin{table}[H]
 \caption{Terminologie}\label{tab:terms}
@@ -905,21 +926,33 @@ local testing braucht event-symulation.json
 \paragraph{Zur Entwicklung}
 Die Starke Komponentisierung und Dezentralisierung von Software, die Variabilität von Programmiermodellen, Frameworks, Tools, -Sprachen und dessen Entwicklungsumgebung erhöht die Komplexität des Enwicklungscyklus und hervorhebt die Bedürfnis von Tools zur Automatisierung von Tests, Deployment und Konfiguration. Also ein wohldefiniertes Handlungsplan bei der Softwareentwicklung dass von der nicht zu bearbeitende Details abstrahiert. 
 Die DevOps Kultur spricht solche Probleme an. Neben dem Entwurf der Softwareachitekture  muss, um derer Umsetzung Zeitgemäß zu gewährleisten, eine zum Projekt passende DevOps Strategie.
-Um Vorteil von der neuen Technologien zu nehmen, ist die Recherche nach schon existierenden DevOps Frameworks besonders wichtig. Dessen Integration in der DevOps Strategie diene für Agile Entwicklung.
+Um Vorteil von der neuen Technologien zu nehmen, ist die Recherche nach schon existierenden DevOps Frameworks besonders wichtig. Dessen Integration in der DevOps Strategie diene für eine Agile Entwicklung.
 
 \paragraph{Zum Datenmodel}
-Aus der Anforderungs analyse einer Informations Techonologie Web Anwendung sind die Builder, Texste und dessen Darstellung das ergebniss, dass ohne Daten inhaltlos wäre. Auf eine Seite Das Relationale Datenschema stellt keine Semantik für sich dar, sondern durch von der Software entstandene Verknüpfung zwischen dem Endergebnis und dem Datenschema. Auf der Anderen Seite die  RDF Daten einer Ontologie \textit{is} das Modell
+Aus der Anforderungs analyse einer Informations Techonologie Web Anwendung sind die Builder, Texste und dessen Darstellung das ergebniss, dass ohne Daten inhaltlos wäre. Auf eine Seite Das Relationale Datenschema stellt keine Semantik für sich dar, sondern durch von der Software entstandene Verknüpfung zwischen dem Endergebnis und dem Datenschema. Auf der Anderen Seite die  RDF Daten einer Ontologie \textit{is} das Modell.
 
-
-Docke container + Load Balancer
-als möglichkeit.
-
+\paragraph{Zum Serverless}
+In dieser Arbeit wurde eine "nach buch" weise die Architektur gestalltet. Die unterschiedliche Interpretationen des Begriffs Serverless kann auch zu Kreativen anzätzen führen@AdamBien JEE
+Es kann daher auch als Serverless betrachtet wenn neue Quelldataien eine Docker Instance neu Erzeugen oder nur Updaten, dessen LoadBalancing auch als Serverless Quellcode verpakt werden kann. 
 
 \lstlistoflistings
 
 \listoffigures
 
 \listoftables
+
+
+
+\chapter*{Glossar}
+\markboth{Glossar}{}
+\printglossary[title=Glossar, toctitle=Terminologie]
+\printglossary
+
+
+\newglossaryentry{lab}{name={labName},description={labDes}}
+\glossary{glossar with page num in .glo} Im using \gls{lab}
+\gls{Kompetenz}kompetenz test
+
 
 \chapter*{Abkürzungen}
 \markboth{Abkürzungen}{}
@@ -949,8 +982,12 @@ als möglichkeit.
 %Con-notation: associated meanings of signifier
 
 
+
 \begin{acronym}[Bash]
 
+\acro{da}{Dragoljub Milasinovic} \glqq dddd\grqq{}
+
+\ac{da} some info
 
 \acro{GC}{Garbage Collection}
 
@@ -975,3 +1012,6 @@ Brandenburg an der Havel, XX. Monat 2017
 Vorname Nachname
 
 \end{document}
+
+
+
