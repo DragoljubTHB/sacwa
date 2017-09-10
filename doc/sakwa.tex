@@ -850,6 +850,26 @@ Compute Resource Consolidation
 Command and Query Responsability Segregation CQRS <- readS3UpdateDynamo.js
 
 \chapter{Ergebnis und Auswertung}
+
+\paragraph{Anwendung}{Latenz}
+Die entstandene Webanwendung befindet sich in US-WEST-2, Oregon, in den USA. 
+Da keine Cache oder CDN Funktionalität weder Implementiert noch konfiguriert ist, ist die Latenz direkt proportional zur Ausführungsdauer der Lambda Funktion.
+@Benchmark testing curl 
+@Lambda Monitoring
+
+In Zeiten des Cloud computings 
+\paragraph{Frameworks und FaaS}
+Frameworks helfen aber sind platform abhängig. Entweder JEE und JVM oder PHP.
+Es kann auf die Layer of Abstraction in FW verzichtet werden. 
+Die Ersetzbarkeit des FaaS entkoppelt die Anwendung und den Entickler von der darunterliegende Technologie.
+
+\paragraph{DevOps Frameworks}
+Die benötigte Fertigkeiten für die Umsetzung einer Serverless Anwendung werden mithilfe von Deploymentframeworks gemindert. Die Aufnahme von 3.Anbieter ist deswegen notwendig. Es existieren bereits solche Hilfe wie z.B Serverlessframework@Ref
+
+Risiko:
+Entickler brauchen einen guten Testplan und eine gute DevOps Strategie.<- skills shortage
+
+\paragraph{Transaktionen}
 Transaktionen können nicht parallel ausgeführt werden. Sequenciel aka Messaging Pattern.
 Zusammenspiel Arch. interfaces prog.modell und FW
 Arch 1st -> def interfaces and interactions. to program to a inteface
@@ -858,11 +878,7 @@ Arch 1st -> def interfaces and interactions. to program to a inteface
 Eventual consistency -> event driven + ontology quality
 Consistenty -> koma-standalone <- transaction mgm
 
-Risiko:
-Entickler brauchen einen guten Testplan und eine gute DevOps Strategie.<- skills shortage
-
-Vorteile
-
+\paragraph{Vorteile}
 Automatische Skalierung <!-- größe und kleine Apps --> und Fehlertoleranz
 Automatisches Kapazitätsmanagement
 Flexible Ressourcenverwaltung
@@ -870,7 +886,9 @@ Schnelle Bereitstellung der Ressourcen
 Exakte nutzungsabhängige Abrechnung der Ressourcen
 Konzentration auf den Kern des Source-Codes
 
-Nachteile:
+
+\paragraph{Nachteile}
+
 
 SLA Service Level Agreement: Latency, Bank:High volume Transactions,
 Decentralisation of Services = Challenge = Overhead, time, energy <- orchestration of events.
@@ -884,29 +902,18 @@ local testing braucht event-symulation.json
 
 \chapter{Zusammenfassung und Ausblick}
 
+\paragraph{Zur Entwicklung}
+Die Starke Komponentisierung und Dezentralisierung von Software, die Variabilität von Programmiermodellen, Frameworks, Tools, -Sprachen und dessen Entwicklungsumgebung erhöht die Komplexität des Enwicklungscyklus und hervorhebt die Bedürfnis von Tools zur Automatisierung von Tests, Deployment und Konfiguration. Also ein wohldefiniertes Handlungsplan bei der Softwareentwicklung dass von der nicht zu bearbeitende Details abstrahiert. 
+Die DevOps Kultur spricht solche Probleme an. Neben dem Entwurf der Softwareachitekture  muss, um derer Umsetzung Zeitgemäß zu gewährleisten, eine zum Projekt passende DevOps Strategie.
+Um Vorteil von der neuen Technologien zu nehmen, ist die Recherche nach schon existierenden DevOps Frameworks besonders wichtig. Dessen Integration in der DevOps Strategie diene für Agile Entwicklung.
+
+\paragraph{Zum Datenmodel}
+Aus der Anforderungs analyse einer Informations Techonologie Web Anwendung sind die Builder, Texste und dessen Darstellung das ergebniss, dass ohne Daten inhaltlos wäre. Auf eine Seite Das Relationale Datenschema stellt keine Semantik für sich dar, sondern durch von der Software entstandene Verknüpfung zwischen dem Endergebnis und dem Datenschema. Auf der Anderen Seite die  RDF Daten einer Ontologie \textit{is} das Modell
+
+
 Docke container + Load Balancer
 als möglichkeit.
 
-
-Beispielhaftes Bild \autoref{fig:example-flame-graph}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.8\textwidth]{pics/example-flame-graph.eps}
-\caption{Beispiel Flame-Graph eines Node.js Skripts}
-\label{fig:example-flame-graph}
-\end{figure}
-
-Beispielhaftes Code-Snippet siehe \autoref{lst:sample}.
-
-\begin{lstlisting}[language=bash,caption={Aufnahme der \glqq real\grqq-Zeit},label={lst:sample}]
-START=$(date +%s.%N)
-node ${JS_FILE}
-END=$(date +%s.%N)
-DIFF=$(echo "$END - $START" | bc)
-\end{lstlisting}
-
-Hier kommt eine Bibliography-Referenz: \cite{booch2007object}
 
 \lstlistoflistings
 
@@ -940,14 +947,6 @@ Hier kommt eine Bibliography-Referenz: \cite{booch2007object}
 %Semantics: relationships between signifiers
 %De-notation: precise literal meaning of signifier
 %Con-notation: associated meanings of signifier
-
-\underline{Kompetenzanforderungen}. Sie legen fest, über welche Kompetenzen ein Schüler, eine Schülerin verfügen muss, wenn wichtige Ziele der Schule als erreicht gelten sollen. Systematisch geordnet werden diese Anforderungengen in Kompetenzmodellen, die Aspekte, Abstufungen und Entwicklungsverläufe von Kompetenzen darstellen.
-
-Nach Weinert (2001, S. 27f.) versteht man \textbf{Kompetenzen} als „die bei Individuen verfügbaren oder durch sie erlernbaren kognitiven Fähigkeiten und Fertigkeiten, um bestimmte Probleme zu lösen, sowie die damit verbundenen motivationalen, volitionalen und sozialen Bereitschaf-ten und Fähigkeiten, um die Problemlösungen in variablen Situationen erfolgreich und verantwortungsvoll nutzen zu können“
-
-Beispielsweise drückt sich die Kompetenz beim Erwerb einer Fremdsprache – wenn man kommunikative Handlungsfähigkeit als Bildungsziel vorgibt – darin aus, wie gut man kommu-nikative Situationen bewältigt, wie gut man Texteunterschiedlicher Art verstehen und selbst adressatengerecht Texte verfassen kann, aberunter anderem auch in der Fähigkeit, gram-matische Strukturen korrekt aufzubauen und bei Bedarf zu korrigieren, oder in der Fähigkeitund Bereitschaft, sich offen und akzeptierend mit anderen Kulturenauseinander zu setzen. Standards für das Fremdsprachenlernen müssen diese Teilkompetenzen darstellen und je-weils verschiedene Niveaustufenunterscheiden (vgl. Anlage a). Hierbei spielen nicht nurkognitive Wissensinhalte eineRolle;diese sind vielmehr– wie Weinert im obigen Zitat her-vorhebt und das zuletzt genannte Beispiel der sog. Interkulturellen Kompetenz besonders deutlich macht – mit Einstellungen, Werten und Motiven verknüpft.
-Kompetenzen spiegeln diegrundlegenden Handlungsanforderungen, denen Schülerinnen und Schüler in der Domäneausgesetzt sind. Durch vielfältige, flexible und variable Nutzung und zunehmende Vernetzungvon konkreten, bereichsbezogenen Kompetenzen können sich auch „Schlüsselkompetenzen“entwickeln, aber der Erwerb von Kompetenzen muss – wie Weinert (2001) hervorhebt – beim systematischen Aufbau von „intelligentem Wissen“ in einer Domäne beginnen.
-- Jede Kompetenzstufe ist durchkognitive Prozesse und Handlungen von bestimmterQualität spezifiziert, die Schüler auf dieser Stufe bewältigenkönnen, nicht aber Schüler auf niedrigeren Stufen. Zum Bildungsstandard gehört, dass für einzelne Jahrgänge festgelegtwird, welcheStufen die Schülerinnen und Schüler erreichen sollen.
 
 
 \begin{acronym}[Bash]
