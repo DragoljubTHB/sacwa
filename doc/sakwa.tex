@@ -323,7 +323,6 @@ A product is not a business\\
 And a business is not profits.\textquotedbl{}}}{
 Balaji S. Srinivasan }
 
-
 Die vorantreibende Aspekte solcher Zustandsmaschine sind die Ausführung/Umsetzung der Idee bis zum Produkt und derer Beziehung zum Markt. Deren Details sind jedoch unbekannt und variabel.
 
 Die Faktoren am Anfang einer technologischen Umsetzung einer Idee sind:
@@ -335,11 +334,6 @@ Die Faktoren am Anfang einer technologischen Umsetzung einer Idee sind:
 \item Profitability
 \end{itemize}
 
-Time-To-Market
-Kost of Human Resources:: Skill-shortage
-Prof of Concept
-Profitability
-
 
 \section{Motivation}
 
@@ -349,11 +343,9 @@ bei der Entscheidungen über deren Umsetzung hinsichtlich auf den Architekturent
 Schwierigkeiten die von spezialisierten Kompetenzen, Fertigkeiten und \glqq Know-How\grqq bedürfen.
 Gehören jedoch nicht immer zum Problem des Domäns der Anwendung.
 
-Um sich von diesem spezialisierten wissen aufzulösen wurde ...
-
 Für dieses Problem wurde \glqq FaaS\grqq als Lösung unter der Rubrik \glqq Serverless\grqq von den Hauptanbieter von \glqq Cloud\grqq Technologien vorgestellt.
 
-Im Rahmen des Cloud-Computing handelt es in dieser Arbeit um eine Untersuchung der Serverless Architekturen am Beispiel einer Konventionellen Webanwendung. Dabei wird besonders geachtet ob und wie solche Technologien die Umsetzung erleichtern. Die Entwurfsmuster und die Kernfunktionalität werden mit ausschließlich Serverless Technologien am Beispiel von KOMA mit AWS umgesetzt.
+Im Rahmen des Cloud-Computing handelt es sich in dieser Arbeit um eine Untersuchung der Serverless Architekturen am Beispiel einer Konventionellen Webanwendung. Dabei wird besonders geachtet ob und wie solche Technologien die Umsetzung erleichtern. Die Entwurfsmuster und die Kernfunktionalität werden mit ausschließlich Serverless Technologien am Beispiel von KOMA mit AWS umgesetzt.
 
 
 \section{Ziel}
@@ -369,7 +361,7 @@ Die Webanwendung soll möglichst für zukünftige Änderungen flexibel sein.
 \label{sec:layout}
 
 Zuerst wird den Leser in die Serverless \ref{sec:serverless} Technologien eingeführt, das Programmiermodell vorgestellt
-und die Entscheidungsprinzipien erläutert.
+und die Entscheidungsprinzipien\ref{par:serverless-principles} erläutert.
 Als Zweites wird KOMA \ref{sec:KOMA} als vorläufiges Beispielanwendung und deren Anforderungen vorgestellt.
 Nach dem Überblick, lässt sich die Umsetzung besser \glqq Bottom-Up\grqq verstehen.
 Am Ende wird es darüber diskutiert, welche TradeOffs entstehen und die Zukünftperspektiven von Serveless Technologien/ Architekturen.
@@ -411,7 +403,7 @@ Serverless versucht das System in Funktionen runter zu brechen und auf ihnen das
 Serverless ist ein @Glossar Web Dienst/Service von Cloud-Anbieter, wird auch als @Glossar FaaS bezeichnet. Welcher grundlegende Serverinfrastruktur vom Cloud-Anbieter wie Amazon Web Services verwaltet wird. Komplexe Probleme wie horizontale und vertikale Skalierbarkeit, Fehlertoleranz, Flexibilität werden von Kunden und Benutzer nur noch nach bedarf Konfiguriert.
 
 
-Prinzipien von Serverless Architeturen: \cite{sbarski2017serverless}
+Prinzipien\label{par:serverless-principles} von Serverless Architeturen: \cite{sbarski2017serverless}
 Rechen-Dienst dass, nach Anfrage isoliert, unabhängig und granular ausgeführt wird.
 SRP Single Responsability Prinzip: Funktionen werden dadurch mehr Testable/Prüfbar. Deren Vernetzung erlaubt komplexe Systeme zu entwerfen, die dank der Stateless Natur der Funktionen schnell zu skalieren sind.
 Diese Vernetzung kann durch einen Push-Based Event driven Pipe-line.
@@ -483,6 +475,8 @@ Ein Nutzungs-Fall aka. Use-Case:
 Die grundlegende Vorgehensweise bei der Umsetzung dieses Projekts wird Analyse, Entwurf, Implementierung und Test sein. Der Forschender Charakter dieses Projekts lässt sich nicht Testgetrieben implementieren.
 Das
 
+
+
 \section{Komponenten}
 
 Um dem Leser einen Anhaltspunkt zu verleihen, werden hier die Softwarekomponenten beschrieben.
@@ -496,7 +490,6 @@ lambda<convert/invoke> fuseki-server\label{komponenten:fuseki}
 
 nice: graphQL= json matcher over multiple DBs
 
-@Diagramm
 
 \section{Anforderungen Analyse}
 
@@ -729,7 +722,19 @@ subsumes & $\exists{Class} \equiv some Class$ \tabularnewline[\doublerulesep]
 \end{table}
 
 
-Um den Datenmodell möglichst simpel abzufragen wird zunächst dessen Schnittstelle\ref{sec:rest} definiert. 
+\paragraph{RDF}
+
+Die bisher erreichte Analyse des Domänsproblems soll nun anhand Protégé in einen RDF format beschrieben werden. Der Menschen lesbarsten RDF Format ist TURTLE. Seine Syntax besteht aus Triples mit \glqq .\grqq beendete Zeilen. Ein Triple stellt ein Fakt dar, un besteht aus einem Subjekt, einem Prätikat und einem Objekt. Diese können sich in TURTLE verschachteln das folgende Listing\ref{lst:turtle} zeigt.
+
+\begin{lstlisting}[language=SQL,caption={Darstellung von Triples in TURTLE},label={lst:turtle}]
+:EvidenceRecord rdf:type owl:Class .
+
+:actionPerformed rdf:type owl:ObjectProperty ;
+rdfs:domain :EvidenceSource ;
+rdfs:range :Action .
+\end{lstlisting}
+
+Um den Datenmodell möglichst simpel programmatisch abzufragen wird zunächst dessen Schnittstelle\ref{sec:rest} definiert. 
 
 \section{RESTful API}
 \label{sec:rest}
@@ -782,6 +787,8 @@ Unter der verfügbaren SparQL endpoints Implementierungen
 Um aus Ontologien Informationen zu entnehmen, wird die Abfragesprache \glqq SPARQL\grqq @Acro verwendet. 
 Diese ist ähnlich zu SQL. Mit dem Programm \glqq Protétegé\grqq können SPARQL Abfragen lokal ausgeführt werden.
 
+
+
 \begin{lstlisting}[language=Sparql]
 SELECT * WHERE { ?s ?p ?o .}
 ...
@@ -831,16 +838,20 @@ Die AWS Console lässt die Funktionen hochladen und konfigurieren, ohne nötige 
 <-- hier wegen JSON konfigurationene in AWS und un endliche fefehle in AWS cli erzählen ?? 
 excurs zu Serverless Frameworks 
 
-\section{UI-IT}
+\section{Single Page Application}
 
-Die Benutzeroberfläche soll im Browser realisiert werden. Initializr bietet die Erstellung einer konfigurierten Projektstruktur an. Es wird NodeJS als Laufzeitumgebung, NPM als Packetmanager, Bootstrap als Stylescheet und jQuery als Javascript-Bibliothek benutzt.
+Da KOMA ohne Vorkenntnisse gebrauchsfertig sein soll, mit dem Fakt dass Milliarden von Desktop Geräte die Web mit einem Browser erkundigen können, lässt sich die Entscheidung über die Art der Benutzeroberfläche leicht Treffen.
 
-Grund weshalb Statisch und S3::
+Die Web Anwendung ist für alle Rechenaufgaben verantwortlich die im Browser aus dem Sicherheitssichtpunkt kein Gefahr darstellen, um den Backend oder Servers möglichst wenig auszulasten. Deswegen bietet sich eine Single Page Application an. 
+Die SPA besteht aus ein einziges HTML Dokument. Dies vereinfacht man die Konfiguration der Authentifizierung und unterbricht den Fluss der UI-Darstellung zwischen Seiten.
 
-Die Webseite wird Statisch mittels S3 geliefert. Da der Zugriff auf die Datenspeicherung gesichert werden soll, wird die Login-Funktionalität hinzugefügt.@Ref Einloggen
-@Code webify bucket
+Ein konfiguriertes Anfangsprojekt/Quickstart kann mithilfe von Initializr\footnote{Initializr \url{http://www.initializr.com/}} oder JHipster\footnote{JHipster \url{http://www.jhipster.tech/}}. Für die lokale Entwicklung der Webseite werden anhand von NodeJS und NPM folgende Bibliotheken als Abhängigkeiten verwaltet: Bootstrap als Stylescheet und jQuery als Javascript-Bibliothek.
+Die Webseite wird Statisch mittels S3 geliefert. Dies geschieht mit einem Befehl: 
+\begin{lstlisting}[language=BASH, caption={Webseite veröffentlichen}]
+$ aws  --region us-west-2 s3 website --index-document index.html --error-document error.html 's3://koma.thb.de'
+\end{lstlisting} 
 
-
+Da der Zugriff auf die Datenspeicherung gesichert werden soll, wird die Login-Funktionalität hinzugefügt.
 
 \section{Einloggen}
 
