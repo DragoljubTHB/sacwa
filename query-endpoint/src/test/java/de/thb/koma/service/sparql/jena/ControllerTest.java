@@ -45,9 +45,19 @@ public class ControllerTest {
             "SELECT ?s WHERE {" +
             "    ?s rdf:type owl:Class ."+
             "}";
+
+    final String QUERY_03 = PREFIXES+
+            "SELECT ?cr WHERE {"+
+            " ?cr rdf:type koma:CompetencyRecord . \n"+
+            " ?comp koma:hasPerformanceIndicator ?perfIndic ."+
+            "}";
+
     private static Model mModel;
     @Before public void fetchModel(){
         mModel = getOntologyTurtle(uriKoma, rdfSyntax);
+    }
+    @Test public void exeq_query_01(){
+        exeq(QUERY_03, mModel);
     }
 
     @Test

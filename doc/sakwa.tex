@@ -744,7 +744,6 @@ Sparql ist auch ein Protokol
 
 \begin{lstlisting}[language=Sparql]
 SELECT * WHERE { ?s ?p ?o .}
-...
 \end{lstlisting}
 
 \begin{lstlisting}
@@ -753,7 +752,8 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX koma: <https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#>
 SELECT ?s ?p ?o WHERE {
-
+?y rdf:type owl:ObjectProperty .
+?x ?y koma:Alice .
 }
 \end{lstlisting}
 
@@ -767,9 +767,7 @@ Nach der Modellierung in Protégé wird die OWL Datei in einem S3 Bucket verpack
 			"Effect": "Allow",
 			"Action": "s3:*",
 			"Resource": "*"
-		}
-				]
-}
+		}]}
 \end{lstlisting}
 
 So dass auch die Benutzer von KOMA solche Abfragen stellen können wird ein \glqq Sparql-endpoint\grqq mit Hilfe von Apache Jena ARQ, ein Sparql-Engine, zur Verfügung gestellt. 
