@@ -129,11 +129,23 @@
 
                 <select multiple class="form-control" id="querySelectObject">
                     <option>Alice</option>
-                    <option>Bob</option>
+                    <option>recordedDate</option>
+                    <option>status</option>
+                    <option>confidenceRating</option>
                     <option>Math_I</option>
+                    <option>Math_Skill_II</option>
+                    <option>Math_Skill_I</option>
                     <option>Mathematik_III</option>
+                    <option>Mathematik_II</option>
+                    <option>Mathematik_I</option>
                     <option>Math_Ev_Src</option>
                     <option>Math_Ev_Res</option>
+                    <option>Math_COMP</option>
+                    <option>WebComputing</option>
+                    <option>Programmierung_III</option>
+                    <option>Programmierung_II</option>
+                    <option>Programmierung_I</option>
+                    <option>Programmierung_I</option>
                 </select>
             </form>
 
@@ -147,6 +159,7 @@
             <h3>Query templates</h3>
         </div>
         <div class="col-md-4">
+            <div id="template01Header" class="panel-header">On Subject</div>
             <div id="template01" class="panel-body">
                 SELECT ?propertyName ?propertyValue WHERE { koma:<span id="templateSpanText01">Competency</span> ?propertyName ?propertyValue . }
 
@@ -154,9 +167,11 @@
             <button id="templateButton01" type="button" class="btn-link">Query!</button>
         </div>
         <div class=" col-md-4">
+            <div id="template02Header" class="panel-header">On Predicate and Object</div>
             <div class="panel-body">
-                SELECT ?x ?y WHERE {
-                ?x koma:<span id="templateSpanText02"></span>  ?y .
+                SELECT ?x WHERE {
+                ?y koma:<span id="templateSpanText02"></span>  koma:<span id="templateSpanText021"></span> .
+                ?y koma:<span id="templateSpanText022"></span> ?x .
                 }
             </div>
             <button id="templateButton02"type="button" class="btn-link">Query!</button>
@@ -164,8 +179,36 @@
         <div class=" col-md-4">
             <div class="panel-body">
                 SELECT ?x ?y WHERE {
-                ?x ?y koma:<span id="templateSpanText03"></span>  .
-                }
+                <table class="table table-bordered table-hover" id="tab_logic">
+                    <thead>
+                    <tr >
+                        <th class="text-center">
+                            Subject
+                        </th>
+                        <th class="text-center">
+                            Predicate
+                        </th>
+                        <th class="text-center">
+                            Object
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr id='addr0'>
+                        <td>
+                            <input type="text" name='name0' class="form-control">sldkf
+                        </td>
+                        <td>
+                            <input type="text" name='mail0' placeholder='Mail' class="form-control"/>
+                        </td>
+                        <td>
+                            <input type="text" name='mobile0' placeholder='Mobile' class="form-control"/>
+                        </td>
+                    </tr>
+                    <tr id='addr1'></tr>
+                    </tbody>
+                </table>
+                <a id="add_row" class="btn link pull-left">Add Row</a><a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
             </div>
             <button id="templateButton03" type="button" class="btn-link">Query!</button>
         </div>

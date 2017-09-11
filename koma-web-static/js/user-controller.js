@@ -200,6 +200,12 @@ var userController = {
         this.uiElements.templateButton01.click(function (e) {
             executeQuery($('#template01').text());
         });
+        this.uiElements.templateButton02.click(function (e) {
+            executeQuery($('#template02').text());
+        });
+        this.uiElements.templateButton03.click(function (e) {
+            executeQuery($('#template03').text());
+        });
 
 
         function executeQuery(aQuery) {
