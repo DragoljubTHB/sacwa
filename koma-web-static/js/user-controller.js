@@ -177,13 +177,16 @@ var userController = {
             })
         });
         this.uiElements.querySelectButton.click(function (e) {
+            let sVar = $('#querySelectSubject').val();
             let query = "PREFIX owl: <http://www.w3.org/2002/07/owl#>" +
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" +
-                "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>";
-            query += "SELECT ?s ?p ?o ";
+                "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" +
+                "PREFIX koma: <https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#>";
+
+            query += "SELECT ?s ";
             query += "WHERE ";
             query += "{";
-            query += "?s rdf:type owl:Class .";
+            query += "?s rdf:type koma:"+ sVar +" .";
             query += "}";
 
             //query += $('#querySelectSubject'); // the type of the first variable

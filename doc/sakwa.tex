@@ -740,10 +740,21 @@ rdfs:range :Action .
 
 Um aus Ontologien Informationen zu entnehmen, wird die Abfragesprache \glqq SPARQL\grqq @Acro verwendet. 
 Diese ist ähnlich zu SQL. Mit dem Programm \glqq Protétegé\grqq können SPARQL Abfragen lokal ausgeführt werden.
+Sparql ist auch ein Protokol
 
 \begin{lstlisting}[language=Sparql]
 SELECT * WHERE { ?s ?p ?o .}
 ...
+\end{lstlisting}
+
+\begin{lstlisting}
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX koma: <https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#>
+SELECT ?s ?p ?o WHERE {
+
+}
 \end{lstlisting}
 
 Nach der Modellierung in Protégé wird die OWL Datei in einem S3 Bucket verpackt und dadurch deren Zugriffsrechte konfiguriert, so dass in Produktion nur eine berechtigte Anfrage z.B. von eine Lambda Funktion oder DynamoDB angenommen wird. 
