@@ -25,6 +25,7 @@ public class Controller {
         this.region = region;
     }
 
+
     public String executeQuery(String aQuery, String bucketKey) {
         String toClient;
         Model model = createModel(fetchS3Object(
@@ -36,24 +37,23 @@ public class Controller {
         ObjectMapper mapper = new ObjectMapper();
         QueryResultWithMap resultWithMap =
                 new QueryResultWithMap();
+        Map<String, String> yeah;
 
         Query query = QueryFactory.create(aQuery);
-        List<String> vars = query.getResultVars();
         try (QueryExecution qexec = QueryExecutionFactory.create(query, model)) {
-
-            Map<String, String> yeah = new LinkedHashMap<>();
-
 
             ResultSet results = qexec.execSelect();
             while (results.hasNext()) {
+                yeah = new LinkedHashMap<>();
+
                 QuerySolution soln = results.nextSolution();
 
-                vars.forEach(v -> {
+                for(String v : results.getResultVars()){
                     RDFNode node = soln.get(v);
                     yeah.put(v, node.isResource() ?
                             soln.getResource(v).getLocalName() :
                             soln.getLiteral(v).getString());
-                });
+                }
                 resultWithMap.getBody().add(yeah);
 
             }

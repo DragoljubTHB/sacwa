@@ -460,8 +460,8 @@ des Schulers folgen.
 Allgemeines Beispiel:
 
 Beispielsweise drückt sich die Kompetenz beim Erwerb einer Fremdsprache – wenn mankommunikative Handlungsfähigkeit als Bildungsziel vorgibt – darin aus, wie gut man kommu-nikative Situationen bewältigt, wie gut man Texteunterschiedlicher Art verstehen und selbst adressatengerecht Texte verfassen kann, aberunter anderem auch in der Fähigkeit, gram-matische Strukturen korrekt aufzubauen und bei Bedarf zu korrigieren, oder in der Fähigkeitund Bereitschaft, sich offen und akzeptierend mit anderen Kulturenauseinander zu setzen. Standards für das Fremdsprachenlernen müssen diese Teilkompetenzen darstellen und je-weils verschiedene Niveaustufenunterscheiden (vgl. Anlage a). Hierbei spielen nicht nurkognitive Wissensinhalte eineRolle;diese sind vielmehr– wie Weinert im obigen Zitat her-vorhebt und das zuletzt genannte Beispiel der sog. Interkulturellen Kompetenz besonders deutlich macht – mit Einstellungen, Werten und Motiven verknüpft.
-Kompetenzen spiegeln diegrundlegenden Handlungsanforderungen, denenSchülerinnen und Schüler in der Domäneausgesetzt sind. Durch vielfältige, flexible und variable Nutzung und zunehmende Vernetzungvon konkreten, bereichsbezogenen Kompetenzenkönnen sich auch „Schlüsselkompetenzen“entwickeln, aber der Erwerb von Kompetenzen muss – wie Weinert (2001) hervorhebt – beimsystematischen Aufbau von „intelligentem Wissen“ in einer Domäne beginnen.
-- Jede Kompetenzstufe ist durchkognitive Prozesse und Handlungen von bestimmterQualität spezifiziert, die Schüler auf dieser Stufe bewältigenkönnen, nicht aber Schüler auf niedrigeren Stufen. Zum Bildungsstandard gehört, dass für einzelne Jahrgänge festgelegtwird, welcheStufen die Schülerinnen und Schüler erreichen sollen.
+Kompetenzen spiegeln diegrundlegenden Handlungsanforderungen, denenSchülerinnen und Schüler in der Domäneausgesetzt sind. Durch vielfältige, flexible und variable Nutzung und zunehmende Vernetzungvon konkreten, bereichsbezogenen Kompetenzen können sich auch „Schlüsselkompetenzen“entwickeln, aber der Erwerb von Kompetenzen muss – wie Weinert (2001) hervorhebt – beim systematischen Aufbau von „intelligentem Wissen“ in einer Domäne beginnen.
+- Jede Kompetenzstufe ist durch kognitive Prozesse und Handlungen von bestimmter Qualität spezifiziert, die Schüler auf dieser Stufe bewältigen können, nicht aber Schüler auf niedrigeren Stufen. Zum Bildungsstandard gehört, dass für einzelne Jahrgänge festgelegt wird, welche Stufen die Schülerinnen und Schüler erreichen sollen.
 
 \paragraph{Use Case}
 Ein Nutzungs-Fall aka. Use-Case:
@@ -558,8 +558,9 @@ Die Ontologien werden in der OWL2 Spezifikation von W3C\footnote{WWW Consortium 
 	\label{fig:semantic-web-stack}
 \end{figure}
 
-\section{Ontologie}
+\section{Ontologie}{Konzeptuelle Modellierung}
 \label{subsec:ontology}
+
 %@Def
 Eine Ontologie ist eine formale Spezifikation über eine Konzeptualisierung\cite{OntoWhat}. Die Denotation jeweiliger dargestellten Signifikanten lässt sich durch seinen weltweit eindeutigen Präfix identifizieren. Deren Beziehungen können auch zu externen Ontologie-signifikanten verweisen und dadurch ein Consensus über Begrifflichkeiten. 
 
@@ -722,9 +723,9 @@ subsumes & $\exists{Class} \equiv some Class$ \tabularnewline[\doublerulesep]
 \end{table}
 
 
-\paragraph{RDF}
+\section{RDF}
 
-Die bisher erreichte Analyse des Domänsproblems soll nun anhand Protégé in einen RDF format beschrieben werden. Der Menschen lesbarsten RDF Format ist TURTLE. Seine Syntax besteht aus Triples mit \glqq .\grqq beendete Zeilen. Ein Triple stellt ein Fakt dar, un besteht aus einem Subjekt, einem Prätikat und einem Objekt. Diese können sich in TURTLE verschachteln das folgende Listing\ref{lst:turtle} zeigt.
+Die bisher erreichte Analyse des Domänsproblems soll nun anhand Protégé in einen RDF format beschrieben werden. Der Menschen lesbarsten RDF Format ist TURTLE. Seine Syntax besteht aus Triples mit \glqq .\grqq beendete Zeilen. Ein Triple stellt ein Fakt dar, un besteht aus einem Subjekt, einem Prätikat und einem Objekt. Diese können sich in TURTLE verschachteln wie das folgende Listing\ref{lst:turtle} zeigt.
 
 \begin{lstlisting}[language=SQL,caption={Darstellung von Triples in TURTLE},label={lst:turtle}]
 :EvidenceRecord rdf:type owl:Class .
@@ -733,6 +734,71 @@ Die bisher erreichte Analyse des Domänsproblems soll nun anhand Protégé in ei
 rdfs:domain :EvidenceSource ;
 rdfs:range :Action .
 \end{lstlisting}
+
+
+\section{Sparql}
+
+Um aus Ontologien Informationen zu entnehmen, wird die Abfragesprache \glqq SPARQL\grqq @Acro verwendet. 
+Diese ist ähnlich zu SQL. Mit dem Programm \glqq Protétegé\grqq können SPARQL Abfragen lokal ausgeführt werden.
+
+\begin{lstlisting}[language=Sparql]
+SELECT * WHERE { ?s ?p ?o .}
+...
+\end{lstlisting}
+
+Nach der Modellierung in Protégé wird die OWL Datei in einem S3 Bucket verpackt und dadurch deren Zugriffsrechte konfiguriert, so dass in Produktion nur eine berechtigte Anfrage z.B. von eine Lambda Funktion oder DynamoDB angenommen wird. 
+
+\begin{lstlisting}
+{
+"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": "s3:*",
+			"Resource": "*"
+		}
+				]
+}
+\end{lstlisting}
+
+So dass auch die Benutzer von KOMA solche Abfragen stellen können wird ein \glqq Sparql-endpoint\grqq mit Hilfe von Apache Jena ARQ, ein Sparql-Engine, zur Verfügung gestellt. 
+%Fuseki ist ein Server zur Verwaltung von Sparqlabfragen und deren Transaktionen. @Cite CRUD und ACID RDB in sparql.
+%Fuseki wird Embedded benutzt.
+Dieser Sparql-Endpoint entspricht der Repositoryschicht der Anwendung und wird nach Anfrage von der Ontologie in S3 mittels Sparql JSON Objekte zurückliefern.
+Eine Lambdafunktion arbeitet als Schnittstelle \ref{lst:lambda-interface} zwischen die ARQ Bibliothek, den Client und die darunterliegende Infrastruktur.
+
+\begin{lstlisting}[language=Java,caption={Schnittstele Lambda},label={lst:lambda-interface}]
+public class Handler implements RequestHandler<RequestClass, String> {
+
+@Override
+public String handleRequest(RequestClass input, Context context) {
+	return new Controller(System.getenv(ENV_BUCKET)
+						  , Regions.US_WEST_2.getName())
+								.executeQuery(request.getQuery()
+								, request.getBucketKey());
+	}
+
+}
+
+\end{lstlisting}
+
+Um sich von die durch Lambda entstandene Abhängigkeit möglichst entkoppelt\cite{FlowerRefactoring} zu halten, wird das Modul von Jena-ARQ nur als externe Abhängigkeit des Lambdaprojektes zugewisen.
+Die AWS Lambda stellt eine Interface zur Verfügung und der Nutzer die zu benutzende Bibliotheken zusammen in eine JAR Datei verpackt. Dem entsprechend wird der Buildscript von Gradle\cite{Muschko2014} angepasst\ref{lst:gradle}. 
+
+\begin{lstlisting}[language=Groovy,caption={Abhängigkeitenverwaltung für Lambda in Java},label={lst:gradle}]
+plugins {
+	id 'com.github.johnrengelman.shadow' version '2.0.1'
+	id 'java'
+}
+shadowJar {
+	mergeServiceFiles()
+}
+...
+$ gradle clean build shadowJar
+\end{lstlisting}
+
+Die AWS Console lässt die Funktionen hochladen und konfigurieren, ohne nötige Kenntnisse von der AWS-CLI. Zusätzlich muss der RESTful Pfad auf die verantwortliche Funktion in API Gateway zugewiesen werden. 
+
 
 Um den Datenmodell möglichst simpel programmatisch abzufragen wird zunächst dessen Schnittstelle\ref{sec:rest} definiert. 
 
@@ -782,57 +848,6 @@ Unter der verfügbaren SparQL endpoints Implementierungen
 
 
 
-\section{Repository}
-
-Um aus Ontologien Informationen zu entnehmen, wird die Abfragesprache \glqq SPARQL\grqq @Acro verwendet. 
-Diese ist ähnlich zu SQL. Mit dem Programm \glqq Protétegé\grqq können SPARQL Abfragen lokal ausgeführt werden.
-
-
-
-\begin{lstlisting}[language=Sparql]
-SELECT * WHERE { ?s ?p ?o .}
-...
-\end{lstlisting}
-
-Nach der Modellierung in Protégé wird die OWL Datei in einem S3 Bucket verpackt und dadurch deren Zugriffsrechte konfiguriert, so dass nur eine berechtigte Anfrage z.B. von eine Lambda Funktion oder DynamoDB angenommen wird.
-
-So dass auch die Benutzer von KOMA solche Abfragen stellen können wird ein \glqq Sparql-endpoint\grqq mit Hilfe von Apache Jena ARQ, ein Sparql-Engine, zur Verfügung gestellt. 
-%Fuseki ist ein Server zur Verwaltung von Sparqlabfragen und deren Transaktionen. @Cite CRUD und ACID RDB in sparql.
-%Fuseki wird Embedded benutzt.
-Dieser Sparql-Endpoint entspricht der Repositoryschicht der Anwendung und wird nach Anfrage von der Ontologie in S3 mittels Sparql JSON Objekte zurückliefern.
-Eine Lambdafunktion arbeitet als Schnittstelle \ref{lst:lambda-interface} zwischen die ARQ Bibliothek, den Client und die darunterliegende Infrastruktur.
-
-\begin{lstlisting}[language=Java,caption={Schnittstele Lambda},label={lst:lambda-interface}]
-public class Handler implements RequestHandler<RequestClass, String> {
-
-@Override
-public String handleRequest(RequestClass input, Context context) {
-	return new Controller(System.getenv(ENV_BUCKET)
-						  , Regions.US_WEST_2.getName())
-								.executeQuery(request.getQuery()
-								, request.getBucketKey());
-	}
-
-}
-
-\end{lstlisting}
-
-Um sich von die durch Lambda entstandene Abhängigkeit möglichst entkoppelt\cite{FlowerRefactoring} zu halten, wird das Modul von Jena-ARQ nur als externe Abhängigkeit des Lambdaprojektes zugewisen.
-Die AWS Lambda stellt eine Interface zur Verfügung und der Nutzer die zu benutzende Bibliotheken zusammen in eine JAR Datei verpackt. Dem entsprechend wird der Buildscript von Gradle\cite{Muschko2014} angepasst\ref{lst:gradle}. 
-
-\begin{lstlisting}[language=Groovy,caption={Abhängigkeitenverwaltung für Lambda in Java},label={lst:gradle}]
-plugins {
-	id 'com.github.johnrengelman.shadow' version '2.0.1'
-	id 'java'
-}
-shadowJar {
-	mergeServiceFiles()
-}
-...
-$ gradle clean build shadowJar
-\end{lstlisting}
-
-Die AWS Console lässt die Funktionen hochladen und konfigurieren, ohne nötige Kenntnisse von der AWS-CLI. Zusätzlich muss der RESTful Pfad auf die verantwortliche Funktion in API Gateway zugewiesen werden. 
 
 \section{DevOps}
 <-- hier wegen JSON konfigurationene in AWS und un endliche fefehle in AWS cli erzählen ?? 

@@ -1,0 +1,562 @@
+@prefix : <https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl> .
+
+<https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl> rdf:type owl:Ontology ;
+                                                                       owl:versionIRI <https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl/1.0.0> ;
+                                                                       owl:imports <http://www.w3.org/2004/02/skos/core> .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#actionPerformed
+:actionPerformed rdf:type owl:ObjectProperty ;
+                 rdfs:domain :EvidenceSource ;
+                 rdfs:range :Action .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#artifactProduced
+:artifactProduced rdf:type owl:ObjectProperty ;
+                  rdfs:domain :EvidenceSource ;
+                  rdfs:range :Resource .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#associatedActor
+:associatedActor rdf:type owl:ObjectProperty ;
+                 rdfs:domain :CompetencyRecord ;
+                 rdfs:range :Actor .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#associatedCompetency
+:associatedCompetency rdf:type owl:ObjectProperty ;
+                      rdfs:domain :CompetencyRecord ;
+                      rdfs:range :Competency .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#associatedEvidenceRecord
+:associatedEvidenceRecord rdf:type owl:ObjectProperty ;
+                          rdfs:domain :CompetencyRecord ;
+                          rdfs:range :EvidenceRecord .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#consistsOf
+:consistsOf rdf:type owl:ObjectProperty ;
+            rdfs:domain :CompetencyModel ,
+                        :ProficiencyScale ;
+            rdfs:range :Competency ,
+                       :ProficiencyLevel .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#creator
+:creator rdf:type owl:ObjectProperty ;
+         rdfs:domain :CompetencyRecord ;
+         rdfs:range :Actor .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#evidenceSource
+:evidenceSource rdf:type owl:ObjectProperty ;
+                rdfs:domain :CompetencyRecord ;
+                rdfs:range :EvidenceSource .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#hasAction
+:hasAction rdf:type owl:ObjectProperty ;
+           rdfs:domain :Sequence ;
+           rdfs:range :Action .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#hasCompetency
+:hasCompetency rdf:type owl:ObjectProperty ;
+               rdfs:domain :CompetencyProfileElement ;
+               rdfs:range :Competency .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#hasCompetencyProfileElement
+:hasCompetencyProfileElement rdf:type owl:ObjectProperty ;
+                             rdfs:domain :CompetencyProfile ;
+                             rdfs:range :CompetencyProfileElement .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#hasContext
+:hasContext rdf:type owl:ObjectProperty ;
+            rdfs:domain :Competency ;
+            rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#hasKnowledge
+:hasKnowledge rdf:type owl:ObjectProperty ;
+              rdfs:domain :Competency ;
+              rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#hasPerformanceIndicator
+:hasPerformanceIndicator rdf:type owl:ObjectProperty ;
+                         rdfs:domain :Competency ;
+                         rdfs:range :PerformanceIndicator .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#hasProficiencyLevel
+:hasProficiencyLevel rdf:type owl:ObjectProperty ;
+                     rdfs:domain :Competency ;
+                     rdfs:range :ProficiencyLevel .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#hasSequence
+:hasSequence rdf:type owl:ObjectProperty ;
+             rdfs:domain :LV ;
+             rdfs:range :Sequence .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#hasSkill
+:hasSkill rdf:type owl:ObjectProperty ;
+          rdfs:domain :Competency ;
+          rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#isComposedOf
+:isComposedOf rdf:type owl:ObjectProperty ;
+              rdfs:domain :Competency ;
+              rdfs:range [ rdf:type owl:Restriction ;
+                           owl:onProperty :isComposedOf ;
+                           owl:someValuesFrom :Competency
+                         ] .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#isHigherThan
+:isHigherThan rdf:type owl:ObjectProperty ;
+              rdfs:domain :ProficiencyLevel ;
+              rdfs:range :ProficiencyLevel .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#name
+:name rdf:type owl:ObjectProperty ;
+      rdfs:domain :Competency .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#owner
+:owner rdf:type owl:ObjectProperty ;
+       rdfs:range :Learner .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#requires
+:requires rdf:type owl:ObjectProperty ;
+          rdfs:domain :Competency ;
+          rdfs:range :Competency .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#similarTo
+:similarTo rdf:type owl:ObjectProperty ;
+           rdfs:domain :Competency ;
+           rdfs:range :Competency .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#statement
+:statement rdf:type owl:ObjectProperty ;
+           rdfs:domain :Competency .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#subsumes
+:subsumes rdf:type owl:ObjectProperty ;
+          rdfs:domain :Competency ;
+          rdfs:range [ rdf:type owl:Restriction ;
+                       owl:onProperty :subsumes ;
+                       owl:allValuesFrom :Competency
+                     ] .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#confidenceRating
+:confidenceRating rdf:type owl:DatatypeProperty ;
+                  rdfs:range xsd:float .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#recordedDate
+:recordedDate rdf:type owl:DatatypeProperty ;
+              rdfs:range xsd:dateTime .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#status
+:status rdf:type owl:DatatypeProperty ;
+        rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.w3.org/2002/07/owl#DataTypeProperty
+owl:DataTypeProperty rdf:type owl:Class .
+
+
+###  http://www.w3.org/2004/02/skos/core#Concept
+<http://www.w3.org/2004/02/skos/core#Concept> rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Action
+:Action rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Activity
+:Activity rdf:type owl:Class ;
+          rdfs:subClassOf :Action .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Actor
+:Actor rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Autonomy
+:Autonomy rdf:type owl:Class ;
+          rdfs:subClassOf :PerformanceIndicator .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Competency
+:Competency rdf:type owl:Class ;
+            <http://purl.org/dc/terms/creator> "" ;
+            rdfs:comment "owl:equivalentClass ; [ owl:unionOf ( :skill :knowledge :context ) ] ." .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#CompetencyModel
+:CompetencyModel rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#CompetencyProfile
+:CompetencyProfile rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#CompetencyProfileElement
+:CompetencyProfileElement rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#CompetencyRecord
+:CompetencyRecord rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Complexity
+:Complexity rdf:type owl:Class ;
+            rdfs:subClassOf :PerformanceIndicator .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Course
+:Course rdf:type owl:Class ;
+        owl:equivalentClass :LV ;
+        rdfs:subClassOf :Activity .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Evaluation
+:Evaluation rdf:type owl:Class ;
+            rdfs:subClassOf :Activity .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#EvidenceRecord
+:EvidenceRecord rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#EvidenceSource
+:EvidenceSource rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Familiarity
+:Familiarity rdf:type owl:Class ;
+             rdfs:subClassOf :PerformanceIndicator .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Frequency
+:Frequency rdf:type owl:Class ;
+           rdfs:subClassOf :PerformanceIndicator .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#LV
+:LV rdf:type owl:Class ;
+    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                      owl:onProperty :hasSequence ;
+                      owl:allValuesFrom :Sequence
+                    ] .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Learner
+:Learner rdf:type owl:Class ;
+         rdfs:subClassOf :Actor .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#PerformanceIndicator
+:PerformanceIndicator rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Plan
+:Plan rdf:type owl:Class ;
+      rdfs:subClassOf :Action .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#ProficiencyLevel
+:ProficiencyLevel rdf:type owl:Class ;
+                  rdfs:comment "Bezugsnormorientierung: Criterial:" .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#ProficiencyScale
+:ProficiencyScale rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Resource
+:Resource rdf:type owl:Class .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Scope
+:Scope rdf:type owl:Class ;
+       rdfs:subClassOf :PerformanceIndicator .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Sequence
+:Sequence rdf:type owl:Class ;
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasAction ;
+                            owl:allValuesFrom :Action
+                          ] .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Alice
+:Alice rdf:type owl:NamedIndividual ,
+                :Learner .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#BSRN
+:BSRN rdf:type owl:NamedIndividual ,
+               :LV .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Bob
+:Bob rdf:type owl:NamedIndividual ,
+              :Learner .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Charlie
+:Charlie rdf:type owl:NamedIndividual ,
+                  :Learner .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_C
+:Math_C rdf:type owl:NamedIndividual ,
+                 :Competency .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_COMP
+:Math_COMP rdf:type owl:NamedIndividual ,
+                    :Competency ;
+           :hasKnowledge :Math_Know_I ;
+           :hasSkill :Math_Skill_I ,
+                     :Math_Skill_II ;
+           :isComposedOf :Math_C ,
+                         :Math_M ,
+                         :Math_O ,
+                         :Math_P .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_CRec
+:Math_CRec rdf:type owl:NamedIndividual ,
+                    :CompetencyRecord ;
+           :associatedActor :Alice ;
+           :associatedCompetency :Math_COMP ;
+           :associatedEvidenceRecord :Math_Ev_Rec ;
+           :creator :Alice .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_Ev_Rec
+:Math_Ev_Rec rdf:type owl:NamedIndividual ,
+                      :EvidenceRecord ;
+             :creator :Alice ;
+             :evidenceSource :Math_Ev_Src ;
+             :owner :Alice ;
+             :confidenceRating "99.99"^^xsd:float .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_Ev_Src
+:Math_Ev_Src rdf:type owl:NamedIndividual ,
+                      :EvidenceSource ;
+             :actionPerformed :Math_I_Seq_I_Act_I .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_I
+:Math_I rdf:type owl:NamedIndividual ,
+                 :Competency .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_II_Seq_I
+:Math_II_Seq_I rdf:type owl:NamedIndividual ,
+                        :Sequence .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_II_Seq_II
+:Math_II_Seq_II rdf:type owl:NamedIndividual ,
+                         :Sequence .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_II_Seq_III
+:Math_II_Seq_III rdf:type owl:NamedIndividual ,
+                          :Sequence .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_I_Seq_I
+:Math_I_Seq_I rdf:type owl:NamedIndividual ,
+                       :Sequence ;
+              :hasSequence :Math_I_Seq_I .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_I_Seq_II
+:Math_I_Seq_II rdf:type owl:NamedIndividual ,
+                        :Sequence .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_I_Seq_III
+:Math_I_Seq_III rdf:type owl:NamedIndividual ,
+                         :Sequence .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_I_Seq_I_Act_I
+:Math_I_Seq_I_Act_I rdf:type owl:NamedIndividual ,
+                             :Action .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_I_Seq_I_Act_II
+:Math_I_Seq_I_Act_II rdf:type owl:NamedIndividual ,
+                              :Action .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_K_I
+:Math_K_I rdf:type owl:NamedIndividual ,
+                   :Competency .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_K_II
+:Math_K_II rdf:type owl:NamedIndividual ,
+                    :Competency .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_K_III
+:Math_K_III rdf:type owl:NamedIndividual ,
+                     :Competency .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_K_IV
+:Math_K_IV rdf:type owl:NamedIndividual ,
+                    :Competency .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_K_V
+:Math_K_V rdf:type owl:NamedIndividual ,
+                   :Competency .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_K_VI
+:Math_K_VI rdf:type owl:NamedIndividual ,
+                    :Competency ;
+           :hasKnowledge :Math_Know_II ;
+           :subsumes [ ] .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_Know_I
+:Math_Know_I rdf:type owl:NamedIndividual ,
+                      <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_Know_II
+:Math_Know_II rdf:type owl:NamedIndividual ,
+                       <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_M
+:Math_M rdf:type owl:NamedIndividual ,
+                 :Competency .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_O
+:Math_O rdf:type owl:NamedIndividual ,
+                 :Competency .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_P
+:Math_P rdf:type owl:NamedIndividual ,
+                 :Competency .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_Skill_I
+:Math_Skill_I rdf:type owl:NamedIndividual ,
+                       <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Math_Skill_II
+:Math_Skill_II rdf:type owl:NamedIndividual ,
+                        <http://www.w3.org/2004/02/skos/core#Concept> .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Mathematik_I
+:Mathematik_I rdf:type owl:NamedIndividual ,
+                       :LV ;
+              :hasAction :Math_I_Seq_I_Act_I .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Mathematik_II
+:Mathematik_II rdf:type owl:NamedIndividual ,
+                        :LV .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Mathematik_III
+:Mathematik_III rdf:type owl:NamedIndividual ,
+                         :LV .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Programmierung_I
+:Programmierung_I rdf:type owl:NamedIndividual ,
+                           :LV .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Programmierung_II
+:Programmierung_II rdf:type owl:NamedIndividual ,
+                            :LV .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#Programmierung_III
+:Programmierung_III rdf:type owl:NamedIndividual ,
+                             :LV .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#WebComputing
+:WebComputing rdf:type owl:NamedIndividual ,
+                       :LV .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#confidenceRating
+:confidenceRating rdf:type owl:NamedIndividual ,
+                           owl:DataTypeProperty .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#recordedDate
+:recordedDate rdf:type owl:NamedIndividual ,
+                       owl:DataTypeProperty .
+
+
+###  https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#status
+:status rdf:type owl:NamedIndividual ,
+                 owl:DataTypeProperty .
+
+
+###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi

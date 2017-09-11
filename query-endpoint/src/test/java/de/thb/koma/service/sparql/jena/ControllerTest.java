@@ -10,6 +10,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.sparql.core.Var;
 import org.apache.jena.util.FileManager;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
@@ -21,31 +22,61 @@ import java.util.Map;
 
 public class ControllerTest {
     final String uriKoma = "https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl";
+    //final String uriKoma = "koma-complex.owl";
     final String rdfSyntax = "TURTLE";
+    final String PREFIXES ="" +
+            "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" +
+            "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+            "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+            "PREFIX koma: <https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#>\n" +
+            "\n" ;
+    final String QUERY_00 = "" +
+            "SELECT * WHERE { " +
+            "    ?s ?p ?o ." +
+            "}";
+    final String QUERY_01 = PREFIXES+
+            "SELECT ?s  WHERE {\n" +
+            "\n" +
+            "\t?s rdf:type koma:Competency .\n" +
+            "\n" +
+            "}";
+
+    final String QUERY_02 = PREFIXES+
+            "SELECT ?s WHERE {" +
+            "    ?s rdf:type owl:Class ."+
+            "}";
+    private static Model mModel;
+    @Before public void fetchModel(){
+        mModel = getOntologyTurtle(uriKoma, rdfSyntax);
+    }
 
     @Test
-    public void query_owl() {
-        Model model = getOntologyTurtle(uriKoma, rdfSyntax);
-        String queryString = "" +
-                "SELECT * WHERE { " +
-                "    ?s ?p ?o ." +
-                "}";
+    public void exeq_query_00(){
+        exeq(QUERY_00, mModel);
+        exeq(QUERY_01, mModel);
+        exeq(QUERY_02, mModel);
+    }
+
+
+    private void exeq(String aQuery, Model aModel) {
         ObjectMapper mapper = new ObjectMapper();
         QueryResultWithMap ba = new QueryResultWithMap();
-        Map<String, String> ng = new LinkedHashMap<>();
-        Query query = QueryFactory.create(queryString);
-        try (QueryExecution qexec = QueryExecutionFactory.create(query, model)) {
+        Map<String, String> ng;
+        Query query = QueryFactory.create(aQuery);
+        try (QueryExecution qexec = QueryExecutionFactory.create(query, aModel)) {
             ResultSet results = qexec.execSelect();
 
             results.getResultVars().forEach(System.out::println);
             while (results.hasNext()) {
+                ng = new LinkedHashMap<>();
                 QuerySolution soln = results.nextSolution();
-                results.getResultVars().forEach(v -> {
+
+                for(String v : results.getResultVars()){
                     RDFNode node = soln.get(v);
                     ng.put(v, node.isResource() ?
                             soln.getResource(v).getLocalName() :
                             soln.getLiteral(v).getString());
-                });
+                }
                 ba.getBody().add(ng);
 
                 //QuerySolution soln = results.nextSolution();
@@ -57,6 +88,7 @@ public class ControllerTest {
                 //Literal name = soln.getLiteral("comp");
                 //System.out.println(name);
             }
+            ba.getBody().forEach(System.out::println);
             mapper.writeValue(new FileOutputStream("res.json"), ba);
         } catch (JsonGenerationException e) {
             e.printStackTrace();

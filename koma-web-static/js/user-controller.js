@@ -11,7 +11,8 @@ var userController = {
         profileImage: null,
         selectEntityMultipleButton: null,
         sparqlNativeQueryButton: null,
-        feedbackButton: null
+        feedbackButton: null,
+        querySelectButton
     },
     init: function (config) {
         var that = this;
@@ -24,6 +25,7 @@ var userController = {
         this.uiElements.selectEntityMultipleButton = $('#selectEntityMultipleButton');
         this.uiElements.sparqlNativeQueryButton = $('#sparqlNativeQueryButton');
         this.uiElements.feedbackButton = $('#feedbackButton');
+        this.uiElements.querySelectButton = $('#querySelectButton');
 
         this.data.config = config;
         this.data.auth0Lock = new Auth0Lock(config.auth0.clientId, config.auth0.domain);
@@ -173,6 +175,51 @@ var userController = {
                     });
                 });
             })
+        });
+        this.uiElements.querySelectButton.click(function (e) {
+            let query = "PREFIX owl: <http://www.w3.org/2002/07/owl#>" +
+                "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" +
+                "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>";
+            query += "SELECT ?s ?p ?o ";
+            query += "WHERE ";
+            query += "{";
+            query += "?s rdf:type owl:Class .";
+            query += "}";
+
+            //query += $('#querySelectSubject'); // the type of the first variable
+            let reqBody = {};
+            reqBody.bucketKey = "koma-complex.owl";
+            reqBody.query = query;
+            const url = that.data.config.apiBaseUrl + '/sparql';
+            $.ajax({
+                url: url,
+                dataType: 'json',
+                type: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify(reqBody),
+                processData: false,
+                success: function (data, textStatus, jQxhr) {
+                    let table = $('#table');
+
+                    $(function () {
+                        const parsedData = JSON.parse(data);
+                        let columns = buildTableHeaders(parsedData['body'][0]);
+
+                        table.bootstrapTable('destroy');
+                        table.bootstrapTable({
+                            columns: columns,
+                            data: parsedData['body']
+                        });
+                    });
+                },
+                error: function (jqXhr, textStatus, errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+
+
+
+            console.log(query)
         });
 
         /**
