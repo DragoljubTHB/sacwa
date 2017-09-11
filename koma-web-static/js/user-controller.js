@@ -18,6 +18,7 @@ var userController = {
         templateButton03: null,
         sparqlNativeQueryButton: null,
         feedbackButton: null,
+        addRowButton02: null
     },
     init: function (config) {
         var that = this;
@@ -36,6 +37,7 @@ var userController = {
         this.uiElements.templateButton01 = $('#templateButton01');
         this.uiElements.templateButton02 = $('#templateButton02');
         this.uiElements.templateButton03 = $('#templateButton03');
+        this.uiElements.addRowButton02 = $('#addRowButton02');
 
 
         this.data.config = config;
@@ -206,10 +208,29 @@ var userController = {
         this.uiElements.templateButton03.click(function (e) {
             executeQuery($('#template03').text());
         });
+        this.uiElements.addRowButton02.click(function (e) {
+           addRow()
+        });
 
+        function addRow(tableId, rowId, row){
+            let table = $('table02');
+
+            table.bootstrapTable('insertRow', {
+                index: 0,
+                row: {
+                    subject: "sub",
+                    predicate: "pred",
+                    object: "obj"
+                }
+            });
+        }
+        function deleteRow() {
+
+
+        }
 
         function executeQuery(aQuery) {
-
+            "use strict";
             let query = "PREFIX owl: <http://www.w3.org/2002/07/owl#>" +
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" +
                 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" +
