@@ -128,16 +128,16 @@
                 <label for="querySelectObject">Object</label>
 
                 <select multiple class="form-control" id="querySelectObject">
-                    <option>Competency</option>
-                    <option>CompetencyRecord</option>
+                    <option>Alice</option>
+                    <option>Bob</option>
                     <option>Math_I</option>
-                    <option>isComposedOf</option>
-                    <option>Course</option>
+                    <option>Mathematik_III</option>
+                    <option>Math_Ev_Src</option>
+                    <option>Math_Ev_Res</option>
                 </select>
             </form>
 
         </div>
-        <button type="button" id="querySelectButton" class="btn btn-primary">Guess What...</button>
     </div>
 </div>
 <div>
@@ -147,25 +147,27 @@
             <h3>Query templates</h3>
         </div>
         <div class="col-md-4">
-            <div class="panel-body">
-                SELECT ?x ?y WHERE {
-                koma:Competency ?x ?y . }
+            <div id="template01" class="panel-body">
+                SELECT ?propertyName ?propertyValue WHERE { koma:<span id="templateSpanText01">Competency</span> ?propertyName ?propertyValue . }
 
             </div>
+            <button id="templateButton01" type="button" class="btn-link">Query!</button>
         </div>
         <div class=" col-md-4">
             <div class="panel-body">
                 SELECT ?x ?y WHERE {
-                koma:Competency ?x ?y .
+                ?x koma:<span id="templateSpanText02"></span>  ?y .
                 }
             </div>
+            <button id="templateButton02"type="button" class="btn-link">Query!</button>
         </div>
         <div class=" col-md-4">
             <div class="panel-body">
                 SELECT ?x ?y WHERE {
-                koma:Competency ?x ?y .
+                ?x ?y koma:<span id="templateSpanText03"></span>  .
                 }
             </div>
+            <button id="templateButton03" type="button" class="btn-link">Query!</button>
         </div>
     </div>
 </div>

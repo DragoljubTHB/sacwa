@@ -10,9 +10,14 @@ var userController = {
         profileNameLabel: null,
         profileImage: null,
         selectEntityMultipleButton: null,
+        querySelectSubject: null,
+        querySelectPredicate: null,
+        querySelectObject: null,
+        templateButton01: null,
+        templateButton02: null,
+        templateButton03: null,
         sparqlNativeQueryButton: null,
         feedbackButton: null,
-        querySelectButton
     },
     init: function (config) {
         var that = this;
@@ -25,7 +30,13 @@ var userController = {
         this.uiElements.selectEntityMultipleButton = $('#selectEntityMultipleButton');
         this.uiElements.sparqlNativeQueryButton = $('#sparqlNativeQueryButton');
         this.uiElements.feedbackButton = $('#feedbackButton');
-        this.uiElements.querySelectButton = $('#querySelectButton');
+        this.uiElements.querySelectSubject = $('#querySelectSubject');
+        this.uiElements.querySelectPredicate = $('#querySelectPredicate');
+        this.uiElements.querySelectObject = $('#querySelectObject');
+        this.uiElements.templateButton01 = $('#templateButton01');
+        this.uiElements.templateButton02 = $('#templateButton02');
+        this.uiElements.templateButton03 = $('#templateButton03');
+
 
         this.data.config = config;
         this.data.auth0Lock = new Auth0Lock(config.auth0.clientId, config.auth0.domain);
@@ -176,18 +187,30 @@ var userController = {
                 });
             })
         });
-        this.uiElements.querySelectButton.click(function (e) {
-            let sVar = $('#querySelectSubject').val();
+
+        this.uiElements.querySelectSubject.click(function (e) {
+            $('#templateSpanText01').text($('#querySelectSubject').val())
+        });
+        this.uiElements.querySelectPredicate.click(function (e) {
+            $('#templateSpanText02').text($('#querySelectPredicate').val())
+        });
+        this.uiElements.querySelectObject.click(function (e) {
+            $('#templateSpanText03').text($('#querySelectObject').val())
+        });
+        this.uiElements.templateButton01.click(function (e) {
+            executeQuery($('#template01').text());
+        });
+
+
+        function executeQuery(aQuery) {
+
             let query = "PREFIX owl: <http://www.w3.org/2002/07/owl#>" +
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" +
                 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" +
                 "PREFIX koma: <https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#>";
 
-            query += "SELECT ?s ";
-            query += "WHERE ";
-            query += "{";
-            query += "?s rdf:type koma:"+ sVar +" .";
-            query += "}";
+            query += "\n";
+            query += aQuery;
 
             //query += $('#querySelectSubject'); // the type of the first variable
             let reqBody = {};
@@ -223,7 +246,7 @@ var userController = {
 
 
             console.log(query)
-        });
+        };
 
         /**
          *
