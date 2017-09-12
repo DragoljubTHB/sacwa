@@ -598,6 +598,7 @@ Die Ausführung von Abfragen auf die Ontologie wird direkt mithilfe von \glqq Je
 
 Um die Neuerfindung des Rades zu vermeiden, die Recherche ergab einen aktuell öffentlichen graphischen ontologischen Entwurf\cite{OntoMoodle} siehe\ref{fig:competence-ontology} der in Moodle mit eine Relationalen Datenbasis und PHP umgesetzt. Nach dessen Ontologien wurde mittels Watson\footnote{Watson \url{http://watson.kmi.open.ac.uk/WatsonWUI/}} und LOD\footnote{LOD Cloud \url{http://lod-cloud.net/}} nichts öffentlich gefunden. 
 
+
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\linewidth]{pics/competency-ontology.png}
@@ -606,6 +607,7 @@ Um die Neuerfindung des Rades zu vermeiden, die Recherche ergab einen aktuell ö
 \end{figure}
 
 Bei der Analyse lässt der Entwurf und dessen Dokumentation freie Interpretation über Begriffe und deren Zweck, beispiele davon sind \glqq isComposedOf\grqq, \glqq subsumes\grqq. Ein Standard zur graphischen Darstellung ist zur Zeit?? noch nicht anerkannt.@Cite research-gate graphol
+
 
 Anderseits wurde ein \glqq EQF Framework\footnote{EQF Beschreibung \url{https://ec.europa.eu/ploteus/content/descriptors-page}}\grqq für Ontologien beschrieben, aber nicht öffentlich umgesetzt. Es bietet dabei eine europäisch anerkannte Definition von Kompetenz, nämlich RCD\cite{EQFCompetency}
 
@@ -740,7 +742,34 @@ rdfs:range :Action .
 
 Um aus Ontologien Informationen zu entnehmen, wird die Abfragesprache \glqq SPARQL\grqq @Acro verwendet. 
 Diese ist ähnlich zu SQL. Mit dem Programm \glqq Protétegé\grqq können SPARQL Abfragen lokal ausgeführt werden.
-Sparql ist auch ein Protokol
+Sparql ist auch ein Protokol. Als solches, kann das entsprechende sparql endpoint HTTP Responses des \glqq Content-Type: application/sparql-results+xml; charset=UTF-8\grqq wie es bei der dbpedia\footnote{dbpedia \url{dbpedia.org/sparql/}} sparql endpoint, der mit Virtuosso server in HTML formatierte Ergebnisslisten zurückliefert.
+
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+
+select ?author where {
+
+?author rdf:type dbo:Writer .
+?author dbo:notableWork ?work .
+
+} LIMIT 20
+\end{lstlisting}
+
+
+\begin{lstlisting}
+<table class="sparql" border="1">
+<tr>
+<th>author</th>
+</tr>
+<tr>
+<td><a href="http://dbpedia.org/resource/Abbie_Hoffman">http://dbpedia.org/resource/Abbie_Hoffman</a></td>
+</tr>
+...
+\end{lstlisting}
+
+Die Terminologie von KOMA wird von außen als Vokabular gesehen. Dessen DOM elementen können annotiert werden, so dass maschine unterschiedliche Vokabuläre verstehen können, siehe HTML5 Microdata\footnote{Microdata \url{schema.org}}
+
 
 \begin{lstlisting}[language=Sparql]
 SELECT * WHERE { ?s ?p ?o .}
@@ -965,6 +994,11 @@ Um Vorteil von der neuen Technologien zu nehmen, ist die Recherche nach schon ex
 
 \paragraph{Zum Datenmodel}
 Aus der Anforderungs analyse einer Informations Techonologie Web Anwendung sind die Builder, Texste und dessen Darstellung das ergebniss, dass ohne Daten inhaltlos wäre. Auf eine Seite Das Relationale Datenschema stellt keine Semantik für sich dar, sondern durch von der Software entstandene Verknüpfung zwischen dem Endergebnis und dem Datenschema. Auf der Anderen Seite die  RDF Daten einer Ontologie \textit{is} das Modell.
+
+\paragraph{Zum API Gateway}
+Bei Frameworks wie JEE werden Schnittstellen zwischen Layers und Tiers bereitgestellt und diese am Laufzeit entdeckt aka Service Discovery. 
+Im Fall der API Gateway wird die Kopplung bei derer Konfiguration festgelegt wo derer Rekonfiguration ein neues Deployment ohne Downtime bedeutet. Die Der Quellcode der Dienste bleiben unberührt und kein Load Balancer muss rekonfiguriert werden. 
+
 
 \paragraph{Zum Serverless}
 In dieser Arbeit wurde eine "nach buch" weise die Architektur gestalltet. Die unterschiedliche Interpretationen des Begriffs Serverless kann auch zu Kreativen anzätzen führen@AdamBien JEE
