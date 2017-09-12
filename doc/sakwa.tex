@@ -757,6 +757,9 @@ select ?author where {
 \end{lstlisting}
 
 
+Die Terminologie von KOMA wird von außen als Vokabular gesehen. Dessen DOM elementen können annotiert werden, so dass maschine unterschiedliche Vokabuläre verstehen können, siehe HTML5 Microdata\footnote{Microdata \url{schema.org}}
+
+
 \begin{lstlisting}
 <table class="sparql" border="1">
 <tr>
@@ -768,19 +771,19 @@ select ?author where {
 ...
 \end{lstlisting}
 
-Die Terminologie von KOMA wird von außen als Vokabular gesehen. Dessen DOM elementen können annotiert werden, so dass maschine unterschiedliche Vokabuläre verstehen können, siehe HTML5 Microdata\footnote{Microdata \url{schema.org}}
-
+Die einfachste Abfrage in Sparql wählt alle Triples vom Datenmodell.
 
 \begin{lstlisting}[language=Sparql]
 SELECT * WHERE { ?s ?p ?o .}
 \end{lstlisting}
 
+Am Beispiel von KOMA, konkatenieren die Ergebnisse mit Zwei Abfragetriples dank eine Hilfsvariable. Die folgende Abfrage ließe sich \glqq Wähle alle Properties des Graphes und wähle alle dessen Subjekten mit Alice als Objekt\grqq
 \begin{lstlisting}
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX koma: <https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#>
-SELECT ?s ?p ?o WHERE {
+SELECT ?x WHERE {
 ?y rdf:type owl:ObjectProperty .
 ?x ?y koma:Alice .
 }
