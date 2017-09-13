@@ -327,11 +327,11 @@ Die vorantreibende Aspekte solcher Handlungsplan sind die Ausführung/Umsetzung 
 
 Die Faktoren am Anfang einer technologischen Umsetzung einer Idee sind:
 \begin{itemize}
-\item Prof of Concept
-\item Time-To-Market
-\item Kost of Human Resources:: Skill-shortage
-\item Technical technological details
-\item Profitability
+\item Prof of Concept\label{aspect:proofConcept}
+\item Time-To-Market\label{aspect:timeToMarket}
+\item Cost of Human Resources:: Skill-shortage\label{aspect:CostHumanResources}
+\item Technical technological details\label{aspect:techDetails}
+\item Profitability\label{aspect:profit}
 \end{itemize}
 
 
@@ -413,8 +413,30 @@ In einem beispielhaften konventionellen AdServer, nach einem Click auf eine Werb
 
 \subsection{Use Cases}
 
-Die Unterschiede zwischen den 
-Traditionellen Computing wie EC2, wo die Entwickler root acces auf alle Ressources hat, in Lambda ist diser Opaque\cite{sbarski2017serverless}
+Die Unterschiede zwischen den\cite{king2016aws}
+\paragraph{Wann Nicht}: 
+
+Betriebsystemabhängigkeiten erkennen: Traditionellen Computing wie EC2, wo die Entwickler root 
+zugrifsrechte auf alle Ressources hat, in Lambda ist diser Opaque.
+
+OS Attribute Konfigurationen: Priorisieren CPU, GPU, Networking, or Disk Speicher und Geschwindigkeit. In Lambda skalieren proportional.
+
+Sicherheit: Lambda nicht sichtbar host-based intrusion detection systems cannot be installed, system-level access logs
+
+Dauerhafte Prozesse. Lambda kann bis 300s. Kosten pro Monat 1Gb  Lambda = 37 EC2 = 9Dollar. Wenn warten auf Requests, oder auf Callbacks geht nicht.
+
+\paragraph{Wann Ja}
+
+EventDriven Tasks: Lambda solves the polling problem by creating an on-demand response to particular events.
+
+Cron. Events: EC2 als behälter von Scripts, kostet auch ohne sie auszuführen. Fehlerhafte Scripts nicht einfach zu erkennen. Skallierung auch von Fehler. Permissions zu offen.
+Mit Lambda: the permissions can be much more narrowly applied, failures are much more easily noticed, deployments can be easily triggered, logs are aggregated in one place, and the underlying server management is handled by AWS.
+
+Heavy Processing: Um autoskalling zu vermeiden wegen z.B.Bildverarbeitung. So entkoppelt sich der Empfänger und der Verarbeiter und können mehr Requests angenommen werden. 
+
+Serverless API Gateway vermeidet api servers
+
+Selten verwendete Services. z.B <= 5 porZent average CPU t2.micro <~> 3x10hoch6 = 9dollar
 
 \subsection{Architecturen}
 

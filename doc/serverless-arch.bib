@@ -1,0 +1,164 @@
+% Encoding: UTF-8
+
+@Misc{Castro2008,
+  author    = {de Castro, Miguel Oom Temudo and Adya, Atul and Douceur, John R and Bolosky, William J},
+  title     = {Secure recovery in a serverless distributed file system},
+  month     = sep #{~23},
+  year      = {2008},
+  note      = {US Patent 7,428,751},
+  publisher = {Google Patents},
+}
+
+@Article{Bejleri2017,
+  author    = {Bejleri, Andi and Mezini, Mira and Eugster, Patrick and Domnori, Elton},
+  title     = {Cooperative decoupled processes},
+  journal   = {Software Quality Journal},
+  year      = {2017},
+  pages     = {1},
+  month     = jun,
+  abstract  = {Event-driven programming has become a major paradigm in developing concurrent, distributed systems. Its benefits are often informally captured by the key tenet of “decoupling,” a notion which roughly captures the ability of processes to join and leave (or fail) applications dynamically, and to be developed by independent parties. Programming  models for event-driven programming either make it hard to globally reason about control flow, thus hampering sound execution, or sacrifice decoupling to aid in reasoning about control flow. This work fills the gap by introducing a programming model—dubbed cooperative decoupled processes—that achieves both decoupling and global reasoning about control flow. We introduce this programming model through an event calculus, loosely inspired by the Join calculus, that enables reasoning about cooperative decoupled processes through the concepts of pre- and postconditions. A linear type system controls aliasing of events to avoid a break of control flow and thus safe exchange of shared events. Fundamental properties of the type system such as subject reduction, migration safety, and progress are established.},
+  date      = {2017-06-22},
+  doi       = {10.1007/s11219-017-9366-6},
+  publisher = {Springer},
+  url       = {http://dx.doi.org/10.1007/s11219-017-9366-6},
+}
+
+@InProceedings{Yan2016,
+  author    = {Yan, Mengting and Castro, Paul and Cheng, Perry and Ishakian, Vatche},
+  title     = {Building a Chatbot with Serverless Computing},
+  booktitle = {Proceedings of the 1st International Workshop on Mashups of Things and APIs},
+  year      = {2016},
+  series    = {MOTA '16},
+  pages     = {5:1--5:4},
+  address   = {New York, NY, USA},
+  publisher = {ACM},
+  abstract  = {Chatbots are emerging as the newest platform used by millions of consumers worldwide due in part to the commoditization of natural language services, which provide provide developers with many building blocks to create chatbots inexpensively. However, it is still difficult to build and deploy chatbots. Developers need to handle the coordination of the cognitive services to build the chatbot interface, integrate the chatbot with external services, and worry about extensibility, scalability, and maintenance. In this work, we present the architecture and prototype of a chatbot using a serverless platform, where developers compose stateless functions together to perform useful actions. We describe our serverless architecture based on function sequences, and how we used these functions to coordinate the cognitive microservices in the Watson Developer Cloud to allow the chatbot to interact with external services. The serverless model improves the extensibility of our chatbot, which currently supports 6 abilities: location based weather reports, jokes, date, reminders, and a simple music tutor.},
+  acmid     = {3007217},
+  articleno = {5},
+  doi       = {10.1145/3007203.3007217},
+  isbn      = {978-1-4503-4669-6},
+  keywords  = {FaaS, Serverless, bots, cloud computing},
+  location  = {Trento, Italy},
+  numpages  = {4},
+  url       = {http://doi.acm.org/10.1145/3007203.3007217},
+}
+
+@InProceedings{Adzic2017,
+  author    = {Adzic, Gojko and Chatley, Robert},
+  title     = {Serverless Computing: Economic and Architectural Impact},
+  booktitle = {Proceedings of the 2017 11th Joint Meeting on Foundations of Software Engineering},
+  year      = {2017},
+  series    = {ESEC/FSE 2017},
+  pages     = {884--889},
+  address   = {New York, NY, USA},
+  publisher = {ACM},
+  abstract  = {Amazon Web Services unveiled their {\^{a}}Lambda{\^{a}} platform in late 2014. Since then, each of the major cloud computing infrastructure providers has released services supporting a similar style of deployment and operation, where rather than deploying and running monolithic services, or dedicated virtual machines, users are able to deploy individual functions, and pay only for the time that their code is actually executing. These technologies are gathered together under the marketing term {\^{a}}serverless{\^{a}} and the providers suggest that they have the potential to significantly change how client/server applications are designed, developed and operated. This paper presents two case industrial studies of early adopters, showing how migrating an application to the Lambda deployment architecture reduced hosting costs {\^{a}} by between 66% and 95% {\^{a}} and discusses how further adoption of this trend might influence common software architecture design practices.},
+  acmid     = {3117767},
+  doi       = {10.1145/3106237.3117767},
+  isbn      = {978-1-4503-5105-8},
+  keywords  = {Cloud Computing, Economics, Serverless},
+  location  = {Paderborn, Germany},
+  numpages  = {6},
+  url       = {http://doi.acm.org/10.1145/3106237.3117767},
+}
+
+@Article{Vazhkudai2006,
+  author     = {Vazhkudai, Sudharshan S. and Ma, Xiaosong and Freeh, Vincent W. and Strickland, Jonathan W. and Tammineedi, Nandan and Simon, Tyler and Scott, Stephen L.},
+  title      = {Constructing Collaborative Desktop Storage Caches for Large Scientific Datasets},
+  journal    = {Trans. Storage},
+  year       = {2006},
+  volume     = {2},
+  number     = {3},
+  pages      = {221--254},
+  month      = aug,
+  issn       = {1553-3077},
+  abstract   = {High-end computing is suffering a data deluge from experiments, simulations, and apparatus that creates overwhelming application dataset sizes. This has led to the proliferation of high-end mass storage systems, storage area clusters, and data centers. These storage facilities offer a large range of choices in terms of capacity and access rate, as well as strong data availability and consistency support. However, for most end-users, the {\textquotedblleft}last mile{\textquotedblright} in their analysis pipeline often requires data processing and visualization at local computers, typically local desktop workstations. End-user workstations---despite having more processing power than ever before---are ill-equipped to cope with such data demands due to insufficient secondary storage space and I/O rates. Meanwhile, a large portion of desktop storage is unused.We propose the FreeLoader framework, which aggregates unused desktop storage space and I/O bandwidth into a shared cache/scratch space, for hosting large, immutable datasets and exploiting data access locality. This article presents the FreeLoader architecture, component design, and performance results based on our proof-of-concept prototype. Its architecture comprises contributing benefactor nodes, steered by a management layer, providing services such as data integrity, high performance, load balancing, and impact control. Our experiments show that FreeLoader is an appealing low-cost solution to storing massive datasets by delivering higher data access rates than traditional storage facilities, namely, local or remote shared file systems, storage systems, and Internet data repositories. In particular, we present novel data striping techniques that allow FreeLoader to efficiently aggregate a workstation's network communication bandwidth and local I/O bandwidth. In addition, the performance impact on the native workload of donor machines is small and can be effectively controlled. Further, we show that security features such as data encryptions and integrity checks can be easily added as filters for interested clients. Finally, we demonstrate how legacy applications can use the FreeLoader API to store and retrieve datasets.},
+  acmid      = {1168911},
+  address    = {New York, NY, USA},
+  doi        = {10.1145/1168910.1168911},
+  issue_date = {August 2006},
+  keywords   = {Distributed storage, parallel I/O, scientific data management, serverless storage system, storage cache, storage networking, storage resoucce management, storage scavenging, striped storage},
+  numpages   = {34},
+  publisher  = {ACM},
+  url        = {http://doi.acm.org/10.1145/1168910.1168911},
+}
+
+@InProceedings{Bila2017,
+  author    = {Nilton Bila and Paolo Dettori and Ali Kanso and Yuji Watanabe and Alaa Youssef},
+  title     = {Leveraging the Serverless Architecture for Securing Linux Containers},
+  booktitle = {37th {IEEE} International Conference on Distributed Computing Systems Workshops, {ICDCS} Workshops 2017, Atlanta, GA, USA, June 5-8, 2017},
+  year      = {2017},
+  editor    = {Aibek Musaev and Jo{\~{a}}o Eduardo Ferreira and Teruo Higashino},
+  pages     = {401--404},
+  publisher = {{IEEE} Computer Society},
+  bibsource = {dblp computer science bibliography, http://dblp.org},
+  biburl    = {http://dblp.dagstuhl.de/rec/bib/conf/icdcsw/BilaDKWY17},
+  doi       = {10.1109/ICDCSW.2017.66},
+}
+
+@Article{Farouk2015,
+  author        = {Farouk, A. and Zakaria, M. and Megahed, A. and Omara, F. A.},
+  title         = {A generalized architecture of quantum secure direct communication for N disjointed users with authentication},
+  journal       = {Scientific Reports},
+  year          = {2015},
+  volume        = {5},
+  pages         = {16080},
+  month         = nov,
+  __markedentry = {[dado:]},
+  abstract      = {In this paper, we generalize a secured direct communication process
+between N users with partial and full cooperation of quantum server. So,
+N{\thinsp}-{\thinsp}1 disjointed users u$_{1}$, u$_{2}$,
+{\ldots}, u$_{N-1}$ can transmit a secret message of
+classical bits to a remote user u$_{N}$ by utilizing the property
+of dense coding and Pauli unitary transformations. The authentication
+process between the quantum server and the users are validated by EPR
+entangled pair and CNOT gate. Afterwards, the remained EPR will generate
+shared GHZ states which are used for directly transmitting the secret
+message. The partial cooperation process indicates that
+N{\thinsp}-{\thinsp}1 users can transmit a secret message directly
+to a remote user u$_{N}$ through a quantum channel. Furthermore,
+N{\thinsp}-{\thinsp}1 users and a remote user u$_{N}$ can
+communicate without an established quantum channel among them by a full
+cooperation process. The security analysis of authentication and
+communication processes against many types of attacks proved that the
+attacker cannot gain any information during intercepting either
+authentication or communication processes. Hence, the security of
+transmitted message among N users is ensured as the attacker introduces
+an error probability irrespective of the sequence of measurement.
+},
+  archiveprefix = {arXiv},
+  doi           = {10.1038/srep16080},
+  eid           = {16080},
+  eprint        = {1602.08228},
+  primaryclass  = {cs.CR},
+}
+
+@Article{Alboaie2017,
+  author        = {Alboaie, Sinică and Cosovan, Doina},
+  title         = {Private Data System Enabling Self-Sovereign Storage Managed by Executable Choreographies},
+  journal       = {Distributed Applications and Interoperable Systems},
+  year          = {2017},
+  month         = jan,
+  __markedentry = {[dado:6]},
+  abstract      = {With the increased use of Internet, governments and large companies store and share massive amounts of personal data in such a way that leaves no space for transparency. When a user needs to achieve a simple task like applying for college or a driving license, he needs to visit a lot of institutions and organizations, thus leaving a lot of private data in many places. The same happens when using the Internet. These privacy issues raised by the centralized architectures along with the recent developments in the area of serverless applications demand a decentralized private data layer under user control.We introduce the Private Data System (PDS), a distributed approach which enables self-sovereign storage and sharing of private data. The system is composed of nodes spread across the entire Internet managing local key-value databases. The communication between nodes is achieved through executable choreographies, which are capable of preventing information leakage when executing across different organizations with different regulations in place.The user has full control over his private data and is able to share and revoke access to organizations at any time. Even more, the updates are propagated instantly to all the parties which have access to the data thanks to the system design. Specifically, the processing organizations may retrieve and process the shared information, but are not allowed under any circumstances to store it on long term.PDS offers an alternative to systems that aim to ensure self-sovereignty of specific types of data through blockchain inspired techniques but face various problems, such as low performance. Both approaches propose a distributed database, but with different characteristics. While the blockchain-based systems are built to solve consensus problems, PDS’s purpose is to solve the self-sovereignty aspects raised by the privacy laws, rules and principles.},
+  date          = {2017-01-01},
+  doi           = {10.1007/978-3-319-59665-5_6},
+  publisher     = {Springer},
+  url           = {http://dx.doi.org/10.1007/978-3-319-59665-5_6},
+}
+
+@Article{Ernits2016,
+  author        = {Ernits, Margus and Kikkas, Kaido},
+  title         = {A Live Virtual Simulator for Teaching Cybersecurity to Information Technology Students},
+  journal       = {Learning and Collaboration Technologies},
+  year          = {2016},
+  month         = jan,
+  __markedentry = {[dado:6]},
+  abstract      = {This paper introduces an Intelligent Training Exercise Environment (i-tee), a fully automated, open source platform for cyber defense classes and competitions. The platform allows to simulate realistic cyberattack situation in virtual and sandboxed environment to give a hands-on experience of a critical situation.The main outcome is an open source virtual cyber simulator that enables hands-on, practical learning. The platform can be integrated into existing curricula or used to create a new subject or a competition event. A student needs only a web browser and a remote desktop protocol client to start exploring the system.},
+  date          = {2016-01-01},
+  doi           = {10.1007/978-3-319-39483-1_43},
+  publisher     = {Springer},
+  url           = {http://dx.doi.org/10.1007/978-3-319-39483-1_43},
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}

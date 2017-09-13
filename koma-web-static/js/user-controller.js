@@ -251,10 +251,12 @@ var userController = {
                 contentType: 'application/json',
                 data: JSON.stringify(reqBody),
                 processData: false,
+
                 success: function (data, textStatus, jQxhr) {
                     let table = $('#table');
 
                     $(function () {
+                        console.log(data);
                         const parsedData = JSON.parse(data);
                         let columns = buildTableHeaders(parsedData['body'][0]);
 
@@ -269,9 +271,6 @@ var userController = {
                     console.log(errorThrown);
                 }
             });
-
-
-
             console.log(query)
         };
 
