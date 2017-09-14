@@ -325,7 +325,7 @@ Pomodoro
 %nd a business is not profits.\textquotedbl{}}}{
 %Balaji S. Srinivasan }
 
-Die vorantreibende Aspekte solcher Handlungsplan sind die Ausführung/Umsetzung der Idee bis zum Produkt und derer Beziehung zum Markt. Deren Details sind jedoch unbekannt und variabel.
+%Die vorantreibende Aspekte solcher Handlungsplan sind die Ausführung/Umsetzung der Idee %bis zum Produkt und derer Beziehung zum Markt. Deren Details sind jedoch unbekannt und %variabel.
 
 Die Faktoren am Anfang einer technologischen Umsetzung einer Idee sind:
 \begin{itemize}
@@ -372,6 +372,19 @@ Am Ende wird es darüber diskutiert, welche TradeOffs entstehen und die Zukünft
 \label{chap:principles}
 %\epigraph{\textit{\textquotedbl{}
 %There are only two hard things in computer science:\\ cache invalidation and naming %things.\textquotedbl{}}}{ Phil Karlton }
+\section{warum Cloud}
+
+Ziel: Anwendung
+Wichtig ist als Software Architekt, Entickle oder ProjMan die Specific properties von Cloud Angebot zu verstehen und entsprechend die Anwendung zusammen bauen. 
+
+Ziel: Software as a Service
+Cloud Service Model
+
+Ziel: IaaS, PaaS
+
+Cloud Properties : on-demand self-service, broad network access, measured service (pay-per-use), resource pooling and rapid elasticity
+
+Cloud App Props : Isolated state, Distribution, Elasticity, Automated management, Loose coupling
 
 \section{SOA}
 Service Orientierte Architektur SOA unterlegt die Annahme dass, ein System aus mehreren kleinen, austauschbaren und entkoppelten Diensten bestehen kann. Microservices und Serverless versuchen die Komplexität der SOA anzusprechen. Beide Ansätze zwingen auf Separation of Concerns, häufige Deployments und Heterogeneous DSL Domain Specific Language selection.
@@ -467,9 +480,6 @@ Serverless API Gateway vermeidet api servers
 
 Selten verwendete Services. z.B <= 5 porZent average CPU t2.micro <~> 3x10hoch6 = 9dollar
 
-
-
-
 \chapter{wie es sich in die Informatik einbettet}
 HTTP, Funktionale Programmierung, Fassaden, ... ?? 
 
@@ -504,6 +514,10 @@ Detect expiring certificates
 
 
 \chapter{kurzer Überblick über Serverless-Angebote/Architekturen}
+
+
+\chapter{Fokus auf AWS, Vorstellung der AWS-Serverless-Angebote}
+
 Per Type: The Company
 API Gateway : AWS 
 Simple Notification Service ( SNS ) : AWS vs Cloud Pub/Sub : Google
@@ -528,9 +542,6 @@ Cloud Machine Learning Engine : Google
 Cloud DataFlow : Google -> Stream batch pipelines
 Big Query : Google
 
-\chapter{Fokus auf AWS, Vorstellung der AWS-Serverless-Angebote}
-
-
 \chapter{Beispiel(!)-Fall KOMA}
 
 \section{Anforderungen Analyse}
@@ -544,11 +555,72 @@ Zu den Anforderungen
 	\item Ertrag von großen Nutzlastschwankungen
 \end{itemize}
 
+
+\section{KOMA}{Beispiel Anwendung}
+\label{sec:KOMA}
+
+Die heutige Rahmenlehrpläne sind nicht mehr fachlich sondern nach Kompetenzentwicklung orientiert, um Kompetenzprofile für Lerner zu gestallten. @cite aber wenn?
+Das Modell von KOMA basiert auf dem Grundmodell von
+@ref \glqq European Qualifications Framework Semantics\grqq und dem deutschen Qualifikationsrahmen. <-- really?
+
+\glqq KOMA\grqq ist ein Akronym für Kompetenz-Matrix. Die Umsetzung der Anwendung soll die von einem Individuum oder Schüler
+erworbene und zu erwerbenden Kompetenzen und deren Niveau nachvollziehen.
+Der Kompetenzstand einer Person ist mit dem EQF-Rahmen @Acro vergleichbar, und daher International anerkennbar.
+
+%Diese soll für die pädagogische Diagnostik und Intervention genutzt werden.
+Wenn diese Anwendung in Bildungsintitutionen eingesetzt wird, dienen die Rahmenlehrpläne als Leitpfad für die Belegung der einzelnen Kompetenzen
+und KOMA für die Organisation der einzelnen Fachrichtungen. Der Kern solcher Org. ist die Zuweisung von Aktivitäten auf vordefinierten Kompetenzen.
+Aktivitäten lassen sich einzeln oder in einer Sequenz anordnen. Sequenzen werden in LVen zusammengestellt. So können Aktivitäten, Sequenzen und Kompetenzen
+als gestalltungsmittel für LV benutzt. Das Modell verfügt von eine Figur um die erledigte Aktivitäten auszuwerten, nämlich Evaluation.
+
+Wegen der Kompetenzorientierung, wird Kompetenz als Unit-Of-Work betrachtet für Modelierungszwecke.
+
+\paragraph{Hochschule Beispiel}
+Beispiel:
+Der Lehrplan fordert die Kompetenzen K in K1, K2, K3 .. Kn für den Bachelordiplom. Nach deren Manuellen Eingabe werden automatisch
+ihren Requirenments/Anforderungen/Abhängigkeiten Baum erzeugt. Dadurch können bereiche des Baums als LV betrachtet werden und Kompetenzen aufeinander
+bauend für eine Klassenstufe/Semestergang sequenziert werden. Die Auswertung der Ergebnisse der Aktivitäten und die Aktualisierung des Kompetenzstands
+des Schulers folgen.
+
+\paragraph{Schule Beispiel}
+Allgemeines Beispiel:
+
+Beispielsweise drückt sich die Kompetenz beim Erwerb einer Fremdsprache – wenn mankommunikative Handlungsfähigkeit als Bildungsziel vorgibt – darin aus, wie gut man kommu-nikative Situationen bewältigt, wie gut man Texteunterschiedlicher Art verstehen und selbst adressatengerecht Texte verfassen kann, aberunter anderem auch in der Fähigkeit, gram-matische Strukturen korrekt aufzubauen und bei Bedarf zu korrigieren, oder in der Fähigkeitund Bereitschaft, sich offen und akzeptierend mit anderen Kulturenauseinander zu setzen. Standards für das Fremdsprachenlernen müssen diese Teilkompetenzen darstellen und je-weils verschiedene Niveaustufenunterscheiden (vgl. Anlage a). Hierbei spielen nicht nurkognitive Wissensinhalte eineRolle;diese sind vielmehr– wie Weinert im obigen Zitat her-vorhebt und das zuletzt genannte Beispiel der sog. Interkulturellen Kompetenz besonders deutlich macht – mit Einstellungen, Werten und Motiven verknüpft.
+Kompetenzen spiegeln diegrundlegenden Handlungsanforderungen, denenSchülerinnen und Schüler in der Domäneausgesetzt sind. Durch vielfältige, flexible und variable Nutzung und zunehmende Vernetzungvon konkreten, bereichsbezogenen Kompetenzen können sich auch „Schlüsselkompetenzen“entwickeln, aber der Erwerb von Kompetenzen muss – wie Weinert (2001) hervorhebt – beim systematischen Aufbau von „intelligentem Wissen“ in einer Domäne beginnen.
+- Jede Kompetenzstufe ist durch kognitive Prozesse und Handlungen von bestimmter Qualität spezifiziert, die Schüler auf dieser Stufe bewältigen können, nicht aber Schüler auf niedrigeren Stufen. Zum Bildungsstandard gehört, dass für einzelne Jahrgänge festgelegt wird, welche Stufen die Schülerinnen und Schüler erreichen sollen.
+
+\paragraph{Use Case}
+Ein Nutzungs-Fall aka. Use-Case:
+-Als Professor, will ich eine Auflistung der erworbene Fertigkeiten einer Klassenstufe abrufen können.
+
+-Als Professor, will ich das Kompetenzniveau einer Kompetenz eines Studenten und deren Fertigkeiten abrufen können.
+
+-Als Student, will ich mein Kompetenzprofil für meinen Lebenslauf benutzen.
+
+
+
 \chapter{EntwurfII}
 
 \chapter{Umsetzung}
 
 \chapter{Bewertung}
+
+\paragraph{Zur Entwicklung}
+Die Starke Komponentisierung und Dezentralisierung von Software, die Variabilität von Programmiermodellen, Frameworks, Tools, -Sprachen und dessen Entwicklungsumgebung erhöht die Komplexität des Enwicklungscyklus und hervorhebt die Bedürfnis von Tools zur Automatisierung von Tests, Deployment und Konfiguration. Also ein wohldefiniertes Handlungsplan bei der Softwareentwicklung dass von der nicht zu bearbeitende Details abstrahiert. 
+Die DevOps Kultur spricht solche Probleme an. Neben dem Entwurf der Softwareachitekture  muss, um derer Umsetzung Zeitgemäß zu gewährleisten, eine zum Projekt passende DevOps Strategie.
+Um Vorteil von der neuen Technologien zu nehmen, ist die Recherche nach schon existierenden DevOps Frameworks besonders wichtig. Dessen Integration in der DevOps Strategie diene für eine Agile Entwicklung.
+
+\paragraph{Zum Datenmodel}
+Aus der Anforderungs analyse einer Informations Techonologie Web Anwendung sind die Builder, Texste und dessen Darstellung das ergebniss, dass ohne Daten inhaltlos wäre. Auf eine Seite Das Relationale Datenschema stellt keine Semantik für sich dar, sondern durch von der Software entstandene Verknüpfung zwischen dem Endergebnis und dem Datenschema. Auf der Anderen Seite die  RDF Daten einer Ontologie \textit{is} das Modell.
+
+\paragraph{Zum API Gateway}
+Bei Frameworks wie JEE werden Schnittstellen zwischen Layers und Tiers bereitgestellt und diese am Laufzeit entdeckt aka Service Discovery. 
+Im Fall der API Gateway wird die Kopplung bei derer Konfiguration festgelegt wo derer Rekonfiguration ein neues Deployment ohne Downtime bedeutet. Die Der Quellcode der Dienste bleiben unberührt und kein Load Balancer muss rekonfiguriert werden. 
+
+
+\paragraph{Zum Serverless}
+In dieser Arbeit wurde eine "nach buch" weise die Architektur gestalltet. Die unterschiedliche Interpretationen des Begriffs Serverless kann auch zu Kreativen anzätzen führen@AdamBien JEE
+Es kann daher auch als Serverless betrachtet wenn neue Quelldataien eine Docker Instance neu Erzeugen oder nur Updaten, dessen LoadBalancing auch als Serverless Quellcode verpakt werden kann. 
 
 \chapter{Ausblick}
 
@@ -694,48 +766,6 @@ Service Metering -> understand future use of services
 
 
 %Design: Lambda Orchestrator -> Pool of Lambdas to use
-
-\section{KOMA}{Beispiel Anwendung}
-\label{sec:KOMA}
-
-Die heutige Rahmenlehrpläne sind nicht mehr fachlich sondern nach Kompetenzentwicklung orientiert, um Kompetenzprofile für Lerner zu gestallten. @cite aber wenn?
-Das Modell von KOMA basiert auf dem Grundmodell von
-@ref \glqq European Qualifications Framework Semantics\grqq und dem deutschen Qualifikationsrahmen. <-- really?
-
-\glqq KOMA\grqq ist ein Akronym für Kompetenz-Matrix. Die Umsetzung der Anwendung soll die von einem Individuum oder Schüler
-erworbene und zu erwerbenden Kompetenzen und deren Niveau nachvollziehen.
-Der Kompetenzstand einer Person ist mit dem EQF-Rahmen @Acro vergleichbar, und daher International anerkennbar.
-
-%Diese soll für die pädagogische Diagnostik und Intervention genutzt werden.
-Wenn diese Anwendung in Bildungsintitutionen eingesetzt wird, dienen die Rahmenlehrpläne als Leitpfad für die Belegung der einzelnen Kompetenzen
-und KOMA für die Organisation der einzelnen Fachrichtungen. Der Kern solcher Org. ist die Zuweisung von Aktivitäten auf vordefinierten Kompetenzen.
-Aktivitäten lassen sich einzeln oder in einer Sequenz anordnen. Sequenzen werden in LVen zusammengestellt. So können Aktivitäten, Sequenzen und Kompetenzen
-als gestalltungsmittel für LV benutzt. Das Modell verfügt von eine Figur um die erledigte Aktivitäten auszuwerten, nämlich Evaluation.
-
-Wegen der Kompetenzorientierung, wird Kompetenz als Unit-Of-Work betrachtet für Modelierungszwecke.
-
-\paragraph{Hochschule Beispiel}
-Beispiel:
-Der Lehrplan fordert die Kompetenzen K in K1, K2, K3 .. Kn für den Bachelordiplom. Nach deren Manuellen Eingabe werden automatisch
-ihren Requirenments/Anforderungen/Abhängigkeiten Baum erzeugt. Dadurch können bereiche des Baums als LV betrachtet werden und Kompetenzen aufeinander
-bauend für eine Klassenstufe/Semestergang sequenziert werden. Die Auswertung der Ergebnisse der Aktivitäten und die Aktualisierung des Kompetenzstands
-des Schulers folgen.
-
-\paragraph{Schule Beispiel}
-Allgemeines Beispiel:
-
-Beispielsweise drückt sich die Kompetenz beim Erwerb einer Fremdsprache – wenn mankommunikative Handlungsfähigkeit als Bildungsziel vorgibt – darin aus, wie gut man kommu-nikative Situationen bewältigt, wie gut man Texteunterschiedlicher Art verstehen und selbst adressatengerecht Texte verfassen kann, aberunter anderem auch in der Fähigkeit, gram-matische Strukturen korrekt aufzubauen und bei Bedarf zu korrigieren, oder in der Fähigkeitund Bereitschaft, sich offen und akzeptierend mit anderen Kulturenauseinander zu setzen. Standards für das Fremdsprachenlernen müssen diese Teilkompetenzen darstellen und je-weils verschiedene Niveaustufenunterscheiden (vgl. Anlage a). Hierbei spielen nicht nurkognitive Wissensinhalte eineRolle;diese sind vielmehr– wie Weinert im obigen Zitat her-vorhebt und das zuletzt genannte Beispiel der sog. Interkulturellen Kompetenz besonders deutlich macht – mit Einstellungen, Werten und Motiven verknüpft.
-Kompetenzen spiegeln diegrundlegenden Handlungsanforderungen, denenSchülerinnen und Schüler in der Domäneausgesetzt sind. Durch vielfältige, flexible und variable Nutzung und zunehmende Vernetzungvon konkreten, bereichsbezogenen Kompetenzen können sich auch „Schlüsselkompetenzen“entwickeln, aber der Erwerb von Kompetenzen muss – wie Weinert (2001) hervorhebt – beim systematischen Aufbau von „intelligentem Wissen“ in einer Domäne beginnen.
-- Jede Kompetenzstufe ist durch kognitive Prozesse und Handlungen von bestimmter Qualität spezifiziert, die Schüler auf dieser Stufe bewältigen können, nicht aber Schüler auf niedrigeren Stufen. Zum Bildungsstandard gehört, dass für einzelne Jahrgänge festgelegt wird, welche Stufen die Schülerinnen und Schüler erreichen sollen.
-
-\paragraph{Use Case}
-Ein Nutzungs-Fall aka. Use-Case:
--Als Professor, will ich eine Auflistung der erworbene Fertigkeiten einer Klassenstufe abrufen können.
-
--Als Professor, will ich das Kompetenzniveau einer Kompetenz eines Studenten und deren Fertigkeiten abrufen können.
-
--Als Student, will ich mein Kompetenzprofil für meinen Lebenslauf benutzen.
-
 
 \chapter{Umsetzung}
 Die grundlegende Vorgehensweise bei der Umsetzung dieses Projekts wird Analyse, Entwurf, Implementierung und Test sein. Der Forschender Charakter dieses Projekts lässt sich nicht Testgetrieben implementieren.
@@ -1271,23 +1301,6 @@ viel Konfiguration, kaum Konveniton -> .json 4 everything
 local testing braucht event-symulation.json
 
 \chapter{Zusammenfassung und Ausblick}
-
-\paragraph{Zur Entwicklung}
-Die Starke Komponentisierung und Dezentralisierung von Software, die Variabilität von Programmiermodellen, Frameworks, Tools, -Sprachen und dessen Entwicklungsumgebung erhöht die Komplexität des Enwicklungscyklus und hervorhebt die Bedürfnis von Tools zur Automatisierung von Tests, Deployment und Konfiguration. Also ein wohldefiniertes Handlungsplan bei der Softwareentwicklung dass von der nicht zu bearbeitende Details abstrahiert. 
-Die DevOps Kultur spricht solche Probleme an. Neben dem Entwurf der Softwareachitekture  muss, um derer Umsetzung Zeitgemäß zu gewährleisten, eine zum Projekt passende DevOps Strategie.
-Um Vorteil von der neuen Technologien zu nehmen, ist die Recherche nach schon existierenden DevOps Frameworks besonders wichtig. Dessen Integration in der DevOps Strategie diene für eine Agile Entwicklung.
-
-\paragraph{Zum Datenmodel}
-Aus der Anforderungs analyse einer Informations Techonologie Web Anwendung sind die Builder, Texste und dessen Darstellung das ergebniss, dass ohne Daten inhaltlos wäre. Auf eine Seite Das Relationale Datenschema stellt keine Semantik für sich dar, sondern durch von der Software entstandene Verknüpfung zwischen dem Endergebnis und dem Datenschema. Auf der Anderen Seite die  RDF Daten einer Ontologie \textit{is} das Modell.
-
-\paragraph{Zum API Gateway}
-Bei Frameworks wie JEE werden Schnittstellen zwischen Layers und Tiers bereitgestellt und diese am Laufzeit entdeckt aka Service Discovery. 
-Im Fall der API Gateway wird die Kopplung bei derer Konfiguration festgelegt wo derer Rekonfiguration ein neues Deployment ohne Downtime bedeutet. Die Der Quellcode der Dienste bleiben unberührt und kein Load Balancer muss rekonfiguriert werden. 
-
-
-\paragraph{Zum Serverless}
-In dieser Arbeit wurde eine "nach buch" weise die Architektur gestalltet. Die unterschiedliche Interpretationen des Begriffs Serverless kann auch zu Kreativen anzätzen führen@AdamBien JEE
-Es kann daher auch als Serverless betrachtet wenn neue Quelldataien eine Docker Instance neu Erzeugen oder nur Updaten, dessen LoadBalancing auch als Serverless Quellcode verpakt werden kann. 
 
 \lstlistoflistings
 
