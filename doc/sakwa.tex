@@ -441,7 +441,7 @@ clients and services. Benutzen.
 
 Microservices und Serverless versuchen die Komplexität der SOA anzusprechen. Beide Ansätze zwingen auf Separation of Concerns, häufige Deployments und Heterogeneous DSL Domain Specific Language selection.
 Auf einer Seite Microservices können ihren Zustand und Daten halten und werden mithilfe von \glqq Frameworks\grqq implementiert. Auf der anderen Seite Serverless sind Zustandlos.
-ConnectWise\footnote{ConnectWise: \url{https://aws.amazon.com/solutions/case-studies/connectwise/}}, Netflix\footnote{Netflix: \url{https://aws.amazon.com/solutions/case-studies/netflix-and-aws-lambda/}} und UNLESS\footnote{UNLESS: \url{https://unless.com/}} sind beispiele von Unternehmen die von Serverless Architekturen profitieren.
+ConnectWise\cite{ConnectWise}, Netflix\cite{Netflix} und UNLESS\cite{UNLESS} sind beispiele von Unternehmen die von Serverless Architekturen profitieren.
 
 cloud is about services and service composition@CiteEssentialsofCloudComputing
 
@@ -454,6 +454,7 @@ Iaas und PaaS
 \end{figure}
 
 \section{IaaS}
+\label{sec:iaas}
 IaaS can be described as a service that provides virtual abstractions for hardware,
 servers, and networking components. The service provider owns all the equipment
 and is responsible for its housing, running, and maintenance. In this case, AWS
@@ -461,9 +462,11 @@ provides APIs, SDKs, and a UI for creating and modifying virtual machines, their
 network components, routers, gateways, subnets, load balancers, and much more.
 Where a user with a physical data center would incur charges for the hardware,
 shelving, and access, this is removed by IaaS with a payment model that is per-hour
-(or per-use) type.\cite{PatternAWS}
+(or per-use) type.\cite{patternAWS}
 
 \section{PaaS}
+\label{sec:paas}
+
 While AWS itself is an IaaS provider, it contains a product named ElasticBeanstalk,
 which falls under the PaaS category for Cloud models. PaaS is described as the
 delivery of a computing platform, typically an operating system, programming
@@ -471,9 +474,10 @@ language execution environment, database, or web server. With ElasticBeanStalk,
 a user can easily turn a code into a running environment without having to worry
 about any of the pieces underneath such as setting up and maintaining the database,
 web server, or code runtime versions. It also allows it to be scaled without having to
-do anything other than define scale policies through the configuration.\cite{PatternAWS}
+do anything other than define scale policies through the configuration.\cite{patternAWS}
 
-\section{SaaS}
+\section{SaaS} 
+\label{sec:saas}
 AWS also provides a marketplace where a user can purchase official and third-party
 operating system images that provide configurable services such as databases, web
 applications, and more. This type of service falls under the SaaS model. The best
@@ -490,7 +494,7 @@ be cheaper than the initial hardware cost for moving equipment into a data cente
 Besides the cost of the providers themselves, having multiple providers also created
 the problem of scaling in one area and notifying another of the changes. While making
 applications more resilient and scalable, this Frankenstein method usually did not
-simplify the problem as a whole.\cite{PatternAWS}
+simplify the problem as a whole.\cite{patternAWS}
 
 \section{FaaS}
 \label{sec:faas}
@@ -503,7 +507,7 @@ party services and APIs, and employ powerful patterns and architectures (such as
 having thick front ends that talk directly to services using delegation tokens). There-
 fore, we say that serverless is an umbrella term that encompasses FaaS and that
 FaaS is just one aspect (albeit a very important one) of what serverless technologies
-and architectures have to offer\cite{sbarski2017serverless}
+and architectures have to offer\cite{serverlessArchAWS}
 
 \chapter{nichtfunktionalen/technischen Anforderungen zur Entwicklung des Serverless-Ansatzes}
 Gegenüberstellung 
@@ -543,7 +547,7 @@ HTTP, Funktionale Programmierung, Fassaden, ... ??
 Funktionale prog. abstrah. auf Infrastrukt.
 
 \section{Use Cases}
-next\cite{sbarski2017serverless}
+next\cite{serverlessArchAWS}
 Application Backend: z.b Internet of Things IoT: push to S3, push queue to SQS and invoke Lambda.
 
 Data Procesisng and manipulation: pipeline of :collation and aggregation of data; image resizing;
@@ -557,7 +561,7 @@ Scheduled Services
 
 Bots and Skills
 
-next\cite{king2016aws}
+next\cite{lambdaAWS}
 Shuttdown untagged EC2 instances. 
 
 Code Deploy
@@ -603,7 +607,7 @@ Serverless versucht das System in Funktionen runter zu brechen und auf ihnen das
 Serverless ist ein @Glossar Web Dienst/Service von Cloud-Anbieter, wird auch als @Glossar FaaS bezeichnet. Welcher grundlegende Serverinfrastruktur vom Cloud-Anbieter wie Amazon Web Services verwaltet wird. Komplexe Probleme wie horizontale und vertikale Skalierbarkeit, Fehlertoleranz, Flexibilität werden von Kunden und Benutzer nur noch nach bedarf Konfiguriert.
 
 
-Prinzipien\label{par:serverless-principles} von Serverless Architeturen: \cite{sbarski2017serverless}
+Prinzipien\label{par:serverless-principles} von Serverless Architeturen: \cite{serverlessArchAWS}
 Rechen-Dienst dass, nach Anfrage isoliert, unabhängig und granular ausgeführt wird.
 SRP Single Responsability Prinzip: Funktionen werden dadurch mehr Testable/Prüfbar. Deren Vernetzung erlaubt komplexe Systeme zu entwerfen, die dank der Stateless Natur der Funktionen schnell zu skalieren sind.
 Diese Vernetzung kann durch einen Push-Based Event driven Pipe-line.
@@ -614,12 +618,12 @@ In einem beispielhaften konventionellen AdServer, nach einem Click auf eine Werb
 
 \section{Patterns Allgemein vs Serverless}
 
-next\cite{sbarski2017serverless}
+next\cite{serverlessArchAWS}
 Compute as a back end for web and mobile 
 
-compute as a glue pipelines built to carry out workflows <-> Async Messag Primer\cite{homer2014cloud}
+compute as a glue pipelines built to carry out workflows <-> Async Messag Primer\cite{patternsCloud}
 
-Pipes and Filters\cite{homer2014cloud} <-> lambda event driven
+Pipes and Filters\cite{patternsCloud} <-> lambda event driven
 Health endpoint monitoring <-> EC2 certificate
 Leader election -> TRansaction mngmt S3
 Priority Queue
@@ -745,7 +749,7 @@ Um dem Leser einen Anhaltspunkt zu verleihen, werden hier die Softwarekomponente
 	\includegraphics[width=\linewidth]{pics/arch-comp.png}
 \end{figure}
 
-legacy api proxy\cite{sbarski2017serverless}
+legacy api proxy\cite{serverlessArchAWS}
 lambda<convert/invoke> fuseki-server\label{komponenten:fuseki}
 
 nice: graphQL= json matcher over multiple DBs
@@ -788,7 +792,7 @@ Es wurden folgende Faktoren für die Entwicklung einer Ontologie erkannt:
 	\item Die Verbindung zu externen Ontologien kann neues Wissen ableiten
 \end{itemize}
 
-6.2.2 \cite{OntoCloud}Benefits on Interoperability and Linked-Data by Using
+6.2.2 \cite{ontoCloud}Benefits on Interoperability and Linked-Data by Using
 Ontology Engineering
 
 Es handelt sich daher um eine \glqq Linked Data Driven Web Application\grqq.%@href 
@@ -814,8 +818,8 @@ the context and meaning of complex human requests and respond to them
 appropriately. Also, the semantic web is considered as an integrator of con-
 tents or information across different applications and systems.
 
-Das \glqq Semantic Web\grqq ist eine Erweiterung des herkömmlichen Web, in der Informationen mit eindeutigen Bedeutungen versehen werden\cite{OntoWhat2}.
-set of standards and best practices for sharing data and the semantics of that data over the Web for use by applications\cite{SparqlLearn}.
+Das \glqq Semantic Web\grqq ist eine Erweiterung des herkömmlichen Web, in der Informationen mit eindeutigen Bedeutungen versehen werden\cite{ontoWhat2}.
+set of standards and best practices for sharing data and the semantics of that data over the Web for use by applications\cite{sparqlLearn}.
 
 Diese Bedeutungen werden für Maschinen durch Ontologien dargestellt. 
 Die Ontologien werden in der OWL2 Spezifikation von W3C\footnote{WWW Consortium \url{https://www.w3.org/standards/semanticweb/}}beschrieben. Die hälfte der Linked Datenbasis sind veroffentlicht. 
@@ -831,7 +835,7 @@ Die Ontologien werden in der OWL2 Spezifikation von W3C\footnote{WWW Consortium 
 \label{subsec:ontology}
 
 %@Def
-Eine Ontologie ist eine formale Spezifikation über eine Konzeptualisierung\cite{OntoWhat}. Die Denotation jeweiliger dargestellten Signifikanten lässt sich durch seinen weltweit eindeutigen Präfix identifizieren. Deren Beziehungen können auch zu externen Ontologie-signifikanten verweisen und dadurch ein Consensus über Begrifflichkeiten. 
+Eine Ontologie ist eine formale Spezifikation über eine Konzeptualisierung\cite{ontoWhat}. Die Denotation jeweiliger dargestellten Signifikanten lässt sich durch seinen weltweit eindeutigen Präfix identifizieren. Deren Beziehungen können auch zu externen Ontologie-signifikanten verweisen und dadurch ein Consensus über Begrifflichkeiten. 
 
 Während der Umsetzung wurde Protege\footnote{\url{http://protege.stanford.edu}: "This work was conducted using the Protégé resource, which is supported by grant GM10331601 from the National Institute of General Medical Sciences of the United States National Institutes of Health."} benutzt.
 Der Entwurf der Ontologie wurde nach Ontology-Engineering-101 durchgeführt:
@@ -850,7 +854,7 @@ Die Daten können in Produktion mittels einer \glqq Triple-Store\grqq mit grunds
 \end{itemize}
 
 Die für KOMA unterstützende Infrastruktur wird ein Rechner mit Browser wie Firefox oder Chrome und die AWS Dienste wie Lambda, API Gateway und S3. Das Kommunikationsprotokoll auf der Anwendungsebene zwischen Endpunkten ist HTTP v1.1.
-Eine Ontologie kann mittels Sparql abgefragt werden. Sparql ist eine Abrfragesprache für RDF, Spreadsheets, XML und JSON formate\cite{SparqlLearn}. Wir beschreiben die Ontologie mit dem Datenmodel RDF und der TURTLE syntax.
+Eine Ontologie kann mittels Sparql abgefragt werden. Sparql ist eine Abrfragesprache für RDF, Spreadsheets, XML und JSON formate\cite{sparqlLearn}. Wir beschreiben die Ontologie mit dem Datenmodel RDF und der TURTLE syntax.
 
 Für die Entwicklung und als MVP eignet sich S3 @Acro für die Speicherung von großen Datenmengen. Der nächste Schritt wird eine Indexierung der URIs jeweiliger Subject, Predicate und Object in DynamoDB. 
 
@@ -865,7 +869,7 @@ Die Ausführung von Abfragen auf die Ontologie wird direkt mithilfe von \glqq Je
 \end{itemize}
 
 
-Um die Neuerfindung des Rades zu vermeiden, die Recherche ergab einen aktuell öffentlichen graphischen ontologischen Entwurf\cite{OntoMoodle} siehe\ref{fig:competence-ontology} der in Moodle mit eine Relationalen Datenbasis und PHP umgesetzt. Nach dessen Ontologien wurde mittels Watson\footnote{Watson \url{http://watson.kmi.open.ac.uk/WatsonWUI/}} und LOD\footnote{LOD Cloud \url{http://lod-cloud.net/}} nichts öffentlich gefunden. 
+Um die Neuerfindung des Rades zu vermeiden, die Recherche ergab einen aktuell öffentlichen graphischen ontologischen Entwurf\cite{ontoMoodle} siehe\ref{fig:competence-ontology} der in Moodle mit eine Relationalen Datenbasis und PHP umgesetzt. Nach dessen Ontologien wurde mittels Watson\footnote{Watson \url{http://watson.kmi.open.ac.uk/WatsonWUI/}} und LOD\footnote{LOD Cloud \url{http://lod-cloud.net/}} nichts öffentlich gefunden. 
 
 
 \begin{figure}[h]
@@ -878,7 +882,7 @@ Um die Neuerfindung des Rades zu vermeiden, die Recherche ergab einen aktuell ö
 Bei der Analyse lässt der Entwurf und dessen Dokumentation freie Interpretation über Begriffe und deren Zweck, beispiele davon sind \glqq isComposedOf\grqq, \glqq subsumes\grqq. Ein Standard zur graphischen Darstellung ist zur Zeit?? noch nicht anerkannt. Obwohl Graphische Benutzeroberfläche  @Cite research-gate graphol
 
 
-Anderseits wurde ein \glqq EQF Framework\footnote{EQF Beschreibung \url{https://ec.europa.eu/ploteus/content/descriptors-page}}\grqq für Ontologien beschrieben, aber nicht öffentlich umgesetzt. Es bietet dabei eine europäisch anerkannte Definition von Kompetenz, nämlich RCD\cite{EQFCompetency}
+Anderseits wurde ein \glqq EQF Framework\footnote{EQF Beschreibung \url{https://ec.europa.eu/ploteus/content/descriptors-page}}\grqq für Ontologien beschrieben, aber nicht öffentlich umgesetzt. Es bietet dabei eine europäisch anerkannte Definition von Kompetenz, nämlich RCD\cite{eqfCompetency}
 
 
 \begin{wrapfigure}{i}{0.36\textwidth}
@@ -889,7 +893,7 @@ Anderseits wurde ein \glqq EQF Framework\footnote{EQF Beschreibung \url{https://
 Daher folgt eine beispielhafte Auflistung der auf unseren Anwendungsfall angepasste und ergänzende Interpretation der dargestellten Terminologie des Entwurfs und der RCD.
 
 
-\subparagraph{Auflistung der Terminologie}\ref{tab:terms} Die zwei Leitmotive sind auf eine Seite \underline{Kompetenzanforderungen}: sie legen fest, über welche Kompetenzen ein Schüler, eine Schülerin verfügen muss, wenn wichtige Ziele der Schule als erreicht gelten sollen. Systematisch geordnet werden diese Anforderungengen in Kompetenzmodellen, die Aspekte, Abstufungen und Entwicklungsverläufe von Kompetenzen darstellen\cite{Competence}. Und auf der Anderen nach \underline{\Gls{Kompetenz}} als die bei Individuen verfügbaren oder durch sie erlernbaren kognitiven Fähigkeiten und Fertigkeiten, um bestimmte Probleme zu lösen, sowie die damit verbundenen motivationalen, volitionalen und sozialen Bereitschaften und Fähigkeiten, um die Problemlösungen in variablen Situationen erfolgreich und verantwortungsvoll nutzen zu können\cite{weinert2002leistungsmessungen}.
+\subparagraph{Auflistung der Terminologie}\ref{tab:terms} Die zwei Leitmotive sind auf eine Seite \underline{Kompetenzanforderungen}: sie legen fest, über welche Kompetenzen ein Schüler, eine Schülerin verfügen muss, wenn wichtige Ziele der Schule als erreicht gelten sollen. Systematisch geordnet werden diese Anforderungengen in Kompetenzmodellen, die Aspekte, Abstufungen und Entwicklungsverläufe von Kompetenzen darstellen\cite{competence}. Und auf der Anderen nach \underline{\Gls{Kompetenz}} als die bei Individuen verfügbaren oder durch sie erlernbaren kognitiven Fähigkeiten und Fertigkeiten, um bestimmte Probleme zu lösen, sowie die damit verbundenen motivationalen, volitionalen und sozialen Bereitschaften und Fähigkeiten, um die Problemlösungen in variablen Situationen erfolgreich und verantwortungsvoll nutzen zu können\cite{weinert2002leistungsmessungen}.
 
 
 \newglossaryentry{Kompetenz}{name={Kompetenz},description={die bei Individuen verfügbaren oder durch sie erlernbaren kognitiven Fähigkeiten und Fertigkeiten, um bestimmte Probleme zu lösen, sowie die damit verbundenen motivationalen, volitionalen und sozialen Bereitschaften und Fähigkeiten, um die Problemlösungen in variablen Situationen erfolgreich und verantwortungsvoll nutzen zu können}}
@@ -1092,8 +1096,8 @@ return new Controller(System.getenv(ENV_BUCKET)
 
 \end{lstlisting}
 
-Um sich von die durch Lambda entstandene Abhängigkeit möglichst entkoppelt\cite{FlowerRefactoring} zu halten, wird das Modul von Jena-ARQ nur als externe Abhängigkeit des Lambdaprojektes zugewisen.
-Die AWS Lambda stellt eine Interface zur Verfügung und der Nutzer die zu benutzende Bibliotheken zusammen in eine JAR Datei verpackt. Dem entsprechend wird der Buildscript von Gradle\cite{Muschko2014} angepasst\ref{lst:gradle}. 
+Um sich von die durch Lambda entstandene Abhängigkeit möglichst entkoppelt\cite{refactoringFlower} zu halten, wird das Modul von Jena-ARQ nur als externe Abhängigkeit des Lambdaprojektes zugewisen.
+Die AWS Lambda stellt eine Interface zur Verfügung und der Nutzer die zu benutzende Bibliotheken zusammen in eine JAR Datei verpackt. Dem entsprechend wird der Buildscript von Gradle\cite{gradleInAction} angepasst\ref{lst:gradle}. 
 
 \begin{lstlisting}[language=Groovy,caption={Abhängigkeitenverwaltung für Lambda in Java},label={lst:gradle}]
 plugins {
@@ -1157,7 +1161,7 @@ Designing a friendly Hypertext Transfer Protocol (HTTP) API means abstracting th
 intricate business logic and data your service uses into the four basic CRUD operations
 (create, read, update, delete).
 
-Die Komplexität des darunterliegenden Datenmodells erlaubt eine RESTful\cite{Hunter2017} Schnittstelle nur einfache abfragen zu formulieren. Daher zusätzlich ein Endpunkt\ref{tab:rest} für Komplexe Sparql Abfragen, die im Body des HTTP Requests in JSON geschickt wird. 
+Die Komplexität des darunterliegenden Datenmodells erlaubt eine RESTful\cite{microAdv} Schnittstelle nur einfache abfragen zu formulieren. Daher zusätzlich ein Endpunkt\ref{tab:rest} für Komplexe Sparql Abfragen, die im Body des HTTP Requests in JSON geschickt wird. 
 
 \begin{table}[H]
 	\caption{RESTful API}\label{tab:rest}
