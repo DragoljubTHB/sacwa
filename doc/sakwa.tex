@@ -32,7 +32,7 @@ numbers=noenddot,version=first
 \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
 \usepackage{listings}
 \usepackage[printonlyused]{acronym}
-\usepackage{glossaries}
+\usepackage[acronym]{glossaries}
 \usepackage{verbatim}
 \usepackage{url}
 \usepackage{graphicx}
@@ -310,8 +310,20 @@ Zweitbetreuer: & Jonas Brüstel, M.Sc.\tabularnewline
 
 \pagestyle{scrheadings}
 
+\chapter*{Eidesstattliche Erklärung}
+
+Ich versichere hiermit, dass ich die von mir eingereichte Masterarbeit selbstständig verfasst, ausschließlich die angegebenen Hilfsmittel benutzt und sowohl wörtliche, als auch sinngemäße entlehnte Stellen als solche kenntlich gemacht habe. Die Arbeit hat in gleicher oder ähnlicher Form noch keiner anderen Prüfungsbehörde vorgelegen.
+
+Brandenburg an der Havel, 21. September 2017
+
+\vspace{3cm}
+
+Dragoljub Milasinovic
+
 \chapter{Abstrakt}
 Pomodoro
+@Deutch
+@English
 
 \chapter{Einleitung}{Idee-Ausführung-Markt}
 \setcounter{page}{1}
@@ -338,22 +350,24 @@ Die Faktoren am Anfang einer technologischen Umsetzung einer Idee sind:
 
 
 \section{Motivation}
-
-
 Auf dem Weg zur technologischen Umsetzung einer neuen Idee liegen unbekannte Schwierigkeiten
 bei der Entscheidungen über deren Umsetzung hinsichtlich auf den Architekturentwurf, die IT Infrastruktur, die Drittanbieter von Software, der Auswahl der Infrastruktur usw.
-Schwierigkeiten die von spezialisierten Kompetenzen, Fertigkeiten und \glqq Know-How\grqq bedürfen.
+Schwierigkeiten die von spezialisierten Kompetenzen, Fertigkeiten und \glqq Know-How\grqq\ bedürfen.
 Gehören jedoch nicht immer zum Problem des Domäns der Anwendung.
 
-Für dieses Problem wurde \glqq FaaS\grqq als Lösung unter der Rubrik \glqq Serverless\grqq von den Hauptanbieter von \glqq Cloud\grqq Technologien vorgestellt.
+\newacronym{FaaS}{FaaS}{Function as a Service}
+Für dieses Problem wurde \acrlong{FaaS}, kürz \acrshort{FaaS}\ref{sec:faas}, als Lösung unter der Rubrik \glqq\ Serverless\ref{sec:serverless}\grqq\ von den Hauptanbieter von \glqq Cloud\grqq\ Technologien vorgestellt.
 
-Im Rahmen des Cloud-Computing handelt es sich in dieser Arbeit um eine Untersuchung der Serverless Architekturen am Beispiel einer Konventionellen Webanwendung. Dabei wird besonders geachtet ob und wie solche Technologien die Umsetzung erleichtern. Die Entwurfsmuster und die Kernfunktionalität werden mit ausschließlich Serverless Technologien am Beispiel von KOMA mit AWS umgesetzt.
+Der Begriff Serverless weist darauf hin, dass die Verwaltung der darunter liegende Serverinfrastruktur von Cloudanbieter übernommen wird. Jedoch begränzt \acrshort{FaaS} dessen Bedeutung durch die Definition des Programmiermodells, nämlich eine Funktion, oder auch \glqq\ Nano-Microservice\grqq.
 
+\newacronym{KOMA}{KOMA}{Kompetenz Matrix}
+Im Rahmen des Cloud-Computing handelt es sich in dieser Arbeit um eine Untersuchung der Serverless Architekturen am Beispiel einer Konventionellen Webanwendung. Dabei wird besonders geachtet ob und wie solche Technologien die Umsetzung erleichtern. Die Entwurfsmuster und die Kernfunktionalität werden mit ausschließlich Serverless Technologien am Beispiel von \acrfull{KOMA} mit AWS umgesetzt.
 
 \section{Ziel}
 \label{sec:task}
 \newacronym{MVP}{Mivip}{Minimal Viable Product}
-@acronym MVP Minimal Viable Product : \cite{rady2016serverless} Das Ziel ist ein MVP Minimal Viable Product in form eine @acronym SPA Single Page Application mit ausschließlich \glqq Serverlosen\grqq Technologien vor zur Verfügung zu stellen.
+\newacronym{SPA}{SPA}{Single Page Application}
+Das Ziel ist ein \acrfull{MVP}, kürz \acrshort{MVP}, in Form von einer \acrfull{SPA}, kürz \acrshort{SPA}\ref{sec:spa}, mit ausschließlich Serverless Technologien vor zur Verfügung zu stellen.
 
 Nach der Umsetzung werden die Erfahrungen und Ergebnisse ausgewertet, um dem Leser bei dem Entscheidungsprozess bei der Umsetzung einer Webanwendung besser zu Informieren.
 
@@ -362,7 +376,12 @@ Die Webanwendung soll möglichst für zukünftige Änderungen flexibel sein.
 \section{Aufbau der Arbeit}
 \label{sec:layout}
 
-Zuerst wird den Leser in die Serverless \ref{sec:serverless} Technologien eingeführt, das Programmiermodell vorgestellt
+Zuerst wird den Leser in die Klassischen Service Modellen\ref{chap:service-models} auffrischt. Zunächst werden die technische Anforderungen und die dazugehörige Beispiele des Serverless Ansatzes erläutert.
+\newacronym{AWS}{AWS}{Amazon Web Services}
+Das nächste Kapitel überblickt die aktuelle Serverless Angebote der größten Cloud Anbietern.
+Anschließend trifft der Leser den Kern der Arbeit bei der Analyse und Darstellung von Serverless Architekturen\ref{chap:aws-serverless} fokussiert auf \acrfull{AWS}, kurz \acrshort{AWS}.
+
+ Serverless\ref{sec:serverless} Technologien eingeführt, das Programmiermodell vorgestellt
 und die Entscheidungsprinzipien\ref{par:serverless-principles} erläutert.
 Als Zweites wird KOMA \ref{sec:KOMA} als vorläufiges Beispielanwendung und deren Anforderungen vorgestellt.
 Nach dem Überblick, lässt sich die Umsetzung besser \glqq Bottom-Up\grqq verstehen.
@@ -394,6 +413,7 @@ ConnectWise\footnote{ConnectWise: \url{https://aws.amazon.com/solutions/case-stu
 cloud is about services and service composition@CiteEssentialsofCloudComputing
 
 \chapter{klassische Service-Modellen}
+\label{chap:service-models}
 Iaas und PaaS
 
 \section{IaaS}
@@ -436,6 +456,7 @@ applications more resilient and scalable, this Frankenstein method usually did n
 simplify the problem as a whole.\cite{PatternAWS}
 
 \section{FaaS}
+\label{sec:faas}
 Some people prefer to use the acronym FaaS (function as a service) to describe tech-
 nologies like Lambda. In fact, they prefer not to use the term serverless at all. They
 feel that it’s not accurate enough and that it needs to be constantly explained. In this
@@ -482,9 +503,8 @@ Selten verwendete Services. z.B <= 5 porZent average CPU t2.micro <~> 3x10hoch6 
 
 \chapter{wie es sich in die Informatik einbettet}
 HTTP, Funktionale Programmierung, Fassaden, ... ?? 
-
-
 Funktionale prog. abstrah. auf Infrastrukt.
+
 \section{Use Cases}
 next\cite{sbarski2017serverless}
 Application Backend: z.b Internet of Things IoT: push to S3, push queue to SQS and invoke Lambda.
@@ -588,7 +608,7 @@ Instrumentation and Telemetry Guidance -> Errors Handling
 Service Metering -> understand future use of services
 
 \chapter{Fokus auf AWS, Vorstellung der AWS-Serverless-Angebote}
-
+\label{chap:aws-serverless}
 Per Type: The Company
 API Gateway : AWS 
 Simple Notification Service ( SNS ) : AWS vs Cloud Pub/Sub : Google
@@ -1125,6 +1145,7 @@ Unter der verfügbaren SparQL endpoints Implementierungen
 
 
 \section{Single Page Application}
+\label{sec:spa}
 
 Da KOMA ohne Vorkenntnisse gebrauchsfertig sein soll, mit dem Fakt dass Milliarden von Desktop Geräte die Web mit einem Browser erkundigen können, lässt sich die Entscheidung über die Art der Benutzeroberfläche leicht Treffen.
 
@@ -1222,13 +1243,13 @@ Es kann daher auch als Serverless betrachtet wenn neue Quelldataien eine Docker 
 
 \chapter*{Glossar}
 \markboth{Glossar}{}
-\printglossary[title=Glossar, toctitle=Terminologie]
-\printglossary
+
+\printglossary[type=\acronymtype]
 
 
-\newglossaryentry{lab}{name={labName},description={labDes}}
-\glossary{glossar with page num in .glo} Im using \gls{lab}
-\gls{Kompetenz}kompetenz test
+%\newglossaryentry{lab}{name={labName},description={labDes}}
+%\glossary{glossar with page num in .glo} Im using \gls{lab}
+%\gls{Kompetenz}kompetenz test
 
 
 \chapter*{Abkürzungen}
@@ -1252,16 +1273,6 @@ Im Vergleich zur manuellen Speicherverwaltung benötigt \ac{GC} mehr Ressourcen.
 \bibliographystyle{alpha}
 \bibliography{sources}
 
-
-\chapter*{Eidesstattliche Erklärung}
-
-Ich versichere hiermit, dass ich die von mir eingereichte Masterarbeit selbstständig verfasst, ausschließlich die angegebenen Hilfsmittel benutzt und sowohl wörtliche, als auch sinngemäße entlehnte Stellen als solche kenntlich gemacht habe. Die Arbeit hat in gleicher oder ähnlicher Form noch keiner anderen Prüfungsbehörde vorgelegen.
-
-Brandenburg an der Havel, XX. Monat 2017
-
-\vspace{3cm}
-
-Vorname Nachname
 
 \end{document}
 
