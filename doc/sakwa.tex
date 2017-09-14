@@ -311,18 +311,19 @@ Zweitbetreuer: & Jonas Brüstel, M.Sc.\tabularnewline
 \pagestyle{scrheadings}
 
 \chapter{Abstrakt}
+Pomodoro
 
 \chapter{Einleitung}{Idee-Ausführung-Markt}
 \setcounter{page}{1}
 \label{chap:introduction}
-\epigraph{\textit{\textquotedbl{}
-An idea is not a mockup\\
-A mockup is not a prototype\\
-A prototype is not a program\\
-A program is not a product\\
-A product is not a business\\
-And a business is not profits.\textquotedbl{}}}{
-Balaji S. Srinivasan }
+%\epigraph{\textit{\textquotedbl{}
+%An idea is not a mockup\\
+%A mockup is not a prototype\\
+%A prototype is not a program\\
+%A program is not a product\\
+%A product is not a business\\
+%nd a business is not profits.\textquotedbl{}}}{
+%Balaji S. Srinivasan }
 
 Die vorantreibende Aspekte solcher Handlungsplan sind die Ausführung/Umsetzung der Idee bis zum Produkt und derer Beziehung zum Markt. Deren Details sind jedoch unbekannt und variabel.
 
@@ -369,9 +370,10 @@ Am Ende wird es darüber diskutiert, welche TradeOffs entstehen und die Zukünft
 
 \chapter{Grundlagen}
 \label{chap:principles}
-\epigraph{\textit{\textquotedbl{}
-There are only two hard things in computer science:\\ cache invalidation and naming things.\textquotedbl{}}}{ Phil Karlton }
+%\epigraph{\textit{\textquotedbl{}
+%There are only two hard things in computer science:\\ cache invalidation and naming %things.\textquotedbl{}}}{ Phil Karlton }
 
+\section{SOA}
 Service Orientierte Architektur SOA unterlegt die Annahme dass, ein System aus mehreren kleinen, austauschbaren und entkoppelten Diensten bestehen kann. Microservices und Serverless versuchen die Komplexität der SOA anzusprechen. Beide Ansätze zwingen auf Separation of Concerns, häufige Deployments und Heterogeneous DSL Domain Specific Language selection.
 Auf einer Seite Microservices können ihren Zustand und Daten halten und werden mithilfe von \glqq Frameworks\grqq implementiert. Auf der anderen Seite Serverless sind Zustandlos.
 ConnectWise\footnote{ConnectWise: \url{https://aws.amazon.com/solutions/case-studies/connectwise/}}, Netflix\footnote{Netflix: \url{https://aws.amazon.com/solutions/case-studies/netflix-and-aws-lambda/}} und UNLESS\footnote{UNLESS: \url{https://unless.com/}} sind beispiele von Unternehmen die von Serverless Architekturen profitieren.
@@ -381,16 +383,166 @@ cloud is about services and service composition@CiteEssentialsofCloudComputing
 \chapter{klassische Service-Modellen}
 Iaas und PaaS
 
+\section{IaaS}
+IaaS can be described as a service that provides virtual abstractions for hardware,
+servers, and networking components. The service provider owns all the equipment
+and is responsible for its housing, running, and maintenance. In this case, AWS
+provides APIs, SDKs, and a UI for creating and modifying virtual machines, their
+network components, routers, gateways, subnets, load balancers, and much more.
+Where a user with a physical data center would incur charges for the hardware,
+shelving, and access, this is removed by IaaS with a payment model that is per-hour
+(or per-use) type.\cite{PatternAWS}
+
+\section{PaaS}
+While AWS itself is an IaaS provider, it contains a product named ElasticBeanstalk,
+which falls under the PaaS category for Cloud models. PaaS is described as the
+delivery of a computing platform, typically an operating system, programming
+language execution environment, database, or web server. With ElasticBeanStalk,
+a user can easily turn a code into a running environment without having to worry
+about any of the pieces underneath such as setting up and maintaining the database,
+web server, or code runtime versions. It also allows it to be scaled without having to
+do anything other than define scale policies through the configuration.\cite{PatternAWS}
+
+\section{SaaS}
+AWS also provides a marketplace where a user can purchase official and third-party
+operating system images that provide configurable services such as databases, web
+applications, and more. This type of service falls under the SaaS model. The best
+interpretation for the SaaS model is on-demand software, meaning that the user need
+only configure the software to use and interact with it. The draw to SaaS is that there
+is no need to learn how to configure and deploy the software to get it working in a
+larger stack and generally the charges are per usage-hour.
+The AWS suite is both impressive and unique in that it doesn't fall under any one of
+the Cloud service models as described previously. Until AWS made its name, the need
+to virtualize an entire environment or stack was usually not an easy task and consisted
+of a collection of different providers, each solving a specific part of the deployment
+puzzle. The cost of using many different providers to create a virtual stack might not
+be cheaper than the initial hardware cost for moving equipment into a data center.
+Besides the cost of the providers themselves, having multiple providers also created
+the problem of scaling in one area and notifying another of the changes. While making
+applications more resilient and scalable, this Frankenstein method usually did not
+simplify the problem as a whole.\cite{PatternAWS}
+
+\section{FaaS}
+Some people prefer to use the acronym FaaS (function as a service) to describe tech-
+nologies like Lambda. In fact, they prefer not to use the term serverless at all. They
+feel that it’s not accurate enough and that it needs to be constantly explained. In this
+book, we’ve been using the term serverless not as a synonym for Lambda but as a
+descriptor for an approach that encourages you to use a compute service, use third-
+party services and APIs, and employ powerful patterns and architectures (such as
+having thick front ends that talk directly to services using delegation tokens). There-
+fore, we say that serverless is an umbrella term that encompasses FaaS and that
+FaaS is just one aspect (albeit a very important one) of what serverless technologies
+and architectures have to offer\cite{sbarski2017serverless}
+
 \chapter{nichtfunktionalen/technischen Anforderungen zur Entwicklung des Serverless-Ansatzes}
+Gegenüberstellung 
+Skalliebarkeit ok
+Vendor-lockin
+Customisation
+Decentralisation
+\section{Ja/Neins}
+
+Die Unterschiede zwischen den\cite{king2016aws}
+\paragraph{Wann Nicht}: 
+
+Betriebsystemabhängigkeiten erkennen: Traditionellen Computing wie EC2, wo die Entwickler root 
+zugrifsrechte auf alle Ressources hat, in Lambda ist diser Opaque.
+
+OS Attribute Konfigurationen: Priorisieren CPU, GPU, Networking, or Disk Speicher und Geschwindigkeit. In Lambda skalieren proportional.
+
+Sicherheit: Lambda nicht sichtbar host-based intrusion detection systems cannot be installed, system-level access logs
+
+Dauerhafte Prozesse. Lambda kann bis 300s. Kosten pro Monat 1Gb  Lambda = 37 EC2 = 9Dollar. Wenn warten auf Requests, oder auf Callbacks geht nicht.
+
+\paragraph{Wann Ja}
+
+EventDriven Tasks: Lambda solves the polling problem by creating an on-demand response to particular events.
+
+Cron. Events: EC2 als behälter von Scripts, kostet auch ohne sie auszuführen. Fehlerhafte Scripts nicht einfach zu erkennen. Skallierung auch von Fehler. Permissions zu offen.
+Mit Lambda: the permissions can be much more narrowly applied, failures are much more easily noticed, deployments can be easily triggered, logs are aggregated in one place, and the underlying server management is handled by AWS.
+
+Heavy Processing: Um autoskalling zu vermeiden wegen z.B.Bildverarbeitung. So entkoppelt sich der Empfänger und der Verarbeiter und können mehr Requests angenommen werden. 
+
+Serverless API Gateway vermeidet api servers
+
+Selten verwendete Services. z.B <= 5 porZent average CPU t2.micro <~> 3x10hoch6 = 9dollar
+
+
+
 
 \chapter{wie es sich in die Informatik einbettet}
-HTTP, Funktionale Programmierung, Fassaden, ...
+HTTP, Funktionale Programmierung, Fassaden, ... ?? 
+
+
+Funktionale prog. abstrah. auf Infrastrukt.
+\section{Use Cases}
+next\cite{sbarski2017serverless}
+Application Backend: z.b Internet of Things IoT: push to S3, push queue to SQS and invoke Lambda.
+
+Data Procesisng and manipulation: pipeline of :collation and aggregation of data; image resizing;
+and format conversion.
+
+Real time processing and analitics: Ingestion of Data -> Kinesis Streams; if Batch size -> Process, Save, Discard -> Lambda
+
+Legacy Api Proxy: Extra RESTful GateWay with lambda on top legacy api. Easier Usage.
+
+Scheduled Services
+
+Bots and Skills
+
+next\cite{king2016aws}
+Shuttdown untagged EC2 instances. 
+
+Code Deploy
+
+Process inbount mail: 
+attachment to S3 + link to it
+spam filter
+
+Detect expiring certificates
+
+
 
 \chapter{kurzer Überblick über Serverless-Angebote/Architekturen}
+Per Type: The Company
+API Gateway : AWS 
+Simple Notification Service ( SNS ) : AWS vs Cloud Pub/Sub : Google
+Simple Storage Service ( S3 ) : AWS vs Cloud Storage : Google
+Simple Queue Service ( SQS ) : AWS 
+Simple Email Service ( SES ) : AWS 
+Relational Database Service ( RDS ) : AWS 
+DynamoDb : AWS 
+CloudSearch : AWS 
+CloudFront ( CDN ) : AWS 
+DNS management (Route 53) : AWS 
+Caching (ElastiCache) : AWS 
+
+Elastic Transcoder : AWS 
+Kinesis Streams : AWS 
+
+Cognito : AWS 
+AuthO : AuthO
+Firebase : Google
+Stack Driver Logging : Google
+Cloud Machine Learning Engine : Google
+Cloud DataFlow : Google -> Stream batch pipelines
+Big Query : Google
 
 \chapter{Fokus auf AWS, Vorstellung der AWS-Serverless-Angebote}
 
+
 \chapter{Beispiel(!)-Fall KOMA}
+
+\section{Anforderungen Analyse}
+
+Zu den Anforderungen
+\begin{itemize}
+	\item Mit dem EQF vergleichbare Kompetenzeindefinitionen
+	\item Von Browser abrufbar
+	\item Private Datenspeicherung u.d Login
+	\item Zukünftige Erweiterungen berücksichtigen
+	\item Ertrag von großen Nutzlastschwankungen
+\end{itemize}
 
 \chapter{EntwurfII}
 
@@ -400,7 +552,7 @@ HTTP, Funktionale Programmierung, Fassaden, ...
 
 \chapter{Ausblick}
 
-\section{Architekturen}
+\chapter{Architekturen}
 
 Vergleich und Ergänzung von serverbasierte Archs. mit Serverless Archs. 
 
@@ -499,8 +651,6 @@ attachment to S3 + link to it
 spam filter
 
 Detect expiring certificates
-
-\subsection{Architecturen}
 
 
 
@@ -606,16 +756,6 @@ lambda<convert/invoke> fuseki-server\label{komponenten:fuseki}
 nice: graphQL= json matcher over multiple DBs
 
 
-\section{Anforderungen Analyse}
-
-Zu den Anforderungen
-\begin{itemize}
-\item Mit dem EQF vergleichbare Kompetenzeindefinitionen
-\item Von Browser abrufbar
-\item Private Datenspeicherung u.d Login
-\item Zukünftige Erweiterungen berücksichtigen
-\item Ertrag von großen Nutzlastschwankungen
-\end{itemize}
 
 
 \section{Datenhaltung Analyse und Auswahl}
