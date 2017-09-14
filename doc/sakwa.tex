@@ -351,7 +351,7 @@ Im Rahmen des Cloud-Computing handelt es sich in dieser Arbeit um eine Untersuch
 \section{Ziel}
 \label{sec:task}
 \newacronym{MVP}{Mivip}{Minimal Viable Product}
-@acronym MVP Minimal Viable Product : \cite{rady2016serverless} Das Ziel ist ein MVP Minimal Viable Product in form eine @acronym SPA Single Page Application mit ausschließlich \glqq Serverlosen\grqq Architekturen vor zur Verfügung zu stellen.
+@acronym MVP Minimal Viable Product : \cite{rady2016serverless} Das Ziel ist ein MVP Minimal Viable Product in form eine @acronym SPA Single Page Application mit ausschließlich \glqq Serverlosen\grqq Technologien vor zur Verfügung zu stellen.
 
 Nach der Umsetzung werden die Erfahrungen und Ergebnisse ausgewertet, um dem Leser bei dem Entscheidungsprozess bei der Umsetzung einer Webanwendung besser zu Informieren.
 
@@ -377,11 +377,14 @@ ConnectWise\footnote{ConnectWise: \url{https://aws.amazon.com/solutions/case-stu
 
 \section{Architekturen}
 
+Vergleich und Ergänzung von serverbasierte Archs. mit Serverless Archs. 
+
 Die Architekturentwurfsmuster helfen uns zu kommunizieren welches Zweck unsere Software erreichen möchte und bieten generische Lösungen für wiederkehrende Probleme bei der Softwareentwicklung.
 
+list of
 Separation of concerns
 Reusable layers
-Maintenance @Schafföner JEE1
+Maintenance 
 Koma standalone snapshot
 Components:
 Controller: router, handle in-req build out-res
@@ -411,7 +414,7 @@ Um die Komplexität des Systems zu reduzieren und die längerfristige Wartbarkei
 
 In einem beispielhaften konventionellen AdServer, nach einem Click auf eine Werbung wird eine Nachricht über ein Kanal an einen Clickprozessor, derer Laufzeit eine Anwendung ist, geschickt. Im Serverless wird dieser Clickprozessor als Funktion pro Nachricht instantiiert derer Laufzeitumgebung und Messagebroker der Cloudanbieter liefert.@Cite Flower's Blog
 
-\subsection{Use Cases}
+\subsection{Ja/Neins}
 
 Die Unterschiede zwischen den\cite{king2016aws}
 \paragraph{Wann Nicht}: 
@@ -438,9 +441,51 @@ Serverless API Gateway vermeidet api servers
 
 Selten verwendete Services. z.B <= 5 porZent average CPU t2.micro <~> 3x10hoch6 = 9dollar
 
+\subsection{Use Cases}
+next\cite{sbarski2017serverless}
+Application Backend: z.b Internet of Things IoT: push to S3, push queue to SQS and invoke Lambda.
+
+Data Procesisng and manipulation: pipeline of :collation and aggregation of data; image resizing;
+and format conversion.
+
+Real time processing and analitics: Ingestion of Data -> Kinesis Streams; if Batch size -> Process, Save, Discard -> Lambda
+
+Legacy Api Proxy: Extra RESTful GateWay with lambda on top legacy api. Easier Usage.
+
+next\cite{king2016aws}
+Shuttdown untagged EC2 instances. 
+
+Code Deploy
+
+Process inbount mail: 
+attachment to S3 + link to it
+spam filter
+
+Detect expiring certificates
+
 \subsection{Architecturen}
 
+\subsection{Programming Model}
+Map Reduce and CGL Map Reduce\cite{king2016aws} 
+
+MultiMilton and Erlang
+
+Service-ORiented Computing EnviRonment 
+
 \subsection{Muster}
+
+Pipes and Filters\cite{homer2014cloud} <-> lambda event driven
+Health endpoint monitoring <-> EC2 certificate
+Leader election -> TRansaction mngmt S3
+Priority Queue
+Queue Based Load Leveling -> Not appliable for Lambda Computing Model
+Retry ->
+Runtime Reconfiguration <-> Api Gateway Zero Downtime on Redploy
+Scheduler Agent supervisor -> Not needed if Design to Failure.
+Sharding -> Divide DataStore to Scale better -> Dynamo db + S3
+Static Content Hosting -> Solved by S3
+Throttling -> Scallability of Serverless Solved vs Transaction
+Vallet key <-> Auht0
 
 Befehlmuster wird bei Fusekiserver\ref{komponenten:fuseki} als erteiler der Httpanfrage indem die SparQL Abfrage weiterleiten kann. Daher wird ein Pfad haus/hunde und haus/katze zur gleichen Funktion führen.
 Dieser kann aber offline gehen, also mehreren priorisierten MessagePattern als Queue vor eine oder mehreren Lambdas zu setzen absichert die Stabilität des Systems und entkoppelt Komponenten @RoundRobin?? BSRN.
@@ -499,10 +544,9 @@ Ein Nutzungs-Fall aka. Use-Case:
 \chapter{Umsetzung}
 Die grundlegende Vorgehensweise bei der Umsetzung dieses Projekts wird Analyse, Entwurf, Implementierung und Test sein. Der Forschender Charakter dieses Projekts lässt sich nicht Testgetrieben implementieren.
 Das
+ 
 
-
-
-\section{Komponenten}
+\section{Komponenten Übersicht}
 
 Um dem Leser einen Anhaltspunkt zu verleihen, werden hier die Softwarekomponenten beschrieben.
 
@@ -868,8 +912,50 @@ Die AWS Console lässt die Funktionen hochladen und konfigurieren, ohne nötige 
 
 Um den Datenmodell möglichst simpel programmatisch abzufragen wird zunächst dessen Schnittstelle\ref{sec:rest} definiert. 
 
+
+\section{Abtrennung des Monoliths}
+
+Im Folgendem es wird beispielhaft eine abtrennung einer JEE Anwendung.
+
+\paragraph{JEE.war}
+\glqq And\grqq Test vs SRP
+Identifizieren der Concerns und ihre Trennung: 
+
+\subparagraph{Einloggen}
+Login beispiel: 
+user + password + userData -> 
+user + passord -> uuID -> userData 
+refactor and share common code
+
+
+Autorisierung und Authentifizierung. Einleitung
+
+Auth0 bietet Authentifizierung as a Service an. Der Benutzer erhält einen JSON Web Token JWT und schickt ihn Encoded JSON Web Signature JWS oder JSON Web Encription zur Anwendung mit.
+%Mit wenige Konfigurationsschritte kann man die Benutzer Authentifizieren. 
+
+
+Einloggen: 0Auth Google gibt token, der wird in Lambda überprüft, Session in oauth.com verwaltet
+
+
+\subparagraph{Dynamo DB}
+
+Funtion: Read + Write + updateS3 
+zu
+Split S3, Split R/W 
+
+Datenspecherung Architektur:
+DynamoDB: speichert :individual als Schlussel und seine relative URL
+Ś3: speichert die .owl Dateien.
+
+Lambda Funktion: Maps zwischen S3 und DynamoDB.
+
+
+
 \section{RESTful API}
 \label{sec:rest}
+Designing a friendly Hypertext Transfer Protocol (HTTP) API means abstracting the
+intricate business logic and data your service uses into the four basic CRUD operations
+(create, read, update, delete).
 
 Die Komplexität des darunterliegenden Datenmodells erlaubt eine RESTful\cite{Hunter2017} Schnittstelle nur einfache abfragen zu formulieren. Daher zusätzlich ein Endpunkt\ref{tab:rest} für Komplexe Sparql Abfragen, die im Body des HTTP Requests in JSON geschickt wird. 
 
@@ -934,21 +1020,6 @@ $ aws  --region us-west-2 s3 website --index-document index.html --error-documen
 
 Da der Zugriff auf die Datenspeicherung gesichert werden soll, wird die Login-Funktionalität hinzugefügt.
 
-\section{Einloggen}
-
-Autorisierung und Authentifizierung. Einleitung
-
-Auth0 bietet Authentifizierung as a Service an. Der Benutzer erhält einen JSON Web Token JWT und schickt ihn Encoded JSON Web Signature JWS oder JSON Web Encription zur Anwendung mit.
-%Mit wenige Konfigurationsschritte kann man die Benutzer Authentifizieren. 
-
-
-Einloggen: 0Auth Google gibt token, der wird in Lambda überprüft, Session in oauth.com verwaltet
-Query: SparQL ?x, ?y, ?z WHERE ...
-Datenspecherung Architektur:
-DynamoDB: speichert :individual als Schlussel und seine relative URL
-Ś3: speichert die .owl Dateien.
-
-Lambda Funktion: Maps zwischen S3 und DynamoDB.
 
 \section{Patterns}
 
