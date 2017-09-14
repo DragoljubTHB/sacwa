@@ -361,7 +361,8 @@ Für dieses Problem wurde \acrlong{FaaS}, kürz \acrshort{FaaS}\ref{sec:faas}, a
 Der Begriff Serverless weist darauf hin, dass die Verwaltung der darunter liegende Serverinfrastruktur von Cloudanbieter übernommen wird. Jedoch begränzt \acrshort{FaaS} dessen Bedeutung durch die Definition des Programmiermodells, nämlich eine Funktion, oder auch \glqq\ Nano-Microservice\grqq.
 
 \newacronym{KOMA}{KOMA}{Kompetenz Matrix}
-Im Rahmen des Cloud-Computing handelt es sich in dieser Arbeit um eine Untersuchung der Serverless Architekturen am Beispiel einer Konventionellen Webanwendung. Dabei wird besonders geachtet ob und wie solche Technologien die Umsetzung erleichtern. Die Entwurfsmuster und die Kernfunktionalität werden mit ausschließlich Serverless Technologien am Beispiel von \acrfull{KOMA} mit AWS umgesetzt.
+Im Rahmen des Cloud-Computing handelt es sich in dieser Arbeit um eine Untersuchung der Serverless Architekturen am Beispiel einer Konventionellen Webanwendung. Dabei wird besonders geachtet ob und wie solche Technologien die Umsetzung erleichtern. Die Entwurfsmuster und die Kernfunktionalität werden mit ausschließlich Serverless Technologien am Beispiel von \acrfull{KOMA}, kurz \acrshort{KOMA}\ref{sec:KOMA}, mit AWS umgesetzt.
+
 
 \section{Ziel}
 \label{sec:task}
@@ -379,13 +380,9 @@ Die Webanwendung soll möglichst für zukünftige Änderungen flexibel sein.
 Zuerst wird den Leser in die Klassischen Service Modellen\ref{chap:service-models} auffrischt. Zunächst werden die technische Anforderungen und die dazugehörige Beispiele des Serverless Ansatzes erläutert.
 \newacronym{AWS}{AWS}{Amazon Web Services}
 Das nächste Kapitel überblickt die aktuelle Serverless Angebote der größten Cloud Anbietern.
-Anschließend trifft der Leser den Kern der Arbeit bei der Analyse und Darstellung von Serverless Architekturen\ref{chap:aws-serverless} fokussiert auf \acrfull{AWS}, kurz \acrshort{AWS}.
-
- Serverless\ref{sec:serverless} Technologien eingeführt, das Programmiermodell vorgestellt
-und die Entscheidungsprinzipien\ref{par:serverless-principles} erläutert.
-Als Zweites wird KOMA \ref{sec:KOMA} als vorläufiges Beispielanwendung und deren Anforderungen vorgestellt.
-Nach dem Überblick, lässt sich die Umsetzung besser \glqq Bottom-Up\grqq verstehen.
-Am Ende wird es darüber diskutiert, welche TradeOffs entstehen und die Zukünftperspektiven von Serveless Technologien/ Architekturen.
+Anschließend trifft der Leser den Kern der Arbeit bei der Analyse und Darstellung von Serverless Architekturen\ref{chap:aws-serverless} fokussiert auf \acrfull{AWS}, kurz \acrshort{AWS}. Darin werden die Serverless\ref{sec:serverless} Architekturen eingeführt, das Programmiermodell vorgestellt und die Entscheidungsprinzipien\ref{par:serverless-principles} erläutert.
+Der praktische Teil mit der Umsetzung und Bewertung von der oben genannte Serverless Webanwendung KOMA\ref{sec:KOMA}.
+Am Ende wird es darüber diskutiert, welche Trade-offs entstehen und die Zukünftperspektiven von Serveless Technologien.
 
 \chapter{Grundlagen}
 \label{chap:principles}
@@ -406,7 +403,43 @@ Cloud Properties : on-demand self-service, broad network access, measured servic
 Cloud App Props : Isolated state, Distribution, Elasticity, Automated management, Loose coupling
 
 \section{SOA}
-Service Orientierte Architektur SOA unterlegt die Annahme dass, ein System aus mehreren kleinen, austauschbaren und entkoppelten Diensten bestehen kann. Microservices und Serverless versuchen die Komplexität der SOA anzusprechen. Beide Ansätze zwingen auf Separation of Concerns, häufige Deployments und Heterogeneous DSL Domain Specific Language selection.
+Service Orientierte Architektur SOA unterlegt die Annahme dass, ein System aus mehreren kleinen, austauschbaren und entkoppelten Diensten bestehen kann. 
+
+SOA\cite{cloudEssentials} is a flexible set of design principles and standards used for systems
+development and integration
+provides a loosely coupled set of services that can be used by the service
+consumers for meeting their service requirements within various business
+domains
+Cloud computing is a service delivery model in which shared
+services and resources are consumed by the users across the Internet
+just like a public utility on an on-demand basis
+
+
+SOA enables mutual data exchange between programs of different ven-
+dors without the need for additional programming or changes to the ser-
+vices. The services should be independent, and they should have standard
+interfaces that can be called to perform their tasks in a standard way.
+1. Reuse of services: Various services can be reused by different applica-
+tions, which results in lower development and maintenance costs.
+Having reusable services readily available also results in quicker
+time to market.
+2. Agility: SOA can bring the architectural agility in an enterprise
+through the wide use of standards such as web services. This is the
+ability to change the business processes quickly when needed to sup-
+port the change in the business activities. This agility aspect helps
+to deal with system changes using the configuration layer instead of
+redeveloping the system constantly.
+3. Monitoring: It helps to monitor the performance of various services
+to make the required changes.
+4. Extended reach: In the collaboration between enterprises or in the
+case of shared processes, it is the ability to get the service of various
+other processes for completing a particular task.
+
+Wir werden als SOA Technologie REST: REpresentational State Transfer (REST) is a stateless architecture that runs over HTTP. It is used for effective interactions between
+clients and services. Benutzen.
+
+
+Microservices und Serverless versuchen die Komplexität der SOA anzusprechen. Beide Ansätze zwingen auf Separation of Concerns, häufige Deployments und Heterogeneous DSL Domain Specific Language selection.
 Auf einer Seite Microservices können ihren Zustand und Daten halten und werden mithilfe von \glqq Frameworks\grqq implementiert. Auf der anderen Seite Serverless sind Zustandlos.
 ConnectWise\footnote{ConnectWise: \url{https://aws.amazon.com/solutions/case-studies/connectwise/}}, Netflix\footnote{Netflix: \url{https://aws.amazon.com/solutions/case-studies/netflix-and-aws-lambda/}} und UNLESS\footnote{UNLESS: \url{https://unless.com/}} sind beispiele von Unternehmen die von Serverless Architekturen profitieren.
 
@@ -415,6 +448,10 @@ cloud is about services and service composition@CiteEssentialsofCloudComputing
 \chapter{klassische Service-Modellen}
 \label{chap:service-models}
 Iaas und PaaS
+
+\begin{figure}
+	\includegraphics[scale=0.2]{./pics/IaaS_vs_PaaS_vs_Serverless.png}
+\end{figure}
 
 \section{IaaS}
 IaaS can be described as a service that provides virtual abstractions for hardware,
@@ -759,8 +796,27 @@ Dieser Begriff gehört zum \glqq Semantic Web\grqq,der in der Sektion der Ontolo
 
 \subsection{Semantic Web}
 
+Referred as 2.0 but really is 1.0: also called network as a platform computing as it provides software, computing, and storage facilities to the user all through the browser\cite{cloudEssentials}.
+John Markoff of The New York Times
+it refers to the third generation of Internet-based services that
+is collectively called the intelligent web\url{http://www.nytimes.com/2006/11/12/business/12web.html?mcubz=1}
+Web 3.0 will surely be
+called a read/write/execute web.
+
+The semantic web provides the web user a common framework that could be
+used to share and reuse the data across various applications, enterprises, and
+community boundaries The semantic web is a vision of IT that allows
+the data and information to be readily interpreted by machines, so that the
+machines are able to take contextual decisions on their own by finding, com-
+bining, and acting upon relevant information on the web. The semantic web,
+as originally envisioned, is a system enabling the machines to understand
+the context and meaning of complex human requests and respond to them
+appropriately. Also, the semantic web is considered as an integrator of con-
+tents or information across different applications and systems.
+
 Das \glqq Semantic Web\grqq ist eine Erweiterung des herkömmlichen Web, in der Informationen mit eindeutigen Bedeutungen versehen werden\cite{OntoWhat2}.
-set of standards and best practices for sharing data and the semantics of that data over the Web for use by applications\cite{SparqlLearn} .
+set of standards and best practices for sharing data and the semantics of that data over the Web for use by applications\cite{SparqlLearn}.
+
 Diese Bedeutungen werden für Maschinen durch Ontologien dargestellt. 
 Die Ontologien werden in der OWL2 Spezifikation von W3C\footnote{WWW Consortium \url{https://www.w3.org/standards/semanticweb/}}beschrieben. Die hälfte der Linked Datenbasis sind veroffentlicht. 
 
@@ -1242,7 +1298,6 @@ Es kann daher auch als Serverless betrachtet wenn neue Quelldataien eine Docker 
 
 
 \chapter*{Glossar}
-\markboth{Glossar}{}
 
 \printglossary[type=\acronymtype]
 
