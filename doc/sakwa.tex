@@ -400,6 +400,14 @@ Layer = Logical Responsability or Funtionality Domain
 
 Serverless versucht das System in Funktionen runter zu brechen und auf ihnen das sichere Zugang dem Front-End zu erlauben.
 
+\subsection{Programming Model}
+Map Reduce and CGL Map Reduce\cite{king2016aws} 
+
+MultiMilton and Erlang
+
+Service-ORiented Computing EnviRonment 
+
+
 \section{Serverless}
 \label{sec:serverless}
 
@@ -452,6 +460,10 @@ Real time processing and analitics: Ingestion of Data -> Kinesis Streams; if Bat
 
 Legacy Api Proxy: Extra RESTful GateWay with lambda on top legacy api. Easier Usage.
 
+Scheduled Services
+
+Bots and Skills
+
 next\cite{king2016aws}
 Shuttdown untagged EC2 instances. 
 
@@ -465,14 +477,14 @@ Detect expiring certificates
 
 \subsection{Architecturen}
 
-\subsection{Programming Model}
-Map Reduce and CGL Map Reduce\cite{king2016aws} 
 
-MultiMilton and Erlang
-
-Service-ORiented Computing EnviRonment 
 
 \subsection{Muster}
+
+next\cite{sbarski2017serverless}
+Compute as a back end for web and mobile 
+
+compute as a glue pipelines built to carry out workflows <-> Async Messag Primer\cite{homer2014cloud}
 
 Pipes and Filters\cite{homer2014cloud} <-> lambda event driven
 Health endpoint monitoring <-> EC2 certificate
@@ -490,6 +502,14 @@ Vallet key <-> Auht0
 Befehlmuster wird bei Fusekiserver\ref{komponenten:fuseki} als erteiler der Httpanfrage indem die SparQL Abfrage weiterleiten kann. Daher wird ein Pfad haus/hunde und haus/katze zur gleichen Funktion führen.
 Dieser kann aber offline gehen, also mehreren priorisierten MessagePattern als Queue vor eine oder mehreren Lambdas zu setzen absichert die Stabilität des Systems und entkoppelt Komponenten @RoundRobin?? BSRN.
 Die Verkettung von Funktionen mittels \glqq Pipes\grqq erlaubt die mehrfache Filterung von Daten.
+
+\section{Guidance}
+Caching -> Lambda Reads Same source and Process
+Compute partitioning -> Lambda per use. solved
+Data Consistency -> Embrace Eventual Consistency in Distributed DBs
+Data partitioning <-> Sharding 
+Instrumentation and Telemetry Guidance -> Errors Handling
+Service Metering -> understand future use of services
 
 %Stand der Technik: 
 %Vorgehensweise bei Traditionelle Webanwendungen:  
