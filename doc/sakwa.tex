@@ -320,7 +320,7 @@ Brandenburg an der Havel, 21. September 2017
 
 Dragoljub Milasinovic
 
-\chapter{Abstrakt}
+\chapter*{Abstrakt}
 Pomodoro
 @Deutch
 @English
@@ -388,62 +388,70 @@ Am Ende wird es darüber diskutiert, welche Trade-offs entstehen und die Zukünf
 \label{chap:principles}
 %\epigraph{\textit{\textquotedbl{}
 %There are only two hard things in computer science:\\ cache invalidation and naming %things.\textquotedbl{}}}{ Phil Karlton }
-\section{warum Cloud}
+\section{Cloud Eigenschaften}
+\label{sec:cloud-char}
+Als Software Architekt, Entwickler oder Projektmanager es ist wichtig, die spezifische Eigenschaften von Cloudangebote zu verstehen. Je nach Anforderungen und Art der technologischen Umsetzung lässt sich richtige Auswahl von ein Meer von Cloud Dienste schwer zu treffen. 
 
-Ziel: Anwendung
-Wichtig ist als Software Architekt, Entickle oder ProjMan die Specific properties von Cloud Angebot zu verstehen und entsprechend die Anwendung zusammen bauen. 
+Die vorliegende Arbeit beschäftigt sich mit dem Serverless Ausschnitt der Cloud Dienste. 
 
-Ziel: Software as a Service
-Cloud Service Model
+Im allgemein heben sich folgende Eigenschaften bei der Betrachtung von Cloud Angebote.
+\begin{itemize}
+	\item Probably not in a list. .... but explained narrativelly
+	\item on-demand self-service
+	\item  broad network access
+	\item  measured service (pay-per-use)
+	\item resource pooling and rapid elasticity
+\end{itemize}
 
-Ziel: IaaS, PaaS
-
-Cloud Properties : on-demand self-service, broad network access, measured service (pay-per-use), resource pooling and rapid elasticity
+Daher können die in der Cloud betreibende Anwendungen folgende Eigenschaften haben: 
+\begin{itemize}
+	\item Isolated state
+	\item Distribution
+	\item Elasticity
+	\item Automated management
+	\item Loose coupling
+\end{itemize}
 
 Cloud App Props : Isolated state, Distribution, Elasticity, Automated management, Loose coupling
 
 \section{SOA}
-Service Orientierte Architektur SOA unterlegt die Annahme dass, ein System aus mehreren kleinen, austauschbaren und entkoppelten Diensten bestehen kann. 
+\label{sec:soa}
+Service Orientierte Architektur SOA unterlegt die Annahme dass, ein System aus mehreren kleinen, austauschbaren, wiederverwendbaren und entkoppelten Diensten bestehen kann. Stellt eine Menge von Entwurfsprinzipien und Standards für dessen Entwicklung und Integration\cite{cloudEssentials}.
 
-SOA\cite{cloudEssentials} is a flexible set of design principles and standards used for systems
-development and integration
-provides a loosely coupled set of services that can be used by the service
-consumers for meeting their service requirements within various business
-domains
-Cloud computing is a service delivery model in which shared
-services and resources are consumed by the users across the Internet
-just like a public utility on an on-demand basis
+Cloud Computing ist ein Serviceliefermodel in dem Services und Ressourcen von Benutzern Internetweit, wie z.B. bei öffentliche Dienste nach Anfrage, verbraucht werden.
 
+SOA ermöglicht gegenseitiges Datenaustausch zwischen Programmen von unterschiedlichen Anbieter ohne zusätzliche Änderungen an die Services vornehmen zu brauchen. Diese Services sollen unabhängig sein und \glqq standard\grqq\ Schnittstellen haben. 
 
-SOA enables mutual data exchange between programs of different ven-
-dors without the need for additional programming or changes to the ser-
-vices. The services should be independent, and they should have standard
-interfaces that can be called to perform their tasks in a standard way.
-1. Reuse of services: Various services can be reused by different applica-
-tions, which results in lower development and maintenance costs.
-Having reusable services readily available also results in quicker
-time to market.
-2. Agility: SOA can bring the architectural agility in an enterprise
-through the wide use of standards such as web services. This is the
-ability to change the business processes quickly when needed to sup-
-port the change in the business activities. This agility aspect helps
-to deal with system changes using the configuration layer instead of
-redeveloping the system constantly.
-3. Monitoring: It helps to monitor the performance of various services
-to make the required changes.
-4. Extended reach: In the collaboration between enterprises or in the
-case of shared processes, it is the ability to get the service of various
-other processes for completing a particular task.
+Im Cloud wird es daher in Services und Servicekomposition zentriert.
 
-Wir werden als SOA Technologie REST: REpresentational State Transfer (REST) is a stateless architecture that runs over HTTP. It is used for effective interactions between
-clients and services. Benutzen.
+\begin{figure}
+	SOA model
+	\includegraphics[scale=0.5]{./pics/2015_10_05_THB_Logo_BW.eps}
+\end{figure}
+
+\newacronym{DSL}{DSL}{Domain Specific Language}
+Microservices und Serverless versuchen die Komplexität der SOA anzusprechen. Beide Ansätze zwingen auf Separation of Concerns, häufige Deployments und Heterogene \acrfull{DSL}, kürz \acrshort{DSL}.
 
 
-Microservices und Serverless versuchen die Komplexität der SOA anzusprechen. Beide Ansätze zwingen auf Separation of Concerns, häufige Deployments und Heterogeneous DSL Domain Specific Language selection.
 Auf einer Seite Microservices können ihren Zustand und Daten halten und werden mithilfe von \glqq Frameworks\grqq implementiert. Auf der anderen Seite Serverless sind Zustandlos.
 ConnectWise\cite{ConnectWise}, Netflix\cite{Netflix} und UNLESS\cite{UNLESS} sind beispiele von Unternehmen die von Serverless Architekturen profitieren.
 
-cloud is about services and service composition@CiteEssentialsofCloudComputing
+
+Die Serverless Technologien können durch Benachrichtigungen gestartet werden. Diese \glqq Event Driven\grqq\ Fähigkeit verstärkt die Entkopplung temporäre-weise zwischen Producer/Anfrage und Consumer und ermöglicht eine Asynchrone Verarbeitung, ohne dass Fehler das System zum Absturz bringen.
+
+
+Es lassen sich folgende Vorteile ersichtlichen:
+\begin{itemize}
+	\item Wiederverwendung von Services in unterschiedlichen Anwendungen sinkt die Entwicklungskosten und Time-To-Market.
+	\item Durch die Standarisierung der Services, ein System kann mit eine Rekonfiguration und ohne Wieder-Entwicklung schnell anpassbar auf die Geschäftliche/Externe Bedürfnisse. Agilität.
+	\item Monitoring hilft Fehler zu erkennen und die Leistung zu messen.
+	\item Aggregate von Services können Komplexere und Domän übergreifende Aufgaben ausführen.
+\end{itemize}
+\newacronym{REST}{REST}{REpresentational State Transfer}
+Im späteren Kapitel tritt REST als teil der SOA Architekturstil.
+
+@Glossar REST is a stateless architecture that runs over HTTP. It is used for effective interactions between
+clients and services. Benutzen.
 
 \chapter{klassische Service-Modellen}
 \label{chap:service-models}
@@ -496,6 +504,8 @@ the problem of scaling in one area and notifying another of the changes. While m
 applications more resilient and scalable, this Frankenstein method usually did not
 simplify the problem as a whole.\cite{patternAWS}
 
+\chapter{FaaS}{nichtfunktionalen/technischen Anforderungen zur Entwicklung des Serverless-Ansatzes}
+
 \section{FaaS}
 \label{sec:faas}
 Some people prefer to use the acronym FaaS (function as a service) to describe tech-
@@ -509,7 +519,7 @@ fore, we say that serverless is an umbrella term that encompasses FaaS and that
 FaaS is just one aspect (albeit a very important one) of what serverless technologies
 and architectures have to offer\cite{serverlessArchAWS}
 
-\chapter{nichtfunktionalen/technischen Anforderungen zur Entwicklung des Serverless-Ansatzes}
+\section{Technische Anforderungen}
 Gegenüberstellung 
 Skalliebarkeit ok
 Vendor-lockin
@@ -517,7 +527,7 @@ Customisation
 Decentralisation
 \section{Ja/Neins}
 
-Die Unterschiede zwischen den\cite{king2016aws}
+Die Unterschiede zwischen den\cite{lambdaAWSa}
 \paragraph{Wann Nicht}: 
 
 Betriebsystemabhängigkeiten erkennen: Traditionellen Computing wie EC2, wo die Entwickler root 
@@ -1212,7 +1222,7 @@ Da KOMA ohne Vorkenntnisse gebrauchsfertig sein soll, mit dem Fakt dass Milliard
 Die Web Anwendung ist für alle Rechenaufgaben verantwortlich die im Browser aus dem Sicherheitssichtpunkt kein Gefahr darstellen, um den Backend oder Servers möglichst wenig auszulasten. Deswegen bietet sich eine Single Page Application an. 
 Die SPA besteht aus ein einziges HTML Dokument. Dies vereinfacht man die Konfiguration der Authentifizierung und unterbricht den Fluss der UI-Darstellung zwischen Seiten.
 
-Ein konfiguriertes Anfangsprojekt/Quickstart kann mithilfe von Initializr\footnote{Initializr \url{http://www.initializr.com/}} oder JHipster\footnote{JHipster \url{http://www.jhipster.tech/}}. Für die lokale Entwicklung der Webseite werden anhand von NodeJS und NPM folgende Bibliotheken als Abhängigkeiten verwaltet: Bootstrap als Stylescheet und jQuery als Javascript-Bibliothek.
+Ein konfiguriertes Anfangsprojekt/Quickstart kann mithilfe von Initializr\cite{Initializr} oder JHipster\cite{Jhipster}. Für die lokale Entwicklung der Webseite werden anhand von NodeJS und NPM folgende Bibliotheken als Abhängigkeiten verwaltet: Bootstrap als Stylescheet und jQuery als Javascript-Bibliothek.
 Die Webseite wird Statisch mittels S3 geliefert. Dies geschieht mit einem Befehl: 
 \begin{lstlisting}[language=BASH, caption={Webseite veröffentlichen}]
 $ aws  --region us-west-2 s3 website --index-document index.html --error-document error.html 's3://koma.thb.de'
@@ -1222,6 +1232,17 @@ Da der Zugriff auf die Datenspeicherung gesichert werden soll, wird die Login-Fu
 
 
 \chapter{Bewertung}
+
+\paragraph{Zur Skalabilität}
+Skallabilität in Datenhaltung -> Entwerfe für Distribution + vorteile von Lokalität.
+Read replikas -> evtl. Konsistent. 
+Viele Perspektiven von Daten -> Lebenszyklus von Daten. 
+---- Bounded Context ---- 
+Service ist nicht nur Funktion oder nur DB.
+Entkopplung fordert enkapsulation und Cohesion.
+
+Event als Bussinesmanager -> Coordinator / Orchestrator -> Lambda
+Als Finite State Machine oder WorkFlow
 
 \paragraph{Anwendung}{Latenz}
 Die entstandene Webanwendung befindet sich in US-WEST-2, Oregon, in den USA. 
@@ -1292,6 +1313,9 @@ In dieser Arbeit wurde eine "nach buch" weise die Architektur gestalltet. Die un
 Es kann daher auch als Serverless betrachtet wenn neue Quelldataien eine Docker Instance neu Erzeugen oder nur Updaten, dessen LoadBalancing auch als Serverless Quellcode verpakt werden kann. 
 
 \chapter{Ausblick}
+
+\paragraph{RESTful UI}
+RESTful Anfragen für bestimmte UI formate.
 
 \lstlistoflistings
 
