@@ -453,7 +453,7 @@ Im späteren Kapitel tritt REST als teil der SOA Architekturstil.
 @Glossar REST is a stateless architecture that runs over HTTP. It is used for effective interactions between
 clients and services. Benutzen.
 
-\chapter{klassische Service-Modellen}
+\chapter{Klassische Service-Modellen}
 \label{chap:service-models}
 Iaas und PaaS
 
@@ -463,61 +463,26 @@ Iaas und PaaS
 
 \section{IaaS}
 \label{sec:iaas}
-IaaS can be described as a service that provides virtual abstractions for hardware,
-servers, and networking components. The service provider owns all the equipment
-and is responsible for its housing, running, and maintenance. In this case, AWS
-provides APIs, SDKs, and a UI for creating and modifying virtual machines, their
-network components, routers, gateways, subnets, load balancers, and much more.
-Where a user with a physical data center would incur charges for the hardware,
-shelving, and access, this is removed by IaaS with a payment model that is per-hour
-(or per-use) type.\cite{patternAWS}
+\newacronym{IaaS}{IaaS}{Infrastructure as a Service}
+\acrfull{IaaS}, kurz \acrshort{IaaS}, kann als ein Service beschrieben werden, dass Abstraktionen für Hardware, Servers und Netzwerk Komponenten bereitstellt. Der Serviceanbieter besitzt the Ausrüstung und ist für die Behausung, die Inbetriebnahme und die Wartung verantwortlich\cite{patternAWS}. Der Benutzer bezahlt nicht für das Hardware, dessen Lagerung und den Zugang auf ihn, sondern für die Nutzung des gesamtes Servicemodel z.B.: Zahlung nach benutzte Stunden, Ressourcen usw.
 
 \section{PaaS}
 \label{sec:paas}
-
-While AWS itself is an IaaS provider, it contains a product named ElasticBeanstalk,
-which falls under the PaaS category for Cloud models. PaaS is described as the
-delivery of a computing platform, typically an operating system, programming
-language execution environment, database, or web server. With ElasticBeanStalk,
-a user can easily turn a code into a running environment without having to worry
-about any of the pieces underneath such as setting up and maintaining the database,
-web server, or code runtime versions. It also allows it to be scaled without having to
-do anything other than define scale policies through the configuration.\cite{patternAWS}
+\newacronym{PaaS}{PaaS}{Platform as a Service}
+\acrfull{PaaS}, kurz \acrshort{PaaS}, kann als ein Service beschrieben werden, dass eine Rechenplatform liefert, z.B. ein Betriebssystem, eine Ausführungsumgebung für Programmiersprachen(siehe ElasticBeanstalk), eine Datenbank oder ein Webserver. Dieser Dienst übernimmt sowohl die Wartung der Datenbank, Webserver und die Versionen des Laufzeitquellcodes als auch dessen Skalierbarkeit die nun nur Konfiguriert werden bracht\cite{patternAWS}.
 
 \section{SaaS} 
 \label{sec:saas}
-AWS also provides a marketplace where a user can purchase official and third-party
-operating system images that provide configurable services such as databases, web
-applications, and more. This type of service falls under the SaaS model. The best
-interpretation for the SaaS model is on-demand software, meaning that the user need
-only configure the software to use and interact with it. The draw to SaaS is that there
-is no need to learn how to configure and deploy the software to get it working in a
-larger stack and generally the charges are per usage-hour.
-The AWS suite is both impressive and unique in that it doesn't fall under any one of
-the Cloud service models as described previously. Until AWS made its name, the need
-to virtualize an entire environment or stack was usually not an easy task and consisted
-of a collection of different providers, each solving a specific part of the deployment
-puzzle. The cost of using many different providers to create a virtual stack might not
-be cheaper than the initial hardware cost for moving equipment into a data center.
-Besides the cost of the providers themselves, having multiple providers also created
-the problem of scaling in one area and notifying another of the changes. While making
-applications more resilient and scalable, this Frankenstein method usually did not
-simplify the problem as a whole.\cite{patternAWS}
+\newacronym{SaaS}{SaaS}{Software as a Service}
+\acrfull{SaaS}, kurz \acrshort{SaaS}, kann als ein Service beschrieben werden, dass OS-Images mit konfigurierbaren Diensten wie Datenbanke, Webanwendungen usw. Der Nutzer muss die Konfiguration und Deployment nicht lernen, um die Dienste in einen größeren \glqq Stack\grqq\ einzubinden. Die Gebühren sind generell nach benutzte Stunde. 
+
+Das @Glossar \glqq Virtualisieren\grqq\ einer ganzen Umgebung oder Stack zerteilt sich in eine Sammlung von kleinen spezialisierten Aufgaben, die durch Drittanbieter implementiert wurden. Dieser Fakt steigerte die wirtschaftlichen Kosten und machte die Skalierungsmöglichkeiten komplexer\cite{patternAWS}.
 
 \chapter{FaaS}{nichtfunktionalen/technischen Anforderungen zur Entwicklung des Serverless-Ansatzes}
 
 \section{FaaS}
 \label{sec:faas}
-Some people prefer to use the acronym FaaS (function as a service) to describe tech-
-nologies like Lambda. In fact, they prefer not to use the term serverless at all. They
-feel that it’s not accurate enough and that it needs to be constantly explained. In this
-book, we’ve been using the term serverless not as a synonym for Lambda but as a
-descriptor for an approach that encourages you to use a compute service, use third-
-party services and APIs, and employ powerful patterns and architectures (such as
-having thick front ends that talk directly to services using delegation tokens). There-
-fore, we say that serverless is an umbrella term that encompasses FaaS and that
-FaaS is just one aspect (albeit a very important one) of what serverless technologies
-and architectures have to offer\cite{serverlessArchAWS}
+\acrshort{FaaS} kann als ein Service beschrieben werden, dass als \glqq Unit of Deployment\grqq\ eine Funktion ist. Komplexe Probleme wie horizontale und vertikale Skalierbarkeit, Fehlertoleranz, Flexibilität werden von Kunden und Benutzer nur noch nach bedarf Konfiguriert.
 
 \section{Technische Anforderungen}
 Gegenüberstellung 
@@ -554,7 +519,7 @@ Selten verwendete Services. z.B <= 5 porZent average CPU t2.micro <~> 3x10hoch6 
 
 \chapter{wie es sich in die Informatik einbettet}
 HTTP, Funktionale Programmierung, Fassaden, ... ?? 
-Funktionale prog. abstrah. auf Infrastrukt.
+Funktionale programmierung abstrahiert. auf Infrastruktur. ??? 
 
 \section{Use Cases}
 next\cite{serverlessArchAWS}
@@ -614,10 +579,10 @@ Serverless versucht das System in Funktionen runter zu brechen und auf ihnen das
 \section{Serverless}
 \label{sec:serverless}
 
-Serverless ist ein @Glossar Web Dienst/Service von Cloud-Anbieter, wird auch als @Glossar FaaS bezeichnet. Welcher grundlegende Serverinfrastruktur vom Cloud-Anbieter wie Amazon Web Services verwaltet wird. Komplexe Probleme wie horizontale und vertikale Skalierbarkeit, Fehlertoleranz, Flexibilität werden von Kunden und Benutzer nur noch nach bedarf Konfiguriert.
+\newacronym{API}{API}{Application Interface}
+Serverless kann als ein Ansatz, dass  die Verwendung von ein Rechen-Service, Dienste von Drittanbieter, von \acrfull{API}s, kurz \acrshort{API}s und die Anwendung von Architekturmustern( wie Mächtige Front-End, dass direkt mit Services kommunizieren anhand eines \glqq Delegation-Tokens\grqq\ ) fördert, beschrieben werden. \acrshort{FaaS} ist nur ein Aspekt dessen.
 
-
-Prinzipien\label{par:serverless-principles} von Serverless Architeturen: \cite{serverlessArchAWS}
+\paragraph{Prinzipien}\label{par:serverless-principles} von Serverless Architeturen: \cite{serverlessArchAWS}
 Rechen-Dienst dass, nach Anfrage isoliert, unabhängig und granular ausgeführt wird.
 SRP Single Responsability Prinzip: Funktionen werden dadurch mehr Testable/Prüfbar. Deren Vernetzung erlaubt komplexe Systeme zu entwerfen, die dank der Stateless Natur der Funktionen schnell zu skalieren sind.
 Diese Vernetzung kann durch einen Push-Based Event driven Pipe-line.
@@ -722,17 +687,17 @@ Wegen der Kompetenzorientierung, wird Kompetenz als Unit-Of-Work betrachtet für
 
 \paragraph{Hochschule Beispiel}
 Beispiel:
-Der Lehrplan fordert die Kompetenzen K in K1, K2, K3 .. Kn für den Bachelordiplom. Nach deren Manuellen Eingabe werden automatisch
-ihren Requirenments/Anforderungen/Abhängigkeiten Baum erzeugt. Dadurch können bereiche des Baums als LV betrachtet werden und Kompetenzen aufeinander
-bauend für eine Klassenstufe/Semestergang sequenziert werden. Die Auswertung der Ergebnisse der Aktivitäten und die Aktualisierung des Kompetenzstands
-des Schulers folgen.
+%Der Lehrplan fordert die Kompetenzen K in K1, K2, K3 .. Kn für den Bachelordiplom. Nach deren Manuellen Eingabe werden automatisch
+%ihren Requirenments/Anforderungen/Abhängigkeiten Baum erzeugt. Dadurch können bereiche des Baums als LV betrachtet werden und Kompetenzen aufeinander
+%bauend für eine Klassenstufe/Semestergang sequenziert werden. Die Auswertung der Ergebnisse der Aktivitäten und die Aktualisierung des Kompetenzstands
+%des Schulers folgen.
 
 \paragraph{Schule Beispiel}
 Allgemeines Beispiel:
 
-Beispielsweise drückt sich die Kompetenz beim Erwerb einer Fremdsprache – wenn mankommunikative Handlungsfähigkeit als Bildungsziel vorgibt – darin aus, wie gut man kommu-nikative Situationen bewältigt, wie gut man Texteunterschiedlicher Art verstehen und selbst adressatengerecht Texte verfassen kann, aberunter anderem auch in der Fähigkeit, gram-matische Strukturen korrekt aufzubauen und bei Bedarf zu korrigieren, oder in der Fähigkeitund Bereitschaft, sich offen und akzeptierend mit anderen Kulturenauseinander zu setzen. Standards für das Fremdsprachenlernen müssen diese Teilkompetenzen darstellen und je-weils verschiedene Niveaustufenunterscheiden (vgl. Anlage a). Hierbei spielen nicht nurkognitive Wissensinhalte eineRolle;diese sind vielmehr– wie Weinert im obigen Zitat her-vorhebt und das zuletzt genannte Beispiel der sog. Interkulturellen Kompetenz besonders deutlich macht – mit Einstellungen, Werten und Motiven verknüpft.
-Kompetenzen spiegeln diegrundlegenden Handlungsanforderungen, denenSchülerinnen und Schüler in der Domäneausgesetzt sind. Durch vielfältige, flexible und variable Nutzung und zunehmende Vernetzungvon konkreten, bereichsbezogenen Kompetenzen können sich auch „Schlüsselkompetenzen“entwickeln, aber der Erwerb von Kompetenzen muss – wie Weinert (2001) hervorhebt – beim systematischen Aufbau von „intelligentem Wissen“ in einer Domäne beginnen.
-- Jede Kompetenzstufe ist durch kognitive Prozesse und Handlungen von bestimmter Qualität spezifiziert, die Schüler auf dieser Stufe bewältigen können, nicht aber Schüler auf niedrigeren Stufen. Zum Bildungsstandard gehört, dass für einzelne Jahrgänge festgelegt wird, welche Stufen die Schülerinnen und Schüler erreichen sollen.
+%Beispielsweise drückt sich die Kompetenz beim Erwerb einer Fremdsprache – wenn mankommunikative Handlungsfähigkeit als Bildungsziel vorgibt – darin aus, wie gut man kommu-nikative Situationen bewältigt, wie gut man Texteunterschiedlicher Art verstehen und selbst adressatengerecht Texte verfassen kann, aberunter anderem auch in der Fähigkeit, gram-matische Strukturen korrekt aufzubauen und bei Bedarf zu korrigieren, oder in der Fähigkeitund Bereitschaft, sich offen und akzeptierend mit anderen Kulturenauseinander zu setzen. Standards für das Fremdsprachenlernen müssen diese Teilkompetenzen darstellen und je-weils verschiedene Niveaustufenunterscheiden (vgl. Anlage a). Hierbei spielen nicht nurkognitive Wissensinhalte eineRolle;diese sind vielmehr– wie Weinert im obigen Zitat her-vorhebt und das zuletzt genannte Beispiel der sog. Interkulturellen Kompetenz besonders deutlich macht – mit Einstellungen, Werten und Motiven verknüpft.
+%Kompetenzen spiegeln diegrundlegenden Handlungsanforderungen, denenSchülerinnen und Schüler in der Domäneausgesetzt sind. Durch vielfältige, flexible und variable Nutzung und zunehmende Vernetzungvon konkreten, bereichsbezogenen Kompetenzen können sich auch „Schlüsselkompetenzen“entwickeln, aber der Erwerb von Kompetenzen muss – wie Weinert (2001) hervorhebt – beim systematischen Aufbau von „intelligentem Wissen“ in einer Domäne beginnen.
+%- Jede Kompetenzstufe ist durch kognitive Prozesse und Handlungen von bestimmter Qualität spezifiziert, die Schüler auf dieser Stufe bewältigen können, nicht aber Schüler auf niedrigeren Stufen. Zum Bildungsstandard gehört, dass für einzelne Jahrgänge festgelegt wird, welche Stufen die Schülerinnen und Schüler erreichen sollen.
 
 \paragraph{Use Case}
 Ein Nutzungs-Fall aka. Use-Case:
