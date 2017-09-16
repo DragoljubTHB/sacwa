@@ -30,8 +30,9 @@ numbers=noenddot,version=first
 \usepackage{color}
 \usepackage{emptypage}
 \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
-\usepackage{listings}
-\usepackage[printonlyused]{acronym}
+%\usepackage{listings} doppelt
+%\usepackage[printonlyused]{acronym}
+%\usepackage{svg}
 \usepackage[acronym]{glossaries}
 \usepackage{verbatim}
 \usepackage{url}
@@ -435,8 +436,10 @@ Microservices und Serverless versuchen die Komplexität der SOA anzusprechen. Be
 Auf einer Seite Microservices können ihren Zustand und Daten halten und werden mithilfe von \glqq Frameworks\grqq implementiert. Auf der anderen Seite Serverless sind Zustandlos.
 ConnectWise\cite{ConnectWise}, Netflix\cite{Netflix} und UNLESS\cite{UNLESS} sind beispiele von Unternehmen die von Serverless Architekturen profitieren.
 
+\section{EDA}
+\newacronym{EDA}{EDA}{Event Driven Architecture}
 
-Die Serverless Technologien können durch Benachrichtigungen gestartet werden. Diese \glqq Event Driven\grqq\ Fähigkeit verstärkt die Entkopplung temporäre-weise zwischen Producer/Anfrage und Consumer und ermöglicht eine Asynchrone Verarbeitung, ohne dass Fehler das System zum Absturz bringen.
+Die Serverless Technologien können durch Benachrichtigungen gestartet werden. Diese \acrfull{EDA} Still, verstärkt die Entkopplung temporäre-weise zwischen Producer/Anfrage und Consumer und ermöglicht eine Asynchrone Verarbeitung, ohne dass Fehler das System zum Absturz bringen.
 
 
 Es lassen sich folgende Vorteile ersichtlichen:
@@ -447,7 +450,7 @@ Es lassen sich folgende Vorteile ersichtlichen:
 	\item Aggregate von Services können Komplexere und Domän übergreifende Aufgaben ausführen.
 \end{itemize}
 \newacronym{REST}{REST}{REpresentational State Transfer}
-Im späteren Kapitel tritt REST als teil der SOA Architekturstil.
+Im späteren Kapitel tritt REST als teil der \acrshort{EDA} Architekturstil.
 
 
 \chapter{Klassische Service-Modellen}
@@ -552,39 +555,10 @@ Detect expiring certificates
 
 \chapter{kurzer Überblick über Serverless-Angebote/Architekturen}
 
-\section{Technologien}
-AuthO : AuthO
-Firebase : Google
-Stack Driver Logging : Google
-Cloud Machine Learning Engine : Google
-Cloud DataFlow : Google -> Stream batch pipelines
-Big Query : Google
-
-\section{Architekturen}
-
-%Vergleich und Ergänzung von serverbasierte Archs. mit Serverless Archs. 
-
-Die Architekturentwurfsmuster helfen uns zu kommunizieren welches Zweck unsere Software erreichen möchte und bieten generische Lösungen für wiederkehrende Probleme bei der Softwareentwicklung.
-
-
-list of
-Separation of concerns
-Reusable layers
-Maintenance 
-Koma standalone snapshot
-Components:
-Controller: router, handle in-req build out-res
-Service: @Transaction
-Repository: 1-1 mapping to db
-
+\paragraph{Die Architekturentwurfsmuster} helfen uns zu kommunizieren welches Zweck unsere Software erreichen möchte und bieten generische Lösungen für wiederkehrende Probleme bei der Softwareentwicklung.
 Wenn eine erfolgreiche Codeänderung von andere Änderung abhängt, soll die Architektur überprüft werden.
-
-
 Für Konventionelle Webanwendung wird hier damit gehalten, als ein System das über Presentation, Data, and Application/Logik Tiers/Stufe verfügt. Jede Stufe kann mehreren Logik-Layers/Lagen enthalten, die für unterschiedlichen Funktionalitäten des Domäns verantwortlich sind. Logging wäre ein beispiel für Cross-Cutting Concern der Layers hinaus ausspannt. Die Komplexität wächst mit der Beschichtung zusammen.\\
-Tier = Major Component System eg. Presentation Data
-Layer = Logical Responsability or Funtionality Domain
 
-Serverless versucht das System in Funktionen runter zu brechen und auf ihnen das sichere Zugang dem Front-End zu erlauben.
 
 \section{Serverless}
 \label{sec:serverless}
@@ -592,14 +566,37 @@ Serverless versucht das System in Funktionen runter zu brechen und auf ihnen das
 \newacronym{API}{API}{Application Interface}
 Serverless kann als ein Ansatz, dass  die Verwendung von ein Rechen-Service, Dienste von Drittanbieter, von \acrfull{API}s, kurz \acrshort{API}s und die Anwendung von Architekturmustern( wie ein Front-End, dass direkt mit Services kommunizieren anhand eines \glqq Delegation-Tokens\grqq\ ) fördert, beschrieben werden. \acrshort{FaaS} ist nur ein Aspekt dessen.
 
+\subsection{pipes and filters}
+\begin{figure}[H]
+	\includegraphics[scale=0.36]{./pics/arch-pipes-filters-sol.png}
+\end{figure}
+
+\subsection{compute as a backend}
+
+\begin{figure}[H]
+	\includegraphics[scale=0.36]{./pics/arch-compute-as-a-backend.png}
+\end{figure}
+
+
 \paragraph{Prinzipien}\label{par:serverless-principles} von Serverless Architeturen: \cite{serverlessArchAWS}
 \newacronym{SRP}{SRP}{Single Responsability Principle}
 Wie in der Sektion von SOA\ref{sec:soa} erwähnt wurde, das gezwungene Separation of Concerns bring das \acrfull{SRP} mit sich. Funktionen werden dadurch mehr Überprüfbar.
- Deren Vernetzung erlaubt komplexe Systeme zu entwerfen, die dank der Stateless Natur der Funktionen schnell zu skalieren sind.
+Deren Vernetzung erlaubt komplexe Systeme zu entwerfen, die dank der Stateless Natur der Funktionen schnell zu skalieren sind.
 Diese Vernetzung kann durch einen Push-Based Event driven Pipe-line.
 Um die Komplexität des Systems zu reduzieren und die längerfristige Wartbarkeit zu verbessern, wird der Controller und/oder Router im Client und Third Party Dienste hinzugefügt.
 
 In einem beispielhaften konventionellen AdServer, nach einem Click auf eine Werbung wird eine Nachricht über ein Kanal an einen Clickprozessor, derer Laufzeit eine Anwendung ist, geschickt. Im Serverless wird dieser Clickprozessor als Funktion pro Nachricht instantiiert derer Laufzeitumgebung und Messagebroker der Cloudanbieter liefert.@Cite Flower's Blog
+
+
+\section{Technologien}
+Microsoft Azure Funktions 
+AuthO : AuthO
+Firebase : Google
+Stack Driver Logging : Google
+Cloud Machine Learning Engine : Google
+Cloud DataFlow : Google -> Stream batch pipelines
+Big Query : Google
+
 
 
 \section{Patterns Allgemein vs Serverless}
@@ -637,22 +634,86 @@ Service Metering -> understand future use of services
 \chapter{Fokus auf AWS, Vorstellung der AWS-Serverless-Angebote}
 \label{chap:aws-serverless}
 Per Type: The Company
-API Gateway : AWS 
+
+
+\paragraph{Lambda}
+\begin{wrapfigure}{i}{0.25\textwidth}
+	\includegraphics[width=0.9\linewidth]{./pics/aws/Compute_AWSLambda.eps}
+\end{wrapfigure}
+
+\paragraph{API Gateway}
+\begin{wrapfigure}{i}{0.25\textwidth}
+	\includegraphics[width=0.9\linewidth]{./pics/aws/MobileServices_AmazonAPIGateway.eps}
+\end{wrapfigure}
+
+\paragraph{Simple Notification Service ( SNS )}
 Simple Notification Service ( SNS ) : AWS vs Cloud Pub/Sub : Google
-Simple Storage Service ( S3 ) : AWS vs Cloud Storage : Google
-Simple Queue Service ( SQS ) : AWS 
-Simple Email Service ( SES ) : AWS 
-Relational Database Service ( RDS ) : AWS 
-DynamoDb : AWS 
-CloudSearch : AWS 
-CloudFront ( CDN ) : AWS 
-DNS management (Route 53) : AWS 
-Caching (ElastiCache) : AWS 
+\begin{wrapfigure}{i}{0.25\textwidth}
+	\includegraphics[width=0.9\linewidth]{./pics/aws/Messaging_AmazonSNS.eps}
+\end{wrapfigure}
 
-Elastic Transcoder : AWS 
-Kinesis Streams : AWS 
+\paragraph{Simple Storage Service ( S3 ) : AWS vs Cloud Storage : Google}
+\begin{wrapfigure}{i}{0.25\textwidth}
+	\includegraphics[width=0.9\linewidth]{./pics/aws/Storage_AmazonS3.eps}
+\end{wrapfigure}
 
-Cognito : AWS 
+\paragraph{Simple Queue Service ( SQS ) : AWS }
+\begin{wrapfigure}{i}{0.25\textwidth}
+	\includegraphics[width=0.9\linewidth]{./pics/aws/Messaging_AmazonSQS.eps}
+\end{wrapfigure}
+
+\paragraph{Simple Email Service ( SES ) : AWS }
+\begin{wrapfigure}{i}{0.25\textwidth}
+	\includegraphics[width=0.9\linewidth]{./pics/aws/Messaging_AmazonSES.eps}
+\end{wrapfigure}
+
+\paragraph{Relational Database Service ( RDS ) : AWS  }
+\begin{wrapfigure}{i}{0.25\textwidth}
+	\includegraphics[width=0.9\linewidth]{./pics/aws/Database_AmazonRDS.eps}
+\end{wrapfigure}
+
+
+\paragraph{DynamoDb}
+\begin{wrapfigure}{i}{0.25\textwidth}
+	\includegraphics[width=0.9\linewidth]{./pics/aws/Database_AmazonDynamoDB.eps}
+\end{wrapfigure}
+
+\paragraph{CloudSearch}
+\begin{wrapfigure}{i}{0.25\textwidth}
+	\includegraphics[width=0.9\linewidth]{./pics/aws/Analytics_GRAYSCALE_AmazonCloudSearch.eps}
+\end{wrapfigure}
+
+\paragraph{CloudFront ( CDN )}
+\begin{wrapfigure}{i}{0.25\textwidth}
+	\includegraphics[width=0.9\linewidth]{./pics/aws/NetworkingContentDelivery_GRAYSCALE_AmazonCloudFront.eps}
+\end{wrapfigure}
+
+\paragraph{DNS management ( Route 53 )}
+\begin{wrapfigure}{i}{0.25\textwidth}
+	\includegraphics[width=0.9\linewidth]{./pics/aws/NetworkingContentDelivery_AmazonRoute53.eps}
+\end{wrapfigure}
+
+\paragraph{Caching (ElastiCache)}
+\begin{wrapfigure}{i}{0.25\textwidth}
+	\includegraphics[width=0.9\linewidth]{./pics/aws/Database_GRAYSCALE_AmazonElasticCache.eps}
+\end{wrapfigure}
+
+\paragraph{Elastic Transcoder}
+\begin{wrapfigure}{i}{0.25\textwidth}
+	\includegraphics[width=0.9\linewidth]{./pics/aws/ApplicationServices_GRAYSCALE_AmazonElasticTranscoder.eps}
+\end{wrapfigure}
+
+
+\paragraph{Kinesis Streams}
+\begin{wrapfigure}{i}{0.25\textwidth}
+	\includegraphics[width=0.9\linewidth]{./pics/aws/Analytics_AmazonKinesis.eps}
+\end{wrapfigure}
+
+\paragraph{Cognito}
+\begin{wrapfigure}{i}{0.25\textwidth}
+	\includegraphics[width=0.9\linewidth]{./pics/aws/MobileServices_GRAYSCALE_AmazonCognito.eps}
+\end{wrapfigure}
+
 
 \chapter{Beispiel(!)-Fall KOMA}
 
@@ -1056,19 +1117,16 @@ RESTful Anfragen für bestimmte UI formate.
 \markboth{Abkürzungen}{}
 
 
-\begin{acronym}[Bash]
+%\begin{acronym}[Bash]
 
-\acro{da}{Dragoljub Milasinovic} \glqq dddd\grqq{}
 
-\ac{da} some info
+%\acro{GC}{Garbage Collection}
 
-\acro{GC}{Garbage Collection}
+%\glqq Garbage Collection\grqq{} bezeichnet die automatische Speicherwaltung zur %Minimierung des Speicherbedarfes eines Programmes.
+%\ac{GC} wird zur Laufzeit durch Identifikation von nicht mehr benötigten Speicherbereichen ausgeführt.
+%Im Vergleich zur manuellen Speicherverwaltung benötigt \ac{GC} mehr Ressourcen.
 
-\glqq Garbage Collection\grqq{} bezeichnet die automatische Speicherwaltung zur Minimierung des Speicherbedarfes eines Programmes.
-\ac{GC} wird zur Laufzeit durch Identifikation von nicht mehr benötigten Speicherbereichen ausgeführt.
-Im Vergleich zur manuellen Speicherverwaltung benötigt \ac{GC} mehr Ressourcen.
-
-\end{acronym}
+%\end{acronym}
 
 \bibliographystyle{alpha}
 \bibliography{sources}
