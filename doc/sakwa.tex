@@ -399,8 +399,8 @@ Im allgemein heben sich folgende Eigenschaften bei der Betrachtung von Cloud Ang
 \begin{itemize}
 	\item Probably not in a list. .... but explained narrativelly
 	\item on-demand self-service
-	\item  broad network access
-	\item  measured service (pay-per-use)
+	\item broad network access
+	\item measured service (pay-per-use)
 	\item resource pooling and rapid elasticity
 \end{itemize}
 
@@ -567,11 +567,16 @@ Für Konventionelle Webanwendung wird hier damit gehalten, als ein System das ü
 Serverless kann als ein Ansatz, dass  die Verwendung von ein Rechen-Service, Dienste von Drittanbieter, von \acrfull{API}s, kurz \acrshort{API}s und die Anwendung von Architekturmustern( wie ein Front-End, dass direkt mit Services kommunizieren anhand eines \glqq Delegation-Tokens\grqq\ ) fördert, beschrieben werden. \acrshort{FaaS} ist nur ein Aspekt dessen.
 
 \subsection{pipes and filters}
+
+compute as a glue pipelines built to carry out workflows <-> Async Messag Primer\cite{patternsCloud}
 \begin{figure}[H]
 	\includegraphics[scale=0.36]{./pics/pipes-and-filters}
 \end{figure}
 
 \subsection{compute as a backend}
+
+next\cite{serverlessArchAWS}
+Compute as a back end for web and mobile 
 
 \begin{figure}[H]
 	\includegraphics[scale=0.36]{./pics/compute-as-a-backend}
@@ -596,16 +601,13 @@ Serverless kann als ein Ansatz, dass  die Verwendung von ein Rechen-Service, Die
 
 
 \section{Patterns Serverless}
-
-next\cite{serverlessArchAWS}
-Compute as a back end for web and mobile 
-
-compute as a glue pipelines built to carry out workflows <-> Async Messag Primer\cite{patternsCloud}
+Competing consumers als pattern für die implementaiton vom Kommunikation kanal für events die lambdas triggern.
 
 Pipes and Filters\cite{patternsCloud} <-> lambda event driven
 Health endpoint monitoring <-> EC2 certificate
 Leader election -> TRansaction mngmt S3
-Priority Queue
+
+
 Queue Based Load Leveling -> Not appliable for Lambda Computing Model
 Retry ->
 Runtime Reconfiguration <-> Api Gateway Zero Downtime on Redploy
@@ -614,6 +616,22 @@ Sharding -> Divide DataStore to Scale better -> Dynamo db + S3
 Static Content Hosting -> Solved by S3
 Throttling -> Scallability of Serverless Solved vs Transaction
 Vallet key <-> Auht0
+
+\subsection{Priority Queue}
+\begin{figure}[H]
+	\includegraphics[scale=0.36]{./pics/pattern-priority-queue.png}
+\end{figure}
+
+\subsection{Federated Identity}
+\begin{figure}[H]
+	\includegraphics[scale=0.36]{./pics/pattern-federated-identity.png}
+\end{figure}
+
+
+\subsection{Fan Out}
+\begin{figure}[H]
+\includegraphics[scale=0.36]{./pics/pattern-fan-out.png}
+\end{figure}
 
 
 \paragraph{Prinzipien}\label{par:serverless-principles} von Serverless Architeturen: \cite{serverlessArchAWS}
@@ -654,7 +672,7 @@ Service Metering -> understand future use of services
 \label{chap:aws-serverless}
 Per Type: The Company
 
-
+\section{AWS Serverless Angebote}
 \paragraph{Lambda}
 \begin{wrapfigure}{i}{0.25\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Compute_AWSLambda.eps}
@@ -911,8 +929,8 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX koma: <https://s3-us-west-2.amazonaws.com/ontology.thb.de/koma-complex.owl#>
 SELECT ?x WHERE {
-?y rdf:type owl:ObjectProperty .
-?x ?y koma:Alice .
+	?y rdf:type owl:ObjectProperty .
+	?x ?y koma:Alice .
 }
 \end{lstlisting}
 
@@ -924,6 +942,17 @@ Eine Lambdafunktion arbeitet als Schnittstelle \ref{lst:lambda-interface} zwisch
 
 
 Um den Datenmodell möglichst simpel programmatisch abzufragen wird zunächst dessen Schnittstelle\ref{sec:rest} definiert. 
+
+\section{Datenhaltung Synchronisierung und Replizieren}
+\paragraph{Master - Slave}
+\begin{figure}[H]
+	\includegraphics[scale=0.2]{./pics/aws/pattern-master-subordinate-data-replication.png}
+\end{figure}
+
+\paragraph{cache shared }
+\begin{figure}[H]
+	\includegraphics[scale=0.2]{./pics/aws/pattern-cache-shared.png}
+\end{figure}
 
 
 \section{Abtrennung des Monoliths}
