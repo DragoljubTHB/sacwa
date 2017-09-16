@@ -568,14 +568,52 @@ Serverless kann als ein Ansatz, dass  die Verwendung von ein Rechen-Service, Die
 
 \subsection{pipes and filters}
 \begin{figure}[H]
-	\includegraphics[scale=0.36]{./pics/arch-pipes-filters-sol.png}
+	\includegraphics[scale=0.36]{./pics/pipes-and-filters}
 \end{figure}
 
 \subsection{compute as a backend}
 
 \begin{figure}[H]
-	\includegraphics[scale=0.36]{./pics/arch-compute-as-a-backend.png}
+	\includegraphics[scale=0.36]{./pics/compute-as-a-backend}
 \end{figure}
+
+\subsection{legacy api proxy}
+\begin{figure}[H]
+	\includegraphics[scale=0.36]{./pics/legacy-api-proxy.png}
+\end{figure}
+
+\subsection{Graph Query}
+\begin{figure}[H]
+	\includegraphics[scale=0.36]{./pics/GraphQuery.png}
+\end{figure}
+
+
+\subsection{Real time processing}
+\begin{figure}[H]
+	\includegraphics[scale=0.36]{./pics/real-time-processing.png}
+\end{figure}
+
+
+
+\section{Patterns Serverless}
+
+next\cite{serverlessArchAWS}
+Compute as a back end for web and mobile 
+
+compute as a glue pipelines built to carry out workflows <-> Async Messag Primer\cite{patternsCloud}
+
+Pipes and Filters\cite{patternsCloud} <-> lambda event driven
+Health endpoint monitoring <-> EC2 certificate
+Leader election -> TRansaction mngmt S3
+Priority Queue
+Queue Based Load Leveling -> Not appliable for Lambda Computing Model
+Retry ->
+Runtime Reconfiguration <-> Api Gateway Zero Downtime on Redploy
+Scheduler Agent supervisor -> Not needed if Design to Failure.
+Sharding -> Divide DataStore to Scale better -> Dynamo db + S3
+Static Content Hosting -> Solved by S3
+Throttling -> Scallability of Serverless Solved vs Transaction
+Vallet key <-> Auht0
 
 
 \paragraph{Prinzipien}\label{par:serverless-principles} von Serverless Architeturen: \cite{serverlessArchAWS}
@@ -599,25 +637,6 @@ Big Query : Google
 
 
 
-\section{Patterns Allgemein vs Serverless}
-
-next\cite{serverlessArchAWS}
-Compute as a back end for web and mobile 
-
-compute as a glue pipelines built to carry out workflows <-> Async Messag Primer\cite{patternsCloud}
-
-Pipes and Filters\cite{patternsCloud} <-> lambda event driven
-Health endpoint monitoring <-> EC2 certificate
-Leader election -> TRansaction mngmt S3
-Priority Queue
-Queue Based Load Leveling -> Not appliable for Lambda Computing Model
-Retry ->
-Runtime Reconfiguration <-> Api Gateway Zero Downtime on Redploy
-Scheduler Agent supervisor -> Not needed if Design to Failure.
-Sharding -> Divide DataStore to Scale better -> Dynamo db + S3
-Static Content Hosting -> Solved by S3
-Throttling -> Scallability of Serverless Solved vs Transaction
-Vallet key <-> Auht0
 
 Befehlmuster wird bei Fusekiserver\ref{komponenten:fuseki} als erteiler der Httpanfrage indem die SparQL Abfrage weiterleiten kann. Daher wird ein Pfad haus/hunde und haus/katze zur gleichen Funktion führen.
 Dieser kann aber offline gehen, also mehreren priorisierten MessagePattern als Queue vor eine oder mehreren Lambdas zu setzen absichert die Stabilität des Systems und entkoppelt Komponenten @RoundRobin?? BSRN.
@@ -647,22 +666,23 @@ Per Type: The Company
 \end{wrapfigure}
 
 \paragraph{Simple Notification Service ( SNS )}
-Simple Notification Service ( SNS ) : AWS vs Cloud Pub/Sub : Google
+Simple Notification Service ( SNS ) vs Cloud Pub/Sub : Google
 \begin{wrapfigure}{i}{0.25\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Messaging_AmazonSNS.eps}
 \end{wrapfigure}
 
-\paragraph{Simple Storage Service ( S3 ) : AWS vs Cloud Storage : Google}
+\paragraph{Simple Storage Service ( S3 ) vs Cloud Storage : Google}
 \begin{wrapfigure}{i}{0.25\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Storage_AmazonS3.eps}
 \end{wrapfigure}
 
-\paragraph{Simple Queue Service ( SQS ) : AWS }
+
+\paragraph{Simple Queue Service ( SQS ) }
 \begin{wrapfigure}{i}{0.25\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Messaging_AmazonSQS.eps}
 \end{wrapfigure}
 
-\paragraph{Simple Email Service ( SES ) : AWS }
+\paragraph{Simple Email Service ( SES )}
 \begin{wrapfigure}{i}{0.25\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Messaging_AmazonSES.eps}
 \end{wrapfigure}
@@ -765,7 +785,7 @@ Das
 Um dem Leser einen Anhaltspunkt zu verleihen, werden hier die Softwarekomponenten beschrieben.
 
 \begin{figure}[H]
-	\includegraphics[width=\linewidth]{pics/arch-comp.png}
+	\includegraphics[width=\linewidth]{./pics/static-web-hosting.png}
 \end{figure}
 
 legacy api proxy\cite{serverlessArchAWS}
