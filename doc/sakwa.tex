@@ -444,48 +444,6 @@ Daher können die in der Cloud betreibende Anwendungen folgende Eigenschaften ha
 Das \glqq\Gls{virtualization}\grqq\ einer ganzen Umgebung oder Stack zerteilt sich in eine Sammlung von kleinen spezialisierten Aufgaben, die durch Drittanbieter implementiert wurden. Dieser Fakt steigerte die wirtschaftlichen Kosten und machte die Skalierungsmöglichkeiten komplexer\cite{patternAWS}.
 
 
-\chapter{Architektur Orient}
-
-\section{SOA}
-\label{sec:soa}
-Service Orientierte Architektur SOA unterlegt die Annahme dass, ein System aus mehreren kleinen, austauschbaren, wiederverwendbaren und entkoppelten Diensten bestehen kann. Stellt eine Menge von Entwurfsprinzipien und Standards für dessen Entwicklung und Integration\cite{cloudEssentials}.
-
-Cloud Computing ist ein Serviceliefermodel in dem Services und Ressourcen von Benutzern Internetweit, wie z.B. bei öffentliche Dienste nach Anfrage, verbraucht werden.
-
-SOA ermöglicht gegenseitiges Datenaustausch zwischen Programmen von unterschiedlichen Anbieter ohne zusätzliche Änderungen an die Services vornehmen zu brauchen. Diese Services sollen unabhängig sein und \glqq standard\grqq\ Schnittstellen haben. 
-
-Im Cloud wird es daher in Services und Servicekomposition zentriert.
-
-\begin{wrapfigure}{i}{0.36\textwidth}
-	\includegraphics[scale=0.5]{./pics/2015_10_05_THB_Logo_BW.eps}
-\end{wrapfigure}
-
-\newacronym{DSL}{DSL}{Domain Specific Language}
-Microservices und Serverless versuchen die Komplexität der SOA anzusprechen. Beide Ansätze zwingen auf Separation of Concerns, häufige Deployments und Heterogene \acrfull{DSL}, kürz \acrshort{DSL}.
-
-
-Auf einer Seite Microservices können ihren Zustand und Daten halten und werden mithilfe von \glqq Frameworks\grqq implementiert. Auf der anderen Seite Serverless sind Zustandlos.
-ConnectWise\cite{ConnectWise}, Netflix\cite{Netflix} und UNLESS\cite{UNLESS} sind beispiele von Unternehmen die von Serverless Architekturen profitieren.
-
-\section{EDA}
-\newacronym{EDA}{EDA}{Event Driven Architecture}
-
-Die Serverless Technologien können durch Benachrichtigungen gestartet werden. Diese \acrfull{EDA} Still, verstärkt die Entkopplung temporäre-weise zwischen Producer/Anfrage und Consumer und ermöglicht eine Asynchrone Verarbeitung, ohne dass Fehler das System zum Absturz bringen.
-
-
-Es lassen sich folgende Vorteile ersichtlichen:
-\begin{itemize}
-	\item Wiederverwendung von Services in unterschiedlichen Anwendungen sinkt die Entwicklungskosten und Time-To-Market.
-	\item Durch die Standarisierung der Services, ein System kann mit eine Rekonfiguration und ohne Wieder-Entwicklung schnell anpassbar auf die Geschäftliche/Externe Bedürfnisse. Agilität.
-	\item Monitoring hilft Fehler zu erkennen und die Leistung zu messen.
-	\item Aggregate von Services können Komplexere und Domän übergreifende Aufgaben ausführen.
-\end{itemize}
-\newacronym{REST}{REST}{REpresentational State Transfer}
-Im späteren Kapitel tritt REST als teil der \acrshort{EDA} Architekturstil.
-
-
-
-
 \chapter{FaaS}{nichtfunktionalen/technischen Anforderungen zur Entwicklung des Serverless-Ansatzes}
 
 % Der Mangel von IPS -> 
@@ -557,27 +515,70 @@ spam filter
 
 Detect expiring certificates
 
-\section{kurzer Überblick über Serverless-Angebote/Architekturen}
 
-\subparagraph{Die Architekturentwurfsmuster} helfen uns zu kommunizieren welches Zweck unsere Software erreichen möchte und bieten generische Lösungen für wiederkehrende Probleme bei der Softwareentwicklung.
+
+\chapter{kurzer Überblick über Serverless-Angebote/Architekturen}
+
+\section{SOA}
+\label{sec:soa}
+Service Orientierte Architektur SOA unterlegt die Annahme dass, ein System aus mehreren kleinen, austauschbaren, wiederverwendbaren und entkoppelten Diensten bestehen kann. Stellt eine Menge von Entwurfsprinzipien und Standards für dessen Entwicklung und Integration\cite{cloudEssentials}.
+
+Cloud Computing ist ein Serviceliefermodel in dem Services und Ressourcen von Benutzern Internetweit, wie z.B. bei öffentliche Dienste nach Anfrage, verbraucht werden.
+
+SOA ermöglicht gegenseitiges Datenaustausch zwischen Programmen von unterschiedlichen Anbieter ohne zusätzliche Änderungen an die Services vornehmen zu brauchen. Diese Services sollen unabhängig sein und \glqq standard\grqq\ Schnittstellen haben. 
+
+Im Cloud wird es daher in Services und Servicekomposition zentriert.
+
+\begin{wrapfigure}{i}{0.36\textwidth}
+	\includegraphics[scale=0.5]{./pics/2015_10_05_THB_Logo_BW.eps}
+\end{wrapfigure}
+
+\newacronym{DSL}{DSL}{Domain Specific Language}
+Microservices und Serverless versuchen die Komplexität der SOA anzusprechen. Beide Ansätze zwingen auf Separation of Concerns, häufige Deployments und Heterogene \acrfull{DSL}, kürz \acrshort{DSL}.
+
+
+Auf einer Seite Microservices können ihren Zustand und Daten halten und werden mithilfe von \glqq Frameworks\grqq implementiert. Auf der anderen Seite Serverless sind Zustandlos.
+ConnectWise\cite{ConnectWise}, Netflix\cite{Netflix} und UNLESS\cite{UNLESS} sind beispiele von Unternehmen die von Serverless Architekturen profitieren.
+
+\section{EDA}
+\newacronym{EDA}{EDA}{Event Driven Architecture}
+
+Die Serverless Technologien können durch Benachrichtigungen gestartet werden. Diese \acrfull{EDA} Still, verstärkt die Entkopplung temporäre-weise zwischen Producer/Anfrage und Consumer und ermöglicht eine Asynchrone Verarbeitung, ohne dass Fehler das System zum Absturz bringen.
+
+
+Es lassen sich folgende Vorteile ersichtlichen:
+\begin{itemize}
+	\item Wiederverwendung von Services in unterschiedlichen Anwendungen sinkt die Entwicklungskosten und Time-To-Market.
+	\item Durch die Standarisierung der Services, ein System kann mit eine Rekonfiguration und ohne Wieder-Entwicklung schnell anpassbar auf die Geschäftliche/Externe Bedürfnisse. Agilität.
+	\item Monitoring hilft Fehler zu erkennen und die Leistung zu messen.
+	\item Aggregate von Services können Komplexere und Domän übergreifende Aufgaben ausführen.
+\end{itemize}
+\newacronym{REST}{REST}{REpresentational State Transfer}
+Im späteren Kapitel tritt REST als teil der \acrshort{EDA} Architekturstil.
+
+
+
+
+
+\paragraph{Die Architekturentwurfsmuster} helfen uns zu kommunizieren welches Zweck unsere Software erreichen möchte und bieten generische Lösungen für wiederkehrende Probleme bei der Softwareentwicklung.
 Wenn eine erfolgreiche Codeänderung von andere Änderung abhängt, soll die Architektur überprüft werden.
 Für Konventionelle Webanwendung wird hier damit gehalten, als ein System das über Presentation, Data, and Application/Logik Tiers/Stufe verfügt. Jede Stufe kann mehreren Logik-Layers/Lagen enthalten, die für unterschiedlichen Funktionalitäten des Domäns verantwortlich sind. Logging wäre ein beispiel für Cross-Cutting Concern der Layers hinaus ausspannt. Die Komplexität wächst mit der Beschichtung zusammen.\\
 
 
-\subsection{Serverless}
+\section{Serverless}
 \label{sec:serverless}
 
 \newacronym{API}{API}{Application Interface}
 Serverless kann als ein Ansatz, dass  die Verwendung von ein Rechen-Service, Dienste von Drittanbieter, von \acrfull{API}s, kurz \acrshort{API}s und die Anwendung von Architekturmustern( wie ein Front-End, dass direkt mit Services kommunizieren anhand eines \glqq Delegation-Tokens\grqq\ ) fördert, beschrieben werden. \acrshort{FaaS} ist nur ein Aspekt dessen.
 
-\subsubsection{pipes and filters}
+\subsection{pipes and filters}
 
 compute as a glue pipelines built to carry out workflows <-> Async Messag Primer\cite{patternsCloud}
 \begin{figure}[H]
 	\includegraphics[scale=0.36]{./pics/pipes-and-filters.eps}
 \end{figure}
 
-\subsubsection{compute as a backend}
+\subsection{compute as a backend}
 
 next\cite{serverlessArchAWS}
 Compute as a back end for web and mobile 
@@ -586,25 +587,25 @@ Compute as a back end for web and mobile
 	\includegraphics[scale=0.36]{./pics/compute-as-a-backend.eps}
 \end{figure}
 
-\subsubsection{legacy api proxy}
+\subsection{legacy api proxy}
 \begin{figure}[H]
 	\includegraphics[scale=0.36]{./pics/legacy-api-proxy.eps}
 \end{figure}
 
-\subsubsection{Graph Query}
+\subsection{Graph Query}
 \begin{figure}[H]
 	\includegraphics[scale=0.36]{./pics/GraphQuery.eps}
 \end{figure}
 
 
-\subsubsection{Real time processing}
+\subsection{Real time processing}
 \begin{figure}[H]
 	\includegraphics[scale=0.36]{./pics/real-time-processing.eps}
 \end{figure}
 
 
 
-\subsection{Patterns Serverless}
+\section{Patterns Serverless}
 Competing consumers als pattern für die implementaiton vom Kommunikation kanal für events die lambdas triggern.
 
 Pipes and Filters\cite{patternsCloud} <-> lambda event driven
@@ -621,25 +622,25 @@ Static Content Hosting -> Solved by S3
 Throttling -> Scallability of Serverless Solved vs Transaction
 Vallet key <-> Auht0
 
-\subsubsection{Priority Queue}
+\subsection{Priority Queue}
 \begin{figure}[H]
 	\includegraphics[scale=0.36]{./pics/pattern-priority-queue.eps}
 \end{figure}
 
-\subsubsection{Federated Identity}
+\subsection{Federated Identity}
 \begin{figure}[H]
 	\includegraphics[scale=0.36]{./pics/pattern-federated-identity.eps}
 \end{figure}
 
 
-\subsubsection{Fan Out\cite{serverlessArchAWS}}
+\subsection{Fan Out\cite{serverlessArchAWS}}
 \label{sec:fan-out}
 \begin{figure}[H]
 \includegraphics[scale=0.36]{./pics/pattern-fan-out.eps}
 \end{figure}
 
 
-\subparagraph{Prinzipien}\label{par:serverless-principles} von Serverless Architeturen: \cite{serverlessArchAWS}
+\paragraph{Prinzipien}\label{par:serverless-principles} von Serverless Architeturen: \cite{serverlessArchAWS}
 \newacronym{SRP}{SRP}{Single Responsability Principle}
 Wie in der Sektion von SOA\ref{sec:soa} erwähnt wurde, das gezwungene Separation of Concerns bring das \acrfull{SRP} mit sich. Funktionen werden dadurch mehr Überprüfbar.
 Deren Vernetzung erlaubt komplexe Systeme zu entwerfen, die dank der Stateless Natur der Funktionen schnell zu skalieren sind.
@@ -651,7 +652,7 @@ In einem beispielhaften konventionellen AdServer, nach einem Click auf eine Werb
 Foo bar ist \lstinline|f = 2 + 2| wasd asdf 
 
 
-\subsection{Technologien}
+\section{Technologien}
 Microsoft Azure Funktions 
 AuthO : AuthO
 Firebase : Google
@@ -667,7 +668,7 @@ Befehlmuster wird bei Fusekiserver\ref{komponenten:fuseki} als erteiler der Http
 Dieser kann aber offline gehen, also mehreren priorisierten MessagePattern als Queue vor eine oder mehreren Lambdas zu setzen absichert die Stabilität des Systems und entkoppelt Komponenten @RoundRobin?? BSRN.
 Die Verkettung von Funktionen mittels \glqq Pipes\grqq erlaubt die mehrfache Filterung von Daten.
 
-\subsection{Guidance}
+\section{Guidance}
 Caching -> Lambda Reads Same source and Process
 Compute partitioning -> Lambda per use. solved
 Data Consistency -> Embrace Eventual Consistency in Distributed DBs
