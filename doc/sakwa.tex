@@ -421,11 +421,19 @@ Daher können die in der Cloud betreibende Anwendungen folgende Eigenschaften ha
 \newacronym{IaaS}{IaaS}{Infrastructure as a Service}
 \acrfull{IaaS}, kurz \acrshort{IaaS}, kann als ein Service beschrieben werden, dass Abstraktionen für Hardware, Servers und Netzwerk Komponenten bereitstellt. Der Serviceanbieter besitzt the Ausrüstung und ist für die Behausung, die Inbetriebnahme und die Wartung verantwortlich\cite{patternAWS}. Der Benutzer bezahlt nicht für das Hardware, dessen Lagerung und den Zugang auf ihn, sondern für die Nutzung des gesamtes Servicemodel z.B.: Zahlung nach benutzte Stunden, Ressourcen usw.
 
+\paragraph{Die Aufgaben} für Systeme mit Softwareelemente wie Load Balancing, Transaktionen, Clustering, Caching, Messaging, und Daten Redundancy werden komplexer. Diese Elemente fordern meistens an, Servern dass managed, gewartet, patched und backed-up werden brauchen. In einer nicht trivialen System-Umgebung, sind solche Aufgaben zeitintensiv und hart zu set-up und effizient operate??. Infrastruktur und Hardware sind zwar nötige Komponente für jegliches IT-System, aber nur das Medium für dessen Anwendung, es sei z.B. Geschäftslogik, oder ein darauf bauender Dienst.
+
 \section{PaaS}
 \label{sec:paas}
 \newacronym{PaaS}{PaaS}{Platform as a Service}
 \acrfull{PaaS}, kurz \acrshort{PaaS}, kann als ein Service beschrieben werden, dass eine Rechenplatform liefert, z.B. ein Betriebssystem, eine Ausführungsumgebung für Programmiersprachen(siehe ElasticBeanstalk), eine Datenbank oder ein Webserver. Dieser Dienst übernimmt sowohl die Wartung der Datenbank, Webserver und die Versionen des Laufzeitquellcodes als auch dessen Skalierbarkeit die nun nur Konfiguriert werden bracht\cite{patternAWS}.
 
+\paragraph{Die Inkonsistente} Infrastruktur -Umgebungen, -Konflikte und Servermanagementaufwand sind Probleme die \ac{PaaS} anspricht. Deren effiziente Benutzung geschieht in dem Entwickler Quellcode für die gezielte Platform schreiben. Dies ergibt auf einer Seite wenige Wartung aber auf der Anderen, müssen die portierte und für ein Standalone Server entwickelte Anwendungen zur anpassung an die Plattform weiterentwickelt.
+\paragraph{Die Containerisierung} ist eine Isolierung der Anwendung von ihrer Umgebung. Der Container muss konfiguriert und gebaut werden und der Deploymentprozess ist nicht trivial. Es braucht von Tools für das Monitoring. Für Anwendungen mit Abhängigkeiten ist eine ausgezeichnete Lösung. 
+
+%\begin{wrapfigure}{i}{0.66\textwidth}
+%	\includegraphics[scale=0.36]{./pics/IaaS_vs_PaaS_vs_Serverless.eps}
+%\end{wrapfigure}
 \section{SaaS} 
 \label{sec:saas}
 \newacronym{SaaS}{SaaS}{Software as a Service}
@@ -434,10 +442,6 @@ Daher können die in der Cloud betreibende Anwendungen folgende Eigenschaften ha
 \newglossaryentry{virtualization}{name={Virtualisation},description={Abstraktion der Anwendung, OS oder DB von der darunterliegende Infrastruktur z.B. ein Server.}}
 
 Das \glqq\Gls{virtualization}\grqq\ einer ganzen Umgebung oder Stack zerteilt sich in eine Sammlung von kleinen spezialisierten Aufgaben, die durch Drittanbieter implementiert wurden. Dieser Fakt steigerte die wirtschaftlichen Kosten und machte die Skalierungsmöglichkeiten komplexer\cite{patternAWS}.
-
-\begin{figure}[h]
-	\includegraphics[scale=0.36]{./pics/IaaS_vs_PaaS_vs_Serverless.eps}
-\end{figure}
 
 
 \chapter{Architektur Orient}
