@@ -385,7 +385,9 @@ Anschließend trifft der Leser den Kern der Arbeit bei der Analyse und Darstellu
 Der praktische Teil mit der Umsetzung und Bewertung von der oben genannte Serverless Webanwendung KOMA\ref{sec:KOMA}.
 Am Ende wird es darüber diskutiert, welche Trade-offs entstehen und die Zukünftperspektiven von Serveless Technologien.
 
-\chapter{Grundlagen}
+
+\chapter{Klassische Service-Modellen}
+\label{chap:service-models}
 \label{chap:principles}
 %\epigraph{\textit{\textquotedbl{}
 %There are only two hard things in computer science:\\ cache invalidation and naming %things.\textquotedbl{}}}{ Phil Karlton }
@@ -412,6 +414,33 @@ Daher können die in der Cloud betreibende Anwendungen folgende Eigenschaften ha
 	\item Automated management
 	\item Loose coupling
 \end{itemize}
+
+
+\section{IaaS}
+\label{sec:iaas}
+\newacronym{IaaS}{IaaS}{Infrastructure as a Service}
+\acrfull{IaaS}, kurz \acrshort{IaaS}, kann als ein Service beschrieben werden, dass Abstraktionen für Hardware, Servers und Netzwerk Komponenten bereitstellt. Der Serviceanbieter besitzt the Ausrüstung und ist für die Behausung, die Inbetriebnahme und die Wartung verantwortlich\cite{patternAWS}. Der Benutzer bezahlt nicht für das Hardware, dessen Lagerung und den Zugang auf ihn, sondern für die Nutzung des gesamtes Servicemodel z.B.: Zahlung nach benutzte Stunden, Ressourcen usw.
+
+\section{PaaS}
+\label{sec:paas}
+\newacronym{PaaS}{PaaS}{Platform as a Service}
+\acrfull{PaaS}, kurz \acrshort{PaaS}, kann als ein Service beschrieben werden, dass eine Rechenplatform liefert, z.B. ein Betriebssystem, eine Ausführungsumgebung für Programmiersprachen(siehe ElasticBeanstalk), eine Datenbank oder ein Webserver. Dieser Dienst übernimmt sowohl die Wartung der Datenbank, Webserver und die Versionen des Laufzeitquellcodes als auch dessen Skalierbarkeit die nun nur Konfiguriert werden bracht\cite{patternAWS}.
+
+\section{SaaS} 
+\label{sec:saas}
+\newacronym{SaaS}{SaaS}{Software as a Service}
+\acrfull{SaaS}, kurz \acrshort{SaaS}, kann als ein Service beschrieben werden, dass OS-Images mit konfigurierbaren Diensten wie Datenbanke, Webanwendungen usw. Der Nutzer muss die Konfiguration und Deployment nicht lernen, um die Dienste in einen größeren \glqq Stack\grqq\ einzubinden. Die Gebühren sind generell nach benutzte Stunde. 
+
+\newglossaryentry{virtualization}{name={Virtualisation},description={Abstraktion der Anwendung, OS oder DB von der darunterliegende Infrastruktur z.B. ein Server.}}
+
+Das \glqq\Gls{virtualization}\grqq\ einer ganzen Umgebung oder Stack zerteilt sich in eine Sammlung von kleinen spezialisierten Aufgaben, die durch Drittanbieter implementiert wurden. Dieser Fakt steigerte die wirtschaftlichen Kosten und machte die Skalierungsmöglichkeiten komplexer\cite{patternAWS}.
+
+\begin{figure}[h]
+	\includegraphics[scale=0.36]{./pics/IaaS_vs_PaaS_vs_Serverless.png}
+\end{figure}
+
+
+\chapter{Architektur Orient}
 
 \section{SOA}
 \label{sec:soa}
@@ -451,32 +480,7 @@ Es lassen sich folgende Vorteile ersichtlichen:
 Im späteren Kapitel tritt REST als teil der \acrshort{EDA} Architekturstil.
 
 
-\chapter{Klassische Service-Modellen}
-\label{chap:service-models}
 
-
-\section{IaaS}
-\label{sec:iaas}
-\newacronym{IaaS}{IaaS}{Infrastructure as a Service}
-\acrfull{IaaS}, kurz \acrshort{IaaS}, kann als ein Service beschrieben werden, dass Abstraktionen für Hardware, Servers und Netzwerk Komponenten bereitstellt. Der Serviceanbieter besitzt the Ausrüstung und ist für die Behausung, die Inbetriebnahme und die Wartung verantwortlich\cite{patternAWS}. Der Benutzer bezahlt nicht für das Hardware, dessen Lagerung und den Zugang auf ihn, sondern für die Nutzung des gesamtes Servicemodel z.B.: Zahlung nach benutzte Stunden, Ressourcen usw.
-
-\section{PaaS}
-\label{sec:paas}
-\newacronym{PaaS}{PaaS}{Platform as a Service}
-\acrfull{PaaS}, kurz \acrshort{PaaS}, kann als ein Service beschrieben werden, dass eine Rechenplatform liefert, z.B. ein Betriebssystem, eine Ausführungsumgebung für Programmiersprachen(siehe ElasticBeanstalk), eine Datenbank oder ein Webserver. Dieser Dienst übernimmt sowohl die Wartung der Datenbank, Webserver und die Versionen des Laufzeitquellcodes als auch dessen Skalierbarkeit die nun nur Konfiguriert werden bracht\cite{patternAWS}.
-
-\section{SaaS} 
-\label{sec:saas}
-\newacronym{SaaS}{SaaS}{Software as a Service}
-\acrfull{SaaS}, kurz \acrshort{SaaS}, kann als ein Service beschrieben werden, dass OS-Images mit konfigurierbaren Diensten wie Datenbanke, Webanwendungen usw. Der Nutzer muss die Konfiguration und Deployment nicht lernen, um die Dienste in einen größeren \glqq Stack\grqq\ einzubinden. Die Gebühren sind generell nach benutzte Stunde. 
-
-\newglossaryentry{virtualization}{name={Virtualisation},description={Abstraktion der Anwendung, OS oder DB von der darunterliegende Infrastruktur z.B. ein Server.}}
-
-Das \glqq\Gls{virtualization}\grqq\ einer ganzen Umgebung oder Stack zerteilt sich in eine Sammlung von kleinen spezialisierten Aufgaben, die durch Drittanbieter implementiert wurden. Dieser Fakt steigerte die wirtschaftlichen Kosten und machte die Skalierungsmöglichkeiten komplexer\cite{patternAWS}.
-
-\begin{figure}[h]
-	\includegraphics[scale=0.36]{./pics/IaaS_vs_PaaS_vs_Serverless.png}
-\end{figure}
 
 \chapter{FaaS}{nichtfunktionalen/technischen Anforderungen zur Entwicklung des Serverless-Ansatzes}
 
@@ -591,7 +595,7 @@ Compute as a back end for web and mobile
 
 \subsubsection{Real time processing}
 \begin{figure}[H]
-	\includegraphics[scale=0.36]{./pics/real-time-processing.png}
+	\includegraphics[scale=0.36]{./pics/real-time-processing.eps}
 \end{figure}
 
 
@@ -615,12 +619,12 @@ Vallet key <-> Auht0
 
 \subsubsection{Priority Queue}
 \begin{figure}[H]
-	\includegraphics[scale=0.36]{./pics/pattern-priority-queue.png}
+	\includegraphics[scale=0.36]{./pics/pattern-priority-queue.eps}
 \end{figure}
 
 \subsubsection{Federated Identity}
 \begin{figure}[H]
-	\includegraphics[scale=0.36]{./pics/pattern-federated-identity.png}
+	\includegraphics[scale=0.36]{./pics/pattern-federated-identity.eps}
 \end{figure}
 
 
