@@ -446,6 +446,13 @@ Das \glqq\Gls{virtualization}\grqq\ einer ganzen Umgebung oder Stack zerteilt si
 
 \chapter{FaaS}{nichtfunktionalen/technischen Anforderungen zur Entwicklung des Serverless-Ansatzes}
 
+\paragraph{Statefull vs Stateless} 
+Die skalierung erfolgt schwer sobald zustand mitspielt. Server + Containers rechnen mit Zustand. 
+Funktionale Programmierung ist ein Programmierparadigm, dass 
+
+\paragraph{Der Fokus} auf die Quellcodeentwicklung gegenüber auf die Provisioning von Servern, Installation von Software, Deployment von Conteiners oder Konkrete Details der Infrastruktur.
+
+
 % Der Mangel von IPS -> 
 
 %\subsubsection{FaaS Definition}
@@ -454,7 +461,6 @@ Das \glqq\Gls{virtualization}\grqq\ einer ganzen Umgebung oder Stack zerteilt si
 
 Komplexe Probleme wie horizontale und vertikale Skalierbarkeit, Fehlertoleranz, Flexibilität werden von Kunden und Benutzer nur noch nach bedarf Konfiguriert und von Anbieter verwaltet.
 
-\section{Technische Anforderungen}
 %WARUUUUUM  Was I,P,S aaS nicht geboten haben so dass FaaS noch entsteht. 
 % Hardware anforderung <- Ignoriert
 
@@ -556,11 +562,7 @@ Es lassen sich folgende Vorteile ersichtlichen:
 \newacronym{REST}{REST}{REpresentational State Transfer}
 Im späteren Kapitel tritt REST als teil der \acrshort{EDA} Architekturstil.
 
-
-
-
-
-\paragraph{Die Architekturentwurfsmuster} helfen uns zu kommunizieren welches Zweck unsere Software erreichen möchte und bieten generische Lösungen für wiederkehrende Probleme bei der Softwareentwicklung.
+\section{Die Architekturentwurfsmuster} helfen uns zu kommunizieren welches Zweck unsere Software erreichen möchte und bieten generische Lösungen für wiederkehrende Probleme bei der Softwareentwicklung.
 Wenn eine erfolgreiche Codeänderung von andere Änderung abhängt, soll die Architektur überprüft werden.
 Für Konventionelle Webanwendung wird hier damit gehalten, als ein System das über Presentation, Data, and Application/Logik Tiers/Stufe verfügt. Jede Stufe kann mehreren Logik-Layers/Lagen enthalten, die für unterschiedlichen Funktionalitäten des Domäns verantwortlich sind. Logging wäre ein beispiel für Cross-Cutting Concern der Layers hinaus ausspannt. Die Komplexität wächst mit der Beschichtung zusammen.\\
 
@@ -571,41 +573,60 @@ Für Konventionelle Webanwendung wird hier damit gehalten, als ein System das ü
 \newacronym{API}{API}{Application Interface}
 Serverless kann als ein Ansatz, dass  die Verwendung von ein Rechen-Service, Dienste von Drittanbieter, von \acrfull{API}s, kurz \acrshort{API}s und die Anwendung von Architekturmustern( wie ein Front-End, dass direkt mit Services kommunizieren anhand eines \glqq Delegation-Tokens\grqq\ ) fördert, beschrieben werden. \acrshort{FaaS} ist nur ein Aspekt dessen.
 
-\subsection{pipes and filters}
 
-compute as a glue pipelines built to carry out workflows <-> Async Messag Primer\cite{patternsCloud}
-\begin{figure}[H]
-	\includegraphics[scale=0.36]{./pics/pipes-and-filters.eps}
-\end{figure}
 
-\subsection{compute as a backend}
+\paragraph{Prinzipien}\label{par:serverless-principles} von Serverless Architeturen: \cite{serverlessArchAWS}
+\newacronym{SRP}{SRP}{Single Responsability Principle}
+Wie in der Sektion von SOA\ref{sec:soa} erwähnt wurde, das gezwungene Separation of Concerns bring das \acrfull{SRP} mit sich. Funktionen werden dadurch mehr Überprüfbar.
+Deren Vernetzung erlaubt komplexe Systeme zu entwerfen, die dank der Stateless Natur der Funktionen schnell zu skalieren sind.
+Diese Vernetzung kann durch einen Push-Based Event driven Pipe-line.
+Um die Komplexität des Systems zu reduzieren und die längerfristige Wartbarkeit zu verbessern, wird der Controller und/oder Router im Client und Third Party Dienste hinzugefügt.
 
-next\cite{serverlessArchAWS}
-Compute as a back end for web and mobile 
+In einem beispielhaften konventionellen AdServer, nach einem Click auf eine Werbung wird eine Nachricht über ein Kanal an einen Clickprozessor, derer Laufzeit eine Anwendung ist, geschickt. Im Serverless wird dieser Clickprozessor als Funktion pro Nachricht instantiiert derer Laufzeitumgebung und Messagebroker der Cloudanbieter liefert.@Cite Flower's Blog
 
-\begin{figure}[H]
-	\includegraphics[scale=0.36]{./pics/compute-as-a-backend.eps}
-\end{figure}
+
+\subsection{pipes and filters, compute as a glue}
+\label{sec:pipes-filters}
+\begin{wrapfigure}{i}{0.36\textwidth}
+	\includegraphics[width=0.9\linewidth]{./pics/pipes-and-filters.eps}
+\end{wrapfigure}
+Eine Anwendung kann Aufgaben von unterschiedliche Komplexität und Vielfalt. Deren Implementierung in einen Monolitischen Modul erwschwert das Refactoring, die Optimisierung oder die Wiederverwendung. \\
+Zerteile man die Aufgaben in Diskreten Elementen ( oder Filter ) nach dem \acrshort{SRP} und kombiniere sie in eine Pipeline. Dies hilft redundanter Quellcode zu vermeiden, ihn zu löschen, ersetzen oder zu integrieren in zusätzlichen Komponenten sobald die Aufgabenanforderungen sich ändern\cite{patternsCloud}. Ein weiter Vorteil entsteht wenn ein Element zu langsam ist, können mehrere Instanzen erzeugt werden und daher ein Flaschenhals vermeiden.
+
+
 
 \subsection{legacy api proxy}
-\begin{figure}[H]
-	\includegraphics[scale=0.36]{./pics/legacy-api-proxy.eps}
-\end{figure}
+\begin{wrapfigure}{i}{0.36\textwidth}
+	\includegraphics[width=0.9\linewidth]{./pics/legacy-api-proxy.eps}
+\end{wrapfigure}
+Wenn eine \acrshort{API} veraltet oder schwer zu benutzen ist, kann eine extra ( RESTful ) \acrshort{API} in Vordergrund erstellt werden, die  mit Prozesse die Daten Transponieren und Marshal für die angeforderte Formate.
+\\
+\\
+
+
+\subsection{compute as a backend}
+\begin{wrapfigure}{i}{0.36\textwidth}
+	\includegraphics[scale=0.36]{./pics/compute-as-a-backend.eps}
+\end{wrapfigure}
+Obwohl der Client direkt mit Services kommunizieren kann, vertraute Informationen müssen geschützt werden, indem sie das Backend verarbeitet\cite{serverlessArchAWS}. Diese Aufgaben können hinter einer \acrshort{REST} Schnittstelle als koordiniert werden. Wie es in \autoref{par:serverless-principles} erwähnt wurde, die Einbettung von Dienste von Drittanbieter und Thick-FrontEnds minimiert den Fußabdrück des eigenes Backends.
 
 \subsection{Graph Query}
-\begin{figure}[H]
+\begin{wrapfigure}{i}{0.36\textwidth}
 	\includegraphics[scale=0.36]{./pics/GraphQuery.eps}
-\end{figure}
+\end{wrapfigure}
+Wenn mit eine Request mehrere Datenbanken abgefragt werden, können multiple Round-Trip und Overfetching als Nachteile bei eine \acrshort{REST} Schnittstelle entstehen. Dagegen kann der Client die Query spezifizieren und sie hinter eine \acrshort{API} nur die ausführen. 
 
 
 \subsection{Real time processing}
-\begin{figure}[H]
+\begin{wrapfigure}{i}{0.36\textwidth}
 	\includegraphics[scale=0.36]{./pics/real-time-processing.eps}
-\end{figure}
+\end{wrapfigure}
+Die Verarbeitung von Streams in Echtzeit kann durch einen Buffer der nach Konfiguration die weiter an den Worker die Daten leitet. Der Vorteil entsteht wenn das Stream, der Worker und die Speicherung nach Anfrage Skaliert und nach Fehler die Verarbeitung der Daten neu versucht werden. 
 
 
 
 \section{Patterns Serverless}
+
 Competing consumers als pattern für die implementaiton vom Kommunikation kanal für events die lambdas triggern.
 
 Pipes and Filters\cite{patternsCloud} <-> lambda event driven
@@ -623,9 +644,15 @@ Throttling -> Scallability of Serverless Solved vs Transaction
 Vallet key <-> Auht0
 
 \subsection{Priority Queue}
-\begin{figure}[H]
+\begin{wrapfigure}{i}{0.36\textwidth}
 	\includegraphics[scale=0.36]{./pics/pattern-priority-queue.eps}
-\end{figure}
+\end{wrapfigure}
+Anwendungen können spezifische Aufgaben delegieren, wie z.B integrieren mit anderen Anwendungen und Services. Am Beispiel einer FIFO Queue können die Nachrichten nach Priorität automatisch sortiert werden. Für Systemen ohne integrierte Priorisierung können mehrere die Queues für unterschiedliche Prioritäten benutzt werden und die Anzahl von Consumerprozessen entsprechend angepasst. Im letzteren Fall wird es dabei die Starvation von Nachrichten mit wenige Priorität vermieden.
+
+\paragraph{Competing Consumers}
+Die Leistung von AWS bei der Instanzierung von Lambdas. 
+
+
 
 \subsection{Federated Identity}
 \begin{figure}[H]
@@ -639,15 +666,6 @@ Vallet key <-> Auht0
 \includegraphics[scale=0.36]{./pics/pattern-fan-out.eps}
 \end{figure}
 
-
-\paragraph{Prinzipien}\label{par:serverless-principles} von Serverless Architeturen: \cite{serverlessArchAWS}
-\newacronym{SRP}{SRP}{Single Responsability Principle}
-Wie in der Sektion von SOA\ref{sec:soa} erwähnt wurde, das gezwungene Separation of Concerns bring das \acrfull{SRP} mit sich. Funktionen werden dadurch mehr Überprüfbar.
-Deren Vernetzung erlaubt komplexe Systeme zu entwerfen, die dank der Stateless Natur der Funktionen schnell zu skalieren sind.
-Diese Vernetzung kann durch einen Push-Based Event driven Pipe-line.
-Um die Komplexität des Systems zu reduzieren und die längerfristige Wartbarkeit zu verbessern, wird der Controller und/oder Router im Client und Third Party Dienste hinzugefügt.
-
-In einem beispielhaften konventionellen AdServer, nach einem Click auf eine Werbung wird eine Nachricht über ein Kanal an einen Clickprozessor, derer Laufzeit eine Anwendung ist, geschickt. Im Serverless wird dieser Clickprozessor als Funktion pro Nachricht instantiiert derer Laufzeitumgebung und Messagebroker der Cloudanbieter liefert.@Cite Flower's Blog
 
 Foo bar ist \lstinline|f = 2 + 2| wasd asdf 
 
@@ -1109,7 +1127,7 @@ In Zeiten des Cloud computings
 \paragraph{Frameworks und FaaS}
 Frameworks helfen aber sind platform abhängig. Entweder JEE und JVM oder PHP.
 Es kann auf die Layer of Abstraction in FW verzichtet werden. 
-Die Ersetzbarkeit des FaaS entkoppelt die Anwendung und den Entickler von der darunterliegende Technologie.
+Die Ersetzbarkeit des FaaS entkoppelt die Anwendung und den Entwickler von der darunterliegende Technologie.
 
 \paragraph{DevOps Frameworks}
 Die benötigte Fertigkeiten für die Umsetzung einer Serverless Anwendung werden mithilfe von Deploymentframeworks gemindert. Die Aufnahme von 3.Anbieter ist deswegen notwendig. Es existieren bereits solche Hilfe wie z.B Serverlessframework@Ref
@@ -1167,7 +1185,11 @@ Im Fall der API Gateway wird die Kopplung bei derer Konfiguration festgelegt wo 
 In dieser Arbeit wurde eine "nach buch" weise die Architektur gestalltet. Die unterschiedliche Interpretationen des Begriffs Serverless kann auch zu Kreativen anzätzen führen@AdamBien JEE
 Es kann daher auch als Serverless betrachtet wenn neue Quelldataien eine Docker Instance neu Erzeugen oder nur Updaten, dessen LoadBalancing auch als Serverless Quellcode verpakt werden kann. 
 
+\paragraph{Zur Annahme} dass Quellcode schneller entwickelt werden kann, wenn der Entwickler sich nur damit beschäftigt.
+
 \chapter{Ausblick}
+
+
 
 \paragraph{RESTful UI}
 RESTful Anfragen für bestimmte UI formate.
