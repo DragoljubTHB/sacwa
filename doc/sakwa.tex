@@ -643,32 +643,31 @@ Static Content Hosting -> Solved by S3
 Throttling -> Scallability of Serverless Solved vs Transaction
 Vallet key <-> Auht0
 
-\subsection{Priority Queue}
+\subsection{Priority Queue}\label{sec:priority-queue}
 \begin{wrapfigure}{i}{0.36\textwidth}
 	\includegraphics[scale=0.36]{./pics/pattern-priority-queue.eps}
 \end{wrapfigure}
-Anwendungen können spezifische Aufgaben delegieren, wie z.B integrieren mit anderen Anwendungen und Services. Am Beispiel einer FIFO Queue können die Nachrichten nach Priorität automatisch sortiert werden. Für Systemen ohne integrierte Priorisierung können mehrere die Queues für unterschiedliche Prioritäten benutzt werden und die Anzahl von Consumerprozessen entsprechend angepasst. Im letzteren Fall wird es dabei die Starvation von Nachrichten mit wenige Priorität vermieden.
+Anwendungen können spezifische Aufgaben delegieren, wie z.B integrieren mit anderen Anwendungen und Services. Am Beispiel einer FIFO Queue können die Nachrichten nach Priorität automatisch sortiert und asynchron verarbeitet werden. Für Systemen ohne integrierte Priorisierung können mehrere Queues für unterschiedliche Prioritäten benutzt werden und die Anzahl von Consumerprozessen entsprechend angepasst. Im letzteren Fall wird es dabei die Starvation von Nachrichten mit wenige Priorität vermieden.
 
 \paragraph{Competing Consumers}
-Die Leistung von AWS bei der Instanzierung von Lambdas. 
+Aus der Perspektive dieses Musters stellt das Priority Queue\ref{sec:priority-queue} ein Consumer Service dar. Die Anzahl von Requests kann sprengen und das System überbelasten. Daher kann das Consumer Service als Moderator von Anfragen an die Consumers arbeiten. 
 
-
-
-\subsection{Federated Identity}
-\begin{figure}[H]
-	\includegraphics[scale=0.36]{./pics/pattern-federated-identity.eps}
-\end{figure}
 
 
 \subsection{Fan Out\cite{serverlessArchAWS}}
 \label{sec:fan-out}
-\begin{figure}[H]
-\includegraphics[scale=0.36]{./pics/pattern-fan-out.eps}
-\end{figure}
+\begin{wrapfigure}{i}{0.36\textwidth}
+	\includegraphics[scale=0.36]{./pics/pattern-fan-out.eps}
+\end{wrapfigure}
+Bei dem eintritt eines Events können eins oder mehreren Subscribers durch die gepushte Benachrichtigung getriggert werden. Damit wird ein Kommunikationskanal\ref{sec:priority-queue} zur Verwaltung von Nachrichten wiederverwendet und extra Geschäftslogik z.B. Command Pattern für die gleiche Funktionalität.
 
+\subsection{Federated Identity}
+\begin{wrapfigure}{i}{0.36\textwidth}
+	\includegraphics[scale=0.36]{./pics/pattern-federated-identity.eps}
+\end{wrapfigure}
+Benutzer arbeiten mit multiple Anwendungen von unterschiedlichen Organisationen. Um die gleiche Zugangsdaten für Benutzter wiederverwenden zu können, wird dessen Identität bei einem Drittanbieter festgelegt und mit einem Token an die Anwendung weitergeleitet. Der Authentisierungscode kann daher von dem Anwendungscode abgetrennt werden.
 
-Foo bar ist \lstinline|f = 2 + 2| wasd asdf 
-
+%Foo bar ist \lstinline|f = 2 + 2| wasd asdf 
 
 \section{Technologien}
 Microsoft Azure Funktions 
