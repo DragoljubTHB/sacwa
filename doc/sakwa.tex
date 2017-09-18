@@ -362,12 +362,12 @@ Für dieses Problem wurde \acrlong{FaaS}, kürz \acrshort{FaaS}\ref{sec:faas}, a
 Der Begriff Serverless weist darauf hin, dass die Verwaltung der darunter liegende Serverinfrastruktur von Cloudanbieter übernommen wird. Jedoch begränzt \acrshort{FaaS} dessen Bedeutung durch die Definition des Programmiermodells, nämlich eine Funktion, oder auch \glqq\ Nano-Microservice\grqq.
 
 \newacronym{KOMA}{KOMA}{Kompetenz Matrix}
-Im Rahmen des Cloud-Computing handelt es sich in dieser Arbeit um eine Untersuchung der Serverless Architekturen am Beispiel einer Konventionellen Webanwendung. Dabei wird besonders geachtet ob und wie solche Technologien die Umsetzung erleichtern. Die Entwurfsmuster und die Kernfunktionalität werden mit ausschließlich Serverless Technologien am Beispiel von \acrfull{KOMA}, kurz \acrshort{KOMA}\ref{sec:KOMA}, mit AWS umgesetzt.
+Im Rahmen des Cloud-Computing handelt es sich in dieser Arbeit um eine Untersuchung der Serverless Architekturen am Beispiel einer Konventionellen Webanwendung. Dabei wird besonders geachtet ob und wie solche Technologien die Umsetzung erleichtern. Die Entwurfsmuster und die Kernfunktionalität werden mit ausschließlich Serverless Technologien am Beispiel von \acrfull{KOMA}ref{sec:KOMA}, mit AWS umgesetzt.
 
 
 \section{Ziel}
 \label{sec:task}
-\newacronym{MVP}{Mivip}{Minimal Viable Product}
+\newacronym{MVP}{MVP}{Minimal Viable Product}
 \newacronym{SPA}{SPA}{Single Page Application}
 Das Ziel ist ein \acrfull{MVP}, kürz \acrshort{MVP}, in Form von einer \acrfull{SPA}, kürz \acrshort{SPA}\ref{sec:spa}, mit ausschließlich Serverless Technologien vor zur Verfügung zu stellen.
 
@@ -381,7 +381,7 @@ Die Webanwendung soll möglichst für zukünftige Änderungen flexibel sein.
 Zuerst wird den Leser in die Klassischen Service Modellen\ref{chap:service-models} auffrischt. Zunächst werden die technische Anforderungen und die dazugehörige Beispiele des Serverless Ansatzes erläutert.
 \newacronym{AWS}{AWS}{Amazon Web Services}
 Das nächste Kapitel überblickt die aktuelle Serverless Angebote der größten Cloud Anbietern.
-Anschließend trifft der Leser den Kern der Arbeit bei der Analyse und Darstellung von Serverless Architekturen\ref{chap:aws-serverless} fokussiert auf \acrfull{AWS}, kurz \acrshort{AWS}. Darin werden die Serverless\ref{sec:serverless} Architekturen eingeführt, das Programmiermodell vorgestellt und die Entscheidungsprinzipien\ref{par:serverless-principles} erläutert.
+Anschließend trifft der Leser den Kern der Arbeit bei der Analyse und Darstellung von Serverless Architekturen\ref{chap:aws-serverless} fokussiert auf \acrfull{AWS}. Darin werden die Serverless\ref{sec:serverless} Architekturen eingeführt, das Programmiermodell vorgestellt und die Entscheidungsprinzipien\ref{par:serverless-principles} erläutert.
 Der praktische Teil mit der Umsetzung und Bewertung von der oben genannte Serverless Webanwendung KOMA\ref{sec:KOMA}.
 Am Ende wird es darüber diskutiert, welche Trade-offs entstehen und die Zukünftperspektiven von Serveless Technologien.
 
@@ -391,44 +391,49 @@ Am Ende wird es darüber diskutiert, welche Trade-offs entstehen und die Zukünf
 \label{chap:principles}
 %\epigraph{\textit{\textquotedbl{}
 %There are only two hard things in computer science:\\ cache invalidation and naming %things.\textquotedbl{}}}{ Phil Karlton }
+
+Cloud Computing ist ein Serviceliefermodel in dem Services und Ressourcen von Benutzern Internetweit, wie z.B. bei öffentliche Dienste nach Anfrage, verbraucht werden.
+
 \section{Cloud Eigenschaften}
 \label{sec:cloud-char}
 Als Software Architekt, Entwickler oder Projektmanager es ist wichtig, die spezifische Eigenschaften von Cloudangebote zu verstehen. Je nach Anforderungen und Art der technologischen Umsetzung lässt sich richtige Auswahl von ein Meer von Cloud Dienste schwer zu treffen. 
 
+
+Im allgemein heben sich folgende Eigenschaften\cite{patternsCloud} bei der Betrachtung von Cloud Angebote.
+\begin{itemize}
+	\item On-Demand Self-Service - Nutzer können die IT-Kapazitäten, die sie benötigen, selbständig ordern und einrichten. Der Anbieter muss in den Prozess nicht eingebunden werden.
+	\item Broad Network Access – Standardbasierter Netzzugriff von verschiedenen Endgeräten (z.B. Smartphones, Tablets, Laptops, PCs) aus.
+	\item Measured Service – automatische Kontrolle und Optimierung der genutzten Ressourcen durch Metering, was Transparenz für Anbieter und Nutzer sicherstellt.Kunden bezahlen nur die Dienstleistungen, die sie auch tatsächlich in Anspruch nehmen.
+	\item Resource Pooling\ref{par:polling} – Ressourcen des Anbieters (z.B. Speicher oder Bandbreite) werden gebündelt, multimandantenfähig bereitgestellt und nach Bedarf zugewiesen.
+	\item Rapid Elasticity\ref{app-char:elascitity} – Kapazitäten sind schnell und dynamisch verfügbar und können je nach Bedarf skaliert werden.
+\end{itemize}
+
+Daher können die in der Cloud betreibende Anwendungen folgende Eigenschaften\cite{patternsCloud} haben: 
+\begin{itemize}
+	\item Isolated state - Der Zustand wird in kleinen Einheiten der Anwendung isoliert, so dass sie besser Skaliert. Eine IT zustandslose Resource kann ohne Synchronisierungen aggregiert oder gelöscht werden. Dieser Zustand bezieht sich nicht nur auf die Interaktionbehandlung des Clients sondern auch auf dessen Datenbehandlung.
+	\item Distribution - Welt weit verteilte Anwendungen müssen in Komponenten so zerteilt werden, um sie für unterschiedlichen Ressourcen zu verteilen.
+	\item Elasticity\label{app-char:elascitity} - Ist die Addition oder Substraktion, also Anpassung, sowohl auf die Anzahl als auch auf die Fähigkeit der zu benutzende IT Resourcen je nach Workload. Daher steigt bei Scale out oder Horizontale Skalierung die Anzahl von Server, und steigt bei Scale up oder Vertikale Skalierung die Fähigkeiten der Einzelnen Servers. Diese Anpassung besteht aus Addition und Substraktion 
+	\item Automated management - Die konstanten Aufgaben zur Verwaltung von Elasticity sollen automatisiert werden, um eine Cloudanwendung fehlerresitent auf Ressourcenebene zu implementieren.
+	\item Loose coupling - Die Minimierung von Abhängigkeiten einer Anwendung von IT Ressourcen vereinfacht das Provisioning, die Fehlerkontention und Wiederverwendung von Komponenten.\ref{sec:soa}
+\end{itemize}
+
+
 Die vorliegende Arbeit beschäftigt sich mit dem Serverless Ausschnitt der Cloud Dienste. 
-
-Im allgemein heben sich folgende Eigenschaften bei der Betrachtung von Cloud Angebote.
-\begin{itemize}
-	\item Probably not in a list. .... but explained narrativelly
-	\item on-demand self-service
-	\item broad network access
-	\item measured service (pay-per-use)
-	\item resource pooling and rapid elasticity
-\end{itemize}
-
-Daher können die in der Cloud betreibende Anwendungen folgende Eigenschaften haben: 
-\begin{itemize}
-	\item Isolated state
-	\item Distribution
-	\item Elasticity
-	\item Automated management
-	\item Loose coupling
-\end{itemize}
 
 
 \section{IaaS}
 \label{sec:iaas}
 \newacronym{IaaS}{IaaS}{Infrastructure as a Service}
-\acrfull{IaaS}, kurz \acrshort{IaaS}, kann als ein Service beschrieben werden, dass Abstraktionen für Hardware, Servers und Netzwerk Komponenten bereitstellt. Der Serviceanbieter besitzt the Ausrüstung und ist für die Behausung, die Inbetriebnahme und die Wartung verantwortlich\cite{patternAWS}. Der Benutzer bezahlt nicht für das Hardware, dessen Lagerung und den Zugang auf ihn, sondern für die Nutzung des gesamtes Servicemodel z.B.: Zahlung nach benutzte Stunden, Ressourcen usw.
+\acrfull{IaaS}, kann als ein Service beschrieben werden, dass Abstraktionen für Hardware, Servers und Netzwerk Komponenten bereitstellt. Der Serviceanbieter besitzt the Ausrüstung und ist für die Behausung, die Inbetriebnahme und die Wartung verantwortlich\cite{patternAWS}. Der Benutzer bezahlt nicht für das Hardware, dessen Lagerung und den Zugang auf ihn, sondern für die Nutzung des gesamtes Servicemodel z.B.: Zahlung nach benutzte Stunden, Ressourcen usw.
 
-\paragraph{Die Aufgaben} für Systeme mit Softwareelemente wie Load Balancing, Transaktionen, Clustering, Caching, Messaging, und Daten Redundancy werden komplexer. Diese Elemente fordern meistens an, Servern dass managed, gewartet, patched und backed-up werden brauchen. In einer nicht trivialen System-Umgebung, sind solche Aufgaben zeitintensiv und hart zu set-up und effizient operate??. Infrastruktur und Hardware sind zwar nötige Komponente für jegliches IT-System, aber nur das Medium für dessen Anwendung, es sei z.B. Geschäftslogik, oder ein darauf bauender Dienst.
+\paragraph{Die Aufgaben} für Systeme mit Softwareelemente wie Load Balancing, Transaktionen, Clustering, Caching, Messaging, und Daten Redundanz werden komplexer. Diese Elemente fordern meistens an, dass Server  verwaltet, gewartet, patched und backed-up werden brauchen. In einer nicht trivialen System-Umgebung, sind solche Aufgaben zeitintensiv und hart fertigzustellen und effizient zu betreiben. Infrastruktur und Hardware sind zwar nötige Komponente für jegliches IT-System, aber nur das Medium für dessen Anwendung, es sei z.B. Geschäftslogik, oder ein darauf bauender Dienst.
 
 \section{PaaS}
 \label{sec:paas}
 \newacronym{PaaS}{PaaS}{Platform as a Service}
-\acrfull{PaaS}, kurz \acrshort{PaaS}, kann als ein Service beschrieben werden, dass eine Rechenplatform liefert, z.B. ein Betriebssystem, eine Ausführungsumgebung für Programmiersprachen(siehe ElasticBeanstalk), eine Datenbank oder ein Webserver. Dieser Dienst übernimmt sowohl die Wartung der Datenbank, Webserver und die Versionen des Laufzeitquellcodes als auch dessen Skalierbarkeit die nun nur Konfiguriert werden bracht\cite{patternAWS}.
+\acrfull{PaaS}, kann als ein Service beschrieben werden, dass eine Rechenplatform liefert, z.B. ein Betriebssystem, eine Ausführungsumgebung für Programmiersprachen(siehe ElasticBeanstalk), eine Datenbank oder ein Webserver. Dieser Dienst übernimmt sowohl die Wartung der Datenbank, Webserver und die Versionen des Laufzeitquellcodes als auch dessen Skalierbarkeit die nun nur Konfiguriert werden bracht\cite{patternAWS}.
 
-\paragraph{Die Inkonsistente} Infrastruktur -Umgebungen, -Konflikte und Servermanagementaufwand sind Probleme die \ac{PaaS} anspricht. Deren effiziente Benutzung geschieht in dem Entwickler Quellcode für die gezielte Platform schreiben. Dies ergibt auf einer Seite wenige Wartung aber auf der Anderen, müssen die portierte und für ein Standalone Server entwickelte Anwendungen zur anpassung an die Plattform weiterentwickelt.
+\paragraph{Die Inkonsistente} Infrastruktur, -Umgebungen, -Konflikte und Servermanagementaufwand sind Probleme die \acrshort{PaaS} anspricht. Deren effiziente Benutzung geschieht in dem Entwickler Quellcode für die gezielte Platform schreiben. Dies ergibt auf einer Seite wenige Wartung aber auf der Anderen, müssen die portierte und für ein Standalone Server entwickelte Anwendungen zur anpassung an die Plattform weiterentwickelt.
 \paragraph{Die Containerisierung} ist eine Isolierung der Anwendung von ihrer Umgebung. Der Container muss konfiguriert und gebaut werden und der Deploymentprozess ist nicht trivial. Es braucht von Tools für das Monitoring. Für Anwendungen mit Abhängigkeiten ist eine ausgezeichnete Lösung. 
 
 %\begin{wrapfigure}{i}{0.66\textwidth}
@@ -437,7 +442,7 @@ Daher können die in der Cloud betreibende Anwendungen folgende Eigenschaften ha
 \section{SaaS} 
 \label{sec:saas}
 \newacronym{SaaS}{SaaS}{Software as a Service}
-\acrfull{SaaS}, kurz \acrshort{SaaS}, kann als ein Service beschrieben werden, dass OS-Images mit konfigurierbaren Diensten wie Datenbanke, Webanwendungen usw. Der Nutzer muss die Konfiguration und Deployment nicht lernen, um die Dienste in einen größeren \glqq Stack\grqq\ einzubinden. Die Gebühren sind generell nach benutzte Stunde. 
+\acrfull{SaaS}, kann als ein Service beschrieben werden, dass OS-Images mit konfigurierbaren Diensten wie Datenbanke, Webanwendungen usw. Der Nutzer muss die Konfiguration und Deployment nicht lernen, um die Dienste in eine größeren Anwendung oder einzubinden. Die Gebühren sind generell nach benutzte Stunde. 
 
 \newglossaryentry{virtualization}{name={Virtualisation},description={Abstraktion der Anwendung, OS oder DB von der darunterliegende Infrastruktur z.B. ein Server.}}
 
@@ -446,18 +451,17 @@ Das \glqq\Gls{virtualization}\grqq\ einer ganzen Umgebung oder Stack zerteilt si
 
 \chapter{FaaS}{nichtfunktionalen/technischen Anforderungen zur Entwicklung des Serverless-Ansatzes}
 
-\paragraph{Die Reaktion auf Events}\label{par:event-reaction} innerhalb eines verteilten Systems ließ sich mit der vorhandenen Technologien wie Virtualisierte oder Containerised Servern lösen, in dem neue Instanzen zur Verarbeitung von einer Kette von variable Events erzeugt und danach gelöscht. Was zurück auf die oben genannten Aufgaben\ref{sec:iaas} führte.
+\paragraph{Die Reaktion auf Events}\label{par:event-reaction} innerhalb eines verteilten Systems ließ sich mit der vorhandenen Technologien wie Virtualisierte oder Containerised Servern behandeln, in dem neue Instanzen zur Verarbeitung von einer Kette von variable Events erzeugt und danach gelöscht wird. Was zurück auf die oben genannten Aufgaben\ref{sec:iaas} führte.\cite{lambdaAWS}
 
-\paragraph{Das Polling Problem}\label{par:polling}.
-Polling ist der Ausdruck für eine zyklische Abfrage über einen Status z.B. von Ports oder Locks über Ressourcen. Die Effizienz bei der Verwendung von Systemressourcen kann geringer als bei Alternativansätze wie z.B Push- oder Pull- Eventmodell.
+\paragraph{Das Polling Problem.}\label{par:polling}
+Polling ist der Ausdruck für eine zyklische Abfrage über einen Status z.B. von Ports oder Locks über Ressourcen. Die Effizienz bei der Verwendung von Systemressourcen kann geringer als bei Alternativansätze wie z.B Push- oder Pull- Kommunikationsmodell.\cite{lambdaAWS}
 
-\paragraph{Funktionale Programmierung} ist ein Programmierparadigma, innerhalb dessen Funktionen nicht nur definiert und angewendet werden können, sondern auch wie Daten miteinander verknüpft, als Parameter verwendet und als Funktionsergebnisse auftreten können. Dadurch kann ein funktionales Programm sehr weitreichend neue Berechnungsvorschriften zur Laufzeit zusammensetzen und anwenden. 
-Für die Skalierung eines Softwarekomponenten ist von Vorteil dass Zustandslos ist, eben wie die Funktionale Programmierung. 
+\paragraph{Funktionale Programmierung} ist ein Programmierparadigma, innerhalb dessen Funktionen nicht nur definiert und angewendet werden können, sondern auch wie Daten miteinander verknüpft, als Parameter verwendet und als Funktionsergebnisse auftreten können. Zustand und mutable Daten werden vermieden und dadurch ist von Vorteil für die Skalierung eines Softwarekomponenten.\cite{funcScala}
 
-\paragraph{Der Fokus} auf die Quellcodeentwicklung gegenüber auf die Provisioning von Servern, Installation von Software, Deployment von Conteiners oder Konkrete Details der Infrastruktur ist das Ziel von \ref{sec:faas}.
+\paragraph{Der Fokus} auf die Quellcodeentwicklung gegenüber auf die Provisioning von Servern, Installation von Software, Deployment von Conteiners oder Konkrete Details der Infrastruktur ist das Ziel von \ref{sec:faas}.\\
 \label{sec:faas}
-\acrshort{FaaS} kann als ein Rechen-Service beschrieben werden, dass nach Anfrage isoliert, unabhängig und granular ausgeführt wird. Dessen \glqq Unit of Deployment\grqq\ und Skalierung ist eine Funktion. 
-Komplexe Probleme wie horizontale und vertikale Skalierbarkeit, Fehlertoleranz, Flexibilität werden von Kunden und Benutzer nur noch nach bedarf Konfiguriert und von Anbieter verwaltet.
+\paragraph{\acrshort{FaaS}} kann als ein Rechen-Service beschrieben werden, dass nach Anfrage isoliert, unabhängig und granular ausgeführt wird. Dessen \glqq Unit of Deployment\grqq\ und Skalierung ist eine Funktion. 
+Komplexe Probleme wie horizontale und vertikale Skalierbarkeit, Fehlertoleranz, Flexibilität werden von Kunden und Benutzer nur noch nach bedarf Konfiguriert und von Anbieter verwaltet\cite{patternAWS}.
 
 \section{wie es sich in die Informatik einbettet}
 %HTTP, Funktionale Programmierung, Fassaden, ... ?? 
@@ -528,14 +532,16 @@ Für dir Betrachtung ob \acrshort{FaaS} eine Lösung ist, folgt eine Auflistung 
 \label{sec:soa}
 Service Orientierte Architektur SOA unterlegt die Annahme dass, ein System aus mehreren kleinen, austauschbaren, wiederverwendbaren und entkoppelten Diensten bestehen kann. Stellt eine Menge von Entwurfsprinzipien und Standards für dessen Entwicklung und Integration\cite{cloudEssentials}.
 
-Cloud Computing ist ein Serviceliefermodel in dem Services und Ressourcen von Benutzern Internetweit, wie z.B. bei öffentliche Dienste nach Anfrage, verbraucht werden.
+%Cloud Computing ist ein Serviceliefermodel in dem Services und Ressourcen von Benutzern Internetweit, wie z.B. bei öffentliche Dienste nach Anfrage, verbraucht werden.
 
 SOA ermöglicht gegenseitiges Datenaustausch zwischen Programmen von unterschiedlichen Anbieter ohne zusätzliche Änderungen an die Services vornehmen zu brauchen. Diese Services sollen unabhängig sein und \glqq standard\grqq\ Schnittstellen haben. 
 
 Im Cloud wird es daher in Services und Servicekomposition zentriert.
 
-\begin{wrapfigure}{i}{0.36\textwidth}
-	\includegraphics[scale=0.5]{./pics/2015_10_05_THB_Logo_BW.eps}
+\begin{wrapfigure}{l}{0.66\textwidth}
+	\begin{center}
+		\includegraphics[scale=0.60]{./pics/arch-soa.eps}
+	\end{center}
 \end{wrapfigure}
 
 \newacronym{DSL}{DSL}{Domain Specific Language}
@@ -543,7 +549,7 @@ Microservices und Serverless versuchen die Komplexität der SOA anzusprechen. Be
 
 
 Auf einer Seite Microservices können ihren Zustand und Daten halten und werden mithilfe von \glqq Frameworks\grqq implementiert. Auf der anderen Seite Serverless sind Zustandlos.
-ConnectWise\cite{ConnectWise}, Netflix\cite{Netflix} und UNLESS\cite{UNLESS} sind beispiele von Unternehmen die von Serverless Architekturen profitieren.
+ConnectWise\cite{ConnectWise}, Netflix\cite{Netflix} und UNLESS\cite{UNLESS} sind Beispiele für Unternehmen die von Serverless Architekturen profitieren.
 
 \section{EDA}
 \newacronym{EDA}{EDA}{Event Driven Architecture}
@@ -570,7 +576,7 @@ Für Konventionelle Webanwendung wird hier damit gehalten, als ein System das ü
 \label{sec:serverless}
 
 \newacronym{API}{API}{Application Interface}
-Serverless kann als ein Ansatz, dass  die Verwendung von ein Rechen-Service, Dienste von Drittanbieter, von \acrfull{API}s, kurz \acrshort{API}s und die Anwendung von Architekturmustern( wie ein Front-End, dass direkt mit Services kommunizieren anhand eines \glqq Delegation-Tokens\grqq\ ) fördert, beschrieben werden. \acrshort{FaaS} ist nur ein Aspekt dessen.
+Serverless kann als ein Ansatz, dass  die Verwendung von ein Rechen-Service, Dienste von Drittanbieter, von \acrfull{API}s, und die Anwendung von Architekturmustern( wie ein Front-End, dass direkt mit Services kommunizieren anhand eines \glqq Delegation-Tokens\grqq\ ) fördert, beschrieben werden. \acrshort{FaaS} ist nur ein Aspekt dessen.
 
 
 
