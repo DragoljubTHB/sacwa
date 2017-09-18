@@ -681,9 +681,9 @@ Big Query : Google
 
 
 
-Befehlmuster wird bei Fusekiserver\ref{komponenten:fuseki} als erteiler der Httpanfrage indem die SparQL Abfrage weiterleiten kann. Daher wird ein Pfad haus/hunde und haus/katze zur gleichen Funktion führen.
-Dieser kann aber offline gehen, also mehreren priorisierten MessagePattern als Queue vor eine oder mehreren Lambdas zu setzen absichert die Stabilität des Systems und entkoppelt Komponenten @RoundRobin?? BSRN.
-Die Verkettung von Funktionen mittels \glqq Pipes\grqq erlaubt die mehrfache Filterung von Daten.
+%Befehlmuster wird bei Fusekiserver\ref{komponenten:fuseki} als erteiler der Httpanfrage indem die SparQL Abfrage weiterleiten kann. Daher wird ein Pfad haus/hunde und haus/katze zur gleichen Funktion führen.
+%Dieser kann aber offline gehen, also mehreren priorisierten MessagePattern als Queue vor eine oder mehreren Lambdas zu setzen absichert die Stabilität des Systems und entkoppelt Komponenten @RoundRobin?? BSRN.
+%Die Verkettung von Funktionen mittels \glqq Pipes\grqq erlaubt die mehrfache Filterung von Daten.
 
 \section{Guidance}
 Caching -> Lambda Reads Same source and Process
@@ -695,7 +695,7 @@ Service Metering -> understand future use of services
 
 \chapter{Fokus auf AWS, Vorstellung der AWS-Serverless-Angebote}
 \label{chap:aws-serverless}
-Per Type: The Company
+\acrshort{AWS} ist ein Cloudandbieter
 
 \section{AWS Serverless Angebote}
 \newacronym{JVM}{JVM}{Java Virtual Machine}
@@ -727,14 +727,19 @@ Per Type: The Company
 \begin{wrapfigure}{i}{0.10\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Messaging_GRAYSCALE_AmazonSQS.eps}
 \end{wrapfigure}
-\paragraph{\acrfull{SQS}}\label{par:sqs} ist eine message queue. Erlaubt die Interaktion von mehreren Publishers und Consumers in eine SQS und verwaltet automatisch das Lebenszyklus der Nachrichten. 
+\paragraph{\acrfull{SQS}}\label{par:sqs} ist eine message queue. Erlaubt die Interaktion von mehreren Publishers und Consumers in eine SQS und verwaltet automatisch das Lebenszyklus der Nachrichten. Lässt die Timeouts oder individuelle Verzögerungen zu kontrollieren.
 
 
 
 \newacronym{SES}{SES}{Simple Email Service}
-\paragraph{\acrfull{SES}} behandelt die Absendung und die Empfang-Operationen wie Spamfilterung, Virus Scann und Ablehnung von nicht vertraute Quellen. Events können weiterhin an \acrshort{S3}, Lambda oder \acrshort{SNS}.
 \begin{wrapfigure}{i}{0.10\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Messaging_GRAYSCALE_AmazonSES.eps}
+\end{wrapfigure}
+\paragraph{\acrfull{SES}} behandelt die Absendung und die Empfang-Operationen wie Spamfilterung, Virus Scann und Ablehnung von nicht vertraute Quellen. Events können weiterhin an \acrshort{S3}, Lambda oder \acrshort{SNS}.
+
+\paragraph{Kinesis Streams}
+\begin{wrapfigure}{i}{0.16\textwidth}
+	\includegraphics[width=0.9\linewidth]{./pics/aws/Analytics_GRAYSCALE_AmazonKinesis.eps}
 \end{wrapfigure}
 
 
@@ -751,41 +756,37 @@ Per Type: The Company
 \end{wrapfigure}
 \paragraph{DynamoDb} ist eine NoSQL Datenbank. Deren Tabellen bestehen aus Items ( Zeilen ) und deren Attributen ( Spalten ). Lambda Funktionen können bei einen Update getriggert. 
 
-\paragraph{CloudSearch}
-\begin{wrapfigure}{i}{0.16\textwidth}
-	\includegraphics[width=0.9\linewidth]{./pics/aws/Analytics_GRAYSCALE_AmazonCloudSearch.eps}
-\end{wrapfigure}
+%\paragraph{CloudSearch}
+%\begin{wrapfigure}{i}{0.16\textwidth}
+%	\includegraphics[width=0.9\linewidth]{./pics/aws/Analytics_GRAYSCALE_AmazonCloudSearch.eps}
+%\end{wrapfigure}
 
-\paragraph{CloudFront ( CDN )}
-\begin{wrapfigure}{i}{0.16\textwidth}
-	\includegraphics[width=0.9\linewidth]{./pics/aws/NetworkingContentDelivery_GRAYSCALE_AmazonCloudFront.eps}
-\end{wrapfigure}
+%\paragraph{CloudFront ( CDN )}
+%\begin{wrapfigure}{i}{0.16\textwidth}
+%	\includegraphics[width=0.9\linewidth]{./pics/aws/NetworkingContentDelivery_GRAYSCALE_AmazonCloudFront.eps}
+%\end{wrapfigure}
 
-\paragraph{DNS management ( Route 53 )}
-\begin{wrapfigure}{i}{0.16\textwidth}
-	\includegraphics[width=0.9\linewidth]{./pics/aws/NetworkingContentDelivery_GRAYSCALE_AmazonRoute53.eps}
-\end{wrapfigure}
+%\paragraph{DNS management ( Route 53 )}
+%\begin{wrapfigure}{i}{0.16\textwidth}
+%	\includegraphics[width=0.9\linewidth]{./pics/aws/NetworkingContentDelivery_GRAYSCALE_AmazonRoute53.eps}
+%\end{wrapfigure}
 
-\paragraph{Caching (ElastiCache)}
-\begin{wrapfigure}{i}{0.16\textwidth}
-	\includegraphics[width=0.9\linewidth]{./pics/aws/Database_GRAYSCALE_AmazonElasticCache.eps}
-\end{wrapfigure}
+%\paragraph{Caching (ElastiCache)}
+%\begin{wrapfigure}{i}{0.16\textwidth}
+%	\includegraphics[width=0.9\linewidth]{./pics/aws/Database_GRAYSCALE_AmazonElasticCache.eps}
+%\end{wrapfigure}
 
-\paragraph{Elastic Transcoder}
-\begin{wrapfigure}{i}{0.16\textwidth}
-	\includegraphics[width=0.9\linewidth]{./pics/aws/ApplicationServices_GRAYSCALE_AmazonElasticTranscoder.eps}
-\end{wrapfigure}
+%\paragraph{Elastic Transcoder}
+%\begin{wrapfigure}{i}{0.16\textwidth}
+%	\includegraphics[width=0.9\linewidth]{./pics/aws/ApplicationServices_GRAYSCALE_AmazonElasticTranscoder.eps}
+%\end{wrapfigure}
 
 
-\paragraph{Kinesis Streams}
-\begin{wrapfigure}{i}{0.16\textwidth}
-	\includegraphics[width=0.9\linewidth]{./pics/aws/Analytics_GRAYSCALE_AmazonKinesis.eps}
-\end{wrapfigure}
 
-\paragraph{Cognito}
-\begin{wrapfigure}{i}{0.16\textwidth}
-	\includegraphics[width=0.9\linewidth]{./pics/aws/MobileServices_GRAYSCALE_AmazonCognito.eps}
-\end{wrapfigure}
+%\paragraph{Cognito}
+%\begin{wrapfigure}{i}{0.16\textwidth}
+%	\includegraphics[width=0.9\linewidth]{./pics/aws/MobileServices_GRAYSCALE_AmazonCognito.eps}
+%\end{wrapfigure}
 
 
 \chapter{Beispiel(!)-Fall KOMA}
