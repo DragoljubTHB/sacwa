@@ -446,82 +446,81 @@ Das \glqq\Gls{virtualization}\grqq\ einer ganzen Umgebung oder Stack zerteilt si
 
 \chapter{FaaS}{nichtfunktionalen/technischen Anforderungen zur Entwicklung des Serverless-Ansatzes}
 
-\paragraph{Statefull vs Stateless} 
-Die skalierung erfolgt schwer sobald zustand mitspielt. Server + Containers rechnen mit Zustand. 
-Funktionale Programmierung ist ein Programmierparadigm, dass 
+\paragraph{Die Reaktion auf Events}\label{par:event-reaction} innerhalb eines verteilten Systems ließ sich mit der vorhandenen Technologien wie Virtualisierte oder Containerised Servern lösen, in dem neue Instanzen zur Verarbeitung von einer Kette von variable Events erzeugt und danach gelöscht. Was zurück auf die oben genannten Aufgaben\ref{sec:iaas} führte.
 
-\paragraph{Der Fokus} auf die Quellcodeentwicklung gegenüber auf die Provisioning von Servern, Installation von Software, Deployment von Conteiners oder Konkrete Details der Infrastruktur.
+\paragraph{Das Polling Problem}\label{par:polling}.
+Polling ist der Ausdruck für eine zyklische Abfrage über einen Status z.B. von Ports oder Locks über Ressourcen. Die Effizienz bei der Verwendung von Systemressourcen kann geringer als bei Alternativansätze wie z.B Push- oder Pull- Eventmodell.
 
+\paragraph{Funktionale Programmierung} ist ein Programmierparadigma, innerhalb dessen Funktionen nicht nur definiert und angewendet werden können, sondern auch wie Daten miteinander verknüpft, als Parameter verwendet und als Funktionsergebnisse auftreten können. Dadurch kann ein funktionales Programm sehr weitreichend neue Berechnungsvorschriften zur Laufzeit zusammensetzen und anwenden. 
+Für die Skalierung eines Softwarekomponenten ist von Vorteil dass Zustandslos ist, eben wie die Funktionale Programmierung. 
 
-% Der Mangel von IPS -> 
-
-%\subsubsection{FaaS Definition}
+\paragraph{Der Fokus} auf die Quellcodeentwicklung gegenüber auf die Provisioning von Servern, Installation von Software, Deployment von Conteiners oder Konkrete Details der Infrastruktur ist das Ziel von \ref{sec:faas}.
 \label{sec:faas}
-\acrshort{FaaS} kann als ein Rechen-Service beschrieben werden, dass nach Anfrage isoliert, unabhängig und granular ausgeführt wird. Dessen \glqq Unit of Deployment\grqq\ ist eine Funktion. 
-
+\acrshort{FaaS} kann als ein Rechen-Service beschrieben werden, dass nach Anfrage isoliert, unabhängig und granular ausgeführt wird. Dessen \glqq Unit of Deployment\grqq\ und Skalierung ist eine Funktion. 
 Komplexe Probleme wie horizontale und vertikale Skalierbarkeit, Fehlertoleranz, Flexibilität werden von Kunden und Benutzer nur noch nach bedarf Konfiguriert und von Anbieter verwaltet.
 
-%WARUUUUUM  Was I,P,S aaS nicht geboten haben so dass FaaS noch entsteht. 
-% Hardware anforderung <- Ignoriert
-
-\section{Ja/Neins}
-
-Die Unterschiede zwischen den\cite{lambdaAWS}
-\paragraph{Wann Nicht}: 
-
-Betriebsystemabhängigkeiten erkennen: Traditionellen Computing wie EC2, wo die Entwickler root 
-zugrifsrechte auf alle Ressources hat, in Lambda ist diser Opaque.
-
-OS Attribute Konfigurationen: Priorisieren CPU, GPU, Networking, or Disk Speicher und Geschwindigkeit. In Lambda skalieren proportional.
-
-Sicherheit: Lambda nicht sichtbar host-based intrusion detection systems cannot be installed, system-level access logs
-
-Dauerhafte Prozesse. Lambda kann bis 300s. Kosten pro Monat 1Gb  Lambda = 37 EC2 = 9Dollar. Wenn warten auf Requests, oder auf Callbacks geht nicht.
-
-\paragraph{Wann Ja}
-
-EventDriven Tasks: Lambda solves the polling problem by creating an on-demand response to particular events.
-
-Cron. Events: EC2 als behälter von Scripts, kostet auch ohne sie auszuführen. Fehlerhafte Scripts nicht einfach zu erkennen. Skallierung auch von Fehler. Permissions zu offen.
-Mit Lambda: the permissions can be much more narrowly applied, failures are much more easily noticed, deployments can be easily triggered, logs are aggregated in one place, and the underlying server management is handled by AWS.
-
-Heavy Processing: Um autoskalling zu vermeiden wegen z.B.Bildverarbeitung. So entkoppelt sich der Empfänger und der Verarbeiter und können mehr Requests angenommen werden. 
-
-Serverless API Gateway vermeidet api servers
-
-Selten verwendete Services. z.B <= 5 porZent average CPU t2.micro <~> 3x10hoch6 = 9dollar
-
 \section{wie es sich in die Informatik einbettet}
-HTTP, Funktionale Programmierung, Fassaden, ... ?? 
-Funktionale programmierung abstrahiert. auf Infrastruktur. ??? 
-
-\subsection{Use Cases}
-next\cite{serverlessArchAWS}
-Application Backend: z.b Internet of Things IoT: push to S3, push queue to SQS and invoke Lambda.
-
-Data Procesisng and manipulation: pipeline of :collation and aggregation of data; image resizing;
-and format conversion.
-
-Real time processing and analitics: Ingestion of Data -> Kinesis Streams; if Batch size -> Process, Save, Discard -> Lambda
-
-Legacy Api Proxy: Extra RESTful GateWay with lambda on top legacy api. Easier Usage.
-
-Scheduled Services
-
-Bots and Skills
-
-next\cite{lambdaAWS}
-Shuttdown untagged EC2 instances. 
-
-Code Deploy
-
-Process inbount mail: 
-attachment to S3 + link to it
-spam filter
-
-Detect expiring certificates
+%HTTP, Funktionale Programmierung, Fassaden, ... ?? 
+%Funktionale programmierung abstrahiert. auf Infrastruktur. ??? 
 
 
+Für dir Betrachtung ob \acrshort{FaaS} eine Lösung ist, folgt eine Auflistung als Stützpunkt:\cite{lambdaAWS}
+\paragraph{Es ist nicht empfehlenswert \acrshort{FaaS} zu benutzen wenn:}
+\begin{itemize}
+	\item Entwickler Rootzugrifsrechte auf alle Ressources braucht.
+	\item die Priorisierung von Betriebssystemattributen wie CPU, GPU, Networking oder Speichergeschwindigkeit eine Rolle spielt.
+	\item Sicherheit relevant ist. Einbrucherkennung kann mit \acrshort{FaaS} nur auf Systemebene erkannt werden.
+	\item dauerhafte Prozesse angefordert sind.
+\end{itemize}
+%Betriebsystemabhängigkeiten erkennen: Traditionellen Computing wie EC2, wo die Entwickler root  hat, in Lambda ist diser Opaque.
+
+%OS Attribute Konfigurationen: Priorisieren CPU, GPU, Networking, or Disk Speicher und Geschwindigkeit. In Lambda skalieren proportional.
+
+%Sicherheit: Lambda nicht sichtbar host-based intrusion detection systems cannot be installed, system-level access logs
+
+%Dauerhafte Prozesse. Lambda kann bis 300s. Kosten pro Monat 1Gb  Lambda = 37 EC2 = 9Dollar. Wenn warten auf Requests, oder auf Callbacks geht nicht.
+
+\paragraph{Es ist empfehlenswert \acrshort{FaaS} zu benutzen wenn:}
+\begin{itemize}
+	\item Aufgaben als Reaktion auf Events erledigt werden. 
+	\item ein Scriptbehälter, für z.B Cron Aufgaben, benötigt wird. Die Zugriffsrechte sind enger, fehler sind einfacher zu erkennen und an einer Stelle aggregiert ( siehe CloudWatch ), deployments können einfacher getriggert werdenden.
+	\item nur die ressourcenintensive Verarbeitung die Skallierung von Servern verursachen würde\ref{sec:pipes-filters}.
+	\item es selten verwendete Services vorgibt.
+	\item \acrshort{API}s auch ohne Server veröffentlichen werden können.
+\end{itemize}
+%EventDriven Tasks: Lambda solves the polling problem by creating an on-demand response to particular events.
+
+%Cron. Events: EC2 als behälter von Scripts, kostet auch ohne sie auszuführen. Fehlerhafte Scripts nicht einfach zu erkennen. Skallierung auch von Fehler. Permissions zu offen.
+%Mit Lambda: the permissions can be much more narrowly applied, failures are much more easily noticed, deployments can be easily triggered, logs are aggregated in one place, and the underlying server management is handled by AWS.
+
+%Heavy Processing: Um autoskalling zu vermeiden wegen z.B.Bildverarbeitung. So entkoppelt sich der Empfänger und der Verarbeiter und können mehr Requests angenommen werden. 
+
+%Serverless API Gateway vermeidet api servers
+
+%Selten verwendete Services. z.B <= 5 porZent average CPU t2.micro <~> 3x10hoch6 = 9dollar
+
+%\subsection{Use Cases}
+%next\cite{serverlessArchAWS}
+%Application Backend: z.b Internet of Things IoT: push to S3, push queue to SQS and invoke Lambda.
+
+%Data Procesisng and manipulation: pipeline of :collation and aggregation of data; image resizing;and format conversion.
+
+%Real time processing and analitics: Ingestion of Data -> Kinesis Streams; if Batch size -> Process, Save, Discard -> Lambda
+
+%Legacy Api Proxy: Extra RESTful GateWay with lambda on top legacy api. Easier Usage.
+
+%Scheduled Services
+
+%Bots and Skills
+
+%next\cite{lambdaAWS}
+%Shuttdown untagged EC2 instances. 
+
+%Code Deploy
+
+%Process inbount mail: attachment to S3 + link to it spam filter
+
+%Detect expiring certificates
 
 \chapter{kurzer Überblick über Serverless-Angebote/Architekturen}
 
@@ -685,13 +684,13 @@ Big Query : Google
 %Dieser kann aber offline gehen, also mehreren priorisierten MessagePattern als Queue vor eine oder mehreren Lambdas zu setzen absichert die Stabilität des Systems und entkoppelt Komponenten @RoundRobin?? BSRN.
 %Die Verkettung von Funktionen mittels \glqq Pipes\grqq erlaubt die mehrfache Filterung von Daten.
 
-\section{Guidance}
-Caching -> Lambda Reads Same source and Process
-Compute partitioning -> Lambda per use. solved
-Data Consistency -> Embrace Eventual Consistency in Distributed DBs
-Data partitioning <-> Sharding 
-Instrumentation and Telemetry Guidance -> Errors Handling
-Service Metering -> understand future use of services
+%\section{Guidance}
+%Caching -> Lambda Reads Same source and Process
+%Compute partitioning -> Lambda per use. solved
+%Data Consistency -> Embrace Eventual Consistency in Distributed DBs
+%Data partitioning <-> Sharding 
+%Instrumentation and Telemetry Guidance -> Errors Handling
+%Service Metering -> understand future use of services
 
 \chapter{Fokus auf AWS, Vorstellung der AWS-Serverless-Angebote}
 \label{chap:aws-serverless}
@@ -1012,45 +1011,35 @@ Dieser Muster erlaubt eine Menge von Funktionen so zu verketten, dass das Ergebn
 
 Im Folgendem es wird beispielhaft eine abtrennung einer JEE Anwendung.
 
-\subparagraph{JEE.war}
-\glqq And\grqq Test vs SRP
-Identifizieren der Concerns und ihre Trennung: 
+%\subparagraph{JEE.war} \glqq And\grqq Test vs SRP Identifizieren der Concerns und ihre Trennung: 
 
-\subparagraph{Einloggen}
-Login beispiel: 
-user + password + userData -> 
-user + passord -> uuID -> userData 
-refactor and share common code
+%\subparagraph{Einloggen} Login beispiel: user + password + userData -> user + passord -> uuID -> userData refactor and share common code
 
 
-Autorisierung und Authentifizierung. Einleitung
+%Autorisierung und Authentifizierung. Einleitung
 
-Auth0 bietet Authentifizierung as a Service an. Der Benutzer erhält einen JSON Web Token JWT und schickt ihn Encoded JSON Web Signature JWS oder JSON Web Encription zur Anwendung mit.
+%Auth0 bietet Authentifizierung as a Service an. Der Benutzer erhält einen JSON Web Token JWT und schickt ihn Encoded JSON Web Signature JWS oder JSON Web Encription zur Anwendung mit.
 %Mit wenige Konfigurationsschritte kann man die Benutzer Authentifizieren. 
 
 
-Einloggen: 0Auth Google gibt token, der wird in Lambda überprüft, Session in oauth.com verwaltet
+%Einloggen: 0Auth Google gibt token, der wird in Lambda überprüft, Session in oauth.com verwaltet
 
 
-\subparagraph{Dynamo DB}
+%\subparagraph{Dynamo DB} Funtion: Read + Write + updateS3 zu Split S3, Split R/W 
 
-Funtion: Read + Write + updateS3 
-zu
-Split S3, Split R/W 
+%Datenspecherung Architektur:
+%DynamoDB: speichert :individual als Schlussel und seine relative URL
+%Ś3: speichert die .owl Dateien.
 
-Datenspecherung Architektur:
-DynamoDB: speichert :individual als Schlussel und seine relative URL
-Ś3: speichert die .owl Dateien.
-
-Lambda Funktion: Maps zwischen S3 und DynamoDB.
+%Lambda Funktion: Maps zwischen S3 und DynamoDB.
 
 
 
 \subsection{RESTful API}
 \label{sec:rest}
-Designing a friendly Hypertext Transfer Protocol (HTTP) API means abstracting the
-intricate business logic and data your service uses into the four basic CRUD operations
-(create, read, update, delete).
+\newacronym{HTTP}{HTTP}{Hypertext Transfer Protocol}
+\newacronym{CRUD}{CRUD}{Create, Read, Update, Delete}
+Der Entwurf von einer benutzerfreundliche \acrfull{HTTP} \acrshort{API} beinhalte die Abstraktion von komplexe Geschäftslogik und Daten, welche das darunterliegende Service benutzt, in den vier \acrlong{CRUD} Operationen.
 
 Die Komplexität des darunterliegenden Datenmodells erlaubt eine RESTful\cite{microAdv} Schnittstelle nur einfache abfragen zu formulieren. Daher zusätzlich ein Endpunkt\ref{tab:rest} für Komplexe Sparql Abfragen, die im Body des HTTP Requests in JSON geschickt wird. 
 
