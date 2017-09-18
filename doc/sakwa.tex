@@ -724,10 +724,31 @@ Service Metering -> understand future use of services
 \end{wrapfigure}
 \paragraph{\acrfull{S3}} ist ein Speicher-Dienst, dass durch \acrshort{SNS}\ref{par:sns} Events, wenn ein Objekt erzeugt oder gelöscht wurde, an \acrshort{SNS}\ref{par:sns}, \acrfull{SQS}\ref{par:sqs} oder Lambda schicken kann. \glqq Buckets\grqq\ sind Wurzelverzeichnisse und Objekt ist eine Kombination von Daten, Metadaten und ein innerhalb des Buckets eindeutiges Key.
 
+
+\begin{wrapfigure}{i}{0.16\textwidth}
+	\includegraphics[width=0.9\linewidth]{./pics/aws/Database_GRAYSCALE_AmazonDynamoDB.eps}
+\end{wrapfigure}
+\paragraph{DynamoDb} ist eine NoSQL Datenbank. Deren Tabellen bestehen aus Items ( Zeilen ) und deren Attributen ( Spalten ). Die Datenbank hat unendliche Datenkapazität und bedient jegliche Menge von Traffic. Mit der automatischien Skalierung mindert die Performance nicht. Lambda Funktionen können bei einen Update getriggert. 
+
+
+
 \begin{wrapfigure}{i}{0.10\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Messaging_GRAYSCALE_AmazonSQS.eps}
 \end{wrapfigure}
 \paragraph{\acrfull{SQS}}\label{par:sqs} ist eine message queue. Erlaubt die Interaktion von mehreren Publishers und Consumers in eine SQS und verwaltet automatisch das Lebenszyklus der Nachrichten. Lässt die Timeouts oder individuelle Verzögerungen zu kontrollieren.
+
+\begin{wrapfigure}{i}{0.10\textwidth}
+	\includegraphics[width=0.9\linewidth]{./pics/aws/Analytics_GRAYSCALE_AmazonKinesis.eps}
+\end{wrapfigure}
+\paragraph{Kinesis Streams} ist ein Service für Real-time Prozessieren von Streams von Daten. Wird für Logging, Datein Einnahme, Metriken, Analytics und Reporting benutzt. Ein Kinesis Stream ist eine sortierte Folge von Datensätzen die auf \glqq Shards\grqq\ verteilt. Diese definieren den Throughtput-Kapazität von einem Stream und können nach bedarf vergrößert werden.
+
+
+\newacronym{RDS}{RDS}{Relational Database Service}
+\begin{wrapfigure}{i}{0.10\textwidth}
+	\includegraphics[width=0.9\linewidth]{./pics/aws/Database_GRAYSCALE_AmazonRDS.eps}
+\end{wrapfigure}
+\paragraph{\acrfull{RDS}} hilft bei dem Setup und Wartung von mySQL, MariaDB, Oracle, MS-SQL, PostreSQL und Amazon Aurora mit automatische provisioning, backup, patching, recovery, repair, and failure detection. RDS kann auf eigene Events mit Events SNS\ref{par:sns} benachrichtigen.
+
 
 
 
@@ -736,25 +757,6 @@ Service Metering -> understand future use of services
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Messaging_GRAYSCALE_AmazonSES.eps}
 \end{wrapfigure}
 \paragraph{\acrfull{SES}} behandelt die Absendung und die Empfang-Operationen wie Spamfilterung, Virus Scann und Ablehnung von nicht vertraute Quellen. Events können weiterhin an \acrshort{S3}, Lambda oder \acrshort{SNS}.
-
-\paragraph{Kinesis Streams}
-\begin{wrapfigure}{i}{0.16\textwidth}
-	\includegraphics[width=0.9\linewidth]{./pics/aws/Analytics_GRAYSCALE_AmazonKinesis.eps}
-\end{wrapfigure}
-
-
-
-\newacronym{RDS}{RDS}{Relational Database Service}
-\begin{wrapfigure}{i}{0.16\textwidth}
-	\includegraphics[width=0.9\linewidth]{./pics/aws/Database_GRAYSCALE_AmazonRDS.eps}
-\end{wrapfigure}
-\paragraph{\acrfull{RDS}} hilft bei dem Setup und Wartung von mySQL, MariaDB, Oracle, MS-SQL, PostreSQL und Amazon Aurora mit automatische provisioning, backup, patching, recovery, repair, and failure detection. RDS kann auf eigene Events mit Events SNS\ref{par:sns} benachrichtigen.
-
-
-\begin{wrapfigure}{i}{0.16\textwidth}
-	\includegraphics[width=0.9\linewidth]{./pics/aws/Database_GRAYSCALE_AmazonDynamoDB.eps}
-\end{wrapfigure}
-\paragraph{DynamoDb} ist eine NoSQL Datenbank. Deren Tabellen bestehen aus Items ( Zeilen ) und deren Attributen ( Spalten ). Lambda Funktionen können bei einen Update getriggert. 
 
 %\paragraph{CloudSearch}
 %\begin{wrapfigure}{i}{0.16\textwidth}
