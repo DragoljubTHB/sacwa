@@ -979,27 +979,33 @@ Dieser Sparql-Endpoint entspricht der Repositoryschicht der Anwendung und wird n
 Eine Lambdafunktion arbeitet als Schnittstelle \ref{lst:lambda-interface} zwischen die ARQ Bibliothek, den Client und die darunterliegende Infrastruktur.
 
 
-Um den Datenmodell möglichst simpel programmatisch abzufragen wird zunächst dessen Schnittstelle\ref{sec:rest} definiert. 
+%Um den Datenmodell möglichst simpel programmatisch abzufragen wird zunächst dessen Schnittstelle\ref{sec:rest} definiert. 
 
 \subsection{Datenhaltung Synchronisierung und Replizieren}
-\subparagraph{Master - Slave}
-\begin{figure}[H]
+\subparagraph{Master - Subordinate}
+\begin{wrapfigure}{i}{0.10\textwidth}
 	\includegraphics[scale=0.2]{./pics/aws/pattern-master-subordinate-data-replication.eps}
-\end{figure}
+\end{wrapfigure}
+Cloud Dienste werden oft in unterschiedlichen Datazentren oder Regionen deployed. Um die Verfügbarkeit, Performance und Konsistenz zu maximiereun und die Datenübertragungkosten zu minimieren, kann eine Master-Datenbasis mit erlaubte Read und Write Operationen und eine Subordinate-Datenbasis mit nur Read Operationen definiert werden. 
+Der Master pusht oder ( one-way ) synchronisiert die Subordinate-Replikas. 
+Diese Aufteilung favorisiert Read Operationen.
+
 
 \subparagraph{cache shared }
-\begin{figure}[H]
+\begin{wrapfigure}{i}{0.16\textwidth}
 	\includegraphics[scale=0.2]{./pics/aws/pattern-cache-shared.eps}
-\end{figure}
+\end{wrapfigure}
+Caching zielt auf die Verbesserung der Performance und Skalabilität eines Systems, in dem die oft gelesene Daten temporär zwischenspeichert werden. Es gibt zwei Typen von Cache: In-Memory und Shared-Cache. Die Stateless Natur der Lambda kompliziert die Benutzung der ersten Cachevariante. 
+Die Shared-Cache hilft das Problem zu beheben, bei Inkonsistenzen unter verteilten Caches. 
+
 
 \subsection{Datenverarbeitung}
 
-\subparagraph{lambda}
-
-\begin{figure}[H]
+\subparagraph{Waterfall}
+\begin{wrapfigure}{i}{0.16\textwidth}
 	\includegraphics[scale=0.2]{./pics/aws/pattern-waterfall.eps}
-\end{figure}
-
+\end{wrapfigure}
+Dieser Muster erlaubt eine Menge von Funktionen so zu verketten, dass das Ergebnis der Einer als Eingabeparameter der Nächsten ist. Wenn ein Fehler in eine Funktion entsteht, hält das Waterfall an.
 
 
 \subsection{Abtrennung des Monoliths}
