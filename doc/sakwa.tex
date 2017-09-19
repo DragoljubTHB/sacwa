@@ -452,7 +452,9 @@ Daher ergeben sich für die in der Cloud betriebenen Anwendungen folgende Eigens
 
 \paragraph{Inkonsistenzen} in der Infrastruktur oder den Umgebungen können durch den hohen Aufwand der Serververwaltung entstehen. Sie werden durch standardisierte und automatisierte Angebote von \acrshort{PaaS} umgangen. Deren effiziente Benutzung is abhängig davon, wie gezielt der Quellcode auf die Features der Plattform abgestimmt ist. Dies ergibt auf einer Seite weniger Wartung, aber andererseits erfordern die importierten Anwendungen ( z.B. für ein Standalone Server ) eine Anpassung an die Plattform.
 
-\paragraph{Die Containerisierung}\label{par:containerisation} ist eine Isolierung der Anwendung von ihrer Umgebung. Der Container muss konfiguriert und gebaut werden und der Deploymentprozess ist nicht trivial. Es braucht von Tools für das Monitoring. Jedoch für Anwendungen mit vielen Abhängigkeiten bietet eine ausgezeichnete Lösung. 
+\paragraph{Die Containerisierung}\label{par:containerisation} ist eine Isolierung der Anwendung von ihrer Umgebung. Die Konfiguration des Containers, sowie dessen Deployment ist nicht trivial und erfordert daher spezialisiertes Wissen über Containerisierung. Für das Monitoring werden bestimmte Tools wie Boot2Docker oder Kubernettes benötigt. Jedoch bietet die Containerisierung eine ausgezeichnete Lösung für Anwendungen mit starker Kopplung zu anderen Softwarekomponenten.\cite{patternAWS}
+
+%Der Container muss konfiguriert und gebaut werden und der Deploymentprozess ist nicht trivial. 
 
 %\begin{wrapfigure}{i}{0.66\textwidth}
 %	\includegraphics[scale=0.36]{./pics/IaaS_vs_PaaS_vs_Serverless.eps}
@@ -460,7 +462,8 @@ Daher ergeben sich für die in der Cloud betriebenen Anwendungen folgende Eigens
 \section{SaaS} 
 \label{sec:saas}
 \newacronym{SaaS}{SaaS}{Software as a Service}
-\acrfull{SaaS}, kann als ein Service beschrieben werden, der OS-Images mit konfigurierbaren Diensten wie Datenbank, Webanwendungen usw. Der Nutzer muss die Konfiguration und Deployment dieser Softwaredienste nicht lernen, um in sie eine größeren Anwendung einzubinden. Die Gebühren werden generell nach benutzten Stunden dem Kunden abgerechnet. 
+\acrfull{SaaS} kann als ein Service beschrieben werden, der OS-Images mit konfigurierbaren Diensten wie Datenbanken, Webanwendungen usw. bereitstellt. \acrshort{SaaS} gestaltet sich benutzerfreundlich, da die Konfiguration und das Deployment dieser Softwaredienste nicht erlernt werden müssen, um sie in eine größere Anwendung einzubinden. Anfallende Gebühren berechnen sich nach der Nutzungsdauer.
+
 
 \newglossaryentry{virtualization}{name={Virtualisation},description={Abstraktion der Anwendung, OS oder DB von der darunterliegende Infrastruktur z.B. ein Server.}}
 
@@ -470,23 +473,23 @@ Daher ergeben sich für die in der Cloud betriebenen Anwendungen folgende Eigens
 
 
 \chapter{FaaS}%{nichtfunktionalen/technischen Anforderungen zur Entwicklung des Serverless-Ansatzes}
- 
-\paragraph{Die Reaktion auf Events}\label{par:event-reaction} innerhalb eines verteilten Systems ließ sich mit der vorhandenen Technologien wie Virtualisierte oder Containerised Servern behandeln, in dem neue Instanzen zur Verarbeitung von einer Kette von variable Events erzeugt und danach gelöscht wird. Was zurück auf die oben genannten Aufgaben\ref{sec:iaas} führte.\cite{lambdaAWS}
 
-\paragraph{Das Polling Problem.}\label{par:polling}
-Polling ist der Ausdruck für eine zyklische Abfrage über einen Status z.B. von Ports oder Locks über Ressourcen. Die Effizienz bei der Verwendung von Systemressourcen kann geringer als bei Alternativansätze wie z.B Push- oder Pull- Kommunikationsmodell.\cite{lambdaAWS}
+\acrfull{FaaS}\label{sec:faas} kann als ein Rechenservice beschrieben werden, der nach Anfrage isoliert, unabhängig und granular ausgeführt wird. Komplexe Probleme wie horizontale und vertikale Skalierbarkeit, Fehlertoleranz und Elascitity werden von Kunden nur noch nach Bedarf konfiguriert und von dem Anbieter verwaltet. Die Besonderheit von \acrshort{FaaS} ist die \glqq Unit of Deployment\grqq\ und die Skalierung in Form einer Funktion. \cite{patternAWS}
 
-\paragraph{Funktionale Programmierung} ist ein Programmierparadigma, innerhalb dessen Funktionen nicht nur definiert und angewendet werden können, sondern auch wie Daten miteinander verknüpft, als Parameter verwendet und als Funktionsergebnisse auftreten können. Zustand und mutable Daten werden vermieden und dadurch ist von Vorteil für die Skalierung eines Softwarekomponenten.\cite{funcScala}
+\paragraph{Events}\label{par:event-reaction} innerhalb eines verteilten Systems müssen verwaltet werden. Technologien wie Virtualisierte oder Containerised Server erzeugen neue Serverinstanzen zur Verarbeitung von einer Kette von variablen Events, die danach gelöscht wird.\cite{lambdaAWS} Die entstehende Problematik ergab sich durch eine starke Zunahme an Elementen, die einen hohen Verwaltungsaufwand forderten.  Was zurück auf die oben genannten Aufgaben \ref{sec:iaas} führte.
 
-\paragraph{Der Fokus} auf die Quellcodeentwicklung gegenüber auf die Provisioning von Servern, Installation von Software, Deployment von Conteiners oder konkrete Details der Infrastruktur ist das Ziel von \ref{sec:faas}.\\
+\paragraph{Polling}\label{par:polling} ist der Ausdruck für eine zyklische Abfrage über einen Status z.B. von Ports oder Locks über Ressourcen. Die Verwendung von Systemressourcen ist ineffizient im Vergleich zu Alternativansätzen wie z.B in dem Push- oder Pull- Kommunikationsmodell.\cite{lambdaAWS} 
 
-\paragraph{\acrshort{FaaS}}\label{sec:faas} kann als ein Rechen-Service beschrieben werden, dass nach Anfrage isoliert, unabhängig und granular ausgeführt wird. Dessen \glqq Unit of Deployment\grqq\ und Skalierung ist eine Funktion. 
-Komplexe Probleme wie horizontale und vertikale Skalierbarkeit, Fehlertoleranz, Flexibilität werden von Kunden und Benutzer nur noch nach bedarf Konfiguriert und von Anbieter verwaltet\cite{patternAWS}.
+\paragraph{Funktionale Programmierung} ist ein Programmierparadigma, in dem Funktionen nicht nur definiert und angewendet werden können, sondern auch wie Daten miteinander verknüpft, als Parameter verwendet und als Funktionsergebnisse auftreten können. Zustand und mutable Daten werden vermieden, das stellt einen Vorteil für die Skalierung eines Softwarekomponenten dar.\cite{funcScala}
 
-\paragraph{Die Implementierung} einer solchen Funktion geschieht durch die Auswahl der Programmiersprache und deren vom cloud Anbieter vorgegebene Funktionsfassade. Die auszuführende Datei muss alle ihre Abhängigkeiten enthalten, die allerdings geringst möglich zu halten sein sollten.
+
+\paragraph{Die Implementierung} einer solchen Funktion geschieht durch die Auswahl der Programmiersprache und der von dem Cloud Anbieter vorgegebenen Funktionsfassade. Die auszuführende Datei muss alle ihre Abhängigkeiten enthalten, die allerdings geringst möglich zu halten sein sollten.
+
+
+\paragraph{Der Fokus} bei \acrshort{FaaS} liegt auf der Quellcodeentwicklung und nicht auf dem Provisioning von Servern, der Installation von Software, dem Deployment von Containern oder auf konkreten Details der Infrastruktur.
+
 %HTTP, Funktionale Programmierung, Fassaden, ... ?? 
 %Funktionale programmierung abstrahiert. auf Infrastruktur. ??? 
-
 
 Für dir Betrachtung ob \acrshort{FaaS} eine Lösung für einer konkreten Problemstellung ist, folgt eine Auflistung als Stützpunkt:
 \paragraph{Es ist nicht empfehlenswert \acrshort{FaaS} zu benutzen wenn:}
@@ -539,7 +542,6 @@ ConnectWise\cite{ConnectWise}, Netflix\cite{Netflix} und UNLESS\cite{UNLESS} sin
 \acrfull{EDA} ist eine Softwarearchitektur, in der das Zusammenspiel der Komponenten durch Ereignisse gesteuert wird. Die Ereignisorientierung besitzt das Potenzial, dass die Architekturen von Unternehmensanwendungen agiler, reaktionsschneller und
 echtzeitfähig werden. Laut ---- ist \acrshort{EDA} für komplexe Fachlogik, große Datenvolumina, geringe Latenzzeit, Skalierbarkeit und Agilität geeignet.\cite{archEDA}
 Die Serverless Technologien können durch Benachrichtigungen gestartet werden. Diese \acrshort{EDA}-Still, verstärkt die Entkopplung temporäre-weise zwischen Producer und Consumer und ermöglicht eine Asynchrone Verarbeitung, ohne dass Fehler das System zum Absturz bringen.\cite{patternIntegrationEnterprise}
-
 
 
 Zusammengefasst lassen sich folgende Vorteile ersichtlichen:
@@ -597,7 +599,7 @@ Für den Entwurf von Serverless Architekturen wird eine Reihe von Mustern von un
 \begin{wrapfigure}{l}{0.36\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/pipes-and-filters.eps}
 \end{wrapfigure}
-Eine Anwendung kann Aufgaben von unterschiedliche Komplexität und Vielfalt. Deren Implementierung in einen Monolitischen Modul erwschwert das Refactoring, die Optimisierung oder die Wiederverwendung. \\
+Eine Anwendung kann Aufgaben von unterschiedliche Komplexität und Vielfalt. Deren Implementierung in einen monolithischen Modul erschwert das Refactoring, die Optimierung oder die Wiederverwendung. \\
 Zerteile man die Aufgaben in Diskreten Elementen ( oder Filter ) nach dem \acrshort{SRP} und kombiniere sie in eine Pipeline. Dies hilft redundanter Quellcode zu vermeiden, ihn zu löschen, ersetzen oder zu integrieren in zusätzlichen Komponenten sobald die Aufgabenanforderungen sich ändern\cite{patternsCloud}. Ein weiter Vorteil entsteht wenn ein Element zu langsam ist, können mehrere Instanzen erzeugt werden und daher ein Flaschenhals vermeiden.
 
 
@@ -751,40 +753,42 @@ Benutzer arbeiten mit multiple Anwendungen von unterschiedlichen Organisationen.
 \end{wrapfigure}
 \paragraph{\acrfull{SES}} behandelt die Absendung und die Empfang-Operationen wie Spamfilterung, Virus Scann und Ablehnung von nicht vertraute Quellen. Events können weiterhin an \acrshort{S3}, Lambda oder \acrshort{SNS}.
 
-\chapter{Beispielhafte KOMA}
+\chapter{KOMA, eine Beispielanwendung}
 
-Dieser Beispielanwendung zeigt wie manche der oben dargestellten Konzepten implementiert werden können.
+Dieser Beispielanwendung implementiert manche der oben dargestellten Entwurfsmuster.
 
 \section{KOMA}
 \label{sec:KOMA} \autoref{sec:KOMA}
 \newacronym{EQF}{EQF}{European Qualifications Framework}
-Die Beschleunigung der Veränderungen in der Heutigen Gesellschaft und der technologischen Landschaft prägt sich sowohl in Bildung als auch in Beruf in so fern aus, dass die heutige Rahmenlehrpläne nicht mehr fachlich sondern nach Kompetenzentwicklung orientiert sind, um Kompetenzprofile für Lerner zu gestallten. Es existiert bereits ein anerkanntes Europäisches Rahmen für Kompetenzbildung: \acrfull{EQF}. Am Beispiel von Sachsen-Anhalt\cite{BildungsServerSachsen} wird diese Kompetenzorientierung auf die spezifische Bedürfnisse der Schule beschrieben und die Unterrichsstunden entsprechend gestaltet.
+Die Beschleunigung der Veränderungen in der Heutigen Gesellschaft und der technologischen Landschaft prägt sich sowohl in Bildung als auch in Beruf in so fern aus, dass die heutige Rahmenlehrpläne nicht mehr fachlich sondern nach Kompetenzentwicklung orientiert sind, um Kompetenzprofile für Lerner zu gestalten\cite{EQF}. Es existiert bereits ein anerkanntes Europäisches Rahmen für Kompetenzbildung: \acrfull{EQF}. Am Beispiel von Sachsen-Anhalt\cite{BildungsServerSachsen} wird diese Kompetenzorientierung auf die spezifische Bedürfnisse der Schule beschrieben und die Unterrichsstunden entsprechend gestaltet.
 
-Die Umsetzung der Anwendung soll auf einer Seite die von einem Individuum oder Schüler
+Die Umsetzung der Anwendung ermögliche auf einer Seite die von einem Individuum oder Schüler
 erworbene und zu erwerbenden Kompetenzen und deren Niveau nachvollziehen. Und auf der Anderen die entsprechende Bildungs-, Unterrichts- und Stundenplanung unterstützen.
 Der Kompetenzstand einer Person ist mit dem \acrshort{EQF} vergleichbar, und daher International anerkennbar.
 
 %Diese soll für die pädagogische Diagnostik und Intervention genutzt werden.
 Wenn diese Anwendung in Bildungsinstitutionen eingesetzt wird, dienen die Rahmenlehrpläne als Leitpfad für die Belegung der Kompetenzen und \acrshort{KOMA} für die Organisation der einzelnen Fachrichtungen oder Lehrveranstaltungen. 
 
-Der Kern solcher Organisation ist die Zuweisung von Aktivitäten auf vordefinierten Kompetenzen. Aktivitäten lassen sich einzeln oder in einer Sequenz anordnen. Sequenzen werden in Lehrveranstaltungen zusammengestellt. So können Aktivitäten, Sequenzen und Kompetenzen
-als Gestaltungsmittel für Lehrveranstaltungen benutzt. Das Modell verfügt von eine Figur um die erledigte Aktivitäten auszuwerten, nämlich Evaluation.
+Der Kern solcher Organisation ist die Zuweisung von Aktivitäten auf vordefinierten Kompetenzen. Aktivitäten lassen sich einzeln oder in einer Sequenz anordnen. Sequenzen werden in Lehrveranstaltungen zusammengestellt. So können Aktivitäten, Sequenzen und Kompetenzen als Gestaltungsmittel für Lehrveranstaltungen genutzt werden. 
+%Die Auswertung der Ergebnisse der Schüler erfolgt durch eine Entit
 
+%Das Modell verfügt von eine Figur um die erledigte Aktivitäten auszuwerten, nämlich Evaluation.
+\paragraph{Bekannte Beispiele}
+TODO
 
 \section{Anforderungen Analyse}
+Die Auflistung \ref{list:koma-requirements} stellt ein für diese Arbeit angepasster Ausschnitt der Anforderungen für \acrshort{KOMA} dar.
 
-Es folgt ein für diese Arbeit angepasster Ausschnitt der Anforderungen für \acrshort{KOMA}
-
-
-\begin{itemize}
-	\item Mit dem EQF vergleichbare Kompetenzeindefinitionen
+\begin{itemize}\label{list:koma-requirements}
+	\item Mit dem \acrshort{EQF} vergleichbare Kompetenzeindefinitionen
 	\item Zukünftige Erweiterungen berücksichtigen
 	\item Von Browser abrufbar
 	\item Private Datenspeicherung u.d Login
 	\item Ertrag von großen Nutzlastschwankungen
 \end{itemize}
 
-\paragraph{Nach der Beschreibung in}\ref{sec:KOMA} wurde folgendes Modell hergestellt. 
+
+\paragraph{Das ER-Modell} von \acrshort{KOMA}\ref{sec:KOMA} ergibt sich aus der Beschreibung in \autoref{sec:KOMA} und der Anforderungsanalyse \ref{list:koma-requirements}
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=1]{./pics/koma-er-concept.eps}
@@ -793,34 +797,25 @@ Es folgt ein für diese Arbeit angepasster Ausschnitt der Anforderungen für \ac
 \end{figure}
 
 
-\paragraph{Bekannte Beispiele}
-
-\section{Entwurf}
-\label{chap:design}
-
-\section{Umsetzung}
-\label{chap:impl}
-Die grundlegende Vorgehensweise bei der Umsetzung dieses Projekts wird Analyse, Entwurf, Implementierung und Test sein. Der Forschender Charakter dieses Projekts lässt sich nicht Testgetrieben implementieren.
-Das
-
 
 \subsection{Komponenten Übersicht}
 \label{sec:components}
-Um dem Leser einen Anhaltspunkt zu verleihen, werden hier die Softwarekomponenten beschrieben.
+Um einen Anhaltspunkt zu verleihen, werden hier die Softwarekomponenten beschrieben.
 
 \begin{figure}[H]
 	\includegraphics[width=\linewidth]{./pics/static-web-hosting.eps}
 \end{figure}
 
+\section{Umsetzung}
+\label{chap:impl}
+Die grundlegende Vorgehensweise bei der Umsetzung dieser Webanwendung wird zuerst die Datenhaltung Analyse und derer Auswahl. Als Zweites wird es zwischen der Entwurf mit den oben vorgestellten Serverless Architekturmustern und Technologien, und deren Implementierung iteriert, um schnellen Feedback zu erlangen.
+
 \subsection{Datenhaltung Analyse und Auswahl}
-
-Die Gestaltung von Kompetenzmodellen und deren zukünftige Weiterentwicklung hängt stark von spezifischen Bedürfnisse jeweiliger Schulen ab. Die mögliche Erweiterungen oder Anpassungen des Modells stellt die Benutzung des einer Relationale Datenbank für \acrshort{KOMA} in Frage. Im Folgendem werden die Eigenschaften von relationalen mit ontologischen Schemas verglichen.
-
+Die Gestaltung von Kompetenzmodellen und deren zukünftige Weiterentwicklung hängt stark von spezifischen Bedürfnisse jeweiliger Schulen ab. Die mögliche Erweiterungen oder Anpassungen des Modells stellt die Benutzung des einer Relationale Datenbank für \acrshort{KOMA} in Frage. In der folgender Tabelle werden die Eigenschaften von relationalen mit ontologischen Schemas verglichen.
 
 %@Pre-Dev--> Tabelle 
 \begin{table}[h]
 	\caption{Vergleich relationalem mit ontologischem \ref{subsec:ontology} Schema}
-	
 	\centering{}
 	\begin{tabular}{ccc}
 		\noalign{\vskip\doublerulesep}
@@ -837,23 +832,20 @@ Die Gestaltung von Kompetenzmodellen und deren zukünftige Weiterentwicklung hä
 	\end{tabular}
 \end{table}
 
-Der Fokus auf die Erweiterung und Bedeutung des ontologischen Schemas führt deren Auswahl als Datenhaltungstechnologie. 
-
-Es handelt sich daher um eine \glqq Linked Data Driven Web Application\grqq.%@href 
-Dieser Begriff gehört zum \glqq Semantic Web\grqq,der in der Sektion der Ontologie\ref{subsec:ontology} weiter erläutert wird.
+Der Fokus auf die Erweiterung und Bedeutung des ontologischen Schemas führt zu deren Auswahl als Datendarstellungsformat. 
+Anwendungen die von Vernetzten Datenbanken profitieren und danach entwickelt sind, werden unter dem Begriff \glqq Linked Data Driven Web Application\grqq bezeichnet\cite{W3C}. 
+Dieser Begriff gehört zum \glqq Semantic Web\grqq\,der in der Sektion der Ontologie\ref{subsec:ontology} weiter erläutert wird.
 
 \subsubsection{Semantic Web}
-
-Das \glqq Semantic Web\grqq ist eine Erweiterung des herkömmlichen Web, in der Informationen mit eindeutigen Bedeutungen versehen werden\cite{ontoWhat2}.
-set of standards and best practices for sharing data and the semantics of that data over the Web for use by applications\cite{sparqlLearn}.
-
+\newacronym{W3C}{W3C}{World Wide Web Consortium}
+Das \glqq Semantic Web\grqq ist eine Erweiterung des herkömmlichen Web, in der Informationen mit eindeutigen Bedeutungen versehen werden\cite{ontoWhat2}. Das \acrfull{W3C} spezifiziert eine Menge von Standards und best practices für die Mitteilung von daten und deren semantische Darstellung.\cite{sparqlLearn}.
 \newacronym{OWL}{OWL}{Web Ontology Language}
-Diese Bedeutungen werden für Maschinen durch Ontologien dargestellt wessen Spezifikation von W3C\cite{W3C} mit dem Nahme \acrfull{OWL} beschrieben wurde.
+Diese Bedeutungen werden für Maschinen durch Ontologien dargestellt, welche in \glqq .owl \grqq\ Dateien gespeichert werden.\cite{W3C}
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{pics/semantic_web_technology_stack.eps}
-	\caption{Überblick von benutzten Technologien}
+	\caption{Überblick von Semantic Web Stack}
 	\label{fig:semantic-web-stack}
 \end{figure}
 
@@ -861,7 +853,7 @@ Diese Bedeutungen werden für Maschinen durch Ontologien dargestellt wessen Spez
 \label{subsec:ontology}
 
 %@Def
-Eine Ontologie ist eine formale Spezifikation über eine Konzeptualisierung\cite{ontoWhat}. Die Denotation jeweiliger dargestellten Signifikanten lässt sich durch seinen weltweit eindeutigen Präfix identifizieren. Deren Beziehungen können auch zu externen Ontologie-signifikanten verweisen und dadurch ein Consensus über Begrifflichkeiten. 
+Eine Ontologie ist eine formale Spezifikation über eine Konzeptualisierung\cite{ontoWhat}. Die Denotation jeweiliger dargestellten Signifikanten lässt sich durch seinen weltweit eindeutigen Präfix identifizieren z.B: \lstinline|PREFIX owl: <http://www.w3.org/2002/07/owl#>|  \cite{W3C}. Deren Beziehungen können auch zu externen Ontologie-signifikanten verweisen und dadurch ein Consensus über Begrifflichkeiten erreichen. 
 
 Während der Umsetzung wurde Protege\cite{Protégé} benutzt.
 Der Entwurf der Ontologie wurde nach Ontology-Engineering-101 durchgeführt:
@@ -938,6 +930,9 @@ So dass auch die Benutzer von \acrshort{KOMA} solche Abfragen stellen können wi
 Dieser Sparql-Endpoint entspricht der Repositoryschicht der Anwendung und wird nach Anfrage von der Ontologie in S3 mittels Sparql JSON Objekte zurückliefern.
 Eine Lambdafunktion arbeitet als Schnittstelle \ref{lst:lambda-interface} zwischen die ARQ Bibliothek, den Client und die darunterliegende Infrastruktur.
 
+
+\section{Entwurf}
+\label{sec:design}
 
 %Um den Datenmodell möglichst simpel programmatisch abzufragen wird zunächst dessen Schnittstelle\ref{sec:rest} definiert. 
 
