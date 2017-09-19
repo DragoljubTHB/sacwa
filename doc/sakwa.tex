@@ -447,9 +447,11 @@ Daher ergeben sich für die in der Cloud betriebenen Anwendungen folgende Eigens
 \section{PaaS}
 \label{sec:paas}
 \newacronym{PaaS}{PaaS}{Platform as a Service}
-\acrfull{PaaS}, kann als ein Service beschrieben werden, dass eine Rechenplattform liefert, z.B. ein Betriebssystem, eine Ausführungsumgebung für Programmiersprachen(siehe ElasticBeanstalk), eine Datenbank oder ein Webserver. Dieser Dienst übernimmt sowohl die Wartung der Datenbank, Webserver und die Versionen des Laufzeitquellcodes als auch dessen Skalierbarkeit die nun nur Konfiguriert werden bracht\cite{patternAWS}.
+\acrfull{PaaS}, kann als ein Service beschrieben werden, der eine Rechenplattform liefert, z.B. ein Betriebssystem, eine Ausführungsumgebung für Programmiersprachen(siehe ElasticBeanstalk), eine Datenbank oder einen Webserver. Dieser Dienst übernimmt je nach benutzerdefinierte Konfiguration sowohl die Wartung der Datenbank, des Webservers und der Versionen des Laufzeitquellcodes, als auch deren Skalierbarkeit.\cite{patternAWS}.
 
-\paragraph{Die Inkonsistente} Infrastruktur, -Umgebungen, -Konflikte und Servermanagementaufwand sind Probleme die \acrshort{PaaS} anspricht. Deren effiziente Benutzung geschieht in dem der Entwickler Quellcode für die gezielte Plattform schreibt. Dies ergibt auf einer Seite wenige Wartung aber auf der Anderen, müssen die portierte und für ein Standalone Server entwickelte Anwendungen zur Anpassung an die Plattform weiterentwickelt.
+
+\paragraph{Inkonsistenzen} in der Infrastruktur oder den Umgebungen können durch den hohen Aufwand der Serververwaltung entstehen. Sie werden durch standardisierte und automatisierte Angebote von \acrshort{PaaS} umgangen. Deren effiziente Benutzung is abhängig davon, wie gezielt der Quellcode auf die Features der Plattform abgestimmt ist. Dies ergibt auf einer Seite weniger Wartung, aber andererseits erfordern die importierten Anwendungen ( z.B. für ein Standalone Server ) eine Anpassung an die Plattform.
+
 \paragraph{Die Containerisierung}\label{par:containerisation} ist eine Isolierung der Anwendung von ihrer Umgebung. Der Container muss konfiguriert und gebaut werden und der Deploymentprozess ist nicht trivial. Es braucht von Tools für das Monitoring. Jedoch für Anwendungen mit vielen Abhängigkeiten bietet eine ausgezeichnete Lösung. 
 
 %\begin{wrapfigure}{i}{0.66\textwidth}
@@ -576,7 +578,7 @@ Um die Komplexität des Systems zu reduzieren und die längerfristige Wartbarkei
 	\label{pic:classic-add}
 \end{wrapfigure}
 
-In einem beispielhaften konventionellen AdServer, nach einem Click auf eine Werbung wird eine Nachricht über ein Kanal an einen Clickprozessor, derer Laufzeit eine Anwendung ist, geschickt.
+In einem beispielhaften konventionellen AdServer, nach einem Click auf eine Werbung wird eine Nachricht über ein Kanal an einen Clickprozessor, derer Laufzeit eine Anwendung ist, geschickt.\\ \\ \\
 
 \begin{wrapfigure}{l}{0.36\textwidth}
 	\includegraphics[scale=0.30]{./pics/serverless-example.eps}
@@ -587,7 +589,7 @@ In einem beispielhaften konventionellen AdServer, nach einem Click auf eine Werb
 Im Serverless wird dieser Clickprozessor als Funktion pro Nachricht instantiiert derer Laufzeitumgebung und Messagebroker der Cloudanbieter liefert. \cite{fowlerBlogServerless}
  
 
-Für den Entwurf von Serverless Architekturen wird eine Reihe von Mustern folgend vorgeschlagen.
+Für den Entwurf von Serverless Architekturen wird eine Reihe von Mustern von unterschiedlichen Autoren vorgeschlagen.\\
 
 
 \subsection{Pipes and Filters, Compute as a Glue}
@@ -604,7 +606,7 @@ Zerteile man die Aufgaben in Diskreten Elementen ( oder Filter ) nach dem \acrsh
 \begin{wrapfigure}{l}{0.36\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/legacy-api-proxy.eps}
 \end{wrapfigure}
-Wenn eine \acrshort{API} veraltet oder schwer zu benutzen ist, kann eine extra ( RESTful ) \acrshort{API} in Vordergrund erstellt werden, die  mit Prozesse die Daten Transponieren und Marshal für die angeforderte Formate.
+Wenn eine \acrshort{API} veraltet oder schwer zu benutzen ist, kann eine extra ( RESTful ) \acrshort{API} in Vordergrund erstellt werden, die  mit Prozesse die Daten Transponieren und Aufstellen ( marshall ) für die angeforderte Formate. Dies ist besonders nützlich wenn die legacy Services selten benutzt werden und erleichtert die Integration mit anderen Architekturansätze.
 \\
 \\
 
