@@ -568,17 +568,20 @@ Im späteren Kapitel wird REST als Teil des \acrshort{EDA}-Architekturstils vorg
 Serverless kann als ein Ansatz beschrieben werden, der die Verwendung von einem Rechenservice, Dienste von Drittanbietern, von \acrfull{API}s und die Anwendung von Architekturmustern fördert. Ein solcher Anwendungsfall ist die Kommunikation mithilfe eines \glqq Delegation-Tokens\grqq\ zwischen den Front- und Back-End Diensten. \acrshort{FaaS} ist nur ein Aspekt dessen.
 
 
-\paragraph{Prinzipien}\label{par:serverless-principles} von Serverless Architeturen: \cite{serverlessArchAWS}
+Serverless übernimmt die Entwurfsprinzipien von \acrshort{SOA} und \acrshort{EDA} \ref{sec:soa} und daher ergeben sich laut Sbarski folgende Richtlinien:
 \newacronym{SRP}{SRP}{Single Responsability Principle}
-Wie in der Sektion von \acrshort{SOA}\ref{sec:soa} erwähnt wurde, das gezwungene Separation of Concerns bringt das \acrfull{SRP} mit sich. Funktionen werden dadurch mehr überprüfbar.
+\begin{itemize}\label{par:serverless-principles}
+	\item Ein Rechenservice wird genutzt, um  Quellcode auf Anfrage auszuführen, kein Server.
+	\item Zustandslose Funktionen unterliegen dem \acrshort{SRP} Prinzip.
+	\item Für den Architekturentwurf werden Push basierte ereignisorientierte Pipelines genutzt.
+	\item Front-Ends werden durch die Einbettung von mehr Zuständigkeiten verstärkt.
+	\item Dienste von Drittanbieter dem Schreiben von eigenem Quellcode bevorzugt.
+\end{itemize}\cite{serverlessArchAWS}
 
-
-
-Deren Vernetzung erlaubt komplexe Systeme zu entwerfen, die dank der zustandslose Natur der Funktionen schnell zu skalieren sind.
-Diese Vernetzung kann durch einen Push basierte ereignisgetriebene Pipeline.
+Die Vernetzung von zustandslosen Funktionen erlaubt, komplexe Systeme zu entwerfen, die einfach zu skalieren sind.
 \newacronym{MVC}{MVC}{Model View Controller}
-Die Komplexität und längerfristige Wartbarkeit des Systems lässt sich dadurch reduzieren, in dem 
-Um die Komplexität des Systems zu reduzieren und die längerfristige Wartbarkeit zu verbessern, wird der Controller und/oder der Router aus dem \acrfull{MVC} \cite{fowlerBlogMVC} im Client und Third Party Dienste hinzugefügt.\cite{patternAWS}
+Die Komplexität und längerfristige Wartbarkeit des Systems lässt sich dadurch reduzieren, dass der Controller und/oder Router aus dem \acrfull{MVC} \cite{fowlerBlogMVC} vom Back- zum Front-End verschoben wird und Dienste von Drittanbieter hinzugefügt werden. \cite{patternAWS}
+
 
 \begin{wrapfigure}{l}{0.36\textwidth}
 	\includegraphics[scale=0.30]{./pics/classic-example.eps}
@@ -586,7 +589,7 @@ Um die Komplexität des Systems zu reduzieren und die längerfristige Wartbarkei
 	\label{pic:classic-add}
 \end{wrapfigure}
 
-In einem beispielhaften konventionellen AdServer, nach einem Click auf eine Werbung wird eine Nachricht über ein Kanal an einen Clickprozessor, derer Laufzeit eine Anwendung ist, geschickt.\\ \\ \\
+In einem beispielhaften konventionellen AdServer wird nach einem Click auf eine Werbung eine Nachricht über ein Kanal an einen Clickprozessor, der innerhalb einer Anwendung ausgeführt wird, geschickt.\\ \\ \\
 
 \begin{wrapfigure}{l}{0.36\textwidth}
 	\includegraphics[scale=0.30]{./pics/serverless-example.eps}
