@@ -565,19 +565,20 @@ Im späteren Kapitel wird REST als Teil des \acrshort{EDA}-Architekturstils vorg
 \label{sec:serverless}
 
 \newacronym{API}{API}{Application Interface}
-Serverless kann als ein Ansatz beschrieben werden, dar die Verwendung von einem Rechen-Service, Dienste von Drittanbieter, von \acrfull{API}s, und die Anwendung von Architekturmustern( wie ein Front-End, dass direkt mit Services kommunizieren anhand eines \glqq Delegation-Tokens\grqq\ ) fördert. \acrshort{FaaS} ist nur ein Aspekt dessen.
-
+Serverless kann als ein Ansatz beschrieben werden, der die Verwendung von einem Rechenservice, Dienste von Drittanbietern, von \acrfull{API}s und die Anwendung von Architekturmustern fördert. Ein solcher Anwendungsfall ist die Kommunikation mithilfe eines \glqq Delegation-Tokens\grqq\ zwischen den Front- und Back-End Diensten. \acrshort{FaaS} ist nur ein Aspekt dessen.
 
 
 \paragraph{Prinzipien}\label{par:serverless-principles} von Serverless Architeturen: \cite{serverlessArchAWS}
 \newacronym{SRP}{SRP}{Single Responsability Principle}
-Wie in der Sektion von \acrshort{SOA}\ref{sec:soa} erwähnt wurde, das gezwungene Separation of Concerns bring das \acrfull{SRP} mit sich. Funktionen werden dadurch mehr Überprüfbar.
+Wie in der Sektion von \acrshort{SOA}\ref{sec:soa} erwähnt wurde, das gezwungene Separation of Concerns bringt das \acrfull{SRP} mit sich. Funktionen werden dadurch mehr überprüfbar.
 
 
 
-Deren Vernetzung erlaubt komplexe Systeme zu entwerfen, die dank der Stateless Natur der Funktionen schnell zu skalieren sind.
-Diese Vernetzung kann durch einen Push basierte Event-driven Pipe-line.
-Um die Komplexität des Systems zu reduzieren und die längerfristige Wartbarkeit zu verbessern, wird der Controller und/oder Router im Client und Third Party Dienste hinzugefügt.
+Deren Vernetzung erlaubt komplexe Systeme zu entwerfen, die dank der zustandslose Natur der Funktionen schnell zu skalieren sind.
+Diese Vernetzung kann durch einen Push basierte ereignisgetriebene Pipeline.
+\newacronym{MVC}{MVC}{Model View Controller}
+Die Komplexität und längerfristige Wartbarkeit des Systems lässt sich dadurch reduzieren, in dem 
+Um die Komplexität des Systems zu reduzieren und die längerfristige Wartbarkeit zu verbessern, wird der Controller und/oder der Router aus dem \acrfull{MVC} \cite{fowlerBlogMVC} im Client und Third Party Dienste hinzugefügt.\cite{patternAWS}
 
 \begin{wrapfigure}{l}{0.36\textwidth}
 	\includegraphics[scale=0.30]{./pics/classic-example.eps}
@@ -954,7 +955,7 @@ Diese Aufteilung favorisiert Read Operationen.
 \begin{wrapfigure}{i}{0.16\textwidth}
 	\includegraphics[scale=0.2]{./pics/aws/pattern-cache-shared.eps}
 \end{wrapfigure}
-Caching zielt auf die Verbesserung der Performance und Skalabilität eines Systems, in dem die oft gelesene Daten temporär zwischenspeichert werden. Es gibt zwei Typen von Cache: In-Memory und Shared-Cache. Die Stateless Natur der Lambda kompliziert die Benutzung der ersten Cachevariante. 
+Caching zielt auf die Verbesserung der Performance und Skalabilität eines Systems, in dem die oft gelesene Daten temporär zwischenspeichert werden. Es gibt zwei Typen von Cache: In-Memory und Shared-Cache. Die zustandslose Natur der Lambda kompliziert die Benutzung der ersten Cachevariante. 
 Die Shared-Cache hilft das Problem zu beheben, bei Inkonsistenzen unter verteilten Caches. 
 
 
@@ -1155,17 +1156,6 @@ RESTful Anfragen für bestimmte UI formate.
 
 
 \listoftables
-
-
-
-\chapter*{Glossar}
-
-\printglossary[type=\acronymtype]
-
-
-%\newglossaryentry{lab}{name={labName},description={labDes}}
-%\glossary{glossar with page num in .glo} Im using \gls{lab}
-%\gls{Kompetenz}kompetenz test
 
 
 \chapter*{Abkürzungen}
