@@ -413,7 +413,7 @@ Cloud Computing beschreibt die Bereitstellung von IT-Infrastruktur und IT-Leistu
 
 \section{Cloud Eigenschaften}
 \label{sec:cloud-char}
-Als Software Architekt, Entwickler oder Projektmanager es ist wichtig, die spezifischen Eigenschaften von Cloud Angeboten zu verstehen. Aus einem Meer von Cloud Diensten ist die richtige Auswahl je nach Anforderungen und Art der technologischen Umsetzung schwer zu treffen. 
+Als Softwarearchitekt, Entwickler oder Projektmanager es ist wichtig, die spezifischen Eigenschaften von Cloud Angeboten zu verstehen. Aus einem Meer von Cloud Diensten ist die richtige Auswahl je nach Anforderungen und Art der technologischen Umsetzung schwer zu treffen. 
 
 
 Im Allgemeinen teilen Cloud Angebote laut Chandrasekaran ( 2014 ) folgende Eigenschaften:
@@ -425,7 +425,7 @@ Im Allgemeinen teilen Cloud Angebote laut Chandrasekaran ( 2014 ) folgende Eigen
 	\item Rapid Elasticity - \ref{app-char:elascitity} – Kapazitäten sind schnell und dynamisch verfügbar und können je nach Bedarf skaliert werden.\cite{cloudEssentials}
 \end{itemize}
 
-Daher ergeben sich für die in der Cloud betriebenen Anwendungen folgende Eigenschaften: 
+Daher ergeben sich für die, in der Cloud betriebenen Anwendungen, folgende Eigenschaften: 
 \begin{itemize}
 	\item Isolated state - Der Zustand wird in kleinen Einheiten der Anwendung isoliert, so dass sie besser skaliert. Eine zustandslose IT Ressource kann ohne Synchronisierungen aggregiert oder gelöscht werden. Dieser Zustand bezieht sich nicht nur auf die Verwaltung der Interaktionen eines Clients, sondern auch auf dessen Datenverarbeitung. 
 	\item Distribution - Anwendungen müssen so in Komponenten zerlegt werden, dass sich ihre Ressourcen weltweit auf-/verteilen.
@@ -442,17 +442,17 @@ Daher ergeben sich für die in der Cloud betriebenen Anwendungen folgende Eigens
 \newacronym{IaaS}{IaaS}{Infrastructure as a Service}
 \acrfull{IaaS} kann als ein Service beschrieben werden, der Abstraktionen für Hardware, Server und Netzwerkkomponenten bereitstellt. Der Serviceanbieter besitzt die Ausrüstung und ist für die Unterbringung, die Inbetriebnahme und die Wartung der Server verantwortlich\cite{patternAWS}. Der Benutzer bezahlt nicht für die Hardware, deren Lagerung und den Zugriff auf sie, sondern für die Nutzung des gesamten Servicemodells z.B.: Zahlung nach benutzten Stunden, Ressourcen usw.
 
-\paragraph{Die Aufgaben} für Systeme mit Softwareelementen wie Load Balancing, Transaktionen, Clustering, Caching, Messaging, und Datenredundanz werden komplexer. Diese Elemente fordern meistens an, dass Server verwaltet, gewartet, patched und backed-up werden brauchen. In einer nicht trivialen Systemumgebung sind solche Aufgaben zeitintensiv und ebenso aufwändig fertigzustellen, wie effizient zu betreiben. Infrastruktur und Hardware sind zwar nötige Komponenten für jegliche IT-Systeme, aber gleichzeitig stellen sie nur das Medium für dessen Anwendung dar - sei es Geschäftslogik, oder ein darauf bauender Dienst.
+Die Aufgaben für Systeme mit Softwareelementen wie Load Balancing, Transaktionen, Clustering, Caching, Messaging, und Datenredundanz werden komplexer. Diese Elemente fordern an, dass Server verwaltet, gewartet, patched und gesichert werden brauchen. In einer nicht-trivialen Systemumgebung sind solche Aufgaben zeitintensiv und ebenso aufwändig fertigzustellen, wie effizient zu betreiben. Infrastruktur und Hardware sind zwar nötige Komponenten für jegliche IT-Systeme, aber gleichzeitig stellen sie nur das Medium für deren Anwendung dar - sei es Geschäftslogik, oder ein darauf bauender Dienst.
 
 \section{PaaS}
 \label{sec:paas}
 \newacronym{PaaS}{PaaS}{Platform as a Service}
-\acrfull{PaaS}, kann als ein Service beschrieben werden, der eine Rechenplattform liefert, z.B. ein Betriebssystem, eine Ausführungsumgebung für Programmiersprachen(siehe ElasticBeanstalk), eine Datenbank oder einen Webserver. Dieser Dienst übernimmt je nach benutzerdefinierte Konfiguration sowohl die Wartung der Datenbank, des Webservers und der Versionen des Laufzeitquellcodes, als auch deren Skalierbarkeit.\cite{patternAWS}.
+\acrfull{PaaS}, kann als ein Service beschrieben werden, der eine Rechenplattform liefert, z.B. ein Betriebssystem, eine Ausführungsumgebung für Programmiersprachen (siehe ElasticBeanstalk), eine Datenbank oder einen Webserver. Dieser Dienst übernimmt je nach benutzerdefinierter Konfiguration sowohl die Wartung der Datenbank, des Webservers und der Versionen des Laufzeitquellcodes, als auch deren Skalierbarkeit.\cite{patternAWS}.
 
 
-\paragraph{Inkonsistenzen} in der Infrastruktur oder den Umgebungen können durch den hohen Aufwand der Serververwaltung entstehen. Sie werden durch standardisierte und automatisierte Angebote von \acrshort{PaaS} umgangen. Deren effiziente Benutzung is abhängig davon, wie gezielt der Quellcode auf die Features der Plattform abgestimmt ist. Dies ergibt auf einer Seite weniger Wartung, aber andererseits erfordern die importierten Anwendungen ( z.B. für ein Standalone Server ) eine Anpassung an die Plattform.
+Inkonsistenzen in der Infrastruktur oder den Umgebungen können durch den hohen Aufwand der Serververwaltung entstehen. Sie werden durch standardisierte und automatisierte Angebote von \acrshort{PaaS} umgangen. Deren effiziente Benutzung is abhängig davon, wie gezielt der Quellcode auf die Features der Plattform abgestimmt ist. Dies ergibt auf einer Seite weniger Wartung, aber andererseits erfordern die importierten Anwendungen ( z.B. für ein Standalone Server ) eine Anpassung an die Plattform.
 
-\paragraph{Die Containerisierung}\label{par:containerisation} ist eine Isolierung der Anwendung von ihrer Umgebung. Die Konfiguration des Containers, sowie dessen Deployment ist nicht trivial und erfordert daher spezialisiertes Wissen über Containerisierung. Für das Monitoring werden bestimmte Tools wie Boot2Docker oder Kubernettes benötigt. Jedoch bietet die Containerisierung eine ausgezeichnete Lösung für Anwendungen mit starker Kopplung zu anderen Softwarekomponenten.\cite{patternAWS}
+Die Containerisierung\label{par:containerisation} ist eine Isolierung der Anwendung von ihrer Umgebung. Die Konfiguration des Containers, sowie dessen Deployment ist nicht trivial und erfordert daher spezialisiertes Wissen über Containerisierung. Für das Monitoring werden bestimmte Tools wie Boot2Docker \cite{Boot2Docker} oder cAdvisor \cite{cAdvisor} benötigt. Jedoch bietet die Containerisierung eine ausgezeichnete Lösung für Anwendungen mit starker Kopplung zu anderen Softwarekomponenten.\cite{patternAWS}
 
 %Der Container muss konfiguriert und gebaut werden und der Deploymentprozess ist nicht trivial. 
 
@@ -463,7 +463,13 @@ Daher ergeben sich für die in der Cloud betriebenen Anwendungen folgende Eigens
 \label{sec:saas}
 \newacronym{SaaS}{SaaS}{Software as a Service}
 \acrfull{SaaS} kann als ein Service beschrieben werden, der OS-Images mit konfigurierbaren Diensten wie Datenbanken, Webanwendungen usw. bereitstellt. \acrshort{SaaS} gestaltet sich benutzerfreundlich, da die Konfiguration und das Deployment dieser Softwaredienste nicht erlernt werden müssen, um sie in eine größere Anwendung einzubinden. Anfallende Gebühren berechnen sich nach der Nutzungsdauer.
-
+Viele traditionelle Software bietet seine \acrshort{SaaS} nicht an. Dies Impliziert laut Chandrasekaran, K. dass dieses Serviceliefermodell sich für Anwendungen wegen Folgendem nicht gut ein eignet:
+\newacronym{SLA}{SLA}{Service Level Agreement}
+\begin{itemize}
+	\item Geringe Latenz kann durch die Entwerfung der gespeicherten Daten für Echtzeit Anwendungen nicht gewährleistet.
+	\item Daten Sicherheit kann nicht garantiert werden, weil es nicht sichergestellt werden kann, dass die mitbeteiligte Drittanbieter bei \acrshort{SaaS} die \acrfull{SLA} von Kunden erfühlen.
+	\item Software vor Ort kann angefordert sein.
+\end{itemize}
 
 \newglossaryentry{virtualization}{name={Virtualisation},description={Abstraktion der Anwendung, OS oder DB von der darunterliegende Infrastruktur z.B. ein Server.}}
 
@@ -476,17 +482,17 @@ Daher ergeben sich für die in der Cloud betriebenen Anwendungen folgende Eigens
 
 \acrfull{FaaS}\label{sec:faas} kann als ein Rechenservice beschrieben werden, der nach Anfrage isoliert, unabhängig und granular ausgeführt wird. Komplexe Probleme wie horizontale und vertikale Skalierbarkeit, Fehlertoleranz und Elascitity werden von Kunden nur noch nach Bedarf konfiguriert und von dem Anbieter verwaltet. Die Besonderheit von \acrshort{FaaS} ist die \glqq Unit of Deployment\grqq\ und die Skalierung in Form einer Funktion. \cite{patternAWS}
 
-\paragraph{Events}\label{par:event-reaction} innerhalb eines verteilten Systems müssen verwaltet werden. Technologien wie Virtualisierte oder Containerised Server erzeugen neue Serverinstanzen zur Verarbeitung von einer Kette von variablen Events, die danach gelöscht wird.\cite{lambdaAWS} Die entstehende Problematik ergab sich durch eine starke Zunahme an Elementen, die einen hohen Verwaltungsaufwand forderten.  Was zurück auf die oben genannten Aufgaben \ref{sec:iaas} führte.
+Events\label{par:event-reaction} innerhalb eines verteilten Systems müssen verwaltet werden. Technologien wie Virtualisierte oder Containerized Server erzeugen neue Serverinstanzen zur Verarbeitung von einer Kette von variablen Events, die danach gelöscht wird.\cite{lambdaAWS} Die entstehende Problematik ergab sich durch eine starke Zunahme an Elementen, die einen hohen Verwaltungsaufwand forderten.  Was zurück auf die oben genannten Aufgaben \ref{sec:iaas} führte.
 
-\paragraph{Polling}\label{par:polling} ist der Ausdruck für eine zyklische Abfrage über einen Status z.B. von Ports oder Locks über Ressourcen. Die Verwendung von Systemressourcen ist ineffizient im Vergleich zu Alternativansätzen wie z.B in dem Push- oder Pull- Kommunikationsmodell.\cite{lambdaAWS} 
+Polling\label{par:polling} ist der Ausdruck für eine zyklische Abfrage über einen Status z.B. von Ports oder Locks über Ressourcen. Die Verwendung von Systemressourcen ist ineffizient im Vergleich zu Alternativansätzen wie z.B in dem Push- oder Pull- Kommunikationsmodell.\cite{lambdaAWS} 
 
-\paragraph{Funktionale Programmierung} ist ein Programmierparadigma, in dem Funktionen nicht nur definiert und angewendet werden können, sondern auch wie Daten miteinander verknüpft, als Parameter verwendet und als Funktionsergebnisse auftreten können. Zustand und mutable Daten werden vermieden, das stellt einen Vorteil für die Skalierung eines Softwarekomponenten dar.\cite{funcScala}
-
-
-\paragraph{Die Implementierung} einer solchen Funktion geschieht durch die Auswahl der Programmiersprache und der von dem Cloud Anbieter vorgegebenen Funktionsfassade. Die auszuführende Datei muss alle ihre Abhängigkeiten enthalten, die allerdings geringst möglich zu halten sein sollten.
+Funktionale Programmierung ist ein Programmierparadigma, in dem Funktionen nicht nur definiert und angewendet werden können, sondern auch wie Daten miteinander verknüpft, als Parameter verwendet und als Funktionsergebnisse auftreten können. Zustand und mutable Daten werden vermieden, das stellt einen Vorteil für die Skalierung eines Softwarekomponenten dar.\cite{funcScala}
 
 
-\paragraph{Der Fokus} bei \acrshort{FaaS} liegt auf der Quellcodeentwicklung und nicht auf dem Provisioning von Servern, der Installation von Software, dem Deployment von Containern oder auf konkreten Details der Infrastruktur.
+Die Implementierung einer solchen Funktion geschieht durch die Auswahl der Programmiersprache und der von dem Cloud Anbieter vorgegebenen Funktionsfassade. Die auszuführende Datei muss alle ihre Abhängigkeiten enthalten, die allerdings geringst möglich zu halten sein sollten.
+
+
+Der Fokus bei \acrshort{FaaS} liegt auf der Quellcodeentwicklung und nicht auf dem Provisioning von Servern, der Installation von Software, dem Deployment von Containern oder auf konkreten Details der Infrastruktur.
 
 %HTTP, Funktionale Programmierung, Fassaden, ... ?? 
 %Funktionale programmierung abstrahiert. auf Infrastruktur. ??? 
@@ -757,7 +763,6 @@ Benutzer arbeiten mit multiple Anwendungen von unterschiedlichen Organisationen.
 
 Dieser Beispielanwendung implementiert manche der oben dargestellten Entwurfsmuster.
 
-\section{KOMA}
 \label{sec:KOMA} \autoref{sec:KOMA}
 \newacronym{EQF}{EQF}{European Qualifications Framework}
 Die Beschleunigung der Veränderungen in der Heutigen Gesellschaft und der technologischen Landschaft prägt sich sowohl in Bildung als auch in Beruf in so fern aus, dass die heutige Rahmenlehrpläne nicht mehr fachlich sondern nach Kompetenzentwicklung orientiert sind, um Kompetenzprofile für Lerner zu gestalten\cite{EQF}. Es existiert bereits ein anerkanntes Europäisches Rahmen für Kompetenzbildung: \acrfull{EQF}. Am Beispiel von Sachsen-Anhalt\cite{BildungsServerSachsen} wird diese Kompetenzorientierung auf die spezifische Bedürfnisse der Schule beschrieben und die Unterrichsstunden entsprechend gestaltet.
