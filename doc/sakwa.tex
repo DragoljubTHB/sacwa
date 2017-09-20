@@ -486,10 +486,10 @@ Events\label{par:event-reaction} innerhalb eines verteilten Systems müssen verw
 
 Polling\label{par:polling} ist der Ausdruck für eine zyklische Abfrage über einen Status z.B. von Ports oder Locks über Ressourcen. Die Verwendung von Systemressourcen ist ineffizient im Vergleich zu Alternativansätzen wie z.B in dem Push- oder Pull- Kommunikationsmodell.\cite{lambdaAWS} 
 
-Funktionale Programmierung ist ein Programmierparadigma, in dem Funktionen nicht nur definiert und angewendet werden können, sondern auch wie Daten miteinander verknüpft, als Parameter verwendet und als Funktionsergebnisse auftreten können. Zustand und mutable Daten werden vermieden, das stellt einen Vorteil für die Skalierung, die Vermeidung von Seiteneffekten und die Komposition eines Softwarekomponenten dar.\cite{funcScala}
+Funktionale Programmierung ist ein Programmierparadigma, in dem Funktionen nicht nur definiert und angewendet werden können, sondern auch wie Daten miteinander verknüpft, als Parameter verwendet und als Funktionsergebnisse auftreten können. Zustand und mutable Daten werden vermieden damit Seiteneffekten nicht entstehen und die Komposition flexibler wird. Das stellt einen Vorteil für die Skalierung eines Softwarekomponenten dar.\cite{funcScala}
 
 
-Die Implementierung einer solchen Funktion geschieht durch die Auswahl der Programmiersprache und der von dem Cloud Anbieter vorgegebenen Funktionsfassade. Die auszuführende Datei muss alle ihre Abhängigkeiten enthalten, die allerdings geringst möglich zu halten sein sollten.
+Die Implementierung einer solchen Funktion geschieht durch die Auswahl der Programmiersprache und der von dem Cloud-Anbieter vorgegebenen Funktionsfassade. Die auszuführende Datei muss alle ihre Abhängigkeiten enthalten.
 
 
 Der Fokus bei \acrshort{FaaS} liegt auf der Quellcodeentwicklung und nicht auf dem Provisioning von Servern, der Installation von Software, dem Deployment von Containern oder auf konkreten Details der Infrastruktur.
@@ -500,17 +500,18 @@ Der Fokus bei \acrshort{FaaS} liegt auf der Quellcodeentwicklung und nicht auf d
 Für dir Betrachtung ob \acrshort{FaaS} eine Lösung für einer konkreten Problemstellung ist, folgt eine Auflistung als Stützpunkt:
 \paragraph{Es ist nicht empfehlenswert \acrshort{FaaS} zu benutzen wenn:}
 \begin{itemize}
-	\item Entwickler Rootzugrifsrechte auf alle Ressources braucht.
-	\item die Priorisierung von Betriebssystemattributen wie CPU, GPU, Networking oder Speichergeschwindigkeit eine Rolle spielt.
+	\item Entwickler Rootzugrifsrechte auf alle Ressourcen eines Servers braucht.
+	\item die Priorisierung von Betriebssystemattributen wie CPU, GPU, Networking oder Speichergeschwindigkeit angefordert sind.
 	\item Sicherheit relevant ist. Einbrucherkennung kann mit \acrshort{FaaS} nur auf Systemebene erkannt werden.
 	\item dauerhafte Prozesse angefordert sind.
 \end{itemize}
 \paragraph{Es ist empfehlenswert \acrshort{FaaS} zu benutzen wenn:}
 \begin{itemize}
 	\item Aufgaben als Reaktion auf Events erledigt werden. 
-	\item ein Scriptbehälter, für z.B Cron Aufgaben, benötigt wird. Die Zugriffsrechte sind enger, fehler sind einfacher zu erkennen und an einer Stelle aggregiert ( siehe CloudWatch ), deployments können einfacher getriggert werdenden.
-	\item nur die ressourcenintensive Verarbeitung die Skallierung von Servern verursachen würde\ref{sec:pipes-filters}.
-	\item es selten verwendete Services vorgibt.
+	\item ein Scriptbehälter, für z.B Cron Aufgaben, benötigt wird. Die Zugriffsrechte sind enger, Fehler sind einfacher zu erkennen und an einer Stelle aggregiert ( siehe CloudWatch ), Deployments können einfacher getriggert werden.
+	\item die Entlastung eines Servers von ressourcenintensiven Verarbeitungen dessen Skalierung vermeiden kann.\ref{sec:pipes-filters}
+	\item Services vorgibt, die selten benutzt werden.
+	\item ein \acrshort{API}-Server
 	\item \acrshort{API}s auch ohne Server veröffentlichen werden können.
 \end{itemize}\cite{lambdaAWS}
 \chapter{kurzer Überblick über Serverless-Angebote/Architekturen}
