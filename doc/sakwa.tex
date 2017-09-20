@@ -344,14 +344,14 @@ Die Technik kann als Medium für den Ausdruck solcher Ideen eingesetzt werden. D
 
 Die Faktoren am Anfang einer technologischen Umsetzung einer Idee sind:
 \begin{itemize}
-	\item Prof of Concept\label{aspect:proofConcept}
-	\item Time-To-Market\label{aspect:timeToMarket}
-	\item Cost of Human Resources, Skill-shortage\label{aspect:costHumanResources}
-	\item Technical technological details\label{aspect:techDetails}
-	\item Profitability\label{aspect:profit}
+	\item Konzeptioneller Beweiß\label{aspect:proofConcept}
+	\item Vorlaufzeit,Produkteinführungszeit ( Time-To-Market ) \label{aspect:timeToMarket}
+	\item Personalkosten und Mangel von Fertigkeiten \label{aspect:costHumanResources}
+	\item Technische und technologische Details\label{aspect:techDetails}
+	\item Rentabilität\label{aspect:profit}
 \end{itemize}
 
-Ein Zeichen für die Existenz dieser Komplexität im Rahmen des Cloudcomputings ist die Entstehung neuer Technologien für die Herstellung von Technologie. 
+Ein Zeichen für die Existenz dieser Komplexität im Rahmen des Cloudcomputings ist die Entstehung neuer Technologien für die Vereinfachung der Entwicklungsprozesse eines Projekts. 
 
 Je mehr Anforderungen auf einem System z.B. Webanwendung, desto komplexer wird es. Je mehr Softwarekomponente, desto mehr Verwaltungsaufwand mittels Load Balancing, Messaging usw. Je mehr Veränderlichkeit, desto schwieriger ihre Integration und Skalierung.\cite{patternIntegrationEnterprise} 
 
@@ -374,9 +374,9 @@ Für dieses Problem wurde \acrfull{FaaS} \ref{sec:faas}, als Lösung unter der R
 
 \acrshort{FaaS} definiert das Programmiermodel, eine Funktion oder auch \glqq Nano-Microservice\grqq genannt, um den serverless Architekturstil zu adoptieren.
 
-
+\newacronym{AWS}{AWS}{Amazon Web Services}
 \newacronym{KOMA}{KOMA}{Kompetenz Matrix}
-Im Rahmen des Cloud-Computing handelt es sich in dieser Arbeit um eine Untersuchung der Serverless Architekturen am Beispiel einer konventionellen Webanwendung. Dabei wird besonders beachtet, ob und wie solche Technologien die Umsetzung erleichtern. Die Entwurfsmuster und die Kernfunktionalität werden ausschließlich mit Serverless Technologien am Beispiel der \acrfull{KOMA} \ref{sec:KOMA}, mit AWS umgesetzt.
+Im Rahmen des Cloud-Computing handelt es sich in dieser Arbeit um eine Untersuchung der Serverless Architekturen am Beispiel einer konventionellen Webanwendung. Dabei wird besonders beachtet, ob und wie solche Technologien die Umsetzung erleichtern. Die Entwurfsmuster und die Kernfunktionalität werden ausschließlich mit Serverless Technologien am Beispiel einer Webanwendung ( \acrfull{KOMA}, siehe \autoref{sec:KOMA} ), mit \acrshort{AWS} umgesetzt.
 
 
 \section{Ziel}
@@ -395,7 +395,6 @@ Die Webanwendung soll möglichst flexibel für zukünftige Änderungen sein.
 Die vorliegende Arbeit beschäftigt sich mit dem Serverless Ausschnitt der Cloud Dienste. 
 
 Zuerst wird der Leser in die klassischen Servicemodelle \ref{chap:service-models} eingeführt. Zunächst werden die technischen Anforderungen und die dazugehörigen Beispiele des Serverless Ansatzes erläutert.
-\newacronym{AWS}{AWS}{Amazon Web Services}
 Das nächste Kapitel überblickt die aktuellen Serverless Angebote der größten Cloud Anbieter.
 Den Kern der Arbeit bildet die Analyse und Darstellung von Serverless Architekturen \ref{chap:aws-serverless} und sie fokussiert sich auf \acrfull{AWS}. In diesem Abschnitt \ref{chap:aws-serverless} werden die Serverless\ref{sec:serverless} Architekturen und das Programmiermodell vorgestellt, sowie die Entscheidungsprinzipien\ref{par:serverless-principles} erläutert.
 Der praktische Teil beschäftigt sich mit der Umsetzung und Bewertung von der oben genannten Serverless Webanwendung KOMA \ref{sec:KOMA}.
@@ -670,9 +669,9 @@ Die Verarbeitung von Streams in Echtzeit kann durch einen Buffer, der je nach Ko
 	\caption{Priority Queue}
 	\label{pic:priority-queue}
 \end{wrapfigure}
-Anwendungen können spezifische Aufgaben delegieren, wie z.B die Integration mit anderen Anwendungen und Services. Am Beispiel einer FIFO ( First In First Out ) Queue können die Nachrichten nach Priorität automatisch sortiert und asynchron verarbeitet werden. Für Systeme ohne integrierte Priorisierung können mehrere Queues für unterschiedliche Prioritäten benutzt werden und die Anzahl von Consumerprozessen wird entsprechend angepasst. Im letzteren Fall wird dabei die Starvation von Nachrichten mit wenigen Prioritäten vermieden.
+Anwendungen können spezifische Aufgaben delegieren, wie z.B die Integration mit anderen Anwendungen und Services. Am Beispiel einer FIFO ( First In First Out ) Queue können die Nachrichten nach Priorität automatisch sortiert und asynchron verarbeitet werden. Für Systeme ohne integrierte Priorisierung können mehrere Queues für unterschiedliche Prioritäten benutzt werden und die Anzahl von Consumerprozessen wird entsprechend angepasst. Im letzteren Fall wird dabei die Starvation von Nachrichten, mit geringer Priorität, vermieden.
 
-Das Priority Queue\ref{sec:priority-queue} wird im Rahmen des Entwurfsmusters Competing Consumers als ein Consumerservice aufgefasst. Sprengt die Anzahl an Anfragen die Kapazitäten des Systems, kommt zu seiner Überbelastung. Ein Consumerservice als Moderator von Anfragen ist im Stande das zu verhindern.
+Das Priority Queue\ref{sec:priority-queue} wird im Rahmen des Entwurfsmusters Competing Consumers als ein Consumerservice aufgefasst. Steigt stark die Anzahl an Anfragen die Kapazitäten des Systems, kommt zu seiner Überbelastung. Ein Consumerservice als Moderator von Anfragen ist im Stande das zu verhindern.
 
 
 
@@ -703,7 +702,7 @@ Benutzer arbeiten mit multiplen Anwendungen von unterschiedlichen Organisationen
 \begin{wrapfigure}{l}{0.16\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Compute_GRAYSCALE_AWSLambda.eps}
 \end{wrapfigure}
-\paragraph{Lambda} ist ein Rechenservice, der aus Quellcode und dessen Abhängigkeiten besteht. Die horizontale Skalierung erfolgt automatisch, elastisch und vom Cloudanbieter verwaltet; währenddessen die vertikale nach Konfiguration erfolgt. Lambda wird als Einheit für die Skalierung und das Deployment benutzt. \acrshort{AWS} unterstützt Javascript, Python, C\# und Java. Die letzte Programmiersprache betrifft das Konzept \glqq Cold- und Warm run\grqq\ besonders, da es nötig ist, die \acrfull{JVM} in ihrer Laufzeitumgebung hochzufahren. Der Cloudanbieter stützt sich auf das Pull- und Push- Kommunikationsmodell. Bei Pull überprüft die Lambda Laufzeitumgebung in regelmäßigen zeitlichen Abständen, ob Events z.B. bei Kinesis eingetreten sind und ruft die entsprechende Lambda Funktion mit einer Event-Datennutzlast auf. Bei Push ruft die Eventquelle z.B S3 je nach Konfiguration ( event source mapping ) die entprechende Lambda Funktion auf. 
+\paragraph{Lambda} ist ein Rechenservice, der aus Quellcode und dessen Abhängigkeiten besteht. Die horizontale Skalierung erfolgt automatisch, elastisch und vom Cloudanbieter verwaltet; währenddessen die vertikale nach Konfiguration erfolgt. Lambda wird als Einheit für die Skalierung und das Deployment benutzt. \acrshort{AWS} unterstützt Javascript, Python, C\# und Java. Die letzte Programmiersprache betrifft das Konzept \glqq Cold- und Warm run\grqq\ besonders, da es nötig ist, die \acrfull{JVM} in ihrer Laufzeitumgebung hochzufahren ( cold run ). Der Cloudanbieter stützt sich auf das Pull- und Push- Kommunikationsmodell. Bei Pull überprüft die Lambda Laufzeitumgebung in regelmäßigen zeitlichen Abständen, ob Events z.B. bei Kinesis eingetreten sind und ruft die entsprechende Lambda Funktion mit einer Event-Datennutzlast auf. Bei Push ruft die Eventquelle z.B S3 je nach Konfiguration ( event source mapping ) die entprechende Lambda Funktion auf. 
 
 
 \begin{wrapfigure}{l}{0.16\textwidth}
@@ -723,32 +722,31 @@ Benutzer arbeiten mit multiplen Anwendungen von unterschiedlichen Organisationen
 \begin{wrapfigure}{l}{0.16\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Storage_GRAYSCALE_AmazonS3.eps}
 \end{wrapfigure}
-\paragraph{\acrfull{S3}} ist ein Speicherdienst, der durch \acrshort{SNS} \ref{par:sns} die Events ( z.B das Löschen oder Erzeugen eines Objektes ) an \acrshort{SNS}\ref{par:sns}, \acrfull{SQS} \ref{par:sqs} oder Lambda schicken kann. \glqq Buckets\grqq\ sind Verzeichnisse auf der höchsten Ebene des Verzeichnissystems. Ein Objekt ist eine Kombination von Daten, Metadaten und eines Key, der innerhalb des Buckets eindeutig ist.
+\paragraph{\acrfull{S3}} ist ein Speicherdienst, der durch \acrshort{SNS} \ref{par:sns} die Events ( z.B das Löschen oder Erzeugen eines Objektes ) an \acrshort{SNS}\ref{par:sns}, \acrfull{SQS} \ref{par:sqs} oder Lambda schicken kann. \glqq Buckets\grqq\ sind Verzeichnisse auf der höchsten Ebene des Verzeichnissystems. Ein Objekt ist eine Kombination von Daten, Metadaten und eines Keys, der innerhalb des Buckets eindeutig ist.
 
 
 \begin{wrapfigure}{l}{0.16\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Database_GRAYSCALE_AmazonDynamoDB.eps}
 \end{wrapfigure}
-\paragraph{DynamoDb} ist eine NoSQL Datenbank. Deren Tabellen bestehen aus Items ( Zeilen ) und deren Attributen ( Spalten ). Die Datenbank hat unendliche Datenkapazität und bedient jegliche Menge von Traffic. Mit der automatischien Skalierung mindert die Performance nicht. Lambda Funktionen können bei einen Update getriggert. 
-
-
+\paragraph{DynamoDB} ist eine NoSQL Datenbank. Ihre Tabellen bestehen aus Items ( Zeilen ) und deren Attributen ( Spalten ). Die Datenbank hat laut \acrshort{AWS} unendliche Datenkapazitäten und der Datenverkehr ist unbegrenzt. 
+Durch automatische Skalierung mindert sich die Leistung nicht. Bei der Änderung eines Zeilenwertes in DynamoDB ist die Konfiguration eines Anstoßes der Lambdafunktion möglich.
 
 \begin{wrapfigure}{l}{0.10\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Messaging_GRAYSCALE_AmazonSQS.eps}
 \end{wrapfigure}
-\paragraph{\acrfull{SQS}}\label{par:sqs} ist eine message queue. Erlaubt die Interaktion von mehreren Publishers und Consumers in eine SQS und verwaltet automatisch das Lebenszyklus der Nachrichten. Lässt die Timeouts oder individuelle Verzögerungen zu kontrollieren.
+\paragraph{\acrfull{SQS}}\label{par:sqs} ist eine message queue. Sie erlaubt die Interaktion von mehreren Publishers und Consumers in einer \acrshort{SQS} und automatisch den Lebenszyklus der Nachrichten verwaltet und kontrolliert Auszeiten ( Time out ) oder individuelle Verzögerungen.
 
 \begin{wrapfigure}{l}{0.10\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Analytics_GRAYSCALE_AmazonKinesis.eps}
 \end{wrapfigure}
-\paragraph{Kinesis Streams} ist ein Service für Real-time Prozessieren von Streams von Daten. Wird für Logging, Datein Einnahme, Metriken, Analytics und Reporting benutzt. Ein Kinesis Stream ist eine sortierte Folge von Datensätzen die auf \glqq Shards\grqq\ verteilt. Diese definieren den Throughtput-Kapazität von einem Stream und können nach bedarf vergrößert werden.
+\paragraph{Kinesis Streams} ist ein Service für Echtzeitverarbeitung von Datenstreams. Es wird für Logging, Datenimport, Metriken, Analytics und Reporting benutzt. Ein Kinesis Stream ist eine sortierte Folge von Datensätzen, die auf \glqq Shards\grqq\ verteilt sind. Diese definieren die Kapazität des 'Durchsatzes' ( Throughtput ) von einem Stream und können nach Bedarf vergrößert werden.
 
 
 \newacronym{RDS}{RDS}{Relational Database Service}
 \begin{wrapfigure}{l}{0.10\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Database_GRAYSCALE_AmazonRDS.eps}
 \end{wrapfigure}
-\paragraph{\acrfull{RDS}} hilft bei dem Setup und Wartung von mySQL, MariaDB, Oracle, MS-SQL, PostreSQL und Amazon Aurora mit automatische provisioning, backup, patching, recovery, repair, and failure detection. RDS kann auf eigene Events mit Events SNS\ref{par:sns} benachrichtigen.
+\paragraph{\acrfull{RDS}} hilft bei dem Setup und Wartung von mySQL, MariaDB, Oracle, MS-SQL, PostreSQL und Amazon Aurora mit automatischer Bereitstellung ( provisioning ), Sicherung, patching, recovery, repair und Fehlererkennung. \acrshort{RDS} kann durch \acrshort{SNS} \ref{par:sns} über eigene Events berichten.
 
 
 
@@ -757,11 +755,10 @@ Benutzer arbeiten mit multiplen Anwendungen von unterschiedlichen Organisationen
 \begin{wrapfigure}{l}{0.10\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Messaging_GRAYSCALE_AmazonSES.eps}
 \end{wrapfigure}
-\paragraph{\acrfull{SES}} behandelt die Absendung und die Empfang-Operationen wie Spamfilterung, Virus Scann und Ablehnung von nicht vertraute Quellen. Events können weiterhin an \acrshort{S3}, Lambda oder \acrshort{SNS}.
+\paragraph{\acrfull{SES}} behandelt die Absendung und die Empfangsoperationen wie Spamfilterung, Virus Scann und Ablehnung nicht vertrauter Quellen. Emails können weiterhin in \acrshort{S3} gespeichert, an Lambda versendet oder eine \acrshort{SNS} Benachrichtigung erstellen.
 
 \chapter{KOMA, eine Beispielanwendung}
-
-Dieser Beispielanwendung implementiert manche der oben dargestellten Entwurfsmuster.
+Im folgenden wird eine Beispielanwendung, unter Verwendung der in \autoref{chap:aws-serverless} genannten Entwurfsmuster, implementiert.
 
 \label{sec:KOMA} \autoref{sec:KOMA}
 \newacronym{EQF}{EQF}{European Qualifications Framework}
