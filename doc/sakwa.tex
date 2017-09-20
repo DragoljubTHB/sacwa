@@ -589,7 +589,7 @@ Die Komplexität und längerfristige Wartbarkeit des Systems lässt sich dadurch
 	\label{pic:classic-add}
 \end{wrapfigure}
 
-In einem beispielhaften konventionellen AdServer wird nach einem Click auf eine Werbung eine Nachricht über ein Kanal an einen Clickprozessor, der innerhalb einer Anwendung ausgeführt wird, geschickt.\\ \\ \\
+In einem beispielhaften konventionellen AdServer wird nach einem Click auf eine Werbung eine Nachricht über ein Kanal an einen Clickprozessor geschickt, der innerhalb einer Anwendung ausgeführt wird.\\ \\ \\
 
 \begin{wrapfigure}{l}{0.36\textwidth}
 	\includegraphics[scale=0.30]{./pics/serverless-example.eps}
@@ -597,10 +597,10 @@ In einem beispielhaften konventionellen AdServer wird nach einem Click auf eine 
 	\label{pic:serverless-add}
 \end{wrapfigure}
 
-Im Serverless wird dieser Clickprozessor als Funktion pro Nachricht instantiiert derer Laufzeitumgebung und Messagebroker der Cloudanbieter liefert. \cite{fowlerBlogServerless}
+Mit dem Serverless Ansatz wird dieser Clickprozessor pro Nachricht als eine neue Instanz der Funktion ausgeführt. Ihre Laufzeitumgebung und ihr Messagebroker wird von dem Cloudanbieter verwaltet. \cite{fowlerBlogServerless}\\
  
 
-Für den Entwurf von Serverless Architekturen wird eine Reihe von Mustern von unterschiedlichen Autoren vorgeschlagen.\\
+Dazu wird für den Entwurf von Serverless Architekturen eine Reihe von Mustern von unterschiedlichen Autoren vorgeschlagen.\\
 
 
 \subsection{Pipes and Filters, Compute as a Glue}
@@ -608,16 +608,15 @@ Für den Entwurf von Serverless Architekturen wird eine Reihe von Mustern von un
 \begin{wrapfigure}{l}{0.36\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/pipes-and-filters.eps}
 \end{wrapfigure}
-Eine Anwendung kann Aufgaben von unterschiedliche Komplexität und Vielfalt. Deren Implementierung in einen monolithischen Modul erschwert das Refactoring, die Optimierung oder die Wiederverwendung. \\
-Zerteile man die Aufgaben in Diskreten Elementen ( oder Filter ) nach dem \acrshort{SRP} und kombiniere sie in eine Pipeline. Dies hilft redundanter Quellcode zu vermeiden, ihn zu löschen, ersetzen oder zu integrieren in zusätzlichen Komponenten sobald die Aufgabenanforderungen sich ändern\cite{patternsCloud}. Ein weiter Vorteil entsteht wenn ein Element zu langsam ist, können mehrere Instanzen erzeugt werden und daher ein Flaschenhals vermeiden.
-
+Eine Anwendung kann Aufgaben von unterschiedlicher Komplexität ausführen. In einem monolithischen Modul sind das Refactoring, die Optimierung und die Wiederverwendung erschwert. \\
+Zunächst werden die Aufgaben in diskrete Elemente ( oder Filter ) nach dem \acrshort{SRP} zerteilt und in einer Pipeline kombiniert. Dies hilft redundanten Quellcode zu vermeiden, ihn zu löschen, zu ersetzen oder zu integrieren in zusätzliche Komponenten, sich sobald die Aufgabenanforderungen ändern\cite{patternsCloud}. Ein weiterer Vorteil besteht darin, dass ein Flaschenhalseffekt vermieden wird, in dem mehreren Instanzen erzeugt werden, falls ein Element nicht genug Ressourcen für die Verarbeitung hat. 
 
 
 \subsection{Legacy Api Proxy}
 \begin{wrapfigure}{l}{0.36\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/legacy-api-proxy.eps}
 \end{wrapfigure}
-Wenn eine \acrshort{API} veraltet oder schwer zu benutzen ist, kann eine extra ( RESTful ) \acrshort{API} in Vordergrund erstellt werden, die  mit Prozesse die Daten Transponieren und Aufstellen ( marshall ) für die angeforderte Formate. Dies ist besonders nützlich wenn die legacy Services selten benutzt werden und erleichtert die Integration mit anderen Architekturansätze.
+Wenn eine \acrshort{API} veraltet oder schwer zu benutzen ist, kann eine extra ( RESTful ) \acrshort{API} in den Vordergrund gestellt werden, die in gesonderten Prozessen Daten transponieren und für die angeforderten Formate aufstellen ( marshall ). Dies ist besonders nützlich, wenn die Legacy-Services selten benutzt werden. Zusätzlich erleichtert die Api Proxy die Integration mit anderen Architekturansätzen.
 \\
 \\
 
@@ -628,7 +627,7 @@ Wenn eine \acrshort{API} veraltet oder schwer zu benutzen ist, kann eine extra (
 	\caption{Compute as a Backend}
 	\label{pic:compute-backend}
 \end{wrapfigure}
-Obwohl der Client direkt mit Services kommunizieren kann, vertraute Informationen müssen geschützt werden, indem sie das Backend verarbeitet\cite{serverlessArchAWS}. Diese Aufgaben können hinter einer \acrshort{REST} Schnittstelle als koordiniert werden. Wie es in \autoref{par:serverless-principles} erwähnt wurde, die Einbettung von Dienste von Drittanbieter und Thick-FrontEnds minimiert den Fußabdrück des eigenes Backends.
+Obwohl der Client direkt mit Services kommunizieren kann, müssen vertraute Informationen geschützt werden, indem sie das Back-End verarbeitet\cite{serverlessArchAWS}. Diese Aufgaben können hinter einer \acrshort{REST} Schnittstelle koordiniert werden. Wie in \autoref{par:serverless-principles} erwähnt, minimieren die Einbettung der Dienste von Drittanbietern und verstärkte Front-Ends den Fußabdruck des eigenen Back-Ends.
 
 \subsection{Graph Query}
 \begin{wrapfigure}{l}{0.36\textwidth}
@@ -636,7 +635,7 @@ Obwohl der Client direkt mit Services kommunizieren kann, vertraute Informatione
 	\caption{Graph Query}
 	\label{pic:graph-query}
 \end{wrapfigure}
-Wenn mit ein Request mehrere Datenbanken abgefragt werden, können multiple Round-Trip, wenn die Schnittstelle in einer Anfrage zu wenig Queryparameter zur Verfügung stellt, und Overfetching, wenn die Query nicht präzise genug formuliert werden kann, als Nachteile bei eine \acrshort{REST} Schnittstelle entstehen. Dagegen kann der Client die Parameter für die Abfrage oder Query spezifizieren und Sie hinter eine \acrshort{API} zusammenbauen und ausführen. 
+Wenn mit einer Anfrage mehrere Datenbanken abgefragt werden, entstehen multiple Paketumlaufzeiten ( Round-Trip ). Stellt eine \acrshort{REST} Schnittstelle in einer Anfrage zu wenig Queryparameter zur Verfügung, dann entsteht Overfetching, weil die Anfrage nicht präzise genug ist. Dagegen kann der Client die Parameter für die Abfrage spezifizieren und das Back-End baut sie zusammen und führt sie aus.
 
 
 \subsection{Real time processing}
@@ -645,11 +644,9 @@ Wenn mit ein Request mehrere Datenbanken abgefragt werden, können multiple Roun
 	\caption{Real Time Processing}
 	\label{pic:real-time-processing}
 \end{wrapfigure}
-Die Verarbeitung von Streams in Echtzeit kann durch einen Buffer der nach Konfiguration die weiter an den Worker die Daten leitet. Der Vorteil entsteht wenn das Stream, der Worker und die Speicherung nach Anfrage Skaliert und nach Fehler die Verarbeitung der Daten neu versucht werden. 
-
-
-
-\section{Patterns Serverless}
+Die Verarbeitung von Streams in Echtzeit kann durch einen Buffer, der je nach Konfiguration die Daten weiter an den Worker leitet. Einen wesentlichen Vorteil stellt die unabhängige Skalierung des Streams und des Workers je nach Anfrage dar. Bei fehlerhafter Verarbeitung werden die Prozesse neu angestoßen.
+\\
+\\
 
 %Competing consumers als pattern für die implementaiton vom Kommunikation kanal für events die lambdas triggern.
 
@@ -673,10 +670,9 @@ Die Verarbeitung von Streams in Echtzeit kann durch einen Buffer der nach Konfig
 	\caption{Priority Queue}
 	\label{pic:priority-queue}
 \end{wrapfigure}
-Anwendungen können spezifische Aufgaben delegieren, wie z.B integrieren mit anderen Anwendungen und Services. Am Beispiel einer FIFO Queue können die Nachrichten nach Priorität automatisch sortiert und asynchron verarbeitet werden. Für Systemen ohne integrierte Priorisierung können mehrere Queues für unterschiedliche Prioritäten benutzt werden und die Anzahl von Consumerprozessen entsprechend angepasst. Im letzteren Fall wird es dabei die Starvation von Nachrichten mit wenige Priorität vermieden.
+Anwendungen können spezifische Aufgaben delegieren, wie z.B die Integration mit anderen Anwendungen und Services. Am Beispiel einer FIFO ( First In First Out ) Queue können die Nachrichten nach Priorität automatisch sortiert und asynchron verarbeitet werden. Für Systeme ohne integrierte Priorisierung können mehrere Queues für unterschiedliche Prioritäten benutzt werden und die Anzahl von Consumerprozessen wird entsprechend angepasst. Im letzteren Fall wird dabei die Starvation von Nachrichten mit wenigen Prioritäten vermieden.
 
-\paragraph{Competing Consumers}
-Aus der Perspektive dieses Musters stellt das Priority Queue\ref{sec:priority-queue} ein Consumer Service dar. Die Anzahl von Requests kann sprengen und das System überbelasten. Daher kann das Consumer Service als Moderator von Anfragen an die Consumers arbeiten. 
+Das Priority Queue\ref{sec:priority-queue} wird im Rahmen des Entwurfsmusters Competing Consumers als ein Consumerservice aufgefasst. Sprengt die Anzahl an Anfragen die Kapazitäten des Systems, kommt zu seiner Überbelastung. Ein Consumerservice als Moderator von Anfragen ist im Stande das zu verhindern.
 
 
 
@@ -687,7 +683,7 @@ Aus der Perspektive dieses Musters stellt das Priority Queue\ref{sec:priority-qu
 	\caption{Fan Out}
 	\label{pic:fan-out}
 \end{wrapfigure}
-Bei dem eintritt eines Events können eins oder mehreren Subscribers durch die gepushte Benachrichtigung getriggert werden. Damit wird ein Kommunikationskanal\ref{sec:priority-queue} zur Verwaltung von Nachrichten wiederverwendet und extra Geschäftslogik z.B. Command Pattern für die gleiche Funktionalität\cite{serverlessArchAWS}.
+Bei dem Eintritt eines Events können ein oder mehrere Subscriber durch die gepushte Benachrichtigung angestoßen werden. Damit wird ein Kommunikationskanal \ref{sec:priority-queue} zur Verwaltung von Nachrichten wiederverwendet und extra Geschäftslogik umgangen, z.B. kein Command Pattern für die gleiche Funktionalität\cite{serverlessArchAWS}.
 
 \subsection{Federated Identity}
 \begin{wrapfigure}{l}{0.36\textwidth}
@@ -695,30 +691,31 @@ Bei dem eintritt eines Events können eins oder mehreren Subscribers durch die g
 	\caption{Federated Identity}
 	\label{pic:federated-identity}
 \end{wrapfigure}
-Benutzer arbeiten mit multiple Anwendungen von unterschiedlichen Organisationen. Um die gleiche Zugangsdaten für Benutzter wiederverwenden zu können, wird dessen Identität bei einem Drittanbieter festgelegt und mit einem Token an die Anwendung weitergeleitet. Der Authentisierungscode kann daher von dem Anwendungscode abgetrennt werden.
+Benutzer arbeiten mit multiplen Anwendungen von unterschiedlichen Organisationen. Um gleiche Zugangsdaten für Benutzter wiederverwenden zu können, wird dem Nutzer eine Identität bei einem Drittanbieter zugeteilt, diese wird mit einem Token an die Anwendung weitergeleitet. Der Authentisierungscode kann daher von dem Anwendungscode abgetrennt werden, damit kann zusätzliche Codierung für die Authentisierung vermieden werden .
 
-\chapter{Fokus auf AWS, Vorstellung der AWS-Serverless-Angebote}
+\chapter{AWS-Serverless-Angebote}
 \label{chap:aws-serverless}
 \acrshort{AWS} ist ein Cloudandbieter
+% Andere Anbieter 
+% 3 sätze über AWS als Anbieter
 
-\section{AWS Serverless Angebote}
 \newacronym{JVM}{JVM}{Java Virtual Machine}
 \begin{wrapfigure}{l}{0.16\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Compute_GRAYSCALE_AWSLambda.eps}
 \end{wrapfigure}
-\paragraph{Lambda} ist ein Rechen-Service, dass aus Quellcode und dessen Abhängigkeiten besteht. Die horizontale Skalierung erfolgt automatisch, elastisch und vom Cloud Anbieter verwaltet. Die vertikale skaliert nach Konfiguration. Lambda wird als Einheit für die Skalierung und Deployment benutzt und \acrshort{AWS} unterstützt Javascript, Python, C\# und Java. Der letzten Programmiersprache betrifft das Konzept \glqq Warm-Up\grqq\ besonders, da die \acrfull{JVM} in derer Laufzeitumgebung auch hochfahren muss. AWS unterstützt das Pull- und Push- Kommunikationsmodell: Bei Pull überprüft die Lambda Laufzeitumgebung in regelmäßigen zeitlichen Abständen ob Events z.B. bei Kinesis eingetreten worden sind und ruft die entsprechende Lambda Funktion mit den Event-Datennutzlast auf; bei Push ruft die Eventquelle z.B S3 basiert auf deren Konfiguraion ( event source mapping ) die entprechende Lambda Funktion auf. 
+\paragraph{Lambda} ist ein Rechenservice, der aus Quellcode und dessen Abhängigkeiten besteht. Die horizontale Skalierung erfolgt automatisch, elastisch und vom Cloudanbieter verwaltet; währenddessen die vertikale nach Konfiguration erfolgt. Lambda wird als Einheit für die Skalierung und das Deployment benutzt. \acrshort{AWS} unterstützt Javascript, Python, C\# und Java. Die letzte Programmiersprache betrifft das Konzept \glqq Cold- und Warm run\grqq\ besonders, da es nötig ist, die \acrfull{JVM} in ihrer Laufzeitumgebung hochzufahren. Der Cloudanbieter stützt sich auf das Pull- und Push- Kommunikationsmodell. Bei Pull überprüft die Lambda Laufzeitumgebung in regelmäßigen zeitlichen Abständen, ob Events z.B. bei Kinesis eingetreten sind und ruft die entsprechende Lambda Funktion mit einer Event-Datennutzlast auf. Bei Push ruft die Eventquelle z.B S3 je nach Konfiguration ( event source mapping ) die entprechende Lambda Funktion auf. 
 
 
 \begin{wrapfigure}{l}{0.16\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/MobileServices_GRAYSCALE_AmazonAPIGateway.eps}
 \end{wrapfigure}
-\paragraph{API Gateway} ist eine Fassade, um Operationen wie Kunden per Email benachrichtigen, Identitätüberprüfung usw. sicher auszuführen. Weil die Skalabilität von API Gateway und von Lambda automatisch ist, sind die Bereitstellung und Wartung von EC2 Instanzen und die Konfiguration deren Load Balancer nicht mehr nötig. 
+\paragraph{API Gateway} ist eine Fassade, um Operationen sicher auszuführen, wie die Benachrichtigung von Kunden per Email und deren Identitätsüberprüfung. Weil AWS die Skalabilität von API Gateway und von Lambda übernimmt, ist die Bereitstellung und Wartung von EC2 Instanzen und die Konfiguration deren Load Balancer nicht mehr nötig. 
 
 \begin{wrapfigure}{l}{0.16\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Messaging_GRAYSCALE_AmazonSNS.eps}
 \end{wrapfigure}
 \newacronym{SNS}{SNS}{Simple Notification Service}
-\paragraph{\acrfull{SNS}}\label{par:sns} erweitert den schon gut etablierten Beobachtermuster in dem ein Kanal für \glqq Events\grqq\ hinzufügt. Wird als \glqq Publish-Subscribe Channel\cite{patternIntegrationEnterprise}\grqq\ Muster gennant und entspricht den oben \glqq Fan Out\grqq\ \ref{sec:fan-out} Architekturmuster. AWS kann durch Redundanz Regionen hinaus mindestens eine Lieferung der Nachricht gewährleisten.
+\paragraph{\acrfull{SNS}}\label{par:sns} erweitert das schon gut etablierte Beobachtermuster, in dem es einen Kanal für Events hinzufügt. Die konzeptionelle Technologie hinter \acrshort{SNS} wird \glqq Publish-Subscribe Channel\cite{patternIntegrationEnterprise}\grqq\ Muster genannt und entspricht den oben genannten \glqq Fan Out\grqq\ \ref{sec:fan-out} Architekturmustern. AWS kann durch Redundanz mindestens eine Lieferung der Nachricht gewährleisten.
 
 
 \newacronym{S3}{S3}{Simple Storage Service}
@@ -726,7 +723,7 @@ Benutzer arbeiten mit multiple Anwendungen von unterschiedlichen Organisationen.
 \begin{wrapfigure}{l}{0.16\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Storage_GRAYSCALE_AmazonS3.eps}
 \end{wrapfigure}
-\paragraph{\acrfull{S3}} ist ein Speicher-Dienst, dass durch \acrshort{SNS}\ref{par:sns} Events, wenn ein Objekt erzeugt oder gelöscht wurde, an \acrshort{SNS}\ref{par:sns}, \acrfull{SQS}\ref{par:sqs} oder Lambda schicken kann. \glqq Buckets\grqq\ sind Wurzelverzeichnisse und Objekt ist eine Kombination von Daten, Metadaten und ein innerhalb des Buckets eindeutiges Key.
+\paragraph{\acrfull{S3}} ist ein Speicherdienst, der durch \acrshort{SNS} \ref{par:sns} die Events ( z.B das Löschen oder Erzeugen eines Objektes ) an \acrshort{SNS}\ref{par:sns}, \acrfull{SQS} \ref{par:sqs} oder Lambda schicken kann. \glqq Buckets\grqq\ sind Verzeichnisse auf der höchsten Ebene des Verzeichnissystems. Ein Objekt ist eine Kombination von Daten, Metadaten und eines Key, der innerhalb des Buckets eindeutig ist.
 
 
 \begin{wrapfigure}{l}{0.16\textwidth}
