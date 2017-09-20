@@ -463,12 +463,12 @@ Die Containerisierung\label{par:containerisation} ist eine Isolierung der Anwend
 \label{sec:saas}
 \newacronym{SaaS}{SaaS}{Software as a Service}
 \acrfull{SaaS} kann als ein Service beschrieben werden, der OS-Images mit konfigurierbaren Diensten wie Datenbanken, Webanwendungen usw. bereitstellt. \acrshort{SaaS} gestaltet sich benutzerfreundlich, da die Konfiguration und das Deployment dieser Softwaredienste nicht erlernt werden müssen, um sie in eine größere Anwendung einzubinden. Anfallende Gebühren berechnen sich nach der Nutzungsdauer.
-Viele traditionelle Software bietet seine \acrshort{SaaS} nicht an. Dies Impliziert laut Chandrasekaran, K. dass dieses Serviceliefermodell sich für Anwendungen wegen Folgendem nicht gut ein eignet:
+Viele traditionelle Software bietet seine \acrshort{SaaS} nicht an. Dies Impliziert laut Chandrasekaran, K. dass dieses Serviceliefermodell sich für Anwendungen nicht gut eignet wegen folgenden Punkten:
 \newacronym{SLA}{SLA}{Service Level Agreement}
 \begin{itemize}
-	\item Geringe Latenz kann durch die Entwerfung der gespeicherten Daten für Echtzeit Anwendungen nicht gewährleistet.
-	\item Daten Sicherheit kann nicht garantiert werden, weil es nicht sichergestellt werden kann, dass die mitbeteiligte Drittanbieter bei \acrshort{SaaS} die \acrfull{SLA} von Kunden erfühlen.
-	\item Software vor Ort kann angefordert sein.
+	\item Geringe Latenz kann durch die Entfernung der gespeicherten Daten für Echtzeitanwendungen nicht gewährleistet werden.
+	\item Die Datensicherheit kann nicht sichergestellt werden, da die mitbeteiligten Drittanbieter bei \acrshort{SaaS} die \acrfull{SLA} von Kunden nicht immer erfüllen.
+	\item Anforderungen bestimmter Software verlangen eine Zentralisierung und eine Lokalisierung vor Ort, anders als bei \acrshort{SaaS}. 
 \end{itemize}
 
 \newglossaryentry{virtualization}{name={Virtualisation},description={Abstraktion der Anwendung, OS oder DB von der darunterliegende Infrastruktur z.B. ein Server.}}
@@ -489,7 +489,7 @@ Polling\label{par:polling} ist der Ausdruck für eine zyklische Abfrage über ei
 Funktionale Programmierung ist ein Programmierparadigma, in dem Funktionen nicht nur definiert und angewendet werden können, sondern auch wie Daten miteinander verknüpft, als Parameter verwendet und als Funktionsergebnisse auftreten können. Zustand und mutable Daten werden vermieden damit Seiteneffekten nicht entstehen und die Komposition flexibler wird. Das stellt einen Vorteil für die Skalierung eines Softwarekomponenten dar.\cite{funcScala}
 
 
-Die Implementierung einer solchen Funktion geschieht durch die Auswahl der Programmiersprache und der von dem Cloud-Anbieter vorgegebenen Funktionsfassade. Die auszuführende Datei muss alle ihre Abhängigkeiten enthalten.
+Die Implementierung einer solchen Funktion geschieht durch die Auswahl der Programmiersprache und der von dem Cloud-Anbieter vorgegebenen Funktionsfassade. Diese wird vom Cloud-Anbieter aufgerufen, stellt aber keine zusätzlichen Bibliotheken bereit, daher ist es nötig, dass die auszuführende Datei alle Abhängigkeiten enthält.
 
 
 Der Fokus bei \acrshort{FaaS} liegt auf der Quellcodeentwicklung und nicht auf dem Provisioning von Servern, der Installation von Software, dem Deployment von Containern oder auf konkreten Details der Infrastruktur.
@@ -497,79 +497,75 @@ Der Fokus bei \acrshort{FaaS} liegt auf der Quellcodeentwicklung und nicht auf d
 %HTTP, Funktionale Programmierung, Fassaden, ... ?? 
 %Funktionale programmierung abstrahiert. auf Infrastruktur. ??? 
 
-Für dir Betrachtung ob \acrshort{FaaS} eine Lösung für einer konkreten Problemstellung ist, folgt eine Auflistung als Stützpunkt:
-\paragraph{Es ist nicht empfehlenswert \acrshort{FaaS} zu benutzen wenn:}
+Für die Betrachtung, ob \acrshort{FaaS} eine Lösung für eine konkrete Problemstellung ist, folgt eine Auflistung von Kriterien:
+\paragraph{Es ist nicht empfehlenswert \acrshort{FaaS} zu benutzen, wenn:}
 \begin{itemize}
-	\item Entwickler Rootzugrifsrechte auf alle Ressourcen eines Servers braucht.
-	\item die Priorisierung von Betriebssystemattributen wie CPU, GPU, Networking oder Speichergeschwindigkeit angefordert sind.
-	\item Sicherheit relevant ist. Einbrucherkennung kann mit \acrshort{FaaS} nur auf Systemebene erkannt werden.
+	\item der Entwickler Rootzugriffsrechte auf alle Ressourcen eines Servers benötigt.
+	\item die Priorisierung von Betriebssystemattributen wie CPU, GPU, Networking oder Speichergeschwindigkeit angefordert ist.
+	\item Sicherheit relevant ist. Unautorisierte Zugriffe können mit \acrshort{FaaS} nur auf Systemebene erkannt werden.
 	\item dauerhafte Prozesse angefordert sind.
 \end{itemize}
-\paragraph{Es ist empfehlenswert \acrshort{FaaS} zu benutzen wenn:}
+\paragraph{Es ist empfehlenswert \acrshort{FaaS} zu benutzen, wenn:}
 \begin{itemize}
 	\item Aufgaben als Reaktion auf Events erledigt werden. 
-	\item ein Scriptbehälter, für z.B Cron Aufgaben, benötigt wird. Die Zugriffsrechte sind enger, Fehler sind einfacher zu erkennen und an einer Stelle aggregiert ( siehe CloudWatch ), Deployments können einfacher getriggert werden.
-	\item die Entlastung eines Servers von ressourcenintensiven Verarbeitungen dessen Skalierung vermeiden kann.\ref{sec:pipes-filters}
-	\item Services vorgibt, die selten benutzt werden.
-	\item das Deployment von  \acrshort{API}-Server nicht Verwaltet
-	\item \acrshort{API}s auch ohne Server veröffentlichen werden können.
+	\item ein Scriptbehälter für z.B Cron Aufgaben benötigt wird. Die Zugriffsrechte sind beschränkter, Fehler sind einfacher zu erkennen und an einer Stelle aggregiert ( siehe CloudWatch ), des weiteren können Deployments einfacher angestoßen werden.
+	\item die Skalierung des Servers bei einer ressourcenintensiven Verarbeitung vermieden werden soll.\ref{sec:pipes-filters}
+	\item Services vorgegeben sind, die selten benutzt werden.
+	\item die Verwaltung von \acrshort{API}-Server umgangen werden soll.
 \end{itemize}\cite{lambdaAWS}
 
 
 \chapter{Serverless-Angebote und Architekturen}
 
-\paragraph{Die Softwarearchitekturen} helfen uns zu kommunizieren welches Zweck unsere Software erreichen möchte und deren \textbf{Entwurfsmuster} bieten generische Lösungen für wiederkehrende Probleme bei der Softwareentwicklung.
-
-Für Konventionelle Webanwendung wird hier damit gehalten, als ein System das über Presentation-, Data-, and Logik-Tiers verfügt. Jedes Tier kann mehreren Logik-Layers enthalten, die für unterschiedlichen Funktionalitäten des Domains verantwortlich sind. Logging wäre ein Beispiel für Cross-Cutting Concern der Layers hinaus ausspannt. Die Komplexität der Anwendung wächst mit der Beschichtung zusammen.\\
+\paragraph{Die Softwarearchitekturen} helfen uns zu kommunizieren, welchen Zweck unsere Software erreichen möchte. Ihre \textbf{Entwurfsmuster} bieten generische Lösungen für wiederkehrende Probleme bei der Softwareentwicklung.
 
 
-Wenn eine erfolgreiche Codeänderung von einer Anderen abhängt, soll die Architektur überprüft werden.
-
+Auf konventionelle Webanwendungen wird hier Bezug genommen, als ein System, das über Presentation-, Data-, and Logik-Tiers verfügt. Jedes Tier kann mehrere Logik-Layers enthalten, die für unterschiedliche Funktionalitäten der Domains verantwortlich sind. Logging ist ein Beispiel für Cross-Cutting Concern, das Layers überspannt. Die Komplexität der Anwendung wächst zusammen mit der Beschichtung.
+Eine Überprüfung der Architektur ist sinnvoll, wenn eine erfolgreiche Codeänderung von einer Anderen abhängt.
 
 \newacronym{SOA}{SOA}{Service Oriented Architecture}
 \paragraph{\acrfull{SOA}}
-\label{sec:soa} unterlegt die Annahme dass, ein System aus mehreren kleinen, austauschbaren, wiederverwendbaren und entkoppelten Diensten bestehen kann. Diese stellt eine Menge von Entwurfsprinzipien und Standards für dessen Entwicklung und Integration\cite{cloudEssentials} dar: Wiederverwendbarkeit, Autonomie, Komposition, Granularität, Entdeckbarkeit unter Anderen. Entwickler herstellen autonome Services, die durch Nachrichtenübergabe kommunizieren und oft haben einen Schema oder Schnittstelle die definiert wie die Nachrichten erzeugt werden.
+\label{sec:soa} unterlegt der Annahme, dass ein System aus mehreren kleinen, austauschbaren, wiederverwendbaren und entkoppelten Diensten besteht. Für die Entwicklung und Integration solcher Systeme bietet \acrshort{SOA} eine Menge von Entwurfsprinzipien und Standards. Entwickler stellen autonome Services her, die durch Nachrichtenübergabe kommunizieren und oft einen Schema haben oder eine Schnittstelle, die definiert wie die Nachrichten erzeugt werden.\cite{cloudEssentials}
 
-\begin{wrapfigure}{l}{0.66\textwidth}
-	\includegraphics[scale=0.60]{./pics/arch-soa.eps}
+\begin{figure}[H]	
+	\includegraphics[scale=0.80]{./pics/arch-soa.eps}
 	\caption{SOA Architekturreferenz\cite{archSoa}}
 	\label{pic:arch-soa}
-\end{wrapfigure}
+\end{figure}
 
-SOA ermöglicht gegenseitiges Datenaustausch zwischen Programmen von unterschiedlichen Anbieter ohne zusätzliche Änderungen an die Services vornehmen zu brauchen. Die Bestandteile einer solchen Architekturstils sind sowohl Standardschnittstellen als auch voneinander unabhängige Services\cite{archSoa}. 
 
-In der Cloud wird es daher in Services und Servicekomposition zentriert\cite{cloudEssentials}.
+SOA ermöglicht gegenseitigen Datenaustausch zwischen Programmen von unterschiedlichen Anbietern, ohne dass zusätzliche Änderungen an den Services vorzunehmen sind. Die Bestandteile eines solchen Architekturstils sind sowohl Standardschnittstellen als auch voneinander unabhängige Services\cite{archSoa}. 
+
+Der Fokus in der Cloud liegt daher auf Service und Servicekomposition \cite{cloudEssentials}.
 
 \newacronym{DSL}{DSL}{Domain Specific Language}
-Microservices und Serverless versuchen die Komplexität der SOA anzusprechen. Beide Ansätze zwingen auf Separation of Concerns, häufige Deployments und Heterogene \acrfull{DSL}.
+Microservices und Serverless versuchen die Komplexität der SOA ( \autoref{pic:arch-soa} ) anzusprechen. Beide Ansätze führen  Separation of Concerns, häufige Deployments und Heterogene \acrfull{DSL} mit sich.\cite{microAdv}
 
-Auf einer Seite Microservices können ihren Zustand und Daten speichern und mit Hilfe von Frameworks implementiert werden. Auf der anderen Seite Serverless sind Zustandlos, Datenhaltung ist vergänglich und unterstützen direkt keine Frameworks.
-ConnectWise\cite{ConnectWise}, Netflix\cite{Netflix} und UNLESS\cite{UNLESS} sind Beispiele für Unternehmen die von Serverless Architekturen profitieren.
+Auf einer Seite können Microservices ihren Zustand und Daten speichern und mit Hilfe von Frameworks implementiert werden. Auf der anderen Seite sind Serverless zustandlos, ihre Datenspeicherung ist zeitlich begrenzt und sie unterstützen Frameworks nicht direkt. ConnectWise\cite{ConnectWise}, Netflix\cite{Netflix} und UNLESS\cite{UNLESS} sind Beispiele für Unternehmen, die auch von Serverless Architekturen profitieren.
 
-\paragraph{EDA}
+
 \newacronym{EDA}{EDA}{Event Driven Architecture}
-\acrfull{EDA} ist eine Softwarearchitektur, in der das Zusammenspiel der Komponenten durch Ereignisse gesteuert wird. Die Ereignisorientierung besitzt das Potenzial, dass die Architekturen von Unternehmensanwendungen agiler, reaktionsschneller und
-echtzeitfähig werden. Laut ---- ist \acrshort{EDA} für komplexe Fachlogik, große Datenvolumina, geringe Latenzzeit, Skalierbarkeit und Agilität geeignet.\cite{archEDA}
-Die Serverless Technologien können durch Benachrichtigungen gestartet werden. Diese \acrshort{EDA}-Still, verstärkt die Entkopplung temporäre-weise zwischen Producer und Consumer und ermöglicht eine Asynchrone Verarbeitung, ohne dass Fehler das System zum Absturz bringen.\cite{patternIntegrationEnterprise}
+\textit{\acrfull{EDA}} ist eine Softwarearchitektur, in der das Zusammenspiel der Komponenten durch Ereignisse gesteuert wird. Die Ereignisorientierung besitzt das Potenzial, dass die Architekturen von Anwendungen agiler, reaktionsschneller und
+echtzeitfähig werden. Laut Ralf Bruns und Jürgen Dunkel ist \acrshort{EDA} für komplexe Fachlogik, große Datenvolumina, geringe Latenzzeit, Skalierbarkeit und Agilität geeignet.\cite{archEDA}\\
+Die Serverless Technologien können durch Benachrichtigungen gestartet werden. Dieser \acrshort{EDA}-Stil verstärkt die Entkopplung auf einer temporären Ebene zwischen Producer und Consumer. Weiterhin ermöglicht ein Kommunikationskanal zur Benachrichtigung eine asynchrone Verarbeitung, ohne dass das System auf Grund von Fehlern abstürzt. \cite{patternIntegrationEnterprise}
 
-
-Zusammengefasst lassen sich folgende Vorteile ersichtlichen:
+Zusammenfassend sind folgende Vorteile ersichtlich:
 \begin{itemize}
-	\item Die Wiederverwendung von Services in unterschiedlichen Anwendungen sinkt die Entwicklungskosten und Time-To-Market.
-	\item Durch die Standarisierung der Services, ein System kann mit eine Rekonfiguration und ohne Wieder-Entwicklung schnell anpassbar auf die Geschäftliche/Externe Bedürfnisse. Agilität.
-	\item Monitoring hilft Fehler zu erkennen und die Leistung zu messen.
-	\item Aggregate von Services können Komplexere und Domain übergreifende Aufgaben ausführen.
+	\item Die Wiederverwendung von Services in unterschiedlichen Anwendungen senkt die Entwicklungskosten und den Time-To-Market.
+	\item Durch die Standarisierung der Services kann ein System mit einer Rekonfiguration und ohne Weiterentwicklung schnell  auf die geschäftliche oder externe Bedürfnisse angepasst werden. Somit wird ein agiles Arbeiten möglich.
+	\item Das Monitoring hilft Fehler zu erkennen und die Leistung zu messen.
+	\item Aggregate von bereitgestellten Services können komplexere und domainübergreifende Aufgaben ausführen.
 \end{itemize}\cite{cloudEssentials}
 
 \newacronym{REST}{REST}{REpresentational State Transfer}
-Im späteren Kapitel tritt REST als teil der \acrshort{EDA} Architekturstil.
+Im späteren Kapitel wird REST als Teil des \acrshort{EDA}-Architekturstils vorgestellt.
 
 
 \section{Serverless}
 \label{sec:serverless}
 
 \newacronym{API}{API}{Application Interface}
-Serverless kann als ein Ansatz beschrieben werden, dass  die Verwendung von ein Rechen-Service, Dienste von Drittanbieter, von \acrfull{API}s, und die Anwendung von Architekturmustern( wie ein Front-End, dass direkt mit Services kommunizieren anhand eines \glqq Delegation-Tokens\grqq\ ) fördert. \acrshort{FaaS} ist nur ein Aspekt dessen.
+Serverless kann als ein Ansatz beschrieben werden, dar die Verwendung von einem Rechen-Service, Dienste von Drittanbieter, von \acrfull{API}s, und die Anwendung von Architekturmustern( wie ein Front-End, dass direkt mit Services kommunizieren anhand eines \glqq Delegation-Tokens\grqq\ ) fördert. \acrshort{FaaS} ist nur ein Aspekt dessen.
 
 
 
