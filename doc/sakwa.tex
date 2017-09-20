@@ -757,40 +757,41 @@ Durch automatische Skalierung mindert sich die Leistung nicht. Bei der Änderung
 \end{wrapfigure}
 \paragraph{\acrfull{SES}} behandelt die Absendung und die Empfangsoperationen wie Spamfilterung, Virus Scann und Ablehnung nicht vertrauter Quellen. Emails können weiterhin in \acrshort{S3} gespeichert, an Lambda versendet oder eine \acrshort{SNS} Benachrichtigung erstellen.
 
-\chapter{KOMA, eine Beispielanwendung}
-Im folgenden wird eine Beispielanwendung, unter Verwendung der in \autoref{chap:aws-serverless} genannten Entwurfsmuster, implementiert.
-
-\label{sec:KOMA} \autoref{sec:KOMA}
+\chapter{KOMA, eine Beispielanwendung}\label{sec:KOMA} 
+Im Folgenden wird eine Beispielanwendung, unter Verwendung der in \autoref{chap:aws-serverless} genannten Entwurfsmuster, implementiert.
 \newacronym{EQF}{EQF}{European Qualifications Framework}
-Die Beschleunigung der Veränderungen in der Heutigen Gesellschaft und der technologischen Landschaft prägt sich sowohl in Bildung als auch in Beruf in so fern aus, dass die heutige Rahmenlehrpläne nicht mehr fachlich sondern nach Kompetenzentwicklung orientiert sind, um Kompetenzprofile für Lerner zu gestalten\cite{EQF}. Es existiert bereits ein anerkanntes Europäisches Rahmen für Kompetenzbildung: \acrfull{EQF}. Am Beispiel von Sachsen-Anhalt\cite{BildungsServerSachsen} wird diese Kompetenzorientierung auf die spezifische Bedürfnisse der Schule beschrieben und die Unterrichsstunden entsprechend gestaltet.
 
-Die Umsetzung der Anwendung ermögliche auf einer Seite die von einem Individuum oder Schüler
-erworbene und zu erwerbenden Kompetenzen und deren Niveau nachvollziehen. Und auf der Anderen die entsprechende Bildungs-, Unterrichts- und Stundenplanung unterstützen.
-Der Kompetenzstand einer Person ist mit dem \acrshort{EQF} vergleichbar, und daher International anerkennbar.
+Die Beschleunigung der Veränderungen in der heutigen Gesellschaft und der technologischen Landschaft prägt sich in Bildung und Beruf in so fern aus, dass die heutigen Rahmenlehrpläne nicht mehr fachlich, sondern an der Kompetenzentwicklung orientiert sind, um u.a Kompetenzprofile für Lerner zu erstellen. Es existiert bereits ein anerkannter Europäischer Rahmen\cite{EQF} für Kompetenzbildung: \acrfull{EQF}. Am Beispiel von Sachsen-Anhalt\cite{BildungsServerSachsen} werden diese Kompetenzorientierung auf die spezifischen Bedürfnisse der Schule beschrieben und die Unterrichsstunden entsprechend gestaltet.
 
-%Diese soll für die pädagogische Diagnostik und Intervention genutzt werden.
-Wenn diese Anwendung in Bildungsinstitutionen eingesetzt wird, dienen die Rahmenlehrpläne als Leitpfad für die Belegung der Kompetenzen und \acrshort{KOMA} für die Organisation der einzelnen Fachrichtungen oder Lehrveranstaltungen. 
+Die Anwendung soll für die pädagogische Diagnostik und Intervention genutzt werden.
+Ziel der Umsetzung ist es daher, auf einer Seite die von einem Schüler erworbenen und zu erwerbenden Kompetenzen und deren Niveau nachzuvollziehen. Andererseits bietet sie das Potenzial die Bildungs-, Unterrichts- und Stundenplanung zu unterstützen.\\
 
-Der Kern solcher Organisation ist die Zuweisung von Aktivitäten auf vordefinierten Kompetenzen. Aktivitäten lassen sich einzeln oder in einer Sequenz anordnen. Sequenzen werden in Lehrveranstaltungen zusammengestellt. So können Aktivitäten, Sequenzen und Kompetenzen als Gestaltungsmittel für Lehrveranstaltungen genutzt werden. 
+Kommt diese Anwendung in Bildungsinstitutionen zum Einsatz, dienen die Rahmenlehrpläne als Leitpfad für die Bezeichnungen und Anforderungen der Kompetenzen, wohingegen \acrshort{KOMA} für die Organisation der einzelnen Fachrichtungen oder Lehrveranstaltungen zuständig ist. Da der \acrshort{EQF} als Basis mit internationaler Anerkennung genutzt wird, den Kompetenzstand eines Individuums abzubilden, wird die Bildungsqualität international vergleichbar.
+
+Den Kern von \acrshort{KOMA} bildet die Zuweisung von Aktivitäten auf vordefinierte Kompetenzen. Erstere lassen sich einzeln oder in einer Sequenz anordnen. Sequenzen werden in Lehrveranstaltungen zusammengestellt. So können Aktivitäten, Sequenzen und Kompetenzen als Gestaltungsmittel für Lehrveranstaltungen genutzt werden. 
 %Die Auswertung der Ergebnisse der Schüler erfolgt durch eine Entit
 
 %Das Modell verfügt von eine Figur um die erledigte Aktivitäten auszuwerten, nämlich Evaluation.
-\paragraph{Bekannte Beispiele}
-TODO
 
-\section{Anforderungen Analyse}
-Die Auflistung \ref{list:koma-requirements} stellt ein für diese Arbeit angepasster Ausschnitt der Anforderungen für \acrshort{KOMA} dar.
+Das folgende Beispiel beschreibt einen fachorientierten Ansatz zur Gestaltung von Lehrveranstaltungen:\\
+Das Fach \glqq Web Computing \grqq\ lässt sich mit einer Sequenz von Lernaktivitäten ( Unterrichtseinheiten ) gestalten. Die zu behandelnden Themen erfordern grundlegendes Wissen und Fertigkeiten wie das Beschreiben von Kommunikationsprotokollen und Bash Scripting. Dabei ist zu beachten, dass Wissen und Fertigkeiten kumulativ wachsen und damit aufeinander aufbauen.
+
+Im Gegensatz zu dem fachorientierten Ansatz wird nun der kompetenzorientierten Ansatz erläutert:
+Das Kompetenzmodell differenziert unterschiedliche Kompetenzen in vielfältigen Zusammensetzungen. Ihre Fertigkeiten und/oder Wissen werden während der  Lernaktivitäten, bei der die Auswahl von Themen freigestellt ist, erworben.Durch die Sequenzierung von Lernaktivitäten baut sich das Kompetenzmodell aus.
+
+
+\subsection{Anforderungsanalyse}
+Die Auflistung \ref{list:koma-requirements} stellt einen für diese Arbeit angepassten Ausschnitt der Anforderungen für \acrshort{KOMA} dar:
 
 \begin{itemize}\label{list:koma-requirements}
-	\item Mit dem \acrshort{EQF} vergleichbare Kompetenzeindefinitionen
-	\item Zukünftige Erweiterungen berücksichtigen
-	\item Von Browser abrufbar
+	\item Mit dem \acrshort{EQF} vergleichbare Kompetenzdefinitionen
+	\item Berücksichtigen zukünftiger Erweiterungen 
+	\item Abrufbarkeit durch den Browser 
 	\item Private Datenspeicherung u.d Login
-	\item Ertrag von großen Nutzlastschwankungen
+	\item Ertragen von großen Nutzlastschwankungen
 \end{itemize}
 
-
-\paragraph{Das ER-Modell} von \acrshort{KOMA}\ref{sec:KOMA} ergibt sich aus der Beschreibung in \autoref{sec:KOMA} und der Anforderungsanalyse \ref{list:koma-requirements}
+\subsection{ER-Modell} Aus der Beschreibung von \acrshort{KOMA} \autoref{sec:KOMA} ergibt sich folgendes Modell.\autoref{list:koma-requirements}
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=1]{./pics/koma-er-concept.eps}
@@ -798,22 +799,39 @@ Die Auflistung \ref{list:koma-requirements} stellt ein für diese Arbeit angepas
 	\caption{Entity-Relationship Modell für KOMA}
 \end{figure}
 
+Dieses ER-Diagramm \autoref{list:koma-requirements} definiert die Beziehungen zwischen den in \autoref{sec:KOMA} beschriebenen Konzepten. Eine Kompetenz ( Competence ) besteht aus Fertigkeiten ( Skill ), die in einer Lernaktivität ( LearningActivity ) erworben werden. Die Letztere gehört zu einer Sequenz von Lernaktivitäten ( LearningSequence ). Erworbene Kompetenzen können nach Klassenstufen und Fächern aufgerufen werden, damit ein Kompetenzstand abgeleitet werden kann. Das Modell ermöglicht die Gestaltung von \acrshort{EQF}-konformen Kompetenzprofilen ( CompetenceModel ).
 
 
-\subsection{Komponenten Übersicht}
+
+\subsection{Komponentenübersicht}
 \label{sec:components}
-Um einen Anhaltspunkt zu verleihen, werden hier die Softwarekomponenten beschrieben.
+
+Um einen Anhaltspunkt zu geben, werden hier die Softwarekomponenten beschrieben.
+
+Bei dem Aufruf der Website im Browser präsentiert sich ein \glqq Sign in\grqq\ Knopf zum Einloggen und verschiedene Möglichkeiten zur Formulierung einer Abfrage. Diese sind in einem \acrshort{S3} Bucket als statische Webseite gelagert.
+Wird der Knopf zum Einloggen gedrückt, fordert eine Weiterleitung ( mit dem dargestellten Schlüssel ) die Authentisierung des Benutzers an. Mit der erfolgreichen Operation kehrt die Nutzeransicht mit einem \glqq Token\grqq\ auf die Webseite zurück. Der erhaltene Token wird als Autorisierung-Parameter in dem \glqq HTTP Request Header\grqq\ mit den nächsten Anfragen an das Back-End geschickt.
+
+\newacronym{URL}{URL}{Universal Resource Locator}
+Nach dem Login kann der Browser durch Absenden der nächsten Anfragen seinen Token zur Überprüfung übergeben. Die \acrshort{API} Gateway empfängt die Anfragen und transponiert deren Parameter, um zunächst die entsprechende Lambdafunktion synchron aufzurufen. Da die \acrshort{API} nach \acrshort{REST} entworfen ist, werden die Lambdafunktionen nach der \acrshort{HTTP}-Methode und der \acrshort{URL} abgebildet.
+
+Bei einer Abfrage an die Datenbasis
+
+
+Die Absendung einer Abfrage zielt auf die \acrshort{API}
+
 
 \begin{figure}[H]
-	\includegraphics[width=\linewidth]{./pics/static-web-hosting.eps}
+	\begin{center}
+		\includegraphics[scale=0.60]{./pics/static-web-hosting.eps}
+	\end{center}
 \end{figure}
 
 \section{Umsetzung}
 \label{chap:impl}
-Die grundlegende Vorgehensweise bei der Umsetzung dieser Webanwendung wird zuerst die Datenhaltung Analyse und derer Auswahl. Als Zweites wird es zwischen der Entwurf mit den oben vorgestellten Serverless Architekturmustern und Technologien, und deren Implementierung iteriert, um schnellen Feedback zu erlangen.
+Die grundlegende Vorgehensweise bei der Umsetzung dieser Webanwendung gliedert sich zunächst in die Datenspeicherung und deren Analyse bzw. Auswahl. Als Zweites wird zwischen dem Entwurf mit den oben vorgestellten Serverless Architekturmustern und Technologien und deren Implementierung iteriert, um ein schnelles Feedback zu erhalten.
 
-\subsection{Datenhaltung Analyse und Auswahl}
-Die Gestaltung von Kompetenzmodellen und deren zukünftige Weiterentwicklung hängt stark von spezifischen Bedürfnisse jeweiliger Schulen ab. Die mögliche Erweiterungen oder Anpassungen des Modells stellt die Benutzung des einer Relationale Datenbank für \acrshort{KOMA} in Frage. In der folgender Tabelle werden die Eigenschaften von relationalen mit ontologischen Schemas verglichen.
+\subsection{Datenspeicherung- Analyse und Auswahl}
+Die Gestaltung von Kompetenzmodellen und deren zukünftige Weiterentwicklung hängt stark von den spezifischen Bedürfnissen der jeweiligen Schulen ab. Die möglichen Erweiterungen oder Anpassungen des Modells stellt die Benutzung des einer relationalen Datenbank für \acrshort{KOMA} in Frage. In der folgender Tabelle werden die Eigenschaften von relationalen mit ontologischen Schemas verglichen.
 
 %@Pre-Dev--> Tabelle 
 \begin{table}[h]
@@ -823,7 +841,7 @@ Die Gestaltung von Kompetenzmodellen und deren zukünftige Weiterentwicklung hä
 		\noalign{\vskip\doublerulesep}
 		Eigenschaft & Relational & Ontologisch \tabularnewline[\doublerulesep]
 		\hline\noalign{\vskip\doublerulesep}
-		Darstellung Welt-Annahme & Existiert nur & Existiert mindestens \tabularnewline[\doublerulesep]
+		Weltannahme & Existiert nur & Existiert mindestens \tabularnewline[\doublerulesep]
 		\noalign{\vskip\doublerulesep}
 		Individual & muss Unique & kann >= 1 \tabularnewline[\doublerulesep]
 		\noalign{\vskip\doublerulesep}
@@ -834,9 +852,10 @@ Die Gestaltung von Kompetenzmodellen und deren zukünftige Weiterentwicklung hä
 	\end{tabular}
 \end{table}
 
-Der Fokus auf die Erweiterung und Bedeutung des ontologischen Schemas führt zu deren Auswahl als Datendarstellungsformat. 
-Anwendungen die von Vernetzten Datenbanken profitieren und danach entwickelt sind, werden unter dem Begriff \glqq Linked Data Driven Web Application\grqq bezeichnet\cite{W3C}. 
-Dieser Begriff gehört zum \glqq Semantic Web\grqq\,der in der Sektion der Ontologie\ref{subsec:ontology} weiter erläutert wird.
+Das ausgewählte Datendarstellungsformat ist das ontologische Schema, da es den Fokus auf Erweiterbarkeit und semantische Konzepte legt.
+Im \glqq Semantic Web\grqq\ profitieren \glqq Linked Data Driven Web Applications\grqq\ von den vernetzten Datenbanken.
+\cite{W3C}
+
 
 \subsubsection{Semantic Web}
 \newacronym{W3C}{W3C}{World Wide Web Consortium}
