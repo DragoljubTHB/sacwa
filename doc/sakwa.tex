@@ -526,7 +526,8 @@ Eine Überprüfung der Architektur ist sinnvoll, wenn eine erfolgreiche Codeänd
 \paragraph{\acrfull{SOA}}
 \label{sec:soa} unterlegt der Annahme, dass ein System aus mehreren kleinen, austauschbaren, wiederverwendbaren und entkoppelten Diensten besteht. Für die Entwicklung und Integration solcher Systeme bietet \acrshort{SOA} eine Menge von Entwurfsprinzipien und Standards. Entwickler stellen autonome Services her, die durch Nachrichtenübergabe kommunizieren und oft einen Schema haben oder eine Schnittstelle, die definiert wie die Nachrichten erzeugt werden.\cite{cloudEssentials}
 
-\begin{figure}[H]	
+\begin{figure}[H]
+	\centering	
 	\includegraphics[scale=0.80]{./pics/arch-soa.eps}
 	\caption{SOA Architekturreferenz\cite{archSoa}}
 	\label{pic:arch-soa}
@@ -671,7 +672,7 @@ Die Verarbeitung von Streams in Echtzeit kann durch einen Buffer, der je nach Ko
 \end{wrapfigure}
 Anwendungen können spezifische Aufgaben delegieren, wie z.B die Integration mit anderen Anwendungen und Services. Am Beispiel einer FIFO ( First In First Out ) Queue können die Nachrichten nach Priorität automatisch sortiert und asynchron verarbeitet werden. Für Systeme ohne integrierte Priorisierung können mehrere Queues für unterschiedliche Prioritäten benutzt werden und die Anzahl von Consumerprozessen wird entsprechend angepasst. Im letzteren Fall wird dabei die Starvation von Nachrichten, mit geringer Priorität, vermieden.
 
-Das Priority Queue\ref{sec:priority-queue} wird im Rahmen des Entwurfsmusters Competing Consumers als ein Consumerservice aufgefasst. Steigt stark die Anzahl an Anfragen die Kapazitäten des Systems, kommt zu seiner Überbelastung. Ein Consumerservice als Moderator von Anfragen ist im Stande das zu verhindern.
+Das Priority Queue wird im Rahmen des Entwurfsmusters Competing Consumers als ein Consumerservice aufgefasst. Steigt stark die Anzahl an Anfragen die Kapazitäten des Systems, kommt zu seiner Überbelastung. Ein Consumerservice als Moderator von Anfragen ist im Stande das zu verhindern.
 
 
 
@@ -684,7 +685,7 @@ Das Priority Queue\ref{sec:priority-queue} wird im Rahmen des Entwurfsmusters Co
 \end{wrapfigure}
 Bei dem Eintritt eines Events können ein oder mehrere Subscriber durch die gepushte Benachrichtigung angestoßen werden. Damit wird ein Kommunikationskanal \ref{sec:priority-queue} zur Verwaltung von Nachrichten wiederverwendet und extra Geschäftslogik umgangen, z.B. kein Command Pattern für die gleiche Funktionalität\cite{serverlessArchAWS}.
 
-\subsection{Federated Identity}
+\subsection{Federated Identity}\label{sec:federated-identity}
 \begin{wrapfigure}{l}{0.36\textwidth}
 	\includegraphics[scale=0.36]{./pics/pattern-federated-identity.eps}
 	\caption{Federated Identity}
@@ -702,7 +703,7 @@ Benutzer arbeiten mit multiplen Anwendungen von unterschiedlichen Organisationen
 \begin{wrapfigure}{l}{0.16\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Compute_GRAYSCALE_AWSLambda.eps}
 \end{wrapfigure}
-\paragraph{Lambda} ist ein Rechenservice, der aus Quellcode und dessen Abhängigkeiten besteht. Die horizontale Skalierung erfolgt automatisch, elastisch und vom Cloudanbieter verwaltet; währenddessen die vertikale nach Konfiguration erfolgt. Lambda wird als Einheit für die Skalierung und das Deployment benutzt. \acrshort{AWS} unterstützt Javascript, Python, C\# und Java. Die letzte Programmiersprache betrifft das Konzept \glqq Cold- und Warm run\grqq\ besonders, da es nötig ist, die \acrfull{JVM} in ihrer Laufzeitumgebung hochzufahren ( cold run ). Der Cloudanbieter stützt sich auf das Pull- und Push- Kommunikationsmodell. Bei Pull überprüft die Lambda Laufzeitumgebung in regelmäßigen zeitlichen Abständen, ob Events z.B. bei Kinesis eingetreten sind und ruft die entsprechende Lambda Funktion mit einer Event-Datennutzlast auf. Bei Push ruft die Eventquelle z.B S3 je nach Konfiguration ( event source mapping ) die entprechende Lambda Funktion auf. 
+\paragraph{Lambda}\label{par:lambda} ist ein Rechenservice, der aus Quellcode und dessen Abhängigkeiten besteht. Die horizontale Skalierung erfolgt automatisch, elastisch und vom Cloudanbieter verwaltet; währenddessen die vertikale nach Konfiguration erfolgt. Lambda wird als Einheit für die Skalierung und das Deployment benutzt. \acrshort{AWS} unterstützt Javascript, Python, C\# und Java. Die letzte Programmiersprache betrifft das Konzept \glqq Cold- und Warm run\grqq\ besonders, da es nötig ist, die \acrfull{JVM} in ihrer Laufzeitumgebung hochzufahren ( cold run ). Der Cloudanbieter stützt sich auf das Pull- und Push- Kommunikationsmodell. Bei Pull überprüft die Lambda Laufzeitumgebung in regelmäßigen zeitlichen Abständen, ob Events z.B. bei Kinesis eingetreten sind und ruft die entsprechende Lambda Funktion mit einer Event-Datennutzlast auf. Bei Push ruft die Eventquelle z.B S3 je nach Konfiguration ( event source mapping ) die entprechende Lambda Funktion auf. 
 
 
 \begin{wrapfigure}{l}{0.16\textwidth}
@@ -814,6 +815,8 @@ Wird der Knopf zum Einloggen gedrückt, fordert eine Weiterleitung ( mit dem dar
 \newacronym{URL}{URL}{Universal Resource Locator}
 Nach dem Login kann der Browser durch Absenden der nächsten Anfragen seinen Token zur Überprüfung übergeben. Die \acrshort{API} Gateway empfängt die Anfragen und transponiert deren Parameter, um zunächst die entsprechende Lambdafunktion synchron aufzurufen. Da die \acrshort{API} nach \acrshort{REST} entworfen ist, werden die Lambdafunktionen nach der \acrshort{HTTP}-Methode und der \acrshort{URL} abgebildet.
 
+Dieser Loginprozess entspricht dem in \autoref{sec:federated-identity} beschrieben Federated Identity Muster.
+
 Eine Anfrage an die \lstinline|GET https://<host>/page/{individual}| \acrshort{URL} führt die Lambdafunktion \glqq OWL Parser \grqq\ aus. Die letztere liest die Datenbasis von S3 \glqq OWL Storage \grqq\ und extrahiert den Wert des \lstinline|{individual}|-Parameters, um eine Antwort zu generieren. Diese abstrahierte Zuweisung von \acrshort{URL}s auf Back-End Dienste entspricht einem \acrshort{REST} Ansatz. Dagegen erwartet die \lstinline|POST https://<host>/sparql| \acrshort{URL} eine Abfrage im \glqq Request Body\grqq\ der Anfrage mit dem Key \glqq Query\grqq\, um gegen die oben genannten Datenbasis auszuführen. Dabei unterstützt die Java Bibliothek Jena ARQ\cite{jenaARQ}
 
 
@@ -871,7 +874,7 @@ Diese Bedeutungen werden für Maschinen durch Ontologien dargestellt, welche in 
 \label{subsec:ontology}
 
 %@Def
-Eine Ontologie ist eine formale Spezifikation über eine Konzeptualisierung\cite{ontoWhat}. Die Denotation jeweiliger dargestellten Signifikanten lässt sich durch seinen weltweit eindeutigen Präfix identifizieren z.B: \lstinline|PREFIX owl: <http://www.w3.org/2002/07/owl#>|  \cite{W3C}. Deren Beziehungen können zu externen Ontologie-signifikanten verweisen und dadurch ein Consensus über Begrifflichkeiten erreichen. 
+Eine Ontologie ist eine formale Spezifikation über eine Konzeptualisierung \cite{ontoWhat}. Die Denotation jeweiliger dargestellten Signifikanten lässt sich durch seinen weltweit eindeutigen Präfix identifizieren z.B: \lstinline|PREFIX owl: <http://www.w3.org/2002/07/owl#>|  \cite{W3C}. Deren Beziehungen können zu externen Ontologie-signifikanten verweisen und dadurch ein Consensus über Begrifflichkeiten erreichen. 
 
 
 Der Entwurf der Ontologie wurde nach Ontology-Engineering-101 durchgeführt:
@@ -983,7 +986,7 @@ Die Komplexität des darunterliegenden Datenmodells erlaubt eine \acrshort{REST}
 	\end{tabular}
 \end{table}
 
-AWS API Gateway ermöglicht die Definition, Konfiguration und das Importieren von Schnittstellen. Beispielsweise kann der Anfrageparameter in \lstinline|GET https://<host>/page/Alice}| mittels dem Muster in \autoref{lst:map-template} an dem Key \glqq individual \grqq\ zugewiesen werden. Hier handelt sich um einen \glqq body mapping template \grqq\ für den Inhaltstyp ( content type ) \glqq application/json\grqq\-
+AWS API Gateway ermöglicht die Definition, Konfiguration und das Importieren von Schnittstellen. Beispielsweise kann der Anfrageparameter in \lstinline|GET https://<host>/page/Alice}| mittels dem Muster in \autoref{lst:map-template} an dem Key \glqq individual \grqq\ zugewiesen werden. Hier handelt sich um einen \glqq body mapping template \grqq\ für den Inhaltstyp ( content type ) \glqq application/json\grqq\ .
 
 \begin{lstlisting}[language=Javascript,caption={API Gateway Request Mapping Template},label={lst:map-template}]
 https://<host>/page/{individua}
@@ -993,8 +996,42 @@ https://<host>/page/{individua}
 }
 \end{lstlisting}
 
-Nachdem eine Anfrage eingetreten ist und deren Parameter transponiert sind, erfolgt ein synchroner Aufruf der zuständigen Lambdafunktion
+Nachdem eine Anfrage eingetreten ist und deren Parameter transponiert sind, erfolgt ein synchroner Aufruf der zuständigen Lambdafunktion. Die Verwaltung dieser Instanziierung entspricht den Priority Queue Muster in \autoref{sec:priority-queue}, wobei die \acrshort{API} Gateway die Queue und die Lambdafunktion die Consumers entspricht.
+% Hier vtl. messaging channels ansprechen a- synch
 
+Der folgende \autoref{lst:js-handler} zeigt die Implementierung einer Lambdafunktionsfassade, die für die oben genannte \acrshort{URL} zuständig ist. 
+
+\begin{lstlisting}[language=Javascript,caption={Lambda Javascript Funktionsfassade},label={lst:js-handler}]
+...
+exports.handler = function (event, context, callback) {
+	reqIndividual = event.individual; // check possible exception
+	async.waterfall([createBucketParams
+						, getS3ObjectBody
+						, parseOntology
+					],
+					function (err, result) {
+						if (err) {
+							callback(res.createErrorResponse(500, err));
+						} else {
+						if (Object.keys(result).length === 0 && result.constructor === Object) {
+							callback(null, res.createErrorResponse(404, "there was no result on the search"));
+						} else {
+							callback(null, res.createSuccessResponse(result));
+...
+\end{lstlisting}
+
+Die zweite Zeile entspricht der Fassadensignatur von Lambda für Javascript. Das erste Parameter, \glqq event\grqq, enthält in dem Fall Informationen über die Ursprüngliche Anfrage. Das Zweite, \glqq context\grqq\, erlaubt den Zugang auf die Laufzeitumgebung von Lambda und kann definieren, ob die Ausführung erfolgreich ( \lstinline|context.success(Object result)| ), fehlerhaft ( \lstinline|context.fail(Error error)| ) oder als Kombination des zwei letzteren fertig  ( \lstinline|context.done(Error error, Object result)| ). 
+
+In der Zeilennummer 4 befindet sich der Aufruf \lstinline|async.waterfall(...)|. Dieser entsprecht dem Waterfall Muster wessen Verarbeitungsschritte in der \autoref{pic:waterfall} dargestellt werden. 
+Dieser Muster erlaubt eine Menge von Funktionen so zu verketten, dass das Ergebnis der Einer als Eingabeparameter der Nächsten ist. Wenn ein Fehler in eine Funktion entsteht, hält das Waterfall an. 
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[scale=0.6]{./pics/aws/pattern-waterfall.eps}
+	\caption{Waterfall Muster}
+	\label{pic:waterfall}
+	\end{center}
+\end{figure}
 
 Im Fall von der \lstinline|POST https://<host>/sparql| \acrshort{URL} werden die Abfrageparameter wie in \autoref{lst:map-template-query} zum Key \glqq Query \grqq\ abgebildet.
 
