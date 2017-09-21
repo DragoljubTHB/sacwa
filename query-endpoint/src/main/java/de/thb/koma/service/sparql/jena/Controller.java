@@ -37,24 +37,24 @@ public class Controller {
         ObjectMapper mapper = new ObjectMapper();
         QueryResultWithMap resultWithMap =
                 new QueryResultWithMap();
-        Map<String, String> yeah;
+        Map<String, String> tmp;
 
         Query query = QueryFactory.create(aQuery);
         try (QueryExecution qexec = QueryExecutionFactory.create(query, model)) {
 
             ResultSet results = qexec.execSelect();
             while (results.hasNext()) {
-                yeah = new LinkedHashMap<>();
+                tmp = new LinkedHashMap<>();
 
                 QuerySolution soln = results.nextSolution();
 
                 for(String v : results.getResultVars()){
                     RDFNode node = soln.get(v);
-                    yeah.put(v, node.isResource() ?
+                    tmp.put(v, node.isResource() ?
                             soln.getResource(v).getLocalName() :
                             soln.getLiteral(v).getString());
                 }
-                resultWithMap.getBody().add(yeah);
+                resultWithMap.getBody().add(tmp);
 
             }
             toClient =  mapper.writeValueAsString(resultWithMap);

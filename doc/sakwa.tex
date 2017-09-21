@@ -915,7 +915,7 @@ Auf der anderen Seite bildet die Definition von \Gls{Kompetenz} eine handlungsle
 \newacronym{RDF}{RDF}{Resource Description Framework}
 \newacronym{TURTLE}{TURTLE}{Terse RDF Triple Language}
 
-Die bisher erreichte Analyse des Domainproblems wird nun anhand von Protégé in einen \acrfull{RDF} Format bzw. \acrfull{TURTLE} beschrieben. \acrshort{TURTLE} besteht aus einer für Menschen lesbaren Syntax und kann sowohl Ontologien in \acrshort{OWL} als auch \acrshort{Sparql} Abfragen darstellen. 
+Die bisherige Analyse des Domainproblems wird nun anhand von Protégé in einen \acrfull{RDF} Format bzw. \acrfull{TURTLE} beschrieben. \acrshort{TURTLE} besteht aus einer für Menschen lesbaren Syntax und kann sowohl Ontologien in \acrshort{OWL} als auch \acrshort{Sparql} Abfragen darstellen. 
 
 Das folgende \autoref{lst:turtle-triple} zeigt eine beispielhafte Darstellung von ontologischen Fakten, den sogenannten \glqq Triples\grqq\ . Diese bestehen aus Subjekt, Merkmal und Objekt. Die erste Zeile lässt sich wie folgt interpretieren: dem Namen einer fiktiven Schülerin Alice ( Subjekt ) wird ein Merkmal in Form einer Kompetenzausprägung ( Property ) innerhalb eines Unterrichtsfachs, das in Unterrichtsreihen oder -einheiten sequenziert werden kann, wie z.B Mathematik II ( Objekt ).
 
@@ -930,7 +930,7 @@ Das folgende \autoref{lst:turtle-triple} zeigt eine beispielhafte Darstellung vo
 
 \newacronym{Sparql}{Sparql}{Protocol And RDF Query Language}
 Um aus Ontologien Informationen zu entnehmen, wird die Abfragesprache \acrfull{Sparql} 
-verwendet. Diese ähnelt sich der traditioneller SQL. 
+verwendet. Diese ähnelt der traditioneller SQL. 
 
 Die einfachste Abfrage in Sparql wählt alle Triples von dem abgefragten Datenmodell ( oder Graph ) wie in \autoref{lst:sparql-selectall} gezeigt wird.
 
@@ -938,7 +938,7 @@ Die einfachste Abfrage in Sparql wählt alle Triples von dem abgefragten Datenmo
 SELECT * WHERE { ?s ?p ?o .}
 \end{lstlisting}
 
-Hilfsvariablen können deklariert werden, um Ergebnisse aus einem Triple als Parameter für das nächste zu benutzen. Die folgende Abfrage ließe sich \glqq Wähle alle Properties des Graphes und wähle alle dessen Subjekten mit Alice als Objekt\grqq formulieren. \\
+Hilfsvariablen können deklariert werden, um Ergebnisse aus einem Triple als Parameter für das nächste zu benutzen. Die folgende Abfrage ließe sich wie folgt formulieren: \glqq Wähle alle Properties des Graphes und wähle alle dessen Subjekten mit Alice als Objekt\grqq\ . \\
 \begin{lstlisting}
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -950,7 +950,7 @@ SELECT ?x WHERE {
 }
 \end{lstlisting}
 
-Wie in \autoref{sec:components} erwähnt wurde, Sparqlabfragen werden durch die \acrshort{API} Gateway für Lambda Transponiert.
+Wie in \autoref{sec:components} erwähnt wurde, werden Sparqlabfragen durch die \acrshort{API} Gateway für Lambda transponiert.
 
 %So dass auch die Benutzer von \acrshort{KOMA} solche Abfragen stellen können wird ein \glqq Sparql-endpoint\grqq mit Hilfe von Apache Jena ARQ, ein Sparql-Engine, zur Verfügung gestellt. 
 
@@ -962,10 +962,10 @@ Wie in \autoref{sec:components} erwähnt wurde, Sparqlabfragen werden durch die 
 \label{sec:rest}
 \newacronym{HTTP}{HTTP}{Hypertext Transfer Protocol}
 \newacronym{CRUD}{CRUD}{Create, Read, Update, Delete}
-Der Entwurf von einer benutzerfreundliche \acrfull{HTTP} \acrshort{API} beinhaltet die Abstraktion von komplexe Geschäftslogik und Datenverarbeitung  in den vier \acrlong{CRUD} Operationen.
+Der Entwurf von einem benutzerfreundlichen \acrfull{HTTP} \acrshort{API} beinhaltet die Abstraktion von komplexer Geschäftslogik und Datenverarbeitung  in den vier Operationen \acrfull{CRUD}.
 
 \newacronym{JSON}{JSON}{Javascript Object Notation}
-Die Komplexität des darunterliegenden Datenmodells erlaubt eine \acrshort{REST} Schnittstelle nur einfache Abfragen zu formulieren.\cite{microAdv} Daher stellt \acrshort{KOMA} zusätzlich einen Sparql-Endpunkt für Komplexe Sparql Abfragen zur Verfügung. Die letzte Zeile der Tabelle \autoref{tab:rest} entspricht dem Letzteren.
+Die Komplexität des darunterliegenden Datenmodells erlaubt einer \acrshort{REST} Schnittstelle nur einfache Abfragen zu formulieren.\cite{microAdv} Daher stellt \acrshort{KOMA} zusätzlich einen Sparql-Endpunkt für komplexe Sparql Abfragen zur Verfügung. Die letzte Zeile der \autoref{tab:rest} ist eine solche komplexe Abfrage.
 
 \begin{table}[H]
 	\caption{RESTful API}\label{tab:rest}
@@ -991,7 +991,7 @@ Die Komplexität des darunterliegenden Datenmodells erlaubt eine \acrshort{REST}
 	\end{tabular}
 \end{table}
 
-AWS API Gateway ermöglicht die Definition, Konfiguration und das Importieren von Schnittstellen. Beispielsweise kann der Anfrageparameter in \lstinline|GET https://<host>/page/Alice}| mittels dem Muster in \autoref{lst:map-template} an dem Key \glqq individual \grqq\ zugewiesen werden. Hier handelt sich um einen \glqq body mapping template \grqq\ für den Inhaltstyp ( content type ) \glqq application/json\grqq\ .
+AWS API Gateway ermöglicht die Definition, Konfiguration und das Importieren von Schnittstellen. Beispielsweise kann der Anfrageparameter in \lstinline|GET https://<host>/page/Alice}| mithilfe des Musters in \autoref{lst:map-template} an den Key \glqq individual \grqq\ zugewiesen werden. Hier handelt sich um einen \glqq body mapping template\grqq\ für den Inhaltstyp ( content type ) \glqq application/json\grqq\ .
 
 \begin{lstlisting}[language=Javascript,caption={API Gateway Request Mapping Template},label={lst:map-template}]
 https://<host>/page/{individua}
@@ -1001,10 +1001,10 @@ https://<host>/page/{individua}
 }
 \end{lstlisting}
 
-Nachdem eine Anfrage eingetreten ist und deren Parameter transponiert sind, erfolgt ein synchroner Aufruf der zuständigen Lambdafunktion. Die Verwaltung dieser Instanziierung entspricht den Priority Queue Muster in \autoref{sec:priority-queue}, wobei die \acrshort{API} Gateway die Queue und die Lambdafunktion die Consumers entspricht.
+Nachdem eine Anfrage eingetreten ist und deren Parameter transponiert sind, erfolgt ein synchroner Aufruf der zuständigen Lambdafunktion. Die Verwaltung dieser Instanziierung entspricht dem Priority Queue Muster in \autoref{sec:priority-queue}, wobei die \acrshort{API} Gateway der Queue und die Lambdafunktion dem Consumer entspricht.
 % Hier vtl. messaging channels ansprechen a- synch
 
-Der folgende \autoref{lst:js-handler} zeigt die Implementierung einer Lambdafunktionsfassade, die für die oben genannte \acrshort{URL} zuständig ist. 
+Das folgende \autoref{lst:js-handler} zeigt die Implementierung einer Lambdafunktionsfassade, die für die oben genannte \acrshort{URL} zuständig ist. 
 
 \begin{lstlisting}[language=Javascript,caption={Lambda Javascript Funktionsfassade},label={lst:js-handler}]
 ...
@@ -1025,10 +1025,10 @@ exports.handler = function (event, context, callback) {
 ...
 \end{lstlisting}
 
-Die zweite Zeile entspricht der Fassadensignatur von Lambda für Javascript. Das erste Parameter, \glqq event\grqq, enthält in dem Fall Informationen über die Ursprüngliche Anfrage. Das Zweite, \glqq context\grqq\, erlaubt den Zugang auf die Laufzeitumgebung von Lambda und kann definieren, ob die Ausführung erfolgreich ( \lstinline|context.success(Object result)| ), fehlerhaft ( \lstinline|context.fail(Error error)| ) oder als Kombination des zwei letzteren fertig  ( \lstinline|context.done(Error error, Object result)| ). 
+Die zweite Zeile entspricht der Fassadensignatur von Lambda für Javascript. Der erste Parameter, \glqq event\grqq, enthält in diesem Fall Informationen über die ursprüngliche Anfrage. Der Zweite, \glqq context\grqq\, erlaubt den Zugang auf die Laufzeitumgebung von Lambda und kann definieren, ob die Ausführung erfolgreich ( \lstinline|context.success(Object result)| ), fehlerhaft ( \lstinline|context.fail(Error error)| ) oder beides ( \lstinline|context.done(Error error, Object result)| ) war. 
 
-In der Zeilennummer 4 befindet sich der Aufruf \lstinline|async.waterfall(...)|. Dieser entsprecht dem Waterfall Muster wessen Verarbeitungsschritte in der \autoref{pic:waterfall} dargestellt werden. 
-Dieser Muster erlaubt eine Menge von Funktionen so zu verketten, dass das Ergebnis der Einer das Eingabeparameter der Nächsten ist. Wenn ein Fehler in eine Funktion entsteht, hält das Waterfall an. 
+In der vierten Zeile befindet sich der Aufruf \lstinline|async.waterfall(...)|. Dieser entspricht dem Waterfall Muster dessen Verarbeitungsschritte in der \autoref{pic:waterfall} dargestellt werden. 
+Dieses Muster erlaubt es, eine Reihe von Funktionen so zu verketten, dass das Ergebnis einer Funktion der Eingabeparameter der Nächsten ist. Wenn ein Fehler in einer Funktion entsteht, hält der Wasserfall an. 
 
 \begin{figure}[H]
 	\begin{center}
@@ -1038,19 +1038,68 @@ Dieser Muster erlaubt eine Menge von Funktionen so zu verketten, dass das Ergebn
 	\end{center}
 \end{figure}
 
-Um die Wiederverwendbarkeit zu gewährleisten, ist die Abtrennung der  Abhängigkeiten in Bibliotheken von der Lambdafunktion sinnvoll. Dieser Ansatz wird von dem \acrshort{SOA}-Architekturstil \autoref{sec:soa} gefordert.
+Um die Wiederverwendbarkeit zu gewährleisten, ist die Abtrennung der Abhängigkeiten in Bibliotheken der Lambdafunktion sinnvoll. Dieser Ansatz wird von dem \acrshort{SOA}-Architekturstil \autoref{sec:soa} gefordert.
 
 
+Bei einer Abfrage an die \lstinline|POST https://<host>/sparql| \acrshort{URL} werden die Abfrageparameter ohne die Konfiguration von \glqq body mapping\grqq\ weiter an die zuständige Lambdafunktion geleitet.
 
-Im Fall von der \lstinline|POST https://<host>/sparql| \acrshort{URL} werden die Abfrageparameter wie in \autoref{lst:map-template-query} zum Key \glqq Query \grqq\ abgebildet.
+Die Funktion hinter dieser \acrshort{URL}, wie in \autoref{lst:lambda-sparql-endpoint} gezeigt, ist in Java 8 implementiert. Sie fordert die Implementierung der Schnittstelle RequestHandler. Die Generics-Parameter definieren den Klassentyp der Anfrage und des Ergebnisses, wie es im Fall der Abbildung \glqq RequestClass\grqq\ als Anfrage und \glqq String\grqq\ als Ergebnis ist. 
 
-\begin{lstlisting}[language=Javascript,caption={API Gateway Request Mapping Template Query},label={lst:map-template-query}]
-{
-"Query": "$input.params('query')"
+Der Nutzer kann Umgebungsvariablen bei der Konfiguration von Lambdafunktionen anlegen und während Laufzeit auf sie zugreifen, z.B in der Zeile 7 mittels \lstinline|System.getenv(StringConstante)|.
+
+\begin{lstlisting}[language=Java,caption={Lambda Sparql-Endpoint},label={lst:lambda-sparql-endpoint}]
+public class Handler implements RequestHandler<RequestClass, String> {
+...
+@Override
+public String handleRequest(RequestClass input, Context context) {
+	context.getLogger();
+	request = input;
+	return new Controller(System.getenv(ENV_BUCKET), Regions.US_WEST_2.getName())
+		.executeQuery(request.getQuery(), request.getBucketKey());
 }
 \end{lstlisting}
 
-Dieser erwartet die Abfrage in \acrshort{TURTLE} mit dem die im Body des HTTP-Requests in \acrfull{JSON} geschickt wird.
+Die Klasse \glqq Controller\grqq\ ( Zeile 7 ) benutzt die Jena ARQ Bibliothek, um Sparqlabfragen auszuführen. Ein Beispiel ihrer Benutzung wird in \autoref{lst:lambda-sparql-endpoint-controller} dargestellt. 
+
+Die Abfrage an die Datenbasis lässt sich mit \lstinline| request.getQuery()| ( Zeile 8 ) aus dem Bodyparameter \glqq query\grqq\ extrahieren.
+
+\begin{lstlisting}[language=Java,caption={Lambda Sparql-Endpoint-Controller},label={lst:lambda-sparql-endpoint-controller}]
+ObjectMapper mapper = new ObjectMapper();
+QueryResultWithMap resultWithMap =
+new QueryResultWithMap();
+Map<String, String> tmp;
+
+Query query = QueryFactory.create(aQuery);
+try (QueryExecution qexec = QueryExecutionFactory.create(query, model)) {
+
+ResultSet results = qexec.execSelect();
+	while (results.hasNext()) {
+	tmp = new LinkedHashMap<>();
+
+	QuerySolution soln = results.nextSolution();
+
+		for(String v : results.getResultVars()){
+			RDFNode node = soln.get(v);
+			tmp.put(v, node.isResource() ?
+						soln.getResource(v).getLocalName() :
+						soln.getLiteral(v).getString());
+			}
+		resultWithMap.getBody().add(tmp);
+
+	}
+	toClient =  mapper.writeValueAsString(resultWithMap);
+...
+\end{lstlisting}
+
+Nach der Ausführung der Abfrage ( Zeile 7 ) werden die Ergebnisse in Zeile 15 iteriert und anschließend wird eine Referenz zu einem \acrshort{JSON}-Objekt zurück geliefert.
+
+
+
+%\begin{lstlisting}[language=Javascript,caption={API Gateway Request Mapping Template Query},label={lst:map-template-query}]
+%{
+%"Query": "$input.params('query')"
+%}
+%\end{lstlisting}
 
 
 %Dieser Endpunkt unterstützt nicht nur GET-Abrufe, sondern auch POST-Anforderungen mit einer Nutzlast.Unter der verfügbaren SparQL endpoints Implementierungen
