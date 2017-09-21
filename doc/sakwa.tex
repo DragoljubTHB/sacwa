@@ -814,10 +814,7 @@ Wird der Knopf zum Einloggen gedrückt, fordert eine Weiterleitung ( mit dem dar
 \newacronym{URL}{URL}{Universal Resource Locator}
 Nach dem Login kann der Browser durch Absenden der nächsten Anfragen seinen Token zur Überprüfung übergeben. Die \acrshort{API} Gateway empfängt die Anfragen und transponiert deren Parameter, um zunächst die entsprechende Lambdafunktion synchron aufzurufen. Da die \acrshort{API} nach \acrshort{REST} entworfen ist, werden die Lambdafunktionen nach der \acrshort{HTTP}-Methode und der \acrshort{URL} abgebildet.
 
-Bei einer Abfrage an die Datenbasis
-
-
-Die Absendung einer Abfrage zielt auf die \acrshort{API}
+Eine Anfrage an die \lstinline|GET https://<host>/page/{individual}| \acrshort{URL} führt die Lambdafunktion \glqq OWL Parser \grqq\ aus. Die letztere liest die Datenbasis von S3 \glqq OWL Storage \grqq\ und extrahiert den Wert des \lstinline|{individual}|-Parameters, um eine Antwort zu generieren. Diese abstrahierte Zuweisung von \acrshort{URL}s auf Back-End Dienste entspricht einem \acrshort{REST} Ansatz. Dagegen erwartet die \lstinline|POST https://<host>/sparql| \acrshort{URL} eine Abfrage im \glqq Request Body\grqq\ der Anfrage mit dem Key \glqq Query\grqq\, um gegen die oben genannten Datenbasis auszuführen. Dabei unterstützt die Java Bibliothek Jena ARQ\cite{jenaARQ}
 
 
 \begin{figure}[H]
@@ -863,25 +860,25 @@ Das \glqq Semantic Web\grqq ist eine Erweiterung des herkömmlichen Web, in der 
 \newacronym{OWL}{OWL}{Web Ontology Language}
 Diese Bedeutungen werden für Maschinen durch Ontologien dargestellt, welche in \glqq .owl \grqq\ Dateien gespeichert werden.\cite{W3C}
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{pics/semantic_web_technology_stack.eps}
-	\caption{Überblick von Semantic Web Stack}
-	\label{fig:semantic-web-stack}
-\end{figure}
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[width=0.8\textwidth]{pics/semantic_web_technology_stack.eps}
+%	\caption{Überblick von Semantic Web Stack}
+%	\label{fig:semantic-web-stack}
+%\end{figure}
 
-\subsubsection{Ontologie}{Konzeptuelle Modellierung}
+\subsubsection{Ontologie}
 \label{subsec:ontology}
 
 %@Def
-Eine Ontologie ist eine formale Spezifikation über eine Konzeptualisierung\cite{ontoWhat}. Die Denotation jeweiliger dargestellten Signifikanten lässt sich durch seinen weltweit eindeutigen Präfix identifizieren z.B: \lstinline|PREFIX owl: <http://www.w3.org/2002/07/owl#>|  \cite{W3C}. Deren Beziehungen können auch zu externen Ontologie-signifikanten verweisen und dadurch ein Consensus über Begrifflichkeiten erreichen. 
+Eine Ontologie ist eine formale Spezifikation über eine Konzeptualisierung\cite{ontoWhat}. Die Denotation jeweiliger dargestellten Signifikanten lässt sich durch seinen weltweit eindeutigen Präfix identifizieren z.B: \lstinline|PREFIX owl: <http://www.w3.org/2002/07/owl#>|  \cite{W3C}. Deren Beziehungen können zu externen Ontologie-signifikanten verweisen und dadurch ein Consensus über Begrifflichkeiten erreichen. 
 
-Während der Umsetzung wurde Protege\cite{Protégé} benutzt.
+
 Der Entwurf der Ontologie wurde nach Ontology-Engineering-101 durchgeführt:
 
+Während der Umsetzung wurde Protégé\cite{Protégé} als unterstützende Anwendung benutzt.
 
-Um die Neuerfindung des Rades zu vermeiden, die Recherche ergab einen aktuell öffentlichen graphischen ontologischen Entwurf\cite{ontoMoodle} siehe\ref{fig:competence-ontology} der in Moodle mit eine Relationalen Datenbasis und PHP umgesetzt. Nach dessen Ontologien wurde mittels Watson\cite{Watson} und LOD\cite{LOD} nichts öffentlich gefunden. 
-
+Um die Neuerfindung des Rades zu vermeiden, die Recherche ergab einen aktuell öffentlichen graphischen ontologischen Entwurf\cite{ontoMoodle} ( siehe \autoref{fig:competence-ontology} ) der in Moodle mit eine Relationalen Datenbasis und PHP umgesetzt wurde. Nach dessen Ontologien wurde mittels Watson\cite{Watson} und LOD\cite{LOD} nichts veröffentlichen gefunden. 
 
 \begin{figure}[h]
 	\centering
@@ -890,50 +887,50 @@ Um die Neuerfindung des Rades zu vermeiden, die Recherche ergab einen aktuell ö
 	\label{fig:competence-ontology}
 \end{figure}
 
-Bei der Analyse lässt der Entwurf und dessen Dokumentation freie Interpretation über Begriffe und deren Zweck, beispiele davon sind \glqq isComposedOf\grqq, \glqq subsumes\grqq. Ein Standard zur graphischen Darstellung ist zur Zeit?? noch nicht anerkannt. Obwohl Graphische Benutzeroberfläche  @Cite research-gate graphol
-
-Anderseits wurde das \acrshort{EQF} für Ontologien beschrieben, aber nicht öffentlich umgesetzt. Es bietet dabei eine europäisch anerkannte Definition von Kompetenz, nämlich RCD\cite{eqfCompetency}
+Der Entwurf und seine Dokumentation lässt freie Interpretation über Begriffe und deren Zweck, z.B \glqq isComposedOf\grqq, \glqq subsumes\grqq. Ein Standard zur graphischen Darstellung ist zur Zeit noch nicht anerkannt. Graphische Benutzeroberfläche zur Darstellung und zum Entwurf von Ontologien sind derzeit entwickelt, z.B. Graphol \cite{graphol}.
 
 
 \begin{wrapfigure}{i}{0.36\textwidth}
 	\includegraphics[width=0.9\linewidth]{pics/RCD.jpg}
+	\caption{Reusable Competency Definition}
 \end{wrapfigure}
 
+\newacronym{RCD}{RCD}{Reusable Competency Definition}
+Das \acrshort{EQF} wurde für die ontologische Darstellung beschrieben und bietet eine europäisch anerkannte Definition von Kompetenz, nämlich \acrshort{RCD} \cite{eqfCompetency}. Dieser ist jedoch nicht in einer veröffentlichen Datenbasis umgesetzt worden.
 
 Daher folgt eine beispielhafte Erklärung der auf unseren Anwendungsfall angepasste und ergänzende Interpretation der dargestellten Terminologie des Entwurfs und der RCD.
 
-
-
 \newglossaryentry{Kompetenz}{name={Kompetenz},description={die bei Individuen verfügbaren oder durch sie erlernbaren kognitiven Fähigkeiten und Fertigkeiten, um bestimmte Probleme zu lösen, sowie die damit verbundenen motivationalen, volitionalen und sozialen Bereitschaften und Fähigkeiten, um die Problemlösungen in variablen Situationen erfolgreich und verantwortungsvoll nutzen zu können}}
 
-\subparagraph{Erklärung der Terminologie}Die zwei Leitmotive sind auf eine Seite \underline{Kompetenzanforderungen}: sie legen fest, über welche Kompetenzen ein Schüler, eine Schülerin verfügen muss, wenn wichtige Ziele der Schule als erreicht gelten sollen. Systematisch geordnet werden diese Anforderungengen in Kompetenzmodellen, die Aspekte, Abstufungen und Entwicklungsverläufe von Kompetenzen darstellen\cite{competence}. Und auf der Anderen nach \underline{\Gls{Kompetenz}} als die bei Individuen verfügbaren oder durch sie erlernbaren kognitiven Fähigkeiten und Fertigkeiten, um bestimmte Probleme zu lösen, sowie die damit verbundenen motivationalen, volitionalen und sozialen Bereitschaften und Fähigkeiten, um die Problemlösungen in variablen Situationen erfolgreich und verantwortungsvoll nutzen zu können\cite{weinert2002leistungsmessungen}.
+Die zwei Leitmotive sind auf eine Seite Kompetenzanforderungen: sie legen fest, über welche Kompetenzen ein Schüler, eine Schülerin verfügen muss, wenn wichtige Ziele der Schule als erreicht gelten sollen. Systematisch geordnet werden diese Anforderungen in Kompetenzmodellen, die Aspekte, Abstufungen und Entwicklungsverläufe von Kompetenzen darstellen\cite{competence}. Und auf der Anderen nach \Gls{Kompetenz} als die bei Individuen verfügbaren oder durch sie erlernbaren kognitiven Fähigkeiten und Fertigkeiten, um bestimmte Probleme zu lösen, sowie die damit verbundenen motivationalen, volitionalen und sozialen Bereitschaften und Fähigkeiten, um die Problemlösungen in variablen Situationen erfolgreich und verantwortungsvoll nutzen zu können\cite{weinert2002leistungsmessungen}.
 
-\subsubsection{RDF}
 \newacronym{RDF}{RDF}{Resource Description Framework}
 \newacronym{TURTLE}{TURTLE}{Terse RDF Triple Language}
-Die bisher erreichte Analyse des Domainsproblems soll nun anhand von Protégé in einen \acrfull{RDF} format beschrieben werden. Der Menschen lesbarsten \acrshort{RDF} Format ist \acrfull{TURTLE}. Seine Syntax besteht aus Triples mit \glqq .\grqq beendete Zeilen. Ein Triple stellt ein Fakt dar, un besteht aus einem Subjekt, einem Prätikat und einem Objekt. Diese können sich in TURTLE verschachteln wie das folgende \autoref{lst:turtle} zeigt. 
 
-\begin{lstlisting}[language=SQL,caption={Darstellung von Triples in TURTLE},label={lst:turtle}]
+Die bisher erreichte Analyse des Domainproblems wird nun anhand von Protégé in einen \acrfull{RDF} Format bzw. \acrfull{TURTLE} beschrieben werden. \acrshort{TURTLE} besteht aus einer für Menschen lesbaren Syntax und kann sowohl Ontologien in \acrshort{OWL} als auch \acrshort{Sparql} Abfragen darstellen. 
+
+Die folgende \autoref{lst:turtle-triple} zeigt eine beispielhafte Darstellung von ontologischen Fakten, \glqq Triples\grqq\. Diese bestehen aus Subjekt, Property und Objekt. Die erste Zeile lässt sich wie folgt interpretieren: Alice ( Subjekt ) hat die Kompetenz ( Property ) Mathematik II ( Objekt ).
+
+\begin{lstlisting}[language=SQL,caption={Darstellung von Triples in TURTLE},label={lst:turtle-triple}]
+:Alice :hasCompetency :Math_II .
 :EvidenceRecord rdf:type owl:Class .
 
 :actionPerformed rdf:type owl:ObjectProperty ;
-rdfs:domain :EvidenceSource ;
-rdfs:range :Action .
+	rdfs:domain :EvidenceSource ;
+	rdfs:range :Action .
 \end{lstlisting}
 
-
-\subsubsection{Sparql}
 \newacronym{Sparql}{Sparql}{Protocol And RDF Query Language}
 Um aus Ontologien Informationen zu entnehmen, wird die Abfragesprache \acrfull{Sparql} 
-verwendet. Diese ist ähnlich zu SQL. Mit dem Programm \glqq Protétegé\grqq können SPARQL Abfragen lokal ausgeführt werden.
+verwendet. Diese ähnelt sich der traditioneller SQL. 
 
-Die einfachste Abfrage in Sparql wählt alle Triples vom Datenmodell.
+Die einfachste Abfrage in Sparql wählt alle Triples von dem abgefragten Datenmodell ( oder Graph ) wie in \autoref{lst:sparql-selectall} gezeigt wird.
 
-\begin{lstlisting}[language=Sparql]
+\begin{lstlisting}[language=Sparql,caption={Sparql SELECT ALL},label={lst:sparql-selectall}]
 SELECT * WHERE { ?s ?p ?o .}
 \end{lstlisting}
 
-Am Beispiel von KOMA, konkatenieren die Ergebnisse mit Zwei Abfragetriples dank eine Hilfsvariable. Die folgende Abfrage ließe sich \glqq Wähle alle Properties des Graphes und wähle alle dessen Subjekten mit Alice als Objekt\grqq formulieren. \\
+Hilfsvariablen können deklariert werden, um Ergebnisse aus einem Triple als Parameter für das nächste zu benutzen. Die folgende Abfrage ließe sich \glqq Wähle alle Properties des Graphes und wähle alle dessen Subjekten mit Alice als Objekt\grqq formulieren. \\
 \begin{lstlisting}
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -945,15 +942,77 @@ SELECT ?x WHERE {
 }
 \end{lstlisting}
 
-So dass auch die Benutzer von \acrshort{KOMA} solche Abfragen stellen können wird ein \glqq Sparql-endpoint\grqq mit Hilfe von Apache Jena ARQ, ein Sparql-Engine, zur Verfügung gestellt. 
-%Fuseki ist ein Server zur Verwaltung von Sparqlabfragen und deren Transaktionen. @Cite CRUD und ACID RDB in sparql.
-%Fuseki wird Embedded benutzt.
-Dieser Sparql-Endpoint entspricht der Repositoryschicht der Anwendung und wird nach Anfrage von der Ontologie in S3 mittels Sparql JSON Objekte zurückliefern.
-Eine Lambdafunktion arbeitet als Schnittstelle \ref{lst:lambda-interface} zwischen die ARQ Bibliothek, den Client und die darunterliegende Infrastruktur.
+Wie in \autoref{sec:components} erwähnt wurde, Sparqlabfragen werden durch die \acrshort{API} Gateway für Lambda Transponiert.
+
+%So dass auch die Benutzer von \acrshort{KOMA} solche Abfragen stellen können wird ein \glqq Sparql-endpoint\grqq mit Hilfe von Apache Jena ARQ, ein Sparql-Engine, zur Verfügung gestellt. 
+
+%Dieser Sparql-Endpoint entspricht der Repositoryschicht der Anwendung und wird nach Anfrage von der Ontologie in S3 mittels Sparql JSON Objekte zurückliefern.
+%Eine Lambdafunktion arbeitet als Schnittstelle \ref{lst:lambda-interface} zwischen die ARQ Bibliothek, den Client und die darunterliegende Infrastruktur.
 
 
-\section{Entwurf}
-\label{sec:design}
+\section{RESTful API}
+\label{sec:rest}
+\newacronym{HTTP}{HTTP}{Hypertext Transfer Protocol}
+\newacronym{CRUD}{CRUD}{Create, Read, Update, Delete}
+Der Entwurf von einer benutzerfreundliche \acrfull{HTTP} \acrshort{API} beinhaltet die Abstraktion von komplexe Geschäftslogik und Datenverarbeitung  in den vier \acrlong{CRUD} Operationen.
+
+\newacronym{JSON}{JSON}{Javascript Object Notation}
+Die Komplexität des darunterliegenden Datenmodells erlaubt eine \acrshort{REST} Schnittstelle nur einfache Abfragen zu formulieren.\cite{microAdv} Daher stellt \acrshort{KOMA} zusätzlich einen Sparql-Endpunkt für Komplexe Sparql Abfragen zur Verfügung. Die letzte Zeile der Tabelle \autoref{tab:rest} entspricht dem Letzteren.
+
+\begin{table}[H]
+	\caption{RESTful API}\label{tab:rest}
+	\noindent 
+	\centering{}
+	\begin{tabular}{ccc}
+		\hline
+		\noalign{\vskip\doublerulesep}
+		Methode & URL & Rückgabe\tabularnewline[\doublerulesep]
+		\hline
+		\noalign{\vskip\doublerulesep}
+		GET & /ontology & Information über KOMA
+		\tabularnewline[\doublerulesep]\noalign{\vskip\doublerulesep}
+		\noalign{\vskip\doublerulesep}
+		GET & /ontology/\{individual\} & RDF von Individual
+		\tabularnewline[\doublerulesep]\noalign{\vskip\doublerulesep}
+		GET & /page & Auflistung von Entitäten 
+		\tabularnewline[\doublerulesep]\noalign{\vskip\doublerulesep}
+		GET & /page/\{individual\} & Information über diesen Fakt
+		\tabularnewline[\doublerulesep]\noalign{\vskip\doublerulesep}
+		POST & /sparql & Abfragenergebnis
+		
+	\end{tabular}
+\end{table}
+
+AWS API Gateway ermöglicht die Definition, Konfiguration und das Importieren von Schnittstellen. Beispielsweise kann der Anfrageparameter in \lstinline|GET https://<host>/page/Alice}| mittels dem Muster in \autoref{lst:map-template} an dem Key \glqq individual \grqq\ zugewiesen werden. Hier handelt sich um einen \glqq body mapping template \grqq\ für den Inhaltstyp ( content type ) \glqq application/json\grqq\-
+
+\begin{lstlisting}[language=Javascript,caption={API Gateway Request Mapping Template},label={lst:map-template}]
+https://<host>/page/{individua}
+...
+{
+"individual" : "$input.params('individual')"
+}
+\end{lstlisting}
+
+Nachdem eine Anfrage eingetreten ist und deren Parameter transponiert sind, erfolgt ein synchroner Aufruf der zuständigen Lambdafunktion
+
+
+Im Fall von der \lstinline|POST https://<host>/sparql| \acrshort{URL} werden die Abfrageparameter wie in \autoref{lst:map-template-query} zum Key \glqq Query \grqq\ abgebildet.
+
+\begin{lstlisting}[language=Javascript,caption={API Gateway Request Mapping Template Query},label={lst:map-template-query}]
+{
+"Query": "$input.params('query')"
+}
+\end{lstlisting}
+
+Dieser erwartet die Abfrage in \acrshort{TURTLE} mit dem die im Body des HTTP-Requests in \acrfull{JSON} geschickt wird.
+
+
+%Dieser Endpunkt unterstützt nicht nur GET-Abrufe, sondern auch POST-Anforderungen mit einer Nutzlast.Unter der verfügbaren SparQL endpoints Implementierungen
+
+\paragraph{Regeln für Anfragen}
+Der Zugang auf die Schnittstelle wird durch CORS konfiguriert um deren Ausnutzung zu vermeiden. 
+
+
 
 %Um den Datenmodell möglichst simpel programmatisch abzufragen wird zunächst dessen Schnittstelle\ref{sec:rest} definiert. 
 
@@ -1010,54 +1069,6 @@ Im Folgendem es wird beispielhaft eine abtrennung einer JEE Anwendung.
 
 %Lambda Funktion: Maps zwischen S3 und DynamoDB.
 
-
-
-\subsection{RESTful API}
-\label{sec:rest}
-\newacronym{HTTP}{HTTP}{Hypertext Transfer Protocol}
-\newacronym{CRUD}{CRUD}{Create, Read, Update, Delete}
-Der Entwurf von einer benutzerfreundliche \acrfull{HTTP} \acrshort{API} beinhalte die Abstraktion von komplexe Geschäftslogik und Daten, welche das darunterliegende Service benutzt, in den vier \acrlong{CRUD} Operationen.
-
-Die Komplexität des darunterliegenden Datenmodells erlaubt eine RESTful\cite{microAdv} Schnittstelle nur einfache abfragen zu formulieren. Daher zusätzlich ein Endpunkt\ref{tab:rest} für Komplexe Sparql Abfragen, die im Body des HTTP Requests in JSON geschickt wird. 
-
-\begin{table}[H]
-	\caption{RESTful API}\label{tab:rest}
-	\noindent 
-	\centering{}
-	\begin{tabular}{ccc}
-		\hline
-		\noalign{\vskip\doublerulesep}
-		Methode & URL & Rückgabe\tabularnewline[\doublerulesep]
-		\hline
-		\noalign{\vskip\doublerulesep}
-		GET & /ontology & Information über KOMA
-		\tabularnewline[\doublerulesep]\noalign{\vskip\doublerulesep}
-		\noalign{\vskip\doublerulesep}
-		GET & /ontology/\{individual\} & RDF von Individual
-		\tabularnewline[\doublerulesep]\noalign{\vskip\doublerulesep}
-		GET & /page & Auflistung von Entitäten 
-		\tabularnewline[\doublerulesep]\noalign{\vskip\doublerulesep}
-		GET & /page/\{individual\} & Information über diesen Fakt
-		\tabularnewline[\doublerulesep]\noalign{\vskip\doublerulesep}
-		POST & /sparql & Abfragenergebnis
-		
-	\end{tabular}
-\end{table}
-
-AWS API Gateway ermöglicht die Definition, Konfiguration und das Importieren von Schnittstellen. Beispielsweise kann die Abfrage GET https://<host>/page/\{individual\} 
-
-\begin{lstlisting}[language=Javascript,caption={API Gateway Request Mapping Template},label={lst:map-template}]
-GET https://<host>/page/{individual} 
-...
-{
-"individual" : "$input.params('individual')"
-}
-\end{lstlisting}
-
-Damit wurde die zu erwartende Eingabe für den Sparql-Endpoint definiert. Der Zugang auf die Schnittstelle wird durch CORS konfiguriert um deren Ausnutzung zu vermeiden. 
-
-Dieser Endpunkt unterstützt nicht nur GET-Abrufe, sondern auch POST-Anforderungen mit einer Nutzlast.
-Unter der verfügbaren SparQL endpoints Implementierungen
 
 
 
