@@ -376,7 +376,7 @@ Für dieses Problem wurde \acrfull{FaaS} \ref{sec:faas}, als Lösung unter der R
 
 \newacronym{AWS}{AWS}{Amazon Web Services}
 \newacronym{KOMA}{KOMA}{Kompetenz Matrix}
-Im Rahmen des Cloud-Computing handelt es sich in dieser Arbeit um eine Untersuchung der Serverless Architekturen am Beispiel einer konventionellen Webanwendung. Dabei wird besonders beachtet, ob und wie solche Technologien die Umsetzung erleichtern. Die Entwurfsmuster und die Kernfunktionalität werden ausschließlich mit Serverless Technologien am Beispiel einer Webanwendung ( \acrfull{KOMA}, siehe \autoref{sec:KOMA} ), mit \acrshort{AWS} umgesetzt.
+Im Rahmen des Cloud Computing handelt es sich in dieser Arbeit um eine Untersuchung der Serverless Architekturen am Beispiel einer konventionellen Webanwendung. Dabei wird besonders beachtet, ob und wie solche Technologien die Umsetzung erleichtern. Die Entwurfsmuster und die Kernfunktionalität werden ausschließlich mit Serverless Technologien am Beispiel einer Webanwendung ( \acrfull{KOMA}, siehe \autoref{sec:KOMA} ), mit \acrshort{AWS} umgesetzt.
 
 
 \section{Ziel}
@@ -441,17 +441,17 @@ Daher ergeben sich für die, in der Cloud betriebenen Anwendungen, folgende Eige
 \newacronym{IaaS}{IaaS}{Infrastructure as a Service}
 \acrfull{IaaS} kann als ein Service beschrieben werden, der Abstraktionen für Hardware, Server und Netzwerkkomponenten bereitstellt. Der Serviceanbieter besitzt die Ausrüstung und ist für die Unterbringung, die Inbetriebnahme und die Wartung der Server verantwortlich\cite{patternAWS}. Der Benutzer bezahlt nicht für die Hardware, deren Lagerung und den Zugriff auf sie, sondern für die Nutzung des gesamten Servicemodells z.B.: Zahlung nach benutzten Stunden, Ressourcen usw.
 
-Die Aufgaben\label{sec:iaas-aufgaben} für Systeme mit Softwareelementen wie Load Balancing, Transaktionen, Clustering, Caching, Messaging, und Datenredundanz werden komplexer. Diese Elemente fordern an, dass Server verwaltet, gewartet, patched und gesichert werden brauchen. In einer nicht-trivialen Systemumgebung sind solche Aufgaben zeitintensiv und ebenso aufwändig fertigzustellen, wie effizient zu betreiben. Infrastruktur und Hardware sind zwar nötige Komponenten für jegliche IT-Systeme, aber gleichzeitig stellen sie nur das Medium für deren Anwendung dar - sei es Geschäftslogik, oder ein darauf bauender Dienst.
+Die Aufgaben\label{sec:iaas-aufgaben} für Systeme mit Softwareelementen wie Load Balancing, Transaktionen, Gruppierung ( Clustering ), Caching, Benachrichtigung ( Messaging ), und Datenredundanz werden komplexer. Diese Elemente fordern an, dass Server verwaltet, gewartet, geflickt ( patched ) und gesichert werden brauchen. In einer nicht-trivialen Systemumgebung sind solche Aufgaben zeitintensiv und ebenso aufwändig fertigzustellen, wie effizient zu betreiben. Infrastruktur und Hardware sind zwar nötige Komponenten für jegliche IT-Systeme, aber gleichzeitig stellen sie nur das Medium für deren Anwendung dar - sei es Geschäftslogik, oder ein darauf bauender Dienst.
 
 \section{PaaS}
 \label{sec:paas}
 \newacronym{PaaS}{PaaS}{Platform as a Service}
-\acrfull{PaaS}, kann als ein Service beschrieben werden, der eine Rechenplattform liefert, z.B. ein Betriebssystem, eine Ausführungsumgebung für Programmiersprachen (siehe ElasticBeanstalk), eine Datenbank oder einen Webserver. Dieser Dienst übernimmt je nach benutzerdefinierter Konfiguration sowohl die Wartung der Datenbank, des Webservers und der Versionen des Laufzeitquellcodes, als auch deren Skalierbarkeit.\cite{patternAWS}.
+\acrfull{PaaS}, kann als ein Service beschrieben werden, der eine Rechenplattform liefert, z.B. ein Betriebssystem, eine Ausführungsumgebung für Programmiersprachen (siehe ElasticBeanstalk \cite{ebs}), eine Datenbank oder einen Webserver. Dieser Dienst übernimmt je nach benutzerdefinierter Konfiguration sowohl die Wartung der Datenbank, des Webservers und der Versionen des Laufzeitquellcodes, als auch deren Skalierbarkeit.\cite{patternAWS}.
 
 
-Inkonsistenzen in der Infrastruktur oder den Umgebungen können durch den hohen Aufwand der Serververwaltung entstehen. Sie werden durch standardisierte und automatisierte Angebote von \acrshort{PaaS} umgangen. Deren effiziente Benutzung is abhängig davon, wie gezielt der Quellcode auf die Features der Plattform abgestimmt ist. Dies ergibt auf einer Seite weniger Wartung, aber andererseits erfordern die importierten Anwendungen ( z.B. für ein Standalone Server ) eine Anpassung an die Plattform.
+Inkonsistenzen in der Infrastruktur oder den Umgebungen können durch den hohen Aufwand der Serververwaltung entstehen. Sie werden durch standardisierte und automatisierte Angebote von \acrshort{PaaS} umgangen. Deren effiziente Benutzung is abhängig davon, wie gezielt der Quellcode auf die Features der Plattform abgestimmt ist. Dies ergibt auf einer Seite weniger Wartung, aber andererseits erfordern die importierten Anwendungen ( z.B. für ein \glqq Standalone\grqq\ Server ) eine Anpassung an die Plattform.
 
-Die Containerisierung\label{par:containerisation} ist eine Isolierung der Anwendung von ihrer Umgebung. Die Konfiguration des Containers, sowie dessen Deployment ist nicht trivial und erfordert daher spezialisiertes Wissen über Containerisierung. Für das Monitoring werden bestimmte Tools wie Boot2Docker \cite{Boot2Docker} oder cAdvisor \cite{cAdvisor} benötigt. Jedoch bietet die Containerisierung eine ausgezeichnete Lösung für Anwendungen mit starker Kopplung zu anderen Softwarekomponenten.\cite{patternAWS}
+Die Containerisierung\label{par:containerisation} ist eine Isolierung der Anwendung von ihrer Umgebung. Die Konfiguration des Containers, sowie dessen ( Einsatz ) Deployment ist nicht trivial und erfordert daher spezialisiertes Wissen über Containerisierung. Für das Monitoring werden bestimmte Tools wie Boot2Docker \cite{Boot2Docker} oder cAdvisor \cite{cAdvisor} benötigt. Jedoch bietet die Containerisierung eine ausgezeichnete Lösung für Anwendungen mit starker Kopplung zu anderen Softwarekomponenten.\cite{patternAWS}
 
 %Der Container muss konfiguriert und gebaut werden und der Deploymentprozess ist nicht trivial. 
 
@@ -479,7 +479,7 @@ Viele traditionelle Software bietet seine \acrshort{SaaS} nicht an. Dies Implizi
 
 \chapter{FaaS}%{nichtfunktionalen/technischen Anforderungen zur Entwicklung des Serverless-Ansatzes}
 
-\acrfull{FaaS}\label{sec:faas} kann als ein Rechenservice beschrieben werden, der nach Anfrage isoliert, unabhängig und granular ausgeführt wird. Komplexe Probleme wie horizontale und vertikale Skalierbarkeit, Fehlertoleranz und Elascitity werden von Kunden nur noch nach Bedarf konfiguriert und von dem Anbieter verwaltet. Die Besonderheit von \acrshort{FaaS} ist die \glqq Unit of Deployment\grqq\ und die Skalierung in Form einer Funktion. \cite{patternAWS}
+\acrfull{FaaS}\label{sec:faas} kann als ein Rechenservice beschrieben werden, der nach Anfrage isoliert, unabhängig und granular ausgeführt wird. Komplexe Probleme wie horizontale und vertikale Skalierbarkeit, Fehlertoleranz und Elastizität werden von Kunden nur noch nach Bedarf konfiguriert und von dem Anbieter verwaltet. Die Besonderheit von \acrshort{FaaS} ist die \glqq Unit of Deployment\grqq\ und die Skalierung in Form einer Funktion. \cite{patternAWS}
 
 Events\label{par:event-reaction} innerhalb eines verteilten Systems müssen verwaltet werden. Technologien wie Virtualisierte oder Containerized Server erzeugen neue Serverinstanzen zur Verarbeitung von einer Kette von variablen Events, die danach gelöscht wird.\cite{lambdaAWS} Die entstehende Problematik ergab sich durch eine starke Zunahme an Elementen, die einen hohen Verwaltungsaufwand forderten.  Was zurück auf die oben genannten Aufgaben \ref{sec:iaas-aufgaben} führte.
 
@@ -488,7 +488,7 @@ Polling\label{par:polling} ist der Ausdruck für eine zyklische Abfrage über ei
 Funktionale Programmierung ist ein Programmierparadigma, in dem Funktionen nicht nur definiert und angewendet werden können, sondern auch wie Daten miteinander verknüpft, als Parameter verwendet und als Funktionsergebnisse auftreten können. Zustand und mutable Daten werden vermieden damit Seiteneffekten nicht entstehen und die Komposition flexibler wird. Das stellt einen Vorteil für die Skalierung eines Softwarekomponenten dar.\cite{funcScala}
 
 
-Die Implementierung einer solchen Funktion geschieht durch die Auswahl der Programmiersprache und der von dem Cloud-Anbieter vorgegebenen Funktionsfassade. Diese wird vom Cloud-Anbieter aufgerufen, stellt aber keine zusätzlichen Bibliotheken bereit, daher ist es nötig, dass die auszuführende Datei alle Abhängigkeiten enthält.
+Die Implementierung einer solchen Funktion geschieht durch die Auswahl der Programmiersprache und der von dem Cloudanbieter vorgegebenen Funktionsfassade. Diese wird vom Cloudanbieter aufgerufen, stellt aber keine zusätzlichen Bibliotheken bereit, daher ist es nötig, dass die auszuführende Datei alle Abhängigkeiten enthält.
 
 
 Der Fokus bei \acrshort{FaaS} liegt auf der Quellcodeentwicklung und nicht auf dem Provisioning von Servern, der Installation von Software, dem Deployment von Containern oder auf konkreten Details der Infrastruktur.
@@ -917,7 +917,7 @@ Auf der anderen Seite bildet die Definition von \Gls{Kompetenz} eine handlungsle
 
 Die bisherige Analyse des Domainproblems wird nun anhand von Protégé in einen \acrfull{RDF} Format bzw. \acrfull{TURTLE} beschrieben. \acrshort{TURTLE} besteht aus einer für Menschen lesbaren Syntax und kann sowohl Ontologien in \acrshort{OWL} als auch \acrshort{Sparql} Abfragen darstellen. 
 
-Das folgende \autoref{lst:turtle-triple} zeigt eine beispielhafte Darstellung von ontologischen Fakten, den sogenannten \glqq Triples\grqq\ . Diese bestehen aus Subjekt, Merkmal und Objekt. Die erste Zeile lässt sich wie folgt interpretieren: dem Namen einer fiktiven Schülerin Alice ( Subjekt ) wird ein Merkmal in Form einer Kompetenzausprägung ( Property ) innerhalb eines Unterrichtsfachs, das in Unterrichtsreihen oder -einheiten sequenziert werden kann, wie z.B Mathematik II ( Objekt ).
+Das folgende \autoref{lst:turtle-triple} zeigt eine beispielhafte Darstellung von ontologischen Fakten, den sogenannten \glqq Triples\grqq\ . Diese bestehen aus Subjekt, Merkmal und Objekt. Die erste Zeile lässt sich wie folgt interpretieren: dem Namen einer fiktiven Schülerin Alice ( Subjekt ) wird ein Merkmal in Form einer Kompetenzausprägung ( Property ) innerhalb eines Unterrichtsfachs, das in Unterrichtsreihen oder -einheiten sequenziert werden kann, wie z.B Mathematik II ( Objekt ). Diese Instanzen werden Individuals genannt.
 
 \begin{lstlisting}[language=SQL,caption={Darstellung von Triples in TURTLE},label={lst:turtle-triple}]
 :Alice :hasCompetency :Math_II .
@@ -951,11 +951,6 @@ SELECT ?x WHERE {
 \end{lstlisting}
 
 Wie in \autoref{sec:components} erwähnt wurde, werden Sparqlabfragen durch die \acrshort{API} Gateway für Lambda transponiert.
-
-%So dass auch die Benutzer von \acrshort{KOMA} solche Abfragen stellen können wird ein \glqq Sparql-endpoint\grqq mit Hilfe von Apache Jena ARQ, ein Sparql-Engine, zur Verfügung gestellt. 
-
-%Dieser Sparql-Endpoint entspricht der Repositoryschicht der Anwendung und wird nach Anfrage von der Ontologie in S3 mittels Sparql JSON Objekte zurückliefern.
-%Eine Lambdafunktion arbeitet als Schnittstelle \ref{lst:lambda-interface} zwischen die ARQ Bibliothek, den Client und die darunterliegende Infrastruktur.
 
 
 \section{RESTful API}
@@ -1093,13 +1088,13 @@ ResultSet results = qexec.execSelect();
 
 Nach der Ausführung der Abfrage ( Zeile 7 ) werden die Ergebnisse in Zeile 15 iteriert und anschließend wird eine Referenz zu einem \acrshort{JSON}-Objekt zurück geliefert.\\
 
-Mit der bisher beschriebenen Implementierung der Webanwendung können Daten abgefragt und verarbeitet werden. Diese Ergebnisse stellen ein Feedback dar, womit Konzepte bewiesen ( siehe \autoref{aspect:proofConcept} ), ausgewertet und weiterentwickelt werden können. % Weiter zur Auswertung Time to market etc.
+Mit der bisher beschriebenen Implementierung der Webanwendung können Daten abgefragt und verarbeitet werden. Diese Ergebnisse stellen ein Feedback dar, womit Konzepte (  siehe \autoref{aspect:proofConcept} ) bewiesen, ausgewertet und weiterentwickelt werden können. % Weiter zur Auswertung Time to market etc.
 
 %% ----------- hier fängt es mit dem Refactoring an
 
-Ein wesentlicher Merkmal von den oben beschriebenen Lambdafunktionen ist, dass sie für jeden Aufruf die komplette Datenbasis neu herunterladen. Für die Gebrauchstauglichkeit der Anwendung werden im Folgenden Verbesserdungsansätze beschrieben.
+Ein wesentliches Merkmal von den oben beschriebenen Lambdafunktionen ist, dass sie für jeden Aufruf die komplette Datenbasis neu herunterladen. Für die Gebrauchstauglichkeit der Anwendung werden im Folgenden Verbesserungsansätze erläutert.
 
-Caching zielt auf die Verbesserung der Performance und Skalabilität eines Systems, in dem die oft gelesene Daten temporär zwischenspeichert. Daher können wiederholte Zugriffe auf die Ontologie in einer Cache geladen werden. Hierzu bietet \acrshort{AWS} \glqq ElastiCache\grqq\ als Serverless Dienst. 
+Caching zielt auf die Verbesserung der Performance und Skalabilität eines Systems ab, in dem es die oft gelesenen Daten temporär zwischenspeichert. Daher können wiederholte Zugriffe auf die Ontologie in einem Cache gepuffert werden. Hierzu bietet \acrshort{AWS} \glqq ElastiCache\grqq\ als Serverless Dienst. 
 \begin{figure}[H]
 	\begin{center}
 \includegraphics[scale=0.60]{./pics/aws/pattern-cache-shared.eps}	
@@ -1107,13 +1102,13 @@ Caching zielt auf die Verbesserung der Performance und Skalabilität eines Syste
 \label{pic:shared-cache}
 	\end{center}
 \end{figure}
-Es gibt zwei Typen von Cache: \glqq Shared-Cache\grqq\ und \glqq In-Memory\grqq\ \cite{patternsCloud}. Die letztere teilt die Umgebung des Consumers ( Lambda in dem Fall ) mit. Da die Laufzeitumgebung von Lambda ohne Vorwarnung wechseln kann und nur von nicht persistenten Speicher verfügt \cite{lambdaFaq}, lässt sich die In-Memory Cachevariante nicht sicher implementieren.\\
+Es gibt zwei Typen von Software Cache: \glqq Shared-Cache\grqq\ und \glqq In-Memory\grqq\ \cite{patternsCloud}. Der Letztere teilt die Umgebung des Consumers ( Lambda in diesem Fall ) mit. Da die Laufzeitumgebung von Lambda ohne Vorwarnung wechseln kann und nur über nicht persistenten Speicher verfügt \cite{lambdaFaq}, lässt sich die In-Memory Cachevariante nicht konsistent implementieren.\\
 
-In dem eine Cache als Puffer-Speicher zwischen der Datenbasis und den Lambdafunktionen ( siehe \autoref{pic:shared-cache} ) kann ein schnellerer Zugriff gewährleistet werden. Da die Consumers den gleichen \glqq Snapshot\grqq\ der Daten abrufen sinken die  inkonsistenten Ergebnisse.\cite{patternsCloud}\\
+Ein schnellerer Zugriff wird durch die Allokation eines Caches zwischen der Datenbasis und den Lambdafunktionen ( siehe \autoref{pic:shared-cache} ) gewährleistet. Da die Consumer den gleichen \glqq Snapshot\grqq\ der Daten abrufen, sinkt die Anzahl der inkonsistenten Ergebnisse.\cite{patternsCloud}\\
 
 
 \newacronym{URI}{URI}{Universal Ressource Identifier}
-Eine zusätzliche Maßnahme zur Optimierung des Datenzugriffes ist die Datenpartitionierung. Diese kann je nach Benutzungsmuster horizontal, vertikal oder funktional erfolgen.
+Eine zusätzliche Maßnahme zur Optimierung des Datenzugriffs ist die Datenpartitionierung. Diese kann je nach Benutzungsmuster horizontal, vertikal oder funktional erfolgen.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.60]{./pics/parititioning.eps}	
@@ -1122,13 +1117,12 @@ Eine zusätzliche Maßnahme zur Optimierung des Datenzugriffes ist die Datenpart
 	\end{center}
 \end{figure}
 % Individuals new concept !!  
-Im folgendem wird die Anwendung als Beispiel zur Erklärung benutzt.
-Wird die \acrshort{OWL} Datei nach \glqq Individuals\grqq\ in unterschiedlichen Buckets getrennt, handelt es sich um horizontale Datenpartitionierung. Bei der Vertikalen wird jeweils eine Tabelle für Instanzen ( Individuals ) von  Subjekten, Merkmalen ( Properties ) und von Objekten aufgestellt. Dafür eignet sich DynamoDB als \glqq Key-Value Store\grqq\, um für Keys die Individuals und für Values dessen \acrfull{URI}s darzustellen.\cite{ontoVerticalPartition}
+Im Folgenden wird die Anwendung als Beispiel zur Erklärung genutzt.\\ Bei der horitzontalen Datenpartitionierung wird die \acrshort{OWL} Datei nach \glqq Individuals\grqq\ aufgeteilt und in unterschiedliche Buckets einsortiert. Hingegen wird bei einer vertikalen Datenpartitionierung jeweils eine Tabelle für Subjekte, Merkmale ( Properties ) und für Objekte erstellt. DynamoDB eignet sich für diese Serverless Anwendung  als \glqq Key-Value Store\grqq\ , um als Keys die \glqq Individuals\grqq\ und als Values dessen \acrfull{URI}s darzustellen.\cite{ontoVerticalPartition}
 
 
-Mit der Benutzung der Anwendung werden voraussichtlich die \acrshort{OWL} Dateien vergrößert und somit die Latenz bei Abfragen verlängert.
+Mit der Benutzung der Anwendung werden voraussichtlich die \acrshort{OWL} Dateien größer und somit die Latenz bei Abfragen verlängert.
 
-Cloud Dienste werden oft in unterschiedlichen Datazentren oder Regionen deployed. Um die Verfügbarkeit, Performance und Konsistenz zu maximiereun und die Datenübertragungkosten zu minimieren, kann eine Master-Datenbasis mit erlaubte Read und Write Operationen und eine Subordinate-Datenbasis mit nur Read Operationen definiert werden. 
+Cloud Dienste werden oft in unterschiedlichen Datenzentren oder Regionen eingesetzt. Um die Verfügbarkeit, Performance und Konsistenz zu maximieren und die Datenübertragungskosten zu minimieren, kann eine Master-Datenbasis mit erlaubten Lese- und Schreiboperationen und eine Subordinate-Datenbasis nur mit Leseoperationen definiert werden. 
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.60]{./pics/aws/pattern-master-subordinate-data-replication.eps}
@@ -1137,52 +1131,23 @@ Cloud Dienste werden oft in unterschiedlichen Datazentren oder Regionen deployed
 	\end{center}
 \end{figure}
 
-Der Master pusht oder ( one-way ) synchronisiert die Subordinate-Replikas. 
-Diese Aufteilung favorisiert Read Operationen.
- 
-%Die beide oben beschriebenen Funktionen liefern einen JSON Objekt zurück. 
-Mit der Benutzung der Anwendung werden voraussichtlich die \acrshort{OWL} Dateien vergrößert und somit die Latenz bei Abfragen verlängert.
-
-%Dieser Endpunkt unterstützt nicht nur GET-Abrufe, sondern auch POST-Anforderungen mit einer Nutzlast.Unter der verfügbaren SparQL endpoints Implementierungen
-
-
-%Um den Datenmodell möglichst simpel programmatisch abzufragen wird zunächst dessen Schnittstelle\ref{sec:rest} definiert. 
-
-%\subparagraph{JEE.war} \glqq And\grqq Test vs SRP Identifizieren der Concerns und ihre Trennung: 
-
-%\subparagraph{Einloggen} Login beispiel: user + password + userData -> user + passord -> uuID -> userData refactor and share common code
-
-
-%Autorisierung und Authentifizierung. Einleitung
-
-%Auth0 bietet Authentifizierung as a Service an. Der Benutzer erhält einen JSON Web Token JWT und schickt ihn Encoded JSON Web Signature JWS oder JSON Web Encription zur Anwendung mit.
-%Mit wenige Konfigurationsschritte kann man die Benutzer Authentifizieren. 
-
-
-%Einloggen: 0Auth Google gibt token, der wird in Lambda überprüft, Session in oauth.com verwaltet
-
-
-%\subparagraph{Dynamo DB} Funtion: Read + Write + updateS3 zu Split S3, Split R/W 
-
-%Datenspecherung Architektur:
-%DynamoDB: speichert :individual als Schlussel und seine relative URL
-%Ś3: speichert die .owl Dateien.
-
-%Lambda Funktion: Maps zwischen S3 und DynamoDB.
-
+Der Master pusht oder ( one-way ) synchronisiert seine Subordinate-Repliken. 
+Diese Aufteilung favorisiert Leseoperationen.
+  
 
 
 
 \subsection{Single Page Application}
 \label{sec:spa}
 
-Da KOMA ohne Vorkenntnisse gebrauchsfertig sein soll, mit dem Fakt dass Milliarden von Desktop Geräte die Web mit einem Browser erkundigen können, lässt sich die Entscheidung über die Art der Benutzeroberfläche leicht Treffen.
+Da KOMA ohne Vorkenntnisse zu benutzen sein soll, lässt sich die Entscheidung über die Art der Benutzeroberfläche leicht treffen. Die milliardenfache Nutzung von Web Browsern macht sie zum Favoriten.
 
-Die Web Anwendung ist für alle Rechenaufgaben verantwortlich die im Browser aus dem Sicherheitssichtpunkt kein Gefahr darstellen, um den Backend oder Servers möglichst wenig auszulasten. Deswegen bietet sich eine Single Page Application an. 
-Die SPA besteht aus ein einziges HTML Dokument. Dies vereinfacht man die Konfiguration der Authentifizierung und unterbricht den Fluss der UI-Darstellung zwischen Seiten.
 
-Ein konfiguriertes Anfangsprojekt/Quickstart kann mithilfe von Initializr\cite{Initializr} oder JHipster\cite{Jhipster}. Für die lokale Entwicklung der Webseite werden anhand von NodeJS und NPM folgende Bibliotheken als Abhängigkeiten verwaltet: Bootstrap als Stylescheet und jQuery als Javascript-Bibliothek.
-Die Webseite wird Statisch mittels S3 geliefert. Dies geschieht mit einem Befehl: 
+Die Web Anwendung ist für alle Rechenaufgaben verantwortlich, die im Browser sicherheitstechnisch keine Gefahr darstellen, um das Backend oder den Server möglichst wenig auszulasten. Deswegen bietet sich eine Single Page Application an. 
+Die SPA besteht aus einem einzigen HTML Dokument. Dadurch vereinfacht man die Konfiguration der Authentifizierung und unterbricht den Fluss der UI-Darstellung zwischen Seiten nicht.
+
+Ein konfiguriertes Anfangsprojekt/Quickstart kann mithilfe von Initializr\cite{Initializr} oder JHipster\cite{Jhipster} schnell angelegt werden. Für die lokale Entwicklung der Webseite werden anhand von NodeJS und NPM folgende Bibliotheken als Abhängigkeiten verwaltet: Bootstrap als Stylescheet und jQuery als Javascript-Bibliothek.
+Die Webseite wird statisch mittels S3 geliefert. Dies geschieht mit folgendem Befehl: 
 \begin{lstlisting}[language=BASH, caption={Webseite veröffentlichen}]
 $ aws  --region us-west-2 s3 website --index-document index.html --error-document error.html 's3://koma.thb.de'
 \end{lstlisting} 
@@ -1309,6 +1274,40 @@ Im Vergleich zur manuellen Speicherverwaltung benötigt \ac{GC} mehr Ressourcen.
 
 
 \end{document}
+
+
+%So dass auch die Benutzer von \acrshort{KOMA} solche Abfragen stellen können wird ein \glqq Sparql-endpoint\grqq mit Hilfe von Apache Jena ARQ, ein Sparql-Engine, zur Verfügung gestellt. 
+
+%Dieser Sparql-Endpoint entspricht der Repositoryschicht der Anwendung und wird nach Anfrage von der Ontologie in S3 mittels Sparql JSON Objekte zurückliefern.
+%Eine Lambdafunktion arbeitet als Schnittstelle \ref{lst:lambda-interface} zwischen die ARQ Bibliothek, den Client und die darunterliegende Infrastruktur.
+
+%Die beide oben beschriebenen Funktionen liefern einen JSON Objekt zurück.
+%Dieser Endpunkt unterstützt nicht nur GET-Abrufe, sondern auch POST-Anforderungen mit einer Nutzlast.Unter der verfügbaren SparQL endpoints Implementierungen
+
+
+%Um den Datenmodell möglichst simpel programmatisch abzufragen wird zunächst dessen Schnittstelle\ref{sec:rest} definiert. 
+
+%\subparagraph{JEE.war} \glqq And\grqq Test vs SRP Identifizieren der Concerns und ihre Trennung: 
+
+%\subparagraph{Einloggen} Login beispiel: user + password + userData -> user + passord -> uuID -> userData refactor and share common code
+
+
+%Autorisierung und Authentifizierung. Einleitung
+
+%Auth0 bietet Authentifizierung as a Service an. Der Benutzer erhält einen JSON Web Token JWT und schickt ihn Encoded JSON Web Signature JWS oder JSON Web Encription zur Anwendung mit.
+%Mit wenige Konfigurationsschritte kann man die Benutzer Authentifizieren. 
+
+
+%Einloggen: 0Auth Google gibt token, der wird in Lambda überprüft, Session in oauth.com verwaltet
+
+
+%\subparagraph{Dynamo DB} Funtion: Read + Write + updateS3 zu Split S3, Split R/W 
+
+%Datenspecherung Architektur:
+%DynamoDB: speichert :individual als Schlussel und seine relative URL
+%Ś3: speichert die .owl Dateien.
+
+%Lambda Funktion: Maps zwischen S3 und DynamoDB.
 
 
 
