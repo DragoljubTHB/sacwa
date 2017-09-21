@@ -809,7 +809,7 @@ Dieses ER-Diagramm \autoref{list:koma-requirements} definiert die Beziehungen zw
 
 Um einen Anhaltspunkt zu geben, werden hier die Softwarekomponenten beschrieben.
 
-Bei dem Aufruf der Website im Browser präsentiert sich ein \glqq Sign in\grqq\ Knopf zum Einloggen und verschiedene Möglichkeiten zur Formulierung einer Abfrage. Diese sind in einem \acrshort{S3} Bucket als statische Webseite gelagert.
+Bei dem Aufruf der Website im Browser präsentiert sich ein \glqq Sign in\grqq\ Knopf zum Einloggen und verschiedene Möglichkeiten zur Formulierung einer Abfrage. Diese ist in einem \acrshort{S3} Bucket als statische Webseite gelagert.
 Wird der Knopf zum Einloggen gedrückt, fordert eine Weiterleitung ( mit dem dargestellten Schlüssel ) die Authentisierung des Benutzers an. Mit der erfolgreichen Operation kehrt die Nutzeransicht mit einem \glqq Token\grqq\ auf die Webseite zurück. Der erhaltene Token wird als Autorisierung-Parameter in dem \glqq HTTP Request Header\grqq\ mit den nächsten Anfragen an das Back-End geschickt.
 
 \newacronym{URL}{URL}{Universal Resource Locator}
@@ -817,12 +817,14 @@ Nach dem Login kann der Browser durch Absenden der nächsten Anfragen seinen Tok
 
 Dieser Loginprozess entspricht dem in \autoref{sec:federated-identity} beschrieben Federated Identity Muster.
 
-Eine Anfrage an die \lstinline|GET https://<host>/page/{individual}| \acrshort{URL} führt die Lambdafunktion \glqq OWL Parser \grqq\ aus. Die letztere liest die Datenbasis von S3 \glqq OWL Storage \grqq\ und extrahiert den Wert des \lstinline|{individual}|-Parameters, um eine Antwort zu generieren. Diese abstrahierte Zuweisung von \acrshort{URL}s auf Back-End Dienste entspricht einem \acrshort{REST} Ansatz. Dagegen erwartet die \lstinline|POST https://<host>/sparql| \acrshort{URL} eine Abfrage im \glqq Request Body\grqq\ der Anfrage mit dem Key \glqq Query\grqq\, um gegen die oben genannten Datenbasis auszuführen. Dabei unterstützt die Java Bibliothek Jena ARQ\cite{jenaARQ}
+Eine Anfrage an die \lstinline|GET https://<host>/page/{individual}| \acrshort{URL} führt die Lambdafunktion \glqq OWL Parser\grqq\ aus. Die Funktion liest die Datenbasis von S3 \glqq OWL Storage \grqq\ und extrahiert den Wert des \lstinline|{individual}|-Parameters, um eine Antwort zu generieren. Diese abstrahierte Zuweisung von \acrshort{URL}s auf Back-End Dienste entspricht einem \acrshort{REST} Ansatz. Dagegen erwartet die \lstinline|POST https://<host>/sparql| \acrshort{URL} eine Abfrage im \glqq Request Body\grqq\ der Anfrage mit dem Key \glqq Query\grqq\ , um sie auf der oben genannten Datenbasis auszuführen. Dabei unterstützt die Java Bibliothek Jena ARQ\cite{jenaARQ}
 
 
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.60]{./pics/static-web-hosting.eps}
+		\caption{KOMA Components}
+		\label{pic:koma-components}
 	\end{center}
 \end{figure}
 
@@ -857,9 +859,8 @@ Im \glqq Semantic Web\grqq\ profitieren \glqq Linked Data Driven Web Application
 \cite{W3C}
 
 
-\subsubsection{Semantic Web}
 \newacronym{W3C}{W3C}{World Wide Web Consortium}
-Das \glqq Semantic Web\grqq ist eine Erweiterung des herkömmlichen Web, in der Informationen mit eindeutigen Bedeutungen versehen werden\cite{ontoWhat2}. Das \acrfull{W3C} spezifiziert eine Menge von Standards und best practices für die Mitteilung von daten und deren semantische Darstellung.\cite{sparqlLearn}.
+Das \glqq Semantic Web\grqq ist eine Erweiterung des herkömmlichen Web, in der Informationen mit eindeutigen Bedeutungen versehen werden\cite{ontoWhat2}. Das \acrfull{W3C} spezifiziert eine Zusammenstellung von Standards und best practices für die Mitteilung von Daten und deren semantischer Darstellung.\cite{sparqlLearn}.
 \newacronym{OWL}{OWL}{Web Ontology Language}
 Diese Bedeutungen werden für Maschinen durch Ontologien dargestellt, welche in \glqq .owl \grqq\ Dateien gespeichert werden.\cite{W3C}
 
@@ -870,18 +871,19 @@ Diese Bedeutungen werden für Maschinen durch Ontologien dargestellt, welche in 
 %	\label{fig:semantic-web-stack}
 %\end{figure}
 
-\subsubsection{Ontologie}
-\label{subsec:ontology}
 
 %@Def
-Eine Ontologie ist eine formale Spezifikation über eine Konzeptualisierung \cite{ontoWhat}. Die Denotation jeweiliger dargestellten Signifikanten lässt sich durch seinen weltweit eindeutigen Präfix identifizieren z.B: \lstinline|PREFIX owl: <http://www.w3.org/2002/07/owl#>|  \cite{W3C}. Deren Beziehungen können zu externen Ontologie-signifikanten verweisen und dadurch ein Consensus über Begrifflichkeiten erreichen. 
+Eine Ontologie\label{subsec:ontology} ist eine formale Spezifikation über eine Konzeptualisierung \cite{ontoWhat}. Die Denotation der dargestellten Signifikanten lässt sich durch ihre weltweit eindeutigen Präfix identifizieren z.B: \lstinline|PREFIX owl: <http://www.w3.org/2002/07/owl#>|  \cite{W3C}. Deren Beziehungen können zu externen Ontologie-signifikanten verweisen und dadurch ein Consensus über Begrifflichkeiten erreichen. 
 
 
 Der Entwurf der Ontologie wurde nach Ontology-Engineering-101 durchgeführt:
 
-Während der Umsetzung wurde Protégé\cite{Protégé} als unterstützende Anwendung benutzt.
+Während der Umsetzung wurde Protégé \cite{Protégé} als unterstützende Anwendung benutzt.
 
-Um die Neuerfindung des Rades zu vermeiden, die Recherche ergab einen aktuell öffentlichen graphischen ontologischen Entwurf\cite{ontoMoodle} ( siehe \autoref{fig:competence-ontology} ) der in Moodle mit eine Relationalen Datenbasis und PHP umgesetzt wurde. Nach dessen Ontologien wurde mittels Watson\cite{Watson} und LOD\cite{LOD} nichts veröffentlichen gefunden. 
+Um bereits vorhandene Technologien zu nutzen,
+wurde ein aktueller öffentlicher graphischer ontologischer Entwurf\cite{ontoMoodle} ( siehe \autoref{fig:competence-ontology} ), der in Moodle mit einer relationalen Datenbasis und PHP umgesetzt wurde, untersucht.
+
+Eine Implementation dieser Ontologie ist jedoch nicht von Watson\cite{Watson} und LOD\cite{LOD} auffindbar.
 
 \begin{figure}[h]
 	\centering
@@ -890,29 +892,32 @@ Um die Neuerfindung des Rades zu vermeiden, die Recherche ergab einen aktuell ö
 	\label{fig:competence-ontology}
 \end{figure}
 
-Der Entwurf und seine Dokumentation lässt freie Interpretation über Begriffe und deren Zweck, z.B \glqq isComposedOf\grqq, \glqq subsumes\grqq. Ein Standard zur graphischen Darstellung ist zur Zeit noch nicht anerkannt. Graphische Benutzeroberfläche zur Darstellung und zum Entwurf von Ontologien sind derzeit entwickelt, z.B. Graphol \cite{graphol}.
 
+Der Entwurf und seine Dokumentation lassen freie Interpretation über Begriffe und deren Zweck, z.B \glqq isComposedOf\grqq, \glqq subsumes\grqq. Ein Standard zur graphischen Darstellung ist zur Zeit noch nicht anerkannt. Graphische Benutzeroberflächen zur Darstellung und zum Entwurf von Ontologien sind derzeit entwickelt, z.B. Graphol \cite{graphol}.
+
+\newacronym{RCD}{RCD}{Reusable Competency Definition}
+Daher folgt eine beispielhafte Erklärung, die auf den Anwendungsfall \acrshort{KOMA} eine angepasste und ergänzende Interpretation der dargestellten Terminologie des Entwurfs und der \acrshort{RCD} ( s.u. ) liefert.
 
 \begin{wrapfigure}{i}{0.36\textwidth}
 	\includegraphics[width=0.9\linewidth]{pics/RCD.jpg}
 	\caption{Reusable Competency Definition}
 \end{wrapfigure}
 
-\newacronym{RCD}{RCD}{Reusable Competency Definition}
-Das \acrshort{EQF} wurde für die ontologische Darstellung beschrieben und bietet eine europäisch anerkannte Definition von Kompetenz, nämlich \acrshort{RCD} \cite{eqfCompetency}. Dieser ist jedoch nicht in einer veröffentlichen Datenbasis umgesetzt worden.
+Der \acrshort{EQF} wurde für die ontologische Darstellung beschrieben und bietet eine europäisch anerkannte Definition von Kompetenz, die \acrfull{RCD} \cite{eqfCompetency}. Diese ist jedoch nicht in einer veröffentlichen Datenbasis umgesetzt worden.
 
-Daher folgt eine beispielhafte Erklärung der auf unseren Anwendungsfall angepasste und ergänzende Interpretation der dargestellten Terminologie des Entwurfs und der RCD.
 
 \newglossaryentry{Kompetenz}{name={Kompetenz},description={die bei Individuen verfügbaren oder durch sie erlernbaren kognitiven Fähigkeiten und Fertigkeiten, um bestimmte Probleme zu lösen, sowie die damit verbundenen motivationalen, volitionalen und sozialen Bereitschaften und Fähigkeiten, um die Problemlösungen in variablen Situationen erfolgreich und verantwortungsvoll nutzen zu können}}
 
-Die zwei Leitmotive sind auf eine Seite Kompetenzanforderungen: sie legen fest, über welche Kompetenzen ein Schüler, eine Schülerin verfügen muss, wenn wichtige Ziele der Schule als erreicht gelten sollen. Systematisch geordnet werden diese Anforderungen in Kompetenzmodellen, die Aspekte, Abstufungen und Entwicklungsverläufe von Kompetenzen darstellen\cite{competence}. Und auf der Anderen nach \Gls{Kompetenz} als die bei Individuen verfügbaren oder durch sie erlernbaren kognitiven Fähigkeiten und Fertigkeiten, um bestimmte Probleme zu lösen, sowie die damit verbundenen motivationalen, volitionalen und sozialen Bereitschaften und Fähigkeiten, um die Problemlösungen in variablen Situationen erfolgreich und verantwortungsvoll nutzen zu können\cite{weinert2002leistungsmessungen}.
+Die zwei Leitmotive sind auf der einen Seite Kompetenzanforderungen, \glqq die festlegen, über welche Kompetenzen ein Schüler, eine Schülerin verfügen muss, wenn wichtige Ziele der Schule als erreicht gelten sollen. Systematisch geordnet werden diese Anforderungen in Kompetenzmodellen, die Aspekte, Abstufungen und Entwicklungsverläufe von Kompetenzen darstellen\grqq\ \cite{competence}. 
+
+Auf der anderen Seite bildet die Definition von \Gls{Kompetenz} eine handlungsleitende Grundlage. Nach Weinert werden Kompetenzen als \glqq die bei Individuen verfügbaren oder durch sie erlernbaren kognitiven Fähigkeiten und Fertigkeiten, um bestimmte Probleme zu lösen, sowie die damit verbundenen motivationalen, volitionalen und sozialen Bereitschaften und Fähigkeiten, um die Problemlösungen in variablen Situationen erfolgreich und verantwortungsvoll nutzen zu können\grqq\ \cite{weinert2002leistungsmessungen}.
 
 \newacronym{RDF}{RDF}{Resource Description Framework}
 \newacronym{TURTLE}{TURTLE}{Terse RDF Triple Language}
 
-Die bisher erreichte Analyse des Domainproblems wird nun anhand von Protégé in einen \acrfull{RDF} Format bzw. \acrfull{TURTLE} beschrieben werden. \acrshort{TURTLE} besteht aus einer für Menschen lesbaren Syntax und kann sowohl Ontologien in \acrshort{OWL} als auch \acrshort{Sparql} Abfragen darstellen. 
+Die bisher erreichte Analyse des Domainproblems wird nun anhand von Protégé in einen \acrfull{RDF} Format bzw. \acrfull{TURTLE} beschrieben. \acrshort{TURTLE} besteht aus einer für Menschen lesbaren Syntax und kann sowohl Ontologien in \acrshort{OWL} als auch \acrshort{Sparql} Abfragen darstellen. 
 
-Die folgende \autoref{lst:turtle-triple} zeigt eine beispielhafte Darstellung von ontologischen Fakten, \glqq Triples\grqq\. Diese bestehen aus Subjekt, Property und Objekt. Die erste Zeile lässt sich wie folgt interpretieren: Alice ( Subjekt ) hat die Kompetenz ( Property ) Mathematik II ( Objekt ).
+Das folgende \autoref{lst:turtle-triple} zeigt eine beispielhafte Darstellung von ontologischen Fakten, den sogenannten \glqq Triples\grqq\ . Diese bestehen aus Subjekt, Merkmal und Objekt. Die erste Zeile lässt sich wie folgt interpretieren: dem Namen einer fiktiven Schülerin Alice ( Subjekt ) wird ein Merkmal in Form einer Kompetenzausprägung ( Property ) innerhalb eines Unterrichtsfachs, das in Unterrichtsreihen oder -einheiten sequenziert werden kann, wie z.B Mathematik II ( Objekt ).
 
 \begin{lstlisting}[language=SQL,caption={Darstellung von Triples in TURTLE},label={lst:turtle-triple}]
 :Alice :hasCompetency :Math_II .
@@ -1023,7 +1028,7 @@ exports.handler = function (event, context, callback) {
 Die zweite Zeile entspricht der Fassadensignatur von Lambda für Javascript. Das erste Parameter, \glqq event\grqq, enthält in dem Fall Informationen über die Ursprüngliche Anfrage. Das Zweite, \glqq context\grqq\, erlaubt den Zugang auf die Laufzeitumgebung von Lambda und kann definieren, ob die Ausführung erfolgreich ( \lstinline|context.success(Object result)| ), fehlerhaft ( \lstinline|context.fail(Error error)| ) oder als Kombination des zwei letzteren fertig  ( \lstinline|context.done(Error error, Object result)| ). 
 
 In der Zeilennummer 4 befindet sich der Aufruf \lstinline|async.waterfall(...)|. Dieser entsprecht dem Waterfall Muster wessen Verarbeitungsschritte in der \autoref{pic:waterfall} dargestellt werden. 
-Dieser Muster erlaubt eine Menge von Funktionen so zu verketten, dass das Ergebnis der Einer als Eingabeparameter der Nächsten ist. Wenn ein Fehler in eine Funktion entsteht, hält das Waterfall an. 
+Dieser Muster erlaubt eine Menge von Funktionen so zu verketten, dass das Ergebnis der Einer das Eingabeparameter der Nächsten ist. Wenn ein Fehler in eine Funktion entsteht, hält das Waterfall an. 
 
 \begin{figure}[H]
 	\begin{center}
@@ -1032,6 +1037,10 @@ Dieser Muster erlaubt eine Menge von Funktionen so zu verketten, dass das Ergebn
 	\label{pic:waterfall}
 	\end{center}
 \end{figure}
+
+Um die Wiederverwendbarkeit zu gewährleisten, ist die Abtrennung der  Abhängigkeiten in Bibliotheken von der Lambdafunktion sinnvoll. Dieser Ansatz wird von dem \acrshort{SOA}-Architekturstil \autoref{sec:soa} gefordert.
+
+
 
 Im Fall von der \lstinline|POST https://<host>/sparql| \acrshort{URL} werden die Abfrageparameter wie in \autoref{lst:map-template-query} zum Key \glqq Query \grqq\ abgebildet.
 
@@ -1048,7 +1057,6 @@ Dieser erwartet die Abfrage in \acrshort{TURTLE} mit dem die im Body des HTTP-Re
 
 \paragraph{Regeln für Anfragen}
 Der Zugang auf die Schnittstelle wird durch CORS konfiguriert um deren Ausnutzung zu vermeiden. 
-
 
 
 %Um den Datenmodell möglichst simpel programmatisch abzufragen wird zunächst dessen Schnittstelle\ref{sec:rest} definiert. 
