@@ -313,7 +313,7 @@ Zweitbetreuer: & Jonas Brüstel, M.Sc.\tabularnewline
 
 \chapter*{Eidesstattliche Erklärung}
 
-Ich versichere hiermit, dass ich die von mir eingereichte Masterarbeit selbstständig verfasst, ausschließlich die angegebenen Hilfsmittel benutzt und sowohl wörtliche, als auch sinngemäße entlehnte Stellen als solche kenntlich gemacht habe. Die Arbeit hat in gleicher oder ähnlicher Form noch keiner anderen Prüfungsbehörde vorgelegen.
+Ich versichere hiermit, dass ich die von mir eingereichte Bachelorarbeit selbstständig verfasst, ausschließlich die angegebenen Hilfsmittel benutzt und sowohl wörtliche, als auch sinngemäße entlehnte Stellen als solche kenntlich gemacht habe. Die Arbeit hat in gleicher oder ähnlicher Form noch keiner anderen Prüfungsbehörde vorgelegen.
 
 Brandenburg an der Havel, 21. September 2017
 
@@ -322,8 +322,8 @@ Brandenburg an der Havel, 21. September 2017
 Dragoljub Milasinovic
 
 \chapter*{Abstrakt}
-Pomodoro
-@Deutch
+TODO \\
+@Deutch \\
 @English
 
 \chapter{Einleitung}
@@ -343,7 +343,7 @@ Ideen entstehen, verändern sich, werden im Laufe der Zeit vergessen, manchmal b
 Die Technik kann als Medium für den Ausdruck solcher Ideen eingesetzt werden. Diese kann so komplex werden, dass sie eine Barriere in Form eines Wissensmonopols darstellt, die hinderlich für die Umsetzung neuer Ideen ist.
 
 
-Die Faktoren am Anfang einer technologischen Umsetzung einer Idee sind:
+Die Faktoren am Anfang einer technologischen Umsetzung einer Idee sind:\label{aspect}
 der konzeptionelle Beweis, die Vorlaufzeit oder Produkteinführungszeit ( Time-To-Market ), die Personalkosten und Mangel von Fertigkeiten, die technischen und technologischen Details, sowie die Rentabilität.
 
 %\begin{itemize}
@@ -388,7 +388,7 @@ Im Rahmen des Cloud Computing handelt es sich in dieser Arbeit um eine Untersuch
 \label{sec:task}
 \newacronym{MVP}{MVP}{Minimal Viable Product}
 \newacronym{SPA}{SPA}{Single Page Application}
-Das Ziel ist ein \acrfull{MVP},in Form von einer \acrfull{SPA} \autoref{sec:spa}, ausschließlich mit Serverless Technologien zur Verfügung zu stellen.
+Das Ziel ist ein \acrlong{MVP},in Form von einer \acrfull{SPA} \autoref{sec:spa}, ausschließlich mit Serverless Technologien zur Verfügung zu stellen.
 
 Nach der Umsetzung werden die Erfahrungen und Ergebnisse ausgewertet, um bei zukünftigen Entscheidungsprozessen bei der Umsetzung einer Webanwendung zu unterstützen.
 
@@ -399,10 +399,10 @@ Die Webanwendung soll möglichst flexibel für zukünftige Änderungen sein.
 
 Die vorliegende Arbeit beschäftigt sich mit dem Serverless Ausschnitt der Cloud Dienste. 
 
-Zuerst wird der Leser in die klassischen Servicemodelle \autoref{chap:service-models} eingeführt. Zunächst werden die technischen Anforderungen und die dazugehörigen Beispiele des Serverless Ansatzes erläutert.
+Zuerst wird der Leser in die klassischen Servicemodelle ( \autoref{chap:service-models} ) eingeführt. Zunächst werden die technischen Anforderungen und die dazugehörigen Beispiele des Serverless Ansatzes erläutert.
 Das nächste Kapitel überblickt die aktuellen Serverless Angebote der größten Cloud Anbieter.
-Den Kern der Arbeit bildet die Analyse und Darstellung von Serverless Architekturen \autoref{chap:aws-serverless} und sie fokussiert sich auf \acrfull{AWS}. In diesem Abschnitt  \autoref{chap:aws-serverless} werden die Serverless \autoref{sec:serverless} Architekturen und das Programmiermodell vorgestellt, sowie die Entscheidungsprinzipien \autoref{par:serverless-principles} erläutert.
-Der praktische Teil beschäftigt sich mit der Umsetzung und Bewertung von der oben genannten Serverless Webanwendung KOMA \autoref{sec:KOMA}.
+Den Kern der Arbeit bildet die Analyse und Darstellung von Serverless Architekturen ( \autoref{chap:aws-serverless} ) und sie fokussiert sich auf \acrfull{AWS}. In diesem Abschnitt  \autoref{chap:aws-serverless} werden die Serverless ( \autoref{sec:serverless} ) Architekturen und das Programmiermodell vorgestellt, sowie die Entscheidungsprinzipien ( \autoref{par:serverless-principles} ) erläutert.
+Der praktische Teil beschäftigt sich mit der Umsetzung und Bewertung von der oben genannten Serverless Webanwendung KOMA ( \autoref{sec:KOMA} ).
 
 Am Ende erfolgt eine Diskussion darüber, welche Trade-offs entstehen und welche Zukunftsperspektiven Serveless Technologien bieten.
 
@@ -444,7 +444,7 @@ Daher ergeben sich für die, in der Cloud betriebenen Anwendungen, folgende Eige
 \section{IaaS}
 \label{sec:iaas}
 \newacronym{IaaS}{IaaS}{Infrastructure as a Service}
-\acrfull{IaaS} kann als ein Service beschrieben werden, der Abstraktionen für Hardware, Server und Netzwerkkomponenten bereitstellt. Der Serviceanbieter besitzt die Ausrüstung und ist für die Unterbringung, die Inbetriebnahme und die Wartung der Server verantwortlich\cite{patternAWS}. Der Benutzer bezahlt nicht für die Hardware, deren Lagerung und den Zugriff auf sie, sondern für die Nutzung des gesamten Servicemodells z.B.: Zahlung nach benutzten Stunden, Ressourcen usw.
+\acrfull{IaaS} kann als ein Service beschrieben werden, der Abstraktionen für Hardware, Server und Netzwerkkomponenten bereitstellt. Der Serviceanbieter besitzt die Ausrüstung und ist für die Unterbringung, die Inbetriebnahme und die Wartung der Server verantwortlich\cite{patternAWS}. Der Benutzer bezahlt nicht für die Hardware, deren Lagerung und den Zugriff, sondern für die Nutzung des gesamten Servicemodells z.B.: Zahlung nach benutzten Stunden, Ressourcen usw.
 
 Die Aufgaben\label{sec:iaas-aufgaben} für Systeme mit Softwareelementen wie Load Balancing, Transaktionen, Gruppierung ( Clustering ), Caching, Benachrichtigung ( Messaging ), und Datenredundanz werden komplexer. Diese Elemente fordern an, dass Server verwaltet, gewartet, geflickt ( patched ) und gesichert werden brauchen. In einer nicht-trivialen Systemumgebung sind solche Aufgaben zeitintensiv und ebenso aufwändig fertigzustellen, wie effizient zu betreiben. Infrastruktur und Hardware sind zwar nötige Komponenten für jegliche IT-Systeme, aber gleichzeitig stellen sie nur das Medium für deren Anwendung dar - sei es Geschäftslogik, oder ein darauf aufbauender Dienst.
 
@@ -537,14 +537,14 @@ Für die Betrachtung, ob \acrshort{FaaS} eine Lösung für eine konkrete Problem
 
 \chapter{Serverless-Angebote und Architekturen}
 
-\paragraph{Die Softwarearchitekturen} helfen uns zu kommunizieren, welchen Zweck unsere Software erreichen möchte. Ihre \textbf{Entwurfsmuster} bieten generische Lösungen für wiederkehrende Probleme bei der Softwareentwicklung.
+Die Softwarearchitekturen helfen uns zu kommunizieren, welchen Zweck unsere Software erreichen möchte. Ihre Entwurfsmuster bieten generische Lösungen für wiederkehrende Probleme bei der Softwareentwicklung.
 
 
 Auf konventionelle Webanwendungen wird hier Bezug genommen, als ein System, das über Presentation-, Data-, and Logikschicht verfügt. Jede Schicht kann mehrere Logik-Layers enthalten, die für unterschiedliche Funktionalitäten der Domains verantwortlich sind. Logging ist ein Beispiel für Cross-Cutting Concern, das Layers überspannt. Die Komplexität der Anwendung wächst zusammen mit der Anzahl der Schichten.
 Eine Überprüfung der Architektur ist sinnvoll, wenn eine erfolgreiche Codeänderung von einer Anderen abhängt.
 
 \newacronym{SOA}{SOA}{Service Oriented Architecture}
-\paragraph{\acrfull{SOA}}
+\acrfull{SOA}
 \label{sec:soa} unterlegt der Annahme, dass ein System aus mehreren kleinen, austauschbaren, wiederverwendbaren und entkoppelten Diensten besteht. Für die Entwicklung und Integration solcher Systeme bietet \acrshort{SOA} eine Menge von Entwurfsprinzipien und Standards. Entwickler stellen autonome Services her, die durch Nachrichtenübergabe kommunizieren und oft einen Schema haben oder eine Schnittstelle, die definiert wie die Nachrichten erzeugt werden.\cite{cloudEssentials}
 
 \begin{figure}[H]
@@ -603,20 +603,28 @@ Die Vernetzung von zustandslosen Funktionen erlaubt, komplexe Systeme zu entwerf
 \newacronym{MVC}{MVC}{Model View Controller}
 Die Komplexität und längerfristige Wartbarkeit des Systems lässt sich dadurch reduzieren, dass der Controller und/oder Router aus dem \acrfull{MVC} \cite{fowlerBlogMVC} vom Back- zum Front-End verschoben wird und Dienste von Drittanbieter hinzugefügt werden. \cite{patternAWS}
 
-
-\begin{wrapfigure}{l}{0.36\textwidth}
-	\includegraphics[scale=0.30]{./pics/classic-example.eps}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.60]{./pics/classic-example.eps}
 	\caption{Classic Add Server}
 	\label{pic:classic-add}
-\end{wrapfigure}
+\end{figure}
+%\begin{wrapfigure}{l}{0.36\textwidth}
 
-In einem beispielhaften konventionellen AdServer wird nach einem Klick auf eine Werbung eine Nachricht über einen Kanal an einen Klickprozessor geschickt, der innerhalb einer Anwendung ausgeführt wird.\\ \\ \\
+%\end{wrapfigure}
 
-\begin{wrapfigure}{l}{0.36\textwidth}
-	\includegraphics[scale=0.30]{./pics/serverless-example.eps}
+In einem beispielhaften konventionellen AdServer wird nach einem Klick auf eine Werbung eine Nachricht über einen Kanal an einen Klickprozessor geschickt, der innerhalb einer Anwendung ausgeführt wird.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.60]{./pics/serverless-example.eps}
 	\caption{Serverless Add Server}
 	\label{pic:serverless-add}
-\end{wrapfigure}
+\end{figure}
+%\begin{wrapfigure}{l}{0.36\textwidth}
+%	\includegraphics[scale=0.30]{./pics/serverless-example.eps}
+%	\caption{Serverless Add Server}
+%	\label{pic:serverless-add}
+%\end{wrapfigure}
 
 Mit dem Serverless Ansatz wird dieser Klickprozessor pro Nachricht als eine neue Instanz der Funktion ausgeführt. Ihre Laufzeitumgebung und ihr Messagebroker wird von dem Cloudanbieter verwaltet. \cite{fowlerBlogServerless}\\
  
@@ -624,52 +632,82 @@ Mit dem Serverless Ansatz wird dieser Klickprozessor pro Nachricht als eine neue
 Dazu wird für den Entwurf von Serverless Architekturen eine Reihe von Mustern von unterschiedlichen Autoren vorgeschlagen.\\
 
 
-\subsection{Pipes and Filters, Compute as a Glue}
+\section{Pipes and Filters, Compute as a Glue}
 \label{sec:pipes-filters}
-\begin{wrapfigure}{l}{0.36\textwidth}
-	\includegraphics[width=0.9\linewidth]{./pics/pipes-and-filters.eps}
-\end{wrapfigure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.60]{./pics/pipes-and-filters.eps}
+	\caption{Pipes and Filters Entwurfsmuster}
+	\label{pic:pipes-and-filters}
+\end{figure}
+%\begin{wrapfigure}{l}{0.36\textwidth}
+%	\includegraphics[width=0.9\linewidth]{./pics/pipes-and-filters.eps}
+%\end{wrapfigure}
 Eine Anwendung kann Aufgaben von unterschiedlicher Komplexität ausführen. In einem monolithischen Modul sind das Refactoring, die Optimierung und die Wiederverwendung erschwert. \\
 Zunächst werden die Aufgaben in diskrete Elemente ( oder Filter ) nach dem \acrshort{SRP} zerteilt und in einer Pipeline kombiniert. Dies hilft redundanten Quellcode zu vermeiden, ihn zu löschen, zu ersetzen oder in zusätzliche Komponenten zu integrieren, sobald sich die Aufgabenanforderungen ändern\cite{patternsCloud}. Ein weiterer Vorteil besteht darin, dass ein Flaschenhalseffekt vermieden wird, in dem mehrere Instanzen erzeugt werden, falls ein Element nicht genug Ressourcen für die Verarbeitung hat. 
 
 
-\subsection{Legacy Api Proxy}
-\begin{wrapfigure}{l}{0.36\textwidth}
-	\begin{center}
-		\includegraphics[width=0.9\linewidth]{./pics/legacy-api-proxy.eps}
-		\label{legacy-api-proxy}
-		\caption{Legacy API Muster}
-	\end{center}
+\section{Legacy Api Proxy}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.60]{./pics/legacy-api-proxy.eps}
+	\caption{Legacy API Muster}
+	\label{legacy-api-proxy}
+\end{figure}
+%\begin{wrapfigure}{l}{0.36\textwidth}
+%	\begin{center}
+%		\includegraphics[width=0.9\linewidth]{./pics/legacy-api-proxy.eps}
+%		\label{legacy-api-proxy}
+%		\caption{Legacy API Muster}
+%	\end{center}
 	
-\end{wrapfigure}
+%\end{wrapfigure}
 Wenn eine \acrshort{API} veraltet oder schwer zu benutzen ist, kann eine extra ( RESTful ) \acrshort{API} in den Vordergrund gestellt werden, die in gesonderten Prozessen Daten transponieren und für die angeforderten Formate aufstellen ( marshall ). Dies ist besonders nützlich, wenn die Legacy-Services selten benutzt werden. Zusätzlich erleichtert der Api Proxy die Integration mit anderen Architekturansätzen.
 \\
 \\
 
 
-\subsection{Compute as a Backend}
-\begin{wrapfigure}{l}{0.46\textwidth}
-	\includegraphics[scale=0.36]{./pics/compute-as-a-backend.eps}
+\section{Compute as a Backend}
+\begin{figure}[H]
+	\centering
+		\includegraphics[scale=0.60]{./pics/compute-as-a-backend.eps}
 	\caption{Compute as a Backend}
 	\label{pic:compute-backend}
-\end{wrapfigure}
+\end{figure}
+%\begin{wrapfigure}{l}{0.46\textwidth}
+%	\includegraphics[scale=0.36]{./pics/compute-as-a-backend.eps}
+%	\caption{Compute as a Backend}
+%	\label{pic:compute-backend}
+%\end{wrapfigure}
 Obwohl der Client direkt mit Services kommunizieren kann, müssen vertraute Informationen geschützt werden, indem sie das Back-End verarbeitet\cite{serverlessArchAWS}. Diese Aufgaben können hinter einer \acrshort{REST} Schnittstelle koordiniert werden. Wie in  \autoref{par:serverless-principles} erwähnt, minimieren die Einbettung der Dienste von Drittanbietern und verstärkte Front-Ends den Fußabdruck des eigenen Back-Ends.
 
-\subsection{Graph Query}
-\begin{wrapfigure}{l}{0.36\textwidth}
-	\includegraphics[scale=0.36]{./pics/GraphQuery.eps}
+\section{Graph Query}
+\begin{figure}[H]
+	\centering
+		\includegraphics[scale=0.60]{./pics/GraphQuery.eps}
 	\caption{Graph Query}
 	\label{pic:graph-query}
-\end{wrapfigure}
+\end{figure}
+%\begin{wrapfigure}{l}{0.36\textwidth}
+%	\includegraphics[scale=0.36]{./pics/GraphQuery.eps}
+%	\caption{Graph Query}
+%	\label{pic:graph-query}
+%\end{wrapfigure}
 Wenn mit einer Anfrage mehrere Datenbanken abgefragt werden, entstehen multiple Paketumlaufzeiten ( Round-Trip ). Stellt eine \acrshort{REST} Schnittstelle in einer Anfrage zu wenig Queryparameter zur Verfügung, dann entsteht Overfetching, weil die Anfrage nicht präzise genug ist. Dagegen kann der Client die Parameter für die Abfrage spezifizieren und das Back-End baut sie zusammen und führt sie aus.
 
 
-\subsection{Real time processing}
-\begin{wrapfigure}{l}{0.36\textwidth}
-	\includegraphics[scale=0.36]{./pics/real-time-processing.eps}
+\section{Real time processing}
+\begin{figure}[H]
+	\centering
+		\includegraphics[scale=0.60]{./pics/real-time-processing.eps}
 	\caption{Real Time Processing}
 	\label{pic:real-time-processing}
-\end{wrapfigure}
+\end{figure}
+%\begin{wrapfigure}{l}{0.36\textwidth}
+%	\includegraphics[scale=0.36]{./pics/real-time-processing.eps}
+%	\caption{Real Time Processing}
+%	\label{pic:real-time-processing}
+%\end{wrapfigure}
 Die Verarbeitung von Streams in Echtzeit kann durch einen Buffer, der je nach Konfiguration die Daten weiter an den Worker leitet. Einen wesentlichen Vorteil stellt die unabhängige Skalierung des Streams und des Workers je nach Anfrage dar. Bei fehlerhafter Verarbeitung werden die Prozesse neu angestoßen.
 \\
 \\
@@ -690,33 +728,51 @@ Die Verarbeitung von Streams in Echtzeit kann durch einen Buffer, der je nach Ko
 %Throttling -> Scallability of Serverless Solved vs Transaction
 %Vallet key <-> Auht0
 
-\subsection{Priority Queue}\label{sec:priority-queue}
-\begin{wrapfigure}{l}{0.36\textwidth}
-	\includegraphics[scale=0.36]{./pics/pattern-priority-queue.eps}
+\section{Priority Queue}\label{sec:priority-queue}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.60]{./pics/pattern-priority-queue.eps}
 	\caption{Priority Queue}
 	\label{pic:priority-queue}
-\end{wrapfigure}
+\end{figure}
+%\begin{wrapfigure}{l}{0.36\textwidth}
+%	\includegraphics[scale=0.36]{./pics/pattern-priority-queue.eps}
+%	\caption{Priority Queue}
+%	\label{pic:priority-queue}
+%\end{wrapfigure}
 Anwendungen können spezifische Aufgaben delegieren, wie z.B die Integration mit anderen Anwendungen und Services. Anders als bei einer FIFO  ( First In First Out ) Queue können die Nachrichten nach Priorität automatisch sortiert und asynchron verarbeitet werden. Für Systeme ohne integrierte Priorisierung können mehrere Queues für unterschiedliche Prioritäten benutzt werden und die Anzahl von Consumerprozessen wird entsprechend angepasst. Im letzteren Fall wird dabei die Starvation von Nachrichten, mit geringer Priorität, vermieden.
 
 Das Priority Queue wird im Rahmen des Entwurfsmusters Competing Consumers als ein Consumerservice aufgefasst. Steigt stark die Anzahl von Anfragen an die Kapazitäten des Systems, kommt es zu seiner Überbelastung. Ein Consumerservice als Moderator von Anfragen ist im Stande das zu verhindern.
 
 
 
-\subsection{Fan Out}
+\section{Fan Out}
 \label{sec:fan-out}
-\begin{wrapfigure}{l}{0.45\textwidth}
-	\includegraphics[height=3cm]{./pics/pattern-fan-out.eps}
-	\caption{Fan Out}
-	\label{pic:fan-out}
-\end{wrapfigure}
+\begin{figure}[H]
+	\centering
+\includegraphics[height=3cm]{./pics/pattern-fan-out.eps}
+\caption{Fan Out}
+\label{pic:fan-out}
+\end{figure}
+%\begin{wrapfigure}{l}{0.45\textwidth}
+%	\includegraphics[height=3cm]{./pics/pattern-fan-out.eps}
+%	\caption{Fan Out}
+%	\label{pic:fan-out}
+%\end{wrapfigure}
 Bei dem Eintritt eines Events können ein oder mehrere Subscriber durch die gepushte Benachrichtigung angestoßen werden. Damit wird ein Kommunikationskanal  \autoref{sec:priority-queue} zur Verwaltung von Nachrichten wiederverwendet und extra Geschäftslogik umgangen, z.B. kein Command Pattern für die gleiche Funktionalität\cite{serverlessArchAWS}.
 
-\subsection{Federated Identity}\label{sec:federated-identity}
-\begin{wrapfigure}{l}{0.36\textwidth}
-	\includegraphics[scale=0.36]{./pics/pattern-federated-identity.eps}
-	\caption{Federated Identity}
-	\label{pic:federated-identity}
-\end{wrapfigure}
+\section{Federated Identity}\label{sec:federated-identity}
+\begin{figure}[H]
+	\centering
+\includegraphics[scale=0.60]{./pics/pattern-federated-identity.eps}
+\caption{Federated Identity}
+\label{pic:federated-identity}
+\end{figure}
+%\begin{wrapfigure}{l}{0.36\textwidth}
+%	\includegraphics[scale=0.36]{./pics/pattern-federated-identity.eps}
+%	\caption{Federated Identity}
+%	\label{pic:federated-identity}
+%\end{wrapfigure}
 Benutzer arbeiten mit multiplen Anwendungen von unterschiedlichen Organisationen. Um gleiche Zugangsdaten für Benutzter wiederverwenden zu können, wird dem Nutzer eine Identität bei einem Drittanbieter zugeteilt, diese wird mit einem Token an die Anwendung weitergeleitet. Der Authentisierungscode kann daher von dem Anwendungscode abgetrennt werden, damit kann zusätzliche Komplexität bei der Codierung für die Authentisierung vermieden werden.
 
 \chapter{AWS-Serverless-Angebote}
@@ -1114,7 +1170,7 @@ ResultSet results = qexec.execSelect();
 
 Nach der Ausführung der Abfrage ( Zeile 7 ) werden die Ergebnisse in Zeile 15 iteriert und anschließend wird eine Referenz zu einem \acrshort{JSON}-Objekt zurück geliefert.\\
 
-Mit der bisher beschriebenen Implementierung der Webanwendung können Daten abgefragt und verarbeitet werden. Diese Ergebnisse stellen ein Feedback dar, womit Konzepte (  siehe \autoref{aspect:proofConcept} ) bewiesen, ausgewertet und weiterentwickelt werden können. % Weiter zur Auswertung Time to market etc.
+Mit der bisher beschriebenen Implementierung der Webanwendung können Daten abgefragt und verarbeitet werden. Diese Ergebnisse stellen ein Feedback dar, womit Konzepte (  siehe \autoref{aspect} ) bewiesen, ausgewertet und weiterentwickelt werden können. % Weiter zur Auswertung Time to market etc.
 
 %% ----------- hier fängt es mit dem Refactoring an
 
@@ -1314,6 +1370,14 @@ Diese Schwierigkeit macht die Deploymentframeworks wertvoll, da sie nicht nur di
 \acrshort{AWS} ermöglicht es, den Entwicklungsstand der Dienste zu bezeichnen, z.B \glqq Dev\grqq\ oder \glqq Produktion\grqq\ und Dienste in Browsern einzeln zu Testen. Dies ist nur bedingt ausreichend, denn Systemtests sind noch nicht möglich. Somit gewinnt die Deployment-Strategie an Bedeutung.
 
 
+
+\paragraph{Zur Entwicklung}
+Die starke Komponentisierung und Dezentralisierung von Software, die Variabilität von Programmiermodellen, Frameworks, Tools, Sprachen und deren Entwicklungsumgebung erhöht die Komplexität des Entwicklungszyklus und weckt einen Bedarf an Tools zur Automatisierung von Deployment, Konfiguration und Tests. Ein klar definierter Handlungsplan bei der Softwareentwicklung  erleichtert das Abstrahieren von zu bearbeitenden Details.
+
+Die DevOps Kultur gibt dazu Hilfestellungen. Neben dem Entwurf der Softwarearchitektur muss, um deren Umsetzung zeitgemäß zu gewährleisten, eine zum Projekt passende DevOps Strategie aufstellen.
+Um einen Vorteil aus den neuen Technologien zu ziehen, ist die Recherche nach schon existierenden DevOps Frameworks besonders wichtig. Ihre Integration in die DevOps Strategie sind einer agilen Entwicklung dienlich.
+
+\paragraph{TODO: downwards on}
 \paragraph{Transaktionen}
 Transaktionen können nicht parallel ausgeführt werden. Sequenciel aka Messaging Pattern.
 Zusammenspiel Arch. interfaces prog.modell und FW
@@ -1346,12 +1410,6 @@ viel Konfiguration, kaum Konveniton -> .json 4 everything
 local testing braucht event-symulation.json
 
 
-
-\paragraph{Zur Entwicklung}
-Die starke Komponentisierung und Dezentralisierung von Software, die Variabilität von Programmiermodellen, Frameworks, Tools, Sprachen und deren Entwicklungsumgebung erhöht die Komplexität des Entwicklungszyklus und weckt einen Bedarf an Tools zur Automatisierung von Deployment, Konfiguration und Tests. Ein klar definierter Handlungsplan bei der Softwareentwicklung  erleichtert das Abstrahieren von zu bearbeitenden Details.
- 
-Die DevOps Kultur gibt dazu Hilfestellungen. Neben dem Entwurf der Softwarearchitektur muss, um deren Umsetzung zeitgemäß zu gewährleisten, eine zum Projekt passende DevOps Strategie aufstellen.
-Um einen Vorteil aus den neuen Technologien zu ziehen, ist die Recherche nach schon existierenden DevOps Frameworks besonders wichtig. Ihre Integration in die DevOps Strategie sind einer agilen Entwicklung dienlich.
 
 \paragraph{Zum Datenmodel}
 Aus der Anforderungs analyse einer Informations Techonologie Web Anwendung sind die Builder, Texste und dessen Darstellung das ergebniss, dass ohne Daten inhaltlos wäre. Auf eine Seite Das Relationale Datenschema stellt keine Semantik für sich dar, sondern durch von der Software entstandene Verknüpfung zwischen dem Endergebnis und dem Datenschema. Auf der Anderen Seite die  RDF Daten einer Ontologie \textit{is} das Modell.
