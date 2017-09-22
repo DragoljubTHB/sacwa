@@ -266,7 +266,7 @@ morestring=[b]"
 \textsf{\textbf{\large BACHELORARBEIT}}\textsf{}\\
 
 \textsf{}\\
-\textsf{\huge Serverless Architekturen für Konventionelle Webanwendungen}
+\textsf{\huge Serverless Architekturen für konventionelle Webanwendungen}
 \par\end{center}{\Large \par}
 
 \vspace{2cm}
@@ -529,7 +529,7 @@ Für die Betrachtung, ob \acrshort{FaaS} eine Lösung für eine konkrete Problem
 \begin{itemize}
 	\item Aufgaben als Reaktion auf Events erledigt werden. 
 	\item ein Scriptbehälter für z.B Cron Aufgaben benötigt wird. Die Zugriffsrechte sind beschränkter, Fehler sind einfacher zu erkennen und an einer Stelle aggregiert ( siehe CloudWatch ), des weiteren können Deployments einfacher angestoßen werden.
-	\item die Skalierung des Servers bei einer ressourcenintensiven Verarbeitung vermieden werden soll.\autoref{sec:pipes-filters}
+	\item die Skalierung des Servers bei einer ressourcenintensiven Verarbeitung vermieden werden soll. \autoref{sec:pipes-filters}
 	\item Services vorgegeben sind, die selten benutzt werden.
 	\item die Verwaltung von \acrshort{API}-Server umgangen werden soll.
 \end{itemize}\cite{lambdaAWS}
@@ -540,7 +540,7 @@ Für die Betrachtung, ob \acrshort{FaaS} eine Lösung für eine konkrete Problem
 \paragraph{Die Softwarearchitekturen} helfen uns zu kommunizieren, welchen Zweck unsere Software erreichen möchte. Ihre \textbf{Entwurfsmuster} bieten generische Lösungen für wiederkehrende Probleme bei der Softwareentwicklung.
 
 
-Auf konventionelle Webanwendungen wird hier Bezug genommen, als ein System, das über Presentation-, Data-, and Logik-Tiers verfügt. Jedes Tier kann mehrere Logik-Layers enthalten, die für unterschiedliche Funktionalitäten der Domains verantwortlich sind. Logging ist ein Beispiel für Cross-Cutting Concern, das Layers überspannt. Die Komplexität der Anwendung wächst zusammen mit der Beschichtung.
+Auf konventionelle Webanwendungen wird hier Bezug genommen, als ein System, das über Presentation-, Data-, and Logikschicht verfügt. Jede Schicht kann mehrere Logik-Layers enthalten, die für unterschiedliche Funktionalitäten der Domains verantwortlich sind. Logging ist ein Beispiel für Cross-Cutting Concern, das Layers überspannt. Die Komplexität der Anwendung wächst zusammen mit der Anzahl der Schichten.
 Eine Überprüfung der Architektur ist sinnvoll, wenn eine erfolgreiche Codeänderung von einer Anderen abhängt.
 
 \newacronym{SOA}{SOA}{Service Oriented Architecture}
@@ -562,7 +562,7 @@ Der Fokus in der Cloud liegt daher auf Service und Servicekomposition \cite{clou
 \newacronym{DSL}{DSL}{Domain Specific Language}
 Microservices und Serverless versuchen die Komplexität der SOA ( \autoref{pic:arch-soa} ) anzusprechen. Beide Ansätze führen  Separation of Concerns, häufige Deployments und Heterogene \acrfull{DSL} mit sich.\cite{microAdv}
 
-Auf einer Seite können Microservices ihren Zustand und Daten speichern und mit Hilfe von Frameworks implementiert werden. Auf der anderen Seite sind Serverless zustandlos, ihre Datenspeicherung ist zeitlich begrenzt und sie unterstützen Frameworks nicht direkt. ConnectWise\cite{ConnectWise}, Netflix\cite{Netflix} und UNLESS\cite{UNLESS} sind Beispiele für Unternehmen, die auch von Serverless Architekturen profitieren.
+Auf einer Seite können Microservices ihren Zustand und Daten speichern und mit Hilfe von Frameworks implementiert werden. Auf der anderen Seite sind Serverless Architekturen zustandlos, ihre Datenspeicherung ist zeitlich begrenzt und sie unterstützen Frameworks nicht direkt. ConnectWise\cite{ConnectWise}, Netflix\cite{Netflix} und UNLESS\cite{UNLESS} sind Beispiele für Unternehmen, die auch von Serverless Architekturen profitieren.
 
 
 \newacronym{EDA}{EDA}{Event Driven Architecture}
@@ -573,7 +573,7 @@ Die Serverless Technologien können durch Benachrichtigungen gestartet werden. D
 Zusammenfassend sind folgende Vorteile ersichtlich:
 \begin{itemize}
 	\item Die Wiederverwendung von Services in unterschiedlichen Anwendungen senkt die Entwicklungskosten und den Time-To-Market.
-	\item Durch die Standarisierung der Services kann ein System mit einer Rekonfiguration und ohne Weiterentwicklung schnell  auf die geschäftliche oder externe Bedürfnisse angepasst werden. Somit wird ein agiles Arbeiten möglich.
+	\item Durch die Standarisierung der Services kann ein System mit einer Rekonfiguration und ohne Weiterentwicklung schnell auf die geschäftlichen oder externen Bedürfnisse angepasst werden. Somit wird ein agiles Arbeiten möglich.
 	\item Das Monitoring hilft Fehler zu erkennen und die Leistung zu messen.
 	\item Aggregate von bereitgestellten Services können komplexere und domainübergreifende Aufgaben ausführen.
 \end{itemize}\cite{cloudEssentials}
@@ -589,14 +589,14 @@ Im späteren Kapitel wird REST als Teil des \acrshort{EDA}-Architekturstils vorg
 Serverless kann als ein Ansatz beschrieben werden, der die Verwendung von einem Rechenservice, Dienste von Drittanbietern, von \acrfull{API}s und die Anwendung von Architekturmustern fördert. Ein solcher Anwendungsfall ist die Kommunikation mithilfe eines \glqq Delegation-Tokens\grqq\ zwischen den Front- und Back-End Diensten. \acrshort{FaaS} ist nur ein Aspekt dessen.
 
 
-Serverless übernimmt die Entwurfsprinzipien von \acrshort{SOA} und \acrshort{EDA} \autoref{sec:soa} und daher ergeben sich laut Sbarski folgende Richtlinien:
+Serverless übernimmt die Entwurfsprinzipien von \acrshort{SOA} und \acrshort{EDA} ( siehe \autoref{sec:soa} ) und daher ergeben sich laut Sbarski folgende Richtlinien:
 \newacronym{SRP}{SRP}{Single Responsability Principle}
 \begin{itemize}\label{par:serverless-principles}
 	\item Ein Rechenservice wird genutzt, um Quellcode auf Anfrage auszuführen, kein Server.
 	\item Zustandslose Funktionen unterliegen dem \acrshort{SRP} Prinzip.
 	\item Für den Architekturentwurf werden Push basierte ereignisorientierte Pipelines genutzt.
 	\item Front-Ends werden durch die Einbettung von mehr Zuständigkeiten verstärkt.
-	\item Dienste von Drittanbieter dem Schreiben von eigenem Quellcode bevorzugt.
+	\item Dienste von Drittanbieter werden dem Schreiben von eigenem Quellcode bevorzugt.
 \end{itemize}\cite{serverlessArchAWS}
 
 Die Vernetzung von zustandslosen Funktionen erlaubt, komplexe Systeme zu entwerfen, die einfach zu skalieren sind.
@@ -610,7 +610,7 @@ Die Komplexität und längerfristige Wartbarkeit des Systems lässt sich dadurch
 	\label{pic:classic-add}
 \end{wrapfigure}
 
-In einem beispielhaften konventionellen AdServer wird nach einem Click auf eine Werbung eine Nachricht über ein Kanal an einen Clickprozessor geschickt, der innerhalb einer Anwendung ausgeführt wird.\\ \\ \\
+In einem beispielhaften konventionellen AdServer wird nach einem Klick auf eine Werbung eine Nachricht über einen Kanal an einen Klickprozessor geschickt, der innerhalb einer Anwendung ausgeführt wird.\\ \\ \\
 
 \begin{wrapfigure}{l}{0.36\textwidth}
 	\includegraphics[scale=0.30]{./pics/serverless-example.eps}
@@ -618,7 +618,7 @@ In einem beispielhaften konventionellen AdServer wird nach einem Click auf eine 
 	\label{pic:serverless-add}
 \end{wrapfigure}
 
-Mit dem Serverless Ansatz wird dieser Clickprozessor pro Nachricht als eine neue Instanz der Funktion ausgeführt. Ihre Laufzeitumgebung und ihr Messagebroker wird von dem Cloudanbieter verwaltet. \cite{fowlerBlogServerless}\\
+Mit dem Serverless Ansatz wird dieser Klickprozessor pro Nachricht als eine neue Instanz der Funktion ausgeführt. Ihre Laufzeitumgebung und ihr Messagebroker wird von dem Cloudanbieter verwaltet. \cite{fowlerBlogServerless}\\
  
 
 Dazu wird für den Entwurf von Serverless Architekturen eine Reihe von Mustern von unterschiedlichen Autoren vorgeschlagen.\\
@@ -630,7 +630,7 @@ Dazu wird für den Entwurf von Serverless Architekturen eine Reihe von Mustern v
 	\includegraphics[width=0.9\linewidth]{./pics/pipes-and-filters.eps}
 \end{wrapfigure}
 Eine Anwendung kann Aufgaben von unterschiedlicher Komplexität ausführen. In einem monolithischen Modul sind das Refactoring, die Optimierung und die Wiederverwendung erschwert. \\
-Zunächst werden die Aufgaben in diskrete Elemente ( oder Filter ) nach dem \acrshort{SRP} zerteilt und in einer Pipeline kombiniert. Dies hilft redundanten Quellcode zu vermeiden, ihn zu löschen, zu ersetzen oder zu integrieren in zusätzliche Komponenten, sich sobald die Aufgabenanforderungen ändern\cite{patternsCloud}. Ein weiterer Vorteil besteht darin, dass ein Flaschenhalseffekt vermieden wird, in dem mehreren Instanzen erzeugt werden, falls ein Element nicht genug Ressourcen für die Verarbeitung hat. 
+Zunächst werden die Aufgaben in diskrete Elemente ( oder Filter ) nach dem \acrshort{SRP} zerteilt und in einer Pipeline kombiniert. Dies hilft redundanten Quellcode zu vermeiden, ihn zu löschen, zu ersetzen oder in zusätzliche Komponenten zu integrieren, sobald sich die Aufgabenanforderungen ändern\cite{patternsCloud}. Ein weiterer Vorteil besteht darin, dass ein Flaschenhalseffekt vermieden wird, in dem mehrere Instanzen erzeugt werden, falls ein Element nicht genug Ressourcen für die Verarbeitung hat. 
 
 
 \subsection{Legacy Api Proxy}
@@ -642,7 +642,7 @@ Zunächst werden die Aufgaben in diskrete Elemente ( oder Filter ) nach dem \acr
 	\end{center}
 	
 \end{wrapfigure}
-Wenn eine \acrshort{API} veraltet oder schwer zu benutzen ist, kann eine extra ( RESTful ) \acrshort{API} in den Vordergrund gestellt werden, die in gesonderten Prozessen Daten transponieren und für die angeforderten Formate aufstellen ( marshall ). Dies ist besonders nützlich, wenn die Legacy-Services selten benutzt werden. Zusätzlich erleichtert die Api Proxy die Integration mit anderen Architekturansätzen.
+Wenn eine \acrshort{API} veraltet oder schwer zu benutzen ist, kann eine extra ( RESTful ) \acrshort{API} in den Vordergrund gestellt werden, die in gesonderten Prozessen Daten transponieren und für die angeforderten Formate aufstellen ( marshall ). Dies ist besonders nützlich, wenn die Legacy-Services selten benutzt werden. Zusätzlich erleichtert der Api Proxy die Integration mit anderen Architekturansätzen.
 \\
 \\
 
@@ -653,7 +653,7 @@ Wenn eine \acrshort{API} veraltet oder schwer zu benutzen ist, kann eine extra (
 	\caption{Compute as a Backend}
 	\label{pic:compute-backend}
 \end{wrapfigure}
-Obwohl der Client direkt mit Services kommunizieren kann, müssen vertraute Informationen geschützt werden, indem sie das Back-End verarbeitet\cite{serverlessArchAWS}. Diese Aufgaben können hinter einer \acrshort{REST} Schnittstelle koordiniert werden. Wie in \autoref{par:serverless-principles} erwähnt, minimieren die Einbettung der Dienste von Drittanbietern und verstärkte Front-Ends den Fußabdruck des eigenen Back-Ends.
+Obwohl der Client direkt mit Services kommunizieren kann, müssen vertraute Informationen geschützt werden, indem sie das Back-End verarbeitet\cite{serverlessArchAWS}. Diese Aufgaben können hinter einer \acrshort{REST} Schnittstelle koordiniert werden. Wie in  \autoref{par:serverless-principles} erwähnt, minimieren die Einbettung der Dienste von Drittanbietern und verstärkte Front-Ends den Fußabdruck des eigenen Back-Ends.
 
 \subsection{Graph Query}
 \begin{wrapfigure}{l}{0.36\textwidth}
@@ -696,9 +696,9 @@ Die Verarbeitung von Streams in Echtzeit kann durch einen Buffer, der je nach Ko
 	\caption{Priority Queue}
 	\label{pic:priority-queue}
 \end{wrapfigure}
-Anwendungen können spezifische Aufgaben delegieren, wie z.B die Integration mit anderen Anwendungen und Services. Am Beispiel einer FIFO ( First In First Out ) Queue können die Nachrichten nach Priorität automatisch sortiert und asynchron verarbeitet werden. Für Systeme ohne integrierte Priorisierung können mehrere Queues für unterschiedliche Prioritäten benutzt werden und die Anzahl von Consumerprozessen wird entsprechend angepasst. Im letzteren Fall wird dabei die Starvation von Nachrichten, mit geringer Priorität, vermieden.
+Anwendungen können spezifische Aufgaben delegieren, wie z.B die Integration mit anderen Anwendungen und Services. Anders als bei einer FIFO  ( First In First Out ) Queue können die Nachrichten nach Priorität automatisch sortiert und asynchron verarbeitet werden. Für Systeme ohne integrierte Priorisierung können mehrere Queues für unterschiedliche Prioritäten benutzt werden und die Anzahl von Consumerprozessen wird entsprechend angepasst. Im letzteren Fall wird dabei die Starvation von Nachrichten, mit geringer Priorität, vermieden.
 
-Das Priority Queue wird im Rahmen des Entwurfsmusters Competing Consumers als ein Consumerservice aufgefasst. Steigt stark die Anzahl an Anfragen die Kapazitäten des Systems, kommt zu seiner Überbelastung. Ein Consumerservice als Moderator von Anfragen ist im Stande das zu verhindern.
+Das Priority Queue wird im Rahmen des Entwurfsmusters Competing Consumers als ein Consumerservice aufgefasst. Steigt stark die Anzahl von Anfragen an die Kapazitäten des Systems, kommt es zu seiner Überbelastung. Ein Consumerservice als Moderator von Anfragen ist im Stande das zu verhindern.
 
 
 
@@ -709,7 +709,7 @@ Das Priority Queue wird im Rahmen des Entwurfsmusters Competing Consumers als ei
 	\caption{Fan Out}
 	\label{pic:fan-out}
 \end{wrapfigure}
-Bei dem Eintritt eines Events können ein oder mehrere Subscriber durch die gepushte Benachrichtigung angestoßen werden. Damit wird ein Kommunikationskanal \autoref{sec:priority-queue} zur Verwaltung von Nachrichten wiederverwendet und extra Geschäftslogik umgangen, z.B. kein Command Pattern für die gleiche Funktionalität\cite{serverlessArchAWS}.
+Bei dem Eintritt eines Events können ein oder mehrere Subscriber durch die gepushte Benachrichtigung angestoßen werden. Damit wird ein Kommunikationskanal  \autoref{sec:priority-queue} zur Verwaltung von Nachrichten wiederverwendet und extra Geschäftslogik umgangen, z.B. kein Command Pattern für die gleiche Funktionalität\cite{serverlessArchAWS}.
 
 \subsection{Federated Identity}\label{sec:federated-identity}
 \begin{wrapfigure}{l}{0.36\textwidth}
@@ -749,7 +749,7 @@ Benutzer arbeiten mit multiplen Anwendungen von unterschiedlichen Organisationen
 \begin{wrapfigure}{l}{0.16\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Storage_GRAYSCALE_AmazonS3.eps}
 \end{wrapfigure}
-\paragraph{\acrfull{S3}} ist ein Speicherdienst, der durch \acrshort{SNS} \autoref{par:sns} die Events ( z.B das Löschen oder Erzeugen eines Objektes ) an \acrshort{SNS}\autoref{par:sns}, \acrfull{SQS} \autoref{par:sqs} oder Lambda schicken kann. \glqq Buckets\grqq\ sind Verzeichnisse auf der höchsten Ebene des Verzeichnissystems. Ein Objekt ist eine Kombination von Daten, Metadaten und eines Keys, der innerhalb des Buckets eindeutig ist.
+\paragraph{\acrfull{S3}} ist ein Speicherdienst, der durch \acrshort{SNS} \autoref{par:sns} die Events ( z.B das Löschen oder Erzeugen eines Objektes ) an \acrshort{SNS}  \autoref{par:sns}, \acrfull{SQS} \autoref{par:sqs} oder Lambda schicken kann. \glqq Buckets\grqq\ sind Verzeichnisse auf der höchsten Ebene des Verzeichnissystems. Ein Objekt ist eine Kombination von Daten, Metadaten und eines Keys, der innerhalb des Buckets eindeutig ist.
 
 
 \begin{wrapfigure}{l}{0.16\textwidth}
@@ -761,7 +761,7 @@ Durch automatische Skalierung mindert sich die Leistung nicht. Bei der Änderung
 \begin{wrapfigure}{l}{0.10\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Messaging_GRAYSCALE_AmazonSQS.eps}
 \end{wrapfigure}
-\paragraph{\acrfull{SQS}}\label{par:sqs} ist eine message queue. Sie erlaubt die Interaktion von mehreren Publishers und Consumers in einer \acrshort{SQS} und automatisch den Lebenszyklus der Nachrichten verwaltet und kontrolliert Auszeiten ( Time out ) oder individuelle Verzögerungen.
+\paragraph{\acrfull{SQS}}\label{par:sqs} ist eine message queue. Sie erlaubt die Interaktion von mehreren Publisher und Consumer in einer \acrshort{SQS} und verwaltet automatisch den Lebenszyklus der Nachrichten und kontrolliert Auszeiten ( Time out ) oder individuelle Verzögerungen.
 
 \begin{wrapfigure}{l}{0.10\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Analytics_GRAYSCALE_AmazonKinesis.eps}
@@ -782,7 +782,7 @@ Durch automatische Skalierung mindert sich die Leistung nicht. Bei der Änderung
 \begin{wrapfigure}{l}{0.10\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Messaging_GRAYSCALE_AmazonSES.eps}
 \end{wrapfigure}
-\paragraph{\acrfull{SES}} behandelt die Absendung und die Empfangsoperationen wie Spamfilterung, Virus Scann und Ablehnung nicht vertrauter Quellen. Emails können weiterhin in \acrshort{S3} gespeichert, an Lambda versendet oder eine \acrshort{SNS} Benachrichtigung erstellen.
+\paragraph{\acrfull{SES}} behandelt die Absendung und die Empfangsoperationen wie Spamfilterung, Virus Scan und Ablehnung nicht vertrauter Quellen. Emails können weiterhin in \acrshort{S3} gespeichert, an Lambda versendet werden oder eine \acrshort{SNS} Benachrichtigung auslösen.
 
 \chapter{KOMA, eine Beispielanwendung}\label{sec:KOMA} 
 Im Folgenden wird eine Beispielanwendung, unter Verwendung der in \autoref{chap:aws-serverless} genannten Entwurfsmuster, implementiert.
@@ -818,7 +818,7 @@ Die Auflistung \autoref{list:koma-requirements} stellt einen für diese Arbeit a
 	\item Ertragen von großen Nutzlastschwankungen
 \end{itemize}
 
-\subsection{ER-Modell} Aus der Beschreibung von \acrshort{KOMA} \autoref{sec:KOMA} ergibt sich folgendes Modell.\autoref{list:koma-requirements}
+\subsection{ER-Modell} Aus der Beschreibung von \acrshort{KOMA} \autoref{sec:KOMA} ergibt sich folgendes Modell. \autoref{list:koma-requirements}
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=1]{./pics/koma-er-concept.eps}
@@ -826,7 +826,7 @@ Die Auflistung \autoref{list:koma-requirements} stellt einen für diese Arbeit a
 	\caption{Entity-Relationship Modell für KOMA}
 \end{figure}
 
-Dieses ER-Diagramm \autoref{list:koma-requirements} definiert die Beziehungen zwischen den in \autoref{sec:KOMA} beschriebenen Konzepten. Eine Kompetenz ( Competence ) besteht aus Fertigkeiten ( Skill ), die in einer Lernaktivität ( LearningActivity ) erworben werden. Die Letztere gehört zu einer Sequenz von Lernaktivitäten ( LearningSequence ). Erworbene Kompetenzen können nach Klassenstufen und Fächern aufgerufen werden, damit ein Kompetenzstand abgeleitet werden kann. Das Modell ermöglicht die Gestaltung von \acrshort{EQF}-konformen Kompetenzprofilen ( CompetenceModel ).
+Dieses ER-Diagramm \autoref{list:koma-requirements}  definiert die Beziehungen zwischen den in \autoref{sec:KOMA} beschriebenen Konzepten. Eine Kompetenz ( Competence ) besteht aus Fertigkeiten ( Skill ), die in einer Lernaktivität ( LearningActivity ) erworben werden. Die Letztere gehört zu einer Sequenz von Lernaktivitäten ( LearningSequence ). Erworbene Kompetenzen können nach Klassenstufen und Fächern aufgerufen werden, damit ein Kompetenzstand abgeleitet werden kann. Das Modell ermöglicht die Gestaltung von \acrshort{EQF}-konformen Kompetenzprofilen ( CompetenceModel ).
 
 
 
@@ -841,7 +841,7 @@ Wird der Knopf zum Einloggen gedrückt, fordert eine Weiterleitung ( mit dem dar
 \newacronym{URL}{URL}{Universal Resource Locator}
 Nach dem Login kann der Browser durch Absenden der nächsten Anfragen seinen Token zur Überprüfung übergeben. Die \acrshort{API} Gateway empfängt die Anfragen und transponiert deren Parameter, um zunächst die entsprechende Lambdafunktion synchron aufzurufen. Da die \acrshort{API} nach \acrshort{REST} entworfen ist, werden die Lambdafunktionen nach der \acrshort{HTTP}-Methode und der \acrshort{URL} abgebildet.
 
-Dieser Loginprozess entspricht dem in \autoref{sec:federated-identity} beschrieben Federated Identity Muster.
+Dieser Loginprozess entspricht dem in  \autoref{sec:federated-identity} beschrieben Federated Identity Muster.
 
 Eine Anfrage an die \lstinline|GET https://<host>/page/{individual}| \acrshort{URL} führt die Lambdafunktion \glqq OWL Parser\grqq\ aus. Die Funktion liest die Datenbasis von S3 \glqq OWL Storage \grqq\ und extrahiert den Wert des \lstinline|{individual}|-Parameters, um eine Antwort zu generieren. Diese abstrahierte Zuweisung von \acrshort{URL}s auf Back-End Dienste entspricht einem \acrshort{REST} Ansatz. Dagegen erwartet die \lstinline|POST https://<host>/sparql| \acrshort{URL} eine Abfrage im \glqq Request Body\grqq\ der Anfrage mit dem Key \glqq Query\grqq\ , um sie auf der oben genannten Datenbasis auszuführen. Dabei unterstützt die Java Bibliothek Jena ARQ\cite{jenaARQ}
 
@@ -907,7 +907,7 @@ Der Entwurf der Ontologie wurde nach Ontology-Engineering-101 durchgeführt:
 Während der Umsetzung wurde Protégé \cite{Protégé} als unterstützende Anwendung benutzt.
 
 Um bereits vorhandene Technologien zu nutzen,
-wurde ein aktueller öffentlicher graphischer ontologischer Entwurf\cite{ontoMoodle} ( siehe \autoref{fig:competence-ontology} ), der in Moodle mit einer relationalen Datenbasis und PHP umgesetzt wurde, untersucht.
+wurde ein aktueller öffentlicher graphischer ontologischer Entwurf\cite{ontoMoodle} ( siehe  \autoref{fig:competence-ontology} ), der in Moodle mit einer relationalen Datenbasis und PHP umgesetzt wurde, untersucht.
 
 Eine Implementation dieser Ontologie ist jedoch nicht von Watson\cite{Watson} und LOD\cite{LOD} auffindbar.
 
@@ -958,7 +958,7 @@ Das folgende \autoref{lst:turtle-triple} zeigt eine beispielhafte Darstellung vo
 Um aus Ontologien Informationen zu entnehmen, wird die Abfragesprache \acrfull{Sparql} 
 verwendet. Diese ähnelt der traditioneller SQL. 
 
-Die einfachste Abfrage in Sparql wählt alle Triples von dem abgefragten Datenmodell ( oder Graph ) wie in \autoref{lst:sparql-selectall} gezeigt wird.
+Die einfachste Abfrage in Sparql wählt alle Triples von dem abgefragten Datenmodell ( oder Graph ) wie in  \autoref{lst:sparql-selectall} gezeigt wird.
 
 \begin{lstlisting}[language=Sparql,caption={Sparql SELECT ALL},label={lst:sparql-selectall}]
 SELECT * WHERE { ?s ?p ?o .}
@@ -1012,7 +1012,7 @@ Die Komplexität des darunterliegenden Datenmodells erlaubt einer \acrshort{REST
 	\end{tabular}
 \end{table}
 
-AWS API Gateway ermöglicht die Definition, Konfiguration und das Importieren von Schnittstellen. Beispielsweise kann der Anfrageparameter in \lstinline|GET https://<host>/page/Alice}| mithilfe des Musters in \autoref{lst:map-template} an den Key \glqq individual \grqq\ zugewiesen werden. Hier handelt sich um einen \glqq body mapping template\grqq\ für den Inhaltstyp ( content type ) \glqq application/json\grqq\ .
+AWS API Gateway ermöglicht die Definition, Konfiguration und das Importieren von Schnittstellen. Beispielsweise kann der Anfrageparameter in \lstinline|GET https://<host>/page/Alice}| mithilfe des Musters in  \autoref{lst:map-template} an den Key \glqq individual \grqq\ zugewiesen werden. Hier handelt sich um einen \glqq body mapping template\grqq\ für den Inhaltstyp ( content type ) \glqq application/json\grqq\ .
 
 \begin{lstlisting}[language=Javascript,caption={API Gateway Request Mapping Template},label={lst:map-template}]
 https://<host>/page/{individua}
@@ -1022,7 +1022,7 @@ https://<host>/page/{individua}
 }
 \end{lstlisting}
 
-Nachdem eine Anfrage eingetreten ist und deren Parameter transponiert sind, erfolgt ein synchroner Aufruf der zuständigen Lambdafunktion. Die Verwaltung dieser Instanziierung entspricht dem Priority Queue Muster in \autoref{sec:priority-queue}, wobei die \acrshort{API} Gateway der Queue und die Lambdafunktion dem Consumer entspricht.
+Nachdem eine Anfrage eingetreten ist und deren Parameter transponiert sind, erfolgt ein synchroner Aufruf der zuständigen Lambdafunktion. Die Verwaltung dieser Instanziierung entspricht dem Priority Queue Muster in  \autoref{sec:priority-queue}, wobei die \acrshort{API} Gateway der Queue und die Lambdafunktion dem Consumer entspricht.
 % Hier vtl. messaging channels ansprechen a- synch
 
 Das folgende \autoref{lst:js-handler} zeigt die Implementierung einer Lambdafunktionsfassade, die für die oben genannte \acrshort{URL} zuständig ist. 
@@ -1048,7 +1048,7 @@ exports.handler = function (event, context, callback) {
 
 Die zweite Zeile entspricht der Fassadensignatur von Lambda für Javascript. Der erste Parameter, \glqq event\grqq, enthält in diesem Fall Informationen über die ursprüngliche Anfrage. Der Zweite, \glqq context\grqq\, erlaubt den Zugang auf die Laufzeitumgebung von Lambda und kann definieren, ob die Ausführung erfolgreich ( \lstinline|context.success(Object result)| ), fehlerhaft ( \lstinline|context.fail(Error error)| ) oder beides ( \lstinline|context.done(Error error, Object result)| ) war. 
 
-In der vierten Zeile befindet sich der Aufruf \lstinline|async.waterfall(...)|. Dieser entspricht dem Waterfall Muster dessen Verarbeitungsschritte in der \autoref{pic:waterfall} dargestellt werden. 
+In der vierten Zeile befindet sich der Aufruf \lstinline|async.waterfall(...)|. Dieser entspricht dem Waterfall Muster dessen Verarbeitungsschritte in der  \autoref{pic:waterfall} dargestellt werden. 
 Dieses Muster erlaubt es, eine Reihe von Funktionen so zu verketten, dass das Ergebnis einer Funktion der Eingabeparameter der Nächsten ist. Wenn ein Fehler in einer Funktion entsteht, hält der Wasserfall an. 
 
 \begin{figure}[H]
@@ -1064,7 +1064,7 @@ Um die Wiederverwendbarkeit zu gewährleisten, ist die Abtrennung der Abhängigk
 
 Bei einer Abfrage an die \lstinline|POST https://<host>/sparql| \acrshort{URL} werden die Abfrageparameter ohne die Konfiguration von \glqq body mapping\grqq\ weiter an die zuständige Lambdafunktion geleitet.
 
-Die Funktion hinter dieser \acrshort{URL}, wie in \autoref{lst:lambda-sparql-endpoint} gezeigt, ist in Java 8 implementiert. Sie fordert die Implementierung der Schnittstelle RequestHandler. Die Generics-Parameter definieren den Klassentyp der Anfrage und des Ergebnisses, wie es im Fall der Abbildung \glqq RequestClass\grqq\ als Anfrage und \glqq String\grqq\ als Ergebnis ist. 
+Die Funktion hinter dieser \acrshort{URL}, wie in  \autoref{lst:lambda-sparql-endpoint} gezeigt, ist in Java 8 implementiert. Sie fordert die Implementierung der Schnittstelle RequestHandler. Die Generics-Parameter definieren den Klassentyp der Anfrage und des Ergebnisses, wie es im Fall der Abbildung \glqq RequestClass\grqq\ als Anfrage und \glqq String\grqq\ als Ergebnis ist. 
 
 Der Nutzer kann Umgebungsvariablen\label{lambda-env} bei der Konfiguration von Lambdafunktionen anlegen und während Laufzeit auf sie zugreifen, z.B in der Zeile 7 mittels \lstinline|System.getenv(StringConstante)|.
 
@@ -1181,9 +1181,9 @@ Die Webseite wird statisch mittels S3 geliefert. Dies geschieht mit folgendem Be
 $ aws  --region us-west-2 s3 website --index-document index.html --error-document error.html 's3://koma.thb.de'
 \end{lstlisting} 
 
-Da der Zugriff auf die Datenspeicherung gesichert werden soll, wird die Login-Funktionalität hinzugefügt. In \autoref{pic:koma-components} kann eine Übersicht der nötigen Schritte zur Anmeldung bei AuthO, zur Authentisierung und zur Autorisierung erhalten.
+Da der Zugriff auf die Datenspeicherung gesichert werden soll, wird die Login-Funktionalität hinzugefügt. In  \autoref{pic:koma-components} kann eine Übersicht der nötigen Schritte zur Anmeldung bei AuthO, zur Authentisierung und zur Autorisierung erhalten.
 
-Der Nutzer meldet sich im ersten Schritt mit dem importierten Script \lstinline|<script src="https://cdn.auth0.com/js/lock-9.min.js">| und der von \acrshort{KOMA} mit gelieferten Konfiguration ( siehe  \autoref{lst:authO-anmeldung} ) an. 
+Der Nutzer meldet sich im ersten Schritt mit dem importierten Script \lstinline|<script src="https://cdn.auth0.com/js/lock-9.min.js">| und der von \acrshort{KOMA} mit gelieferten Konfiguration ( siehe   \autoref{lst:authO-anmeldung} ) an. 
 
 \begin{lstlisting}[language=JavaScript,caption={Auth0 Anmeldung},label={lst:authO-anmeldung}]
 
