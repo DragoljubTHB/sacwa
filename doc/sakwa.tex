@@ -375,7 +375,7 @@ bei den Entscheidungen über ihrer Umsetzung. Problematisch können sich der Arc
 Der Begriff Serverless weist darauf hin, dass die Verwaltung der zugrunde liegenden Serverinfrastruktur der Anwendung von Cloudanbietern übernommen wird. 
 
 \newacronym{FaaS}{FaaS}{Function as a Service}
-Für dieses Problem wurde \acrfull{FaaS} \ref{sec:faas}, als Lösung unter der Rubrik \glqq\ Serverless\grqq\ \ref{sec:serverless} von den Hauptanbietern von \glqq Cloud\grqq\ Technologien vorgestellt.
+Für dieses Problem wurde \acrfull{FaaS} \autoref{sec:faas}, als Lösung unter der Rubrik \glqq\ Serverless\grqq\ \autoref{sec:serverless} von den Hauptanbietern von \glqq Cloud\grqq\ Technologien vorgestellt.
 
 \acrshort{FaaS} definiert das Programmiermodel, eine Funktion oder auch \glqq Nano-Microservice\grqq genannt, um den serverless Architekturstil zu adoptieren.
 
@@ -388,7 +388,7 @@ Im Rahmen des Cloud Computing handelt es sich in dieser Arbeit um eine Untersuch
 \label{sec:task}
 \newacronym{MVP}{MVP}{Minimal Viable Product}
 \newacronym{SPA}{SPA}{Single Page Application}
-Das Ziel ist ein \acrfull{MVP},in Form von einer \acrfull{SPA} \ref{sec:spa}, ausschließlich mit Serverless Technologien zur Verfügung zu stellen.
+Das Ziel ist ein \acrfull{MVP},in Form von einer \acrfull{SPA} \autoref{sec:spa}, ausschließlich mit Serverless Technologien zur Verfügung zu stellen.
 
 Nach der Umsetzung werden die Erfahrungen und Ergebnisse ausgewertet, um bei zukünftigen Entscheidungsprozessen bei der Umsetzung einer Webanwendung zu unterstützen.
 
@@ -399,10 +399,10 @@ Die Webanwendung soll möglichst flexibel für zukünftige Änderungen sein.
 
 Die vorliegende Arbeit beschäftigt sich mit dem Serverless Ausschnitt der Cloud Dienste. 
 
-Zuerst wird der Leser in die klassischen Servicemodelle \ref{chap:service-models} eingeführt. Zunächst werden die technischen Anforderungen und die dazugehörigen Beispiele des Serverless Ansatzes erläutert.
+Zuerst wird der Leser in die klassischen Servicemodelle \autoref{chap:service-models} eingeführt. Zunächst werden die technischen Anforderungen und die dazugehörigen Beispiele des Serverless Ansatzes erläutert.
 Das nächste Kapitel überblickt die aktuellen Serverless Angebote der größten Cloud Anbieter.
-Den Kern der Arbeit bildet die Analyse und Darstellung von Serverless Architekturen \ref{chap:aws-serverless} und sie fokussiert sich auf \acrfull{AWS}. In diesem Abschnitt \ref{chap:aws-serverless} werden die Serverless\ref{sec:serverless} Architekturen und das Programmiermodell vorgestellt, sowie die Entscheidungsprinzipien\ref{par:serverless-principles} erläutert.
-Der praktische Teil beschäftigt sich mit der Umsetzung und Bewertung von der oben genannten Serverless Webanwendung KOMA \ref{sec:KOMA}.
+Den Kern der Arbeit bildet die Analyse und Darstellung von Serverless Architekturen \autoref{chap:aws-serverless} und sie fokussiert sich auf \acrfull{AWS}. In diesem Abschnitt  \autoref{chap:aws-serverless} werden die Serverless \autoref{sec:serverless} Architekturen und das Programmiermodell vorgestellt, sowie die Entscheidungsprinzipien \autoref{par:serverless-principles} erläutert.
+Der praktische Teil beschäftigt sich mit der Umsetzung und Bewertung von der oben genannten Serverless Webanwendung KOMA \autoref{sec:KOMA}.
 
 Am Ende erfolgt eine Diskussion darüber, welche Trade-offs entstehen und welche Zukunftsperspektiven Serveless Technologien bieten.
 
@@ -425,8 +425,8 @@ Im Allgemeinen teilen Cloud Angebote laut Chandrasekaran ( 2014 ) folgende Eigen
 	\item On-Demand Self-Service - Nutzer können die IT-Kapazitäten, die sie benötigen, selbständig ordern und einrichten. Der Anbieter muss in den Prozess nicht eingebunden werden.
 	\item Broad Network Access bezeichnet den standardbasierten Netzzugriff von verschiedenen Endgeräten (z.B. Smartphones, Tablets, Laptops, PCs) aus.
 	\item Measured Service bietet eine automatische Kontrolle und Optimierung der genutzten Ressourcen durch Metering, wodurch Transparenz für Anbieter und Nutzer sichergestellt wird. Somit bezahlen Kunden nur die Dienstleistungen, die sie auch tatsächlich in Anspruch nehmen.
-	\item Resource Pooling - \ref{par:polling} – Ressourcen des Anbieters (z.B. Speicher oder Bandbreite) werden gebündelt, multimandantenfähig bereitgestellt und nach Bedarf zugewiesen.
-	\item Rapid Elasticity - \ref{app-char:elascitity} – Kapazitäten sind schnell und dynamisch verfügbar und können je nach Bedarf skaliert werden.\cite{cloudEssentials}
+	\item Resource Pooling - \autoref{par:polling} – Ressourcen des Anbieters (z.B. Speicher oder Bandbreite) werden gebündelt, multimandantenfähig bereitgestellt und nach Bedarf zugewiesen.
+	\item Rapid Elasticity - \autoref{app-char:elascitity} – Kapazitäten sind schnell und dynamisch verfügbar und können je nach Bedarf skaliert werden.\cite{cloudEssentials}
 \end{itemize}
 
 Daher ergeben sich für die, in der Cloud betriebenen Anwendungen, folgende Eigenschaften: 
@@ -437,7 +437,7 @@ Daher ergeben sich für die, in der Cloud betriebenen Anwendungen, folgende Eige
 	\item Elasticity\label{app-char:elascitity} - Die Anpassung sowohl auf die Anzahl als auch auf die Leistungsfähigkeit der zu benutzenden IT Ressourcen kann im Sinne einer Addition oder Subtraktion erfolgen. Im ersten Fall nimmt auf der Ebene der horizontalen Skalierung ( scale out ) die Anzahl der Server zu. Während bei der vertikalen Skalierung ( scale up ) die Leistungsfähigkeit der Ressourcen der Server steigt.
 %	Die Addition oder Subtraktion, also Anpassung, sowohl auf die Anzahl als auch auf die Fähigkeit der zu benutzenden IT Ressourcen je nach Workload. Daher steigt bei Scale out oder Horizontale Skalierung die Anzahl von Server, und steigt bei Scale up oder Vertikale Skalierung die Fähigkeiten der Einzelnen Servers. Diese Anpassung besteht aus Addition und Substraktion 
 	\item Automated management - Die konstanten Aufgaben zur Verwaltung von Elasticity sollen automatisiert werden, um eine Cloudanwendung fehlerresitent auf Ressourcenebene zu implementieren.
-	\item Loose coupling - Die Minimierung von Abhängigkeiten einer Anwendung von IT Ressourcen vereinfacht die Bereitstellung, die Fehlerkontrolle und Wiederverwendung von Komponenten. \ref{sec:soa} \cite{cloudEssentials}
+	\item Loose coupling - Die Minimierung von Abhängigkeiten einer Anwendung von IT Ressourcen vereinfacht die Bereitstellung, die Fehlerkontrolle und Wiederverwendung von Komponenten. \autoref{sec:soa} \cite{cloudEssentials}
 \end{itemize}
 
 
@@ -502,7 +502,7 @@ Somit lässt sich in der folgenden \autoref{comparison-xaaS} die Skalierungseinh
 
 \end{table}
 
-Events\label{par:event-reaction} innerhalb eines verteilten Systems müssen verwaltet werden. Technologien wie Virtualisierte oder Containerized Server erzeugen neue Serverinstanzen zur Verarbeitung von einer Kette von variablen Events, die danach gelöscht wird.\cite{lambdaAWS} Die entstehende Problematik ergab sich durch eine starke Zunahme an Elementen, die einen hohen Verwaltungsaufwand forderten.  Was zurück auf die oben genannten Aufgaben \ref{sec:iaas-aufgaben} führte.
+Events\label{par:event-reaction} innerhalb eines verteilten Systems müssen verwaltet werden. Technologien wie Virtualisierte oder Containerized Server erzeugen neue Serverinstanzen zur Verarbeitung von einer Kette von variablen Events, die danach gelöscht wird.\cite{lambdaAWS} Die entstehende Problematik ergab sich durch eine starke Zunahme an Elementen, die einen hohen Verwaltungsaufwand forderten.  Was zurück auf die oben genannten Aufgaben \autoref{sec:iaas-aufgaben} führte.
 
 Polling\label{par:polling} ist der Ausdruck für eine zyklische Abfrage über einen Status z.B. von Ports oder Locks über Ressourcen. Die Verwendung von Systemressourcen ist ineffizient im Vergleich zu Alternativansätzen wie z.B in dem Push- oder Pull- Kommunikationsmodell.\cite{lambdaAWS} 
 
@@ -529,7 +529,7 @@ Für die Betrachtung, ob \acrshort{FaaS} eine Lösung für eine konkrete Problem
 \begin{itemize}
 	\item Aufgaben als Reaktion auf Events erledigt werden. 
 	\item ein Scriptbehälter für z.B Cron Aufgaben benötigt wird. Die Zugriffsrechte sind beschränkter, Fehler sind einfacher zu erkennen und an einer Stelle aggregiert ( siehe CloudWatch ), des weiteren können Deployments einfacher angestoßen werden.
-	\item die Skalierung des Servers bei einer ressourcenintensiven Verarbeitung vermieden werden soll.\ref{sec:pipes-filters}
+	\item die Skalierung des Servers bei einer ressourcenintensiven Verarbeitung vermieden werden soll.\autoref{sec:pipes-filters}
 	\item Services vorgegeben sind, die selten benutzt werden.
 	\item die Verwaltung von \acrshort{API}-Server umgangen werden soll.
 \end{itemize}\cite{lambdaAWS}
@@ -589,7 +589,7 @@ Im späteren Kapitel wird REST als Teil des \acrshort{EDA}-Architekturstils vorg
 Serverless kann als ein Ansatz beschrieben werden, der die Verwendung von einem Rechenservice, Dienste von Drittanbietern, von \acrfull{API}s und die Anwendung von Architekturmustern fördert. Ein solcher Anwendungsfall ist die Kommunikation mithilfe eines \glqq Delegation-Tokens\grqq\ zwischen den Front- und Back-End Diensten. \acrshort{FaaS} ist nur ein Aspekt dessen.
 
 
-Serverless übernimmt die Entwurfsprinzipien von \acrshort{SOA} und \acrshort{EDA} \ref{sec:soa} und daher ergeben sich laut Sbarski folgende Richtlinien:
+Serverless übernimmt die Entwurfsprinzipien von \acrshort{SOA} und \acrshort{EDA} \autoref{sec:soa} und daher ergeben sich laut Sbarski folgende Richtlinien:
 \newacronym{SRP}{SRP}{Single Responsability Principle}
 \begin{itemize}\label{par:serverless-principles}
 	\item Ein Rechenservice wird genutzt, um Quellcode auf Anfrage auszuführen, kein Server.
@@ -709,7 +709,7 @@ Das Priority Queue wird im Rahmen des Entwurfsmusters Competing Consumers als ei
 	\caption{Fan Out}
 	\label{pic:fan-out}
 \end{wrapfigure}
-Bei dem Eintritt eines Events können ein oder mehrere Subscriber durch die gepushte Benachrichtigung angestoßen werden. Damit wird ein Kommunikationskanal \ref{sec:priority-queue} zur Verwaltung von Nachrichten wiederverwendet und extra Geschäftslogik umgangen, z.B. kein Command Pattern für die gleiche Funktionalität\cite{serverlessArchAWS}.
+Bei dem Eintritt eines Events können ein oder mehrere Subscriber durch die gepushte Benachrichtigung angestoßen werden. Damit wird ein Kommunikationskanal \autoref{sec:priority-queue} zur Verwaltung von Nachrichten wiederverwendet und extra Geschäftslogik umgangen, z.B. kein Command Pattern für die gleiche Funktionalität\cite{serverlessArchAWS}.
 
 \subsection{Federated Identity}\label{sec:federated-identity}
 \begin{wrapfigure}{l}{0.36\textwidth}
@@ -741,7 +741,7 @@ Benutzer arbeiten mit multiplen Anwendungen von unterschiedlichen Organisationen
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Messaging_GRAYSCALE_AmazonSNS.eps}
 \end{wrapfigure}
 \newacronym{SNS}{SNS}{Simple Notification Service}
-\paragraph{\acrfull{SNS}}\label{par:sns} erweitert das schon gut etablierte Beobachtermuster, in dem es einen Kanal für Events hinzufügt. Die konzeptionelle Technologie hinter \acrshort{SNS} wird \glqq Publish-Subscribe Channel\cite{patternIntegrationEnterprise}\grqq\ Muster genannt und entspricht den oben genannten \glqq Fan Out\grqq\ \ref{sec:fan-out} Architekturmustern. AWS kann durch Redundanz mindestens eine Lieferung der Nachricht gewährleisten.
+\paragraph{\acrfull{SNS}}\label{par:sns} erweitert das schon gut etablierte Beobachtermuster, in dem es einen Kanal für Events hinzufügt. Die konzeptionelle Technologie hinter \acrshort{SNS} wird \glqq Publish-Subscribe Channel\cite{patternIntegrationEnterprise}\grqq\ Muster genannt und entspricht den oben genannten \glqq Fan Out\grqq\ \autoref{sec:fan-out} Architekturmustern. AWS kann durch Redundanz mindestens eine Lieferung der Nachricht gewährleisten.
 
 
 \newacronym{S3}{S3}{Simple Storage Service}
@@ -749,7 +749,7 @@ Benutzer arbeiten mit multiplen Anwendungen von unterschiedlichen Organisationen
 \begin{wrapfigure}{l}{0.16\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Storage_GRAYSCALE_AmazonS3.eps}
 \end{wrapfigure}
-\paragraph{\acrfull{S3}} ist ein Speicherdienst, der durch \acrshort{SNS} \ref{par:sns} die Events ( z.B das Löschen oder Erzeugen eines Objektes ) an \acrshort{SNS}\ref{par:sns}, \acrfull{SQS} \ref{par:sqs} oder Lambda schicken kann. \glqq Buckets\grqq\ sind Verzeichnisse auf der höchsten Ebene des Verzeichnissystems. Ein Objekt ist eine Kombination von Daten, Metadaten und eines Keys, der innerhalb des Buckets eindeutig ist.
+\paragraph{\acrfull{S3}} ist ein Speicherdienst, der durch \acrshort{SNS} \autoref{par:sns} die Events ( z.B das Löschen oder Erzeugen eines Objektes ) an \acrshort{SNS}\autoref{par:sns}, \acrfull{SQS} \autoref{par:sqs} oder Lambda schicken kann. \glqq Buckets\grqq\ sind Verzeichnisse auf der höchsten Ebene des Verzeichnissystems. Ein Objekt ist eine Kombination von Daten, Metadaten und eines Keys, der innerhalb des Buckets eindeutig ist.
 
 
 \begin{wrapfigure}{l}{0.16\textwidth}
@@ -773,7 +773,7 @@ Durch automatische Skalierung mindert sich die Leistung nicht. Bei der Änderung
 \begin{wrapfigure}{l}{0.10\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Database_GRAYSCALE_AmazonRDS.eps}
 \end{wrapfigure}
-\paragraph{\acrfull{RDS}} hilft bei dem Setup und Wartung von mySQL, MariaDB, Oracle, MS-SQL, PostreSQL und Amazon Aurora mit automatischer Bereitstellung ( provisioning ), Sicherung, patching, recovery, repair und Fehlererkennung. \acrshort{RDS} kann durch \acrshort{SNS} \ref{par:sns} über eigene Events berichten.
+\paragraph{\acrfull{RDS}} hilft bei dem Setup und Wartung von mySQL, MariaDB, Oracle, MS-SQL, PostreSQL und Amazon Aurora mit automatischer Bereitstellung ( provisioning ), Sicherung, patching, recovery, repair und Fehlererkennung. \acrshort{RDS} kann durch \acrshort{SNS} \autoref{par:sns} über eigene Events berichten.
 
 
 
@@ -808,7 +808,7 @@ Das Kompetenzmodell differenziert unterschiedliche Kompetenzen in vielfältigen 
 
 
 \subsection{Anforderungsanalyse}
-Die Auflistung \ref{list:koma-requirements} stellt einen für diese Arbeit angepassten Ausschnitt der Anforderungen für \acrshort{KOMA} dar:
+Die Auflistung \autoref{list:koma-requirements} stellt einen für diese Arbeit angepassten Ausschnitt der Anforderungen für \acrshort{KOMA} dar:
 
 \begin{itemize}\label{list:koma-requirements}
 	\item Mit dem \acrshort{EQF} vergleichbare Kompetenzdefinitionen
@@ -863,7 +863,7 @@ Die Gestaltung von Kompetenzmodellen und deren zukünftige Weiterentwicklung hä
 
 %@Pre-Dev--> Tabelle 
 \begin{table}[h]
-	\caption{Vergleich relationalem mit ontologischem \ref{subsec:ontology} Schema}
+	\caption{Vergleich relationalem mit ontologischem \autoref{subsec:ontology} Schema}
 	\centering{}
 	\begin{tabular}{ccc}
 		\noalign{\vskip\doublerulesep}
@@ -1214,7 +1214,7 @@ url: 'https://'+ process.env.DOMAIN + '/tokeninfo',
 ...
 \end{lstlisting}
 
-Dieses Vorgehen bei der Authentisierung ( siehe \ref{pic:federated-identity} ) basiert auf dem Vertrauen zwischen Cloudanbietern. Der Nutzer kann für mehrere Anwendungen die gleichen Zugangsdaten benutzen. Die Anmeldung erfolgt über den Identitätsanbieter ( wie z.B Google oder Github ). 
+Dieses Vorgehen bei der Authentisierung ( siehe \autoref{pic:federated-identity} ) basiert auf dem Vertrauen zwischen Cloudanbietern. Der Nutzer kann für mehrere Anwendungen die gleichen Zugangsdaten benutzen. Die Anmeldung erfolgt über den Identitätsanbieter ( wie z.B Google oder Github ). 
 
 Der autorisierter Zugriff kann nun gewährleistet werden, da die Verwaltung bzw. die persistente Speicherung von Nutzerprofilen möglich ist. 
 
@@ -1268,7 +1268,7 @@ Die folgende Grafik zeichnet die Ergebnisse der oben genannten Tests auf.
 	\caption{Ausführungszeiten für Fuseki Server in Lambda }
 \end{figure}
 
-Die Ergebnisse zeigen zunächst, wie sich die Lambdalaufzeitumgebung initiiert ( siehe \ref{lambda-cold-warm} ). Da die Laufzeitumgebung für jede Anfrage eine neue Lambdafunktion instantiiert, muss der Server neu gestartet werden. Hierzu beweist die Grafik, dass \acrshort{IaaS} und \acrshort{PaaS} besser für längerfristige Prozesse als Lambda geeignet sind ( siehe \ref{lambda-yes-no} ). 
+Die Ergebnisse zeigen zunächst, wie sich die Lambdalaufzeitumgebung initiiert ( siehe \autoref{lambda-cold-warm} ). Da die Laufzeitumgebung für jede Anfrage eine neue Lambdafunktion instantiiert, muss der Server neu gestartet werden. Hierzu beweist die Grafik, dass \acrshort{IaaS} und \acrshort{PaaS} besser für längerfristige Prozesse als Lambda geeignet sind ( siehe \autoref{lambda-yes-no} ). 
 
 Die bereitgestellte Speicherkapazität beschleunigt die Ausführung und dadurch verkürzen sich die Antwortzeiten. In diesem Szenario nutzt die Transaktionsverwaltung und die \glqq In-Memory\grqq\ Caching des Servers nicht.
 
