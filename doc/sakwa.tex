@@ -326,7 +326,7 @@ Pomodoro
 @Deutch
 @English
 
-\chapter{Einleitung}{Idee-Ausführung-Markt}
+\chapter{Einleitung}
 \setcounter{page}{1}
 \label{chap:introduction}
 %\epigraph{\textit{\textquotedbl{}
@@ -342,23 +342,28 @@ Ideen entstehen, verändern sich, werden im Laufe der Zeit vergessen, manchmal b
 
 Die Technik kann als Medium für den Ausdruck solcher Ideen eingesetzt werden. Diese kann so komplex werden, dass sie eine Barriere in Form eines Wissensmonopols darstellt, die hinderlich für die Umsetzung neuer Ideen ist.
 
+
 Die Faktoren am Anfang einer technologischen Umsetzung einer Idee sind:
-\begin{itemize}
-	\item Konzeptioneller Beweis\label{aspect:proofConcept}
-	\item Vorlaufzeit,Produkteinführungszeit ( Time-To-Market ) \label{aspect:timeToMarket}
-	\item Personalkosten und Mangel von Fertigkeiten \label{aspect:costHumanResources}
-	\item Technische und technologische Details\label{aspect:techDetails}
-	\item Rentabilität\label{aspect:profit}
-\end{itemize}
+der konzeptionelle Beweis, die Vorlaufzeit oder Produkteinführungszeit ( Time-To-Market ), die Personalkosten und Mangel von Fertigkeiten, die technischen und technologischen Details, sowie die Rentabilität.
+
+%\begin{itemize}
+%	\item Konzeptioneller Beweis\label{aspect:proofConcept}
+%	\item Vorlaufzeit, Produkteinführungszeit ( Time-To-Market ) \label{aspect:timeToMarket}
+%	\item Personalkosten und Mangel von Fertigkeiten \label{aspect:costHumanResources}
+%	\item Technische und technologische Details\label{aspect:techDetails}
+%	\item Rentabilität\label{aspect:profit}
+%\end{itemize}
+
 
 Ein Zeichen für die Existenz dieser Komplexität im Rahmen des Cloudcomputings ist die Entstehung neuer Technologien für die Vereinfachung der Entwicklungsprozesse eines Projekts. 
 
-Je mehr Anforderungen auf einem System z.B. Webanwendung, desto komplexer wird es. Je mehr Softwarekomponente, desto mehr Verwaltungsaufwand mittels Load Balancing, Messaging usw. Je mehr Veränderlichkeit, desto schwieriger ihre Integration und Skalierung.\cite{patternIntegrationEnterprise} 
+Je mehr Anforderungen auf ein System z.B. Webanwendung zukommen, desto komplexer wird es. Je mehr Softwarekomponenten, desto mehr Verwaltungsaufwand mittels Load Balancing, Messaging usw. entsteht. Je mehr Dynamik, desto schwieriger ihre Integration und Skalierung.\cite{patternIntegrationEnterprise} 
+
+Mittels dem Serveless Architekturstil versuchen die Cloudanbieter diesen Verwaltungsaufwand zu umgehen, die Skalierung zu vereinfachen und Integrationsschwierigkeiten zu lösen.
 
 
-Die Cloud Anbieter versuchen diesen Verwaltungsaufwand, Skalierung und Integrationschwierigkeiten mittels einem neuen Architekturstil Serverless.
+Um die Umsetzungsvorgänge einer Webanwendung möglichst simpel zu halten, werden in der vorliegenden Arbeit die Serverless Architekturen für konventionelle Webanwendungen untersucht.
 
-Um die Umsetzungsvorgänge einer Webanwendung möglichst simpel zu halten, werden in der vorliegende Arbeit die Serverless Architekturen für konventionelle Webanwendungen untersucht.
 
 %Ideen Schneller Vorrantreiben
 %severless arch.
@@ -412,7 +417,7 @@ Cloud Computing beschreibt die Bereitstellung von IT-Infrastruktur und IT-Leistu
 
 \section{Cloud Eigenschaften}
 \label{sec:cloud-char}
-Als Softwarearchitekt, Entwickler oder Projektmanager es ist wichtig, die spezifischen Eigenschaften von Cloud Angeboten zu verstehen. Aus einem Meer von Cloud Diensten ist die richtige Auswahl je nach Anforderungen und Art der technologischen Umsetzung schwer zu treffen. 
+Als Softwarearchitekt, Entwickler oder Projektmanager ist es wichtig, die spezifischen Eigenschaften von Cloud Angeboten zu verstehen. Aus einem Meer von Cloud Diensten ist die richtige Auswahl je nach Anforderungen und Art der technologischen Umsetzung schwer zu treffen. 
 
 
 Im Allgemeinen teilen Cloud Angebote laut Chandrasekaran ( 2014 ) folgende Eigenschaften:
@@ -441,7 +446,7 @@ Daher ergeben sich für die, in der Cloud betriebenen Anwendungen, folgende Eige
 \newacronym{IaaS}{IaaS}{Infrastructure as a Service}
 \acrfull{IaaS} kann als ein Service beschrieben werden, der Abstraktionen für Hardware, Server und Netzwerkkomponenten bereitstellt. Der Serviceanbieter besitzt die Ausrüstung und ist für die Unterbringung, die Inbetriebnahme und die Wartung der Server verantwortlich\cite{patternAWS}. Der Benutzer bezahlt nicht für die Hardware, deren Lagerung und den Zugriff auf sie, sondern für die Nutzung des gesamten Servicemodells z.B.: Zahlung nach benutzten Stunden, Ressourcen usw.
 
-Die Aufgaben\label{sec:iaas-aufgaben} für Systeme mit Softwareelementen wie Load Balancing, Transaktionen, Gruppierung ( Clustering ), Caching, Benachrichtigung ( Messaging ), und Datenredundanz werden komplexer. Diese Elemente fordern an, dass Server verwaltet, gewartet, geflickt ( patched ) und gesichert werden brauchen. In einer nicht-trivialen Systemumgebung sind solche Aufgaben zeitintensiv und ebenso aufwändig fertigzustellen, wie effizient zu betreiben. Infrastruktur und Hardware sind zwar nötige Komponenten für jegliche IT-Systeme, aber gleichzeitig stellen sie nur das Medium für deren Anwendung dar - sei es Geschäftslogik, oder ein darauf bauender Dienst.
+Die Aufgaben\label{sec:iaas-aufgaben} für Systeme mit Softwareelementen wie Load Balancing, Transaktionen, Gruppierung ( Clustering ), Caching, Benachrichtigung ( Messaging ), und Datenredundanz werden komplexer. Diese Elemente fordern an, dass Server verwaltet, gewartet, geflickt ( patched ) und gesichert werden brauchen. In einer nicht-trivialen Systemumgebung sind solche Aufgaben zeitintensiv und ebenso aufwändig fertigzustellen, wie effizient zu betreiben. Infrastruktur und Hardware sind zwar nötige Komponenten für jegliche IT-Systeme, aber gleichzeitig stellen sie nur das Medium für deren Anwendung dar - sei es Geschäftslogik, oder ein darauf aufbauender Dienst.
 
 \section{PaaS}
 \label{sec:paas}
@@ -462,7 +467,7 @@ Die Containerisierung\label{par:containerisation} ist eine Isolierung der Anwend
 \label{sec:saas}
 \newacronym{SaaS}{SaaS}{Software as a Service}
 \acrfull{SaaS} kann als ein Service beschrieben werden, der OS-Images mit konfigurierbaren Diensten wie Datenbanken, Webanwendungen usw. bereitstellt. \acrshort{SaaS} gestaltet sich benutzerfreundlich, da die Konfiguration und das Deployment dieser Softwaredienste nicht erlernt werden müssen, um sie in eine größere Anwendung einzubinden. Anfallende Gebühren berechnen sich nach der Nutzungsdauer.
-Viele traditionelle Software bietet seine \acrshort{SaaS} nicht an. Dies Impliziert laut Chandrasekaran, K. dass dieses Serviceliefermodell sich für Anwendungen nicht gut eignet wegen folgenden Punkten:
+Ein Großteil traditioneller Software bietet seine Version als \acrshort{SaaS} nicht an. Dies impliziert laut Chandrasekaran, K. dass dieses Serviceliefermodell sich für Anwendungen nicht gut eignet wegen folgenden Punkten:
 \newacronym{SLA}{SLA}{Service Level Agreement}
 \begin{itemize}
 	\item Geringe Latenz kann durch die Entfernung der gespeicherten Daten für Echtzeitanwendungen nicht gewährleistet werden.
@@ -481,6 +486,22 @@ Viele traditionelle Software bietet seine \acrshort{SaaS} nicht an. Dies Implizi
 
 \acrfull{FaaS}\label{sec:faas} kann als ein Rechenservice beschrieben werden, der nach Anfrage isoliert, unabhängig und granular ausgeführt wird. Komplexe Probleme wie horizontale und vertikale Skalierbarkeit, Fehlertoleranz und Elastizität werden von Kunden nur noch nach Bedarf konfiguriert und von dem Anbieter verwaltet. Die Besonderheit von \acrshort{FaaS} ist die \glqq Unit of Deployment\grqq\ und die Skalierung in Form einer Funktion. \cite{patternAWS}
 
+Somit lässt sich in der folgenden \autoref{comparison-xaaS} die Skalierungseinheit ( Unit of Deployment ) und die Abstraktionsebene von den relevanten Dienstmodellen vergleichen. 
+\begin{table}[H]
+	\caption{Vergleich IaaS PaaS FaaS Skalierung und Abstraktion}
+	\centering{}
+	\label{comparison-xaaS}
+	\begin{tabular}{ c | c c c }
+		\noalign{\vskip\doublerulesep}
+		& IaaS & PaaS & FaaS 
+		\tabularnewline[\doublerulesep]	\hline	
+		\noalign{\vskip\doublerulesep}
+		Skalierungseinheit & Virtuelle Maschine & Anwendung & Funktion \tabularnewline
+		Abstraktion & Hardware & Betriebssystem & Laufzeitumgebung der Sprache
+	\end{tabular}
+
+\end{table}
+
 Events\label{par:event-reaction} innerhalb eines verteilten Systems müssen verwaltet werden. Technologien wie Virtualisierte oder Containerized Server erzeugen neue Serverinstanzen zur Verarbeitung von einer Kette von variablen Events, die danach gelöscht wird.\cite{lambdaAWS} Die entstehende Problematik ergab sich durch eine starke Zunahme an Elementen, die einen hohen Verwaltungsaufwand forderten.  Was zurück auf die oben genannten Aufgaben \ref{sec:iaas-aufgaben} führte.
 
 Polling\label{par:polling} ist der Ausdruck für eine zyklische Abfrage über einen Status z.B. von Ports oder Locks über Ressourcen. Die Verwendung von Systemressourcen ist ineffizient im Vergleich zu Alternativansätzen wie z.B in dem Push- oder Pull- Kommunikationsmodell.\cite{lambdaAWS} 
@@ -494,7 +515,7 @@ Die Implementierung einer solchen Funktion geschieht durch die Auswahl der Progr
 Der Fokus bei \acrshort{FaaS} liegt auf der Quellcodeentwicklung und nicht auf dem Provisioning von Servern, der Installation von Software, dem Deployment von Containern oder auf konkreten Details der Infrastruktur.
 
 %HTTP, Funktionale Programmierung, Fassaden, ... ?? 
-%Funktionale programmierung abstrahiert. auf Infrastruktur. ??? 
+%Funktionale programmierung abstrahiert. auf Infrastruktur. 
 
 Für die Betrachtung, ob \acrshort{FaaS} eine Lösung für eine konkrete Problemstellung ist, folgt eine Auflistung von Kriterien:
 \paragraph{Es ist nicht empfehlenswert \acrshort{FaaS} zu benutzen, wenn:}\label{lambda-yes-no}
@@ -502,7 +523,7 @@ Für die Betrachtung, ob \acrshort{FaaS} eine Lösung für eine konkrete Problem
 	\item der Entwickler Rootzugriffsrechte auf alle Ressourcen eines Servers benötigt.
 	\item die Priorisierung von Betriebssystemattributen wie CPU, GPU, Networking oder Speichergeschwindigkeit angefordert ist.
 	\item Sicherheit relevant ist. Unautorisierte Zugriffe können mit \acrshort{FaaS} nur auf Systemebene erkannt werden.
-	\item dauerhafte Prozesse angefordert sind.
+	\item dauerhaft laufende Prozesse angefordert sind.
 \end{itemize}
 \paragraph{Es ist empfehlenswert \acrshort{FaaS} zu benutzen, wenn:}
 \begin{itemize}
@@ -571,7 +592,7 @@ Serverless kann als ein Ansatz beschrieben werden, der die Verwendung von einem 
 Serverless übernimmt die Entwurfsprinzipien von \acrshort{SOA} und \acrshort{EDA} \ref{sec:soa} und daher ergeben sich laut Sbarski folgende Richtlinien:
 \newacronym{SRP}{SRP}{Single Responsability Principle}
 \begin{itemize}\label{par:serverless-principles}
-	\item Ein Rechenservice wird genutzt, um  Quellcode auf Anfrage auszuführen, kein Server.
+	\item Ein Rechenservice wird genutzt, um Quellcode auf Anfrage auszuführen, kein Server.
 	\item Zustandslose Funktionen unterliegen dem \acrshort{SRP} Prinzip.
 	\item Für den Architekturentwurf werden Push basierte ereignisorientierte Pipelines genutzt.
 	\item Front-Ends werden durch die Einbettung von mehr Zuständigkeiten verstärkt.
@@ -1141,10 +1162,10 @@ Cloud Dienste werden oft in unterschiedlichen Datenzentren oder Regionen eingese
 
 Der Master pusht ( one-way Synchronisierung ) die Daten an seine Subordinate-Repliken. Diese Segregation favorisiert Lesezugriffe und vereinfacht die Datensynchronisierung, da sie nur in einer Richtung erfolgen.
 Bei angeforderter Auswahl der zu replizierenden Daten priorisiert man die statischen vor den dynamischen Daten.
-Latenz verkürzt sich bei der Zuteilung einer Replik ( siehe  \autoref{pic:master-slave} ) in der physische Nähe des Consumers.
+Latenz verkürzt sich bei der Zuteilung einer Replik ( siehe  \autoref{pic:master-slave} ) in der physischen Nähe des Consumers.
 
 
-
+Viele
 \section{Single Page Application}
 \label{sec:spa}
 
@@ -1152,7 +1173,7 @@ Da KOMA ohne Vorkenntnisse zu benutzen sein soll, lässt sich die Entscheidung �
 
 
 Die Web Anwendung ist für alle Rechenaufgaben verantwortlich, die im Browser sicherheitstechnisch keine Gefahr darstellen, um das Backend oder den Server möglichst wenig auszulasten. Deswegen bietet sich eine Single Page Application an. 
-Die SPA besteht aus einem einzigen HTML Dokument. Dadurch vereinfacht man die Konfiguration der Authentifizierung und unterbricht den Fluss der UI-Darstellung zwischen Seiten nicht.
+Die \acrshort{SPA} besteht aus einem einzigen HTML Dokument. Dadurch vereinfacht man die Konfiguration der Authentifizierung und unterbricht den Fluss der UI-Darstellung zwischen Seiten nicht.
 
 Ein konfiguriertes Anfangsprojekt/Quickstart kann mithilfe von Initializr\cite{Initializr} oder JHipster\cite{Jhipster} schnell angelegt werden. Für die lokale Entwicklung der Webseite werden anhand von NodeJS und NPM folgende Bibliotheken als Abhängigkeiten verwaltet: Bootstrap als Stylescheet und jQuery als Javascript-Bibliothek.
 Die Webseite wird statisch mittels S3 geliefert. Dies geschieht mit folgendem Befehl: 
@@ -1160,7 +1181,7 @@ Die Webseite wird statisch mittels S3 geliefert. Dies geschieht mit folgendem Be
 $ aws  --region us-west-2 s3 website --index-document index.html --error-document error.html 's3://koma.thb.de'
 \end{lstlisting} 
 
-Da der Zugriff auf die Datenspeicherung gesichert werden soll, wird die Login-Funktionalität hinzugefügt. In \autoref{pic:koma-components} kann eine Übersicht der nötigen Schritten zur Anmeldung bei AuthO, Authentisierung und Authorisierung erhalten.
+Da der Zugriff auf die Datenspeicherung gesichert werden soll, wird die Login-Funktionalität hinzugefügt. In \autoref{pic:koma-components} kann eine Übersicht der nötigen Schritte zur Anmeldung bei AuthO, zur Authentisierung und zur Autorisierung erhalten.
 
 Der Nutzer meldet sich im ersten Schritt mit dem importierten Script \lstinline|<script src="https://cdn.auth0.com/js/lock-9.min.js">| und der von \acrshort{KOMA} mit gelieferten Konfiguration ( siehe  \autoref{lst:authO-anmeldung} ) an. 
 
@@ -1174,7 +1195,7 @@ auth0Lock.getProfile(idToken, function (err, profile) {...}
 \newacronym{JWT}{JWT}{JSON Web Token}
 \newacronym{XHR}{XHR}{XMLHttpRequest}
 \newacronym{JWS}{JWS}{JSON Web Signature}
-Nach der erfolgreiche Anmeldung erhält der Nutzer einen \acrfull{JWT}, um ihn bei weiteren Anfragen zu kodiert ( in \acrfull{JWS} ) präsentieren. Dies geschieht mithilfe von der \acrfull{XHR} Schnittstelle. In diesem Fall wurde deren Implementierung von jQuery benutzt.
+Nach der erfolgreichen Anmeldung erhält der Nutzer einen \acrfull{JWT}, um ihn bei weiteren Anfragen kodiert ( in \acrfull{JWS} ) vorzuweisen. Dies geschieht mithilfe von der \acrfull{XHR} Schnittstelle. In diesem Fall wurde deren Implementierung von jQuery verwendet.
 
 \begin{lstlisting}[language=JavaScript,caption={Remote Procedure Call mit XHR Schnittstelle},label={lst:xhr}]
 $.ajaxSetup({
@@ -1183,7 +1204,7 @@ $.ajaxSetup({
 	...
 \end{lstlisting}
 
-Die Lambdafunktion mit \glqq UserProfile\grqq\ gekennzeichnet dekodiert den erhaltenen \acrshort{JWT} durch einen Schlüssel, der in Umgebungsvariablen ( siehe \autoref{lambda-env} ) angelegt wurde. Die Überprüfung erfolgt mit einer Abfrage an AuthO ( siehe \autoref{lst:verify} in Zeile 2 ).
+Die Lambdafunktion, gekennzeichnet mit \glqq UserProfile\grqq\ , dekodiert den erhaltenen \acrshort{JWT} durch einen Schlüssel, der in Umgebungsvariablen ( siehe \autoref{lambda-env} ) angelegt wurde. Die Überprüfung erfolgt mit einer Abfrage an AuthO ( siehe \autoref{lst:verify} in Zeile 2 ).
 
 \begin{lstlisting}[language=JavaScript,caption={Authentisierung in Lambda},label={lst:verify}]
 var secretBuffer = new Buffer(process.env.AUTH0_SECRET);
@@ -1193,7 +1214,7 @@ url: 'https://'+ process.env.DOMAIN + '/tokeninfo',
 ...
 \end{lstlisting}
 
-Diese Authentisierungsvorgehen ( siehe \ref{pic:federated-identity} ) basiert auf das Vertrauen Zwischen zwei den Cloudanbietern. Der Nutzer kann für mehrere Anwendungen die gleiche Zugangsdaten benutzen und die Anmeldung erfolgt über den Identitätsanbieter ( wie z.B Google oder Github ). 
+Dieses Vorgehen bei der Authentisierung ( siehe \ref{pic:federated-identity} ) basiert auf dem Vertrauen zwischen Cloudanbietern. Der Nutzer kann für mehrere Anwendungen die gleichen Zugangsdaten benutzen. Die Anmeldung erfolgt über den Identitätsanbieter ( wie z.B Google oder Github ). 
 
 Der autorisierter Zugriff kann nun gewährleistet werden, da die Verwaltung bzw. die persistente Speicherung von Nutzerprofilen möglich ist. 
 
@@ -1201,34 +1222,32 @@ Der autorisierter Zugriff kann nun gewährleistet werden, da die Verwaltung bzw.
 
 
 \paragraph{Zur Skalabilität}
-Die Partitionierung und das Replizieren von Datenbanken bringt zwar Vorteile ( wie in \autoref{data-vorteile} zitiert wurde ) aber auch Herausforderungen bei der Synchronisation und Konsistenz der Daten. Dies geschieht auf Grund des konsistent zu haltenden Zustandes der Datenbanken.
+Die Partitionierung und das Replizieren von Datenbanken bringt zwar Vorteile ( wie in \autoref{data-vorteile} zitiert wurde ), aber auch Herausforderungen bei der Synchronisation und Konsistenz der Daten mit sich. Dies geschieht auf Grund des konsistent zu haltenden Zustandes der Datenbanken.
 
-Die Relevanz und Bedeutung der Daten hängt von dem zu betrachtenden Sichtpunkt ab. Z.B ein Schüler braucht schnell zu erfahren ob der Hochladevorgang seiner Arbeit erfolgreich war ( Schreibzugriff vorziehen ). Ein Professor überprüft ob alle Schüler ihre Arbeit hochgeladen haben ( Lesezugriff vorziehen ). Daher lässt sich eine Technologisch orientierte Strategie unklar definieren, da weder alle Faktoren bekannt noch berücksichtigt werden können. 
-
-Das Letztere widerspricht die Annahme, dass ein Service entweder eine Funktion oder eine Datenbank ist. 
-
-Unter Service in \glqq \acrlong{SOA}\grqq\ kann als ein Mehrwert für die Benutzer interpretiert werden. 
-
-Daraus ergibt sich, dass eine Funktionale Datenbankpartitionierung genauer die Benutzungsmuster der Anwendung entspricht und damit, wenn korrekt implementiert, von höher Performanz ist. 
-
-Die \acrshort{EDA} eignet sich für die Steuerung von Benutzungsfällen besonders gut, da ein Event eine Interaktion zwischen dem Kunden und der Anwendung darstellen kann. 
-
-Die Orchestrierung solcher Benutzungsfällen lässt sich mittels einer endlichen Zustandsmaschine definierten und einer Petrinetz darstellen, in der Events die Kanten und \acrshort{FaaS} die Ecken sind. Dieser Ansatz ähnelt dem Domain getriebenen Entwurf ( Domain Driven Design \cite{ddd} ), in dem Benutzungsfällen zusammen in Kontextgrenzen ( Bounded Context ) gefasst werden.
-
-Die starke Entkopplung ( siehe \autoref{sec:eda} ) von Diensten erfordert allerdings ihren Zusammenhalt.
+Die Relevanz und Bedeutung der Daten hängt von dem Standpunkt ab. Z.B ein Schüler möchte schnell zu erfahren, ob der Hochladevorgang seiner Arbeit erfolgreich war ( Schreibzugriff vorziehen ). Ein Professor überprüft, ob alle Schüler ihre Arbeit hochgeladen haben ( Lesezugriff vorziehen ). Daher lässt sich eine technologisch orientierte Strategie unklar definieren, da weder alle Faktoren bekannt, noch beachtet werden können. 
 
 
+Die Unmöglichkeit, alle Perspektiven zu berücksichtigen, erfordert eine Entscheidung ob ein Service entweder eine Funktion oder eine Datenbank ist; auf die Gefahr hin, dass nicht alle Benutzerinteressen umgesetzt werden. Obwohl der Begriff Service in \glqq \acrlong{SOA}\grqq\ als ein Mehrwert für die Benutzer verstanden wird. 
 
-In Zeiten des Cloud computings 
+Um eine möglichst hohe Performanz zu erzielen, wird die Anwendung entsprechend der Benutzungsmuster gestaltet. Die funktionale Datenbankpartitionierung erfüllt, wenn korrekt implementiert, diese Forderung.
+
+
+Die \acrshort{EDA} eignet sich für die Steuerung von Benutzungsfällen besonders gut, da ein Event beispielsweise eine Interaktion zwischen dem Kunden und der Anwendung repräsentiert. 
+
+Die Orchestrierung solcher Benutzungsfälle lässt sich mittels einer endlichen Zustandsmaschine definierten und einem Petrinetz darstellen, in der Events die Kanten und \acrshort{FaaS} die Ecken sind. Dieser Ansatz ähnelt dem Domain getriebenen Entwurf ( Domain Driven Design \cite{ddd} ), in dem Benutzungsfälle in Kontextgrenzen ( Bounded Context ) zusammengefasst werden.
+
+Die starke Entkopplung ( siehe \autoref{sec:eda} ) von Diensten erfordert allerdings ihren Kohäsion.
+
+
 \newacronym{JEE}{JEE}{Java Enterprise Edition}
 \paragraph{Frameworks und FaaS}
-Frameworks helfen bei der Entwicklung von komplexen Systemen, in dem sie Abstraktionsschichten hinzufügen und damit komplexe Berechnungen wie bei der \glqq Dependency Injection \grqq\ von \acrfull{JEE}. 
+Frameworks helfen bei der Entwicklung von komplexen Systemen, in dem sie Abstraktionsschichten hinzufügen und damit komplexe Berechnungen wie bei der \glqq Dependency Injection \grqq\ von \acrfull{JEE} übernehmen. 
 
-Für \acrshort{KOMA} wurde kein Framework benutzt, da die Implementierung der Funktionen das \acrshort{SRP} gefolgt haben und die Abstraktionsschichten nicht bedurften. Hingegen wurden folgende Tests durchgeführt, um die Verwendbarkeit von Frameworks innerhalb einer Lambdafunktion auszuwerten. 
+Für \acrshort{KOMA} wurde kein Framework benutzt, da die Implementierung der Funktionen dem \acrshort{SRP} folgte und die Abstraktionsschichten nicht bedurften. Hingegen wurden die unten beschriebenen Tests durchgeführt, um die Verwendbarkeit von Frameworks innerhalb einer Lambdafunktion auszuwerten. 
 
-Das ausgewählte Framework ist Apache Jena \cite{fuseki} und als ein eingebetteter Server eingesetzt. Dieses unterstützt den Bau von Semantic Web und Linked Data Anwendugen.
+Das ausgewählte Framework ist Apache Jena \cite{fuseki}, es wird als ein eingebetteter Server eingesetzt. Dieser unterstützt den Bau von Semantic Web und Linked Data Anwendungen.
 
-Die \autoref{lst:fuseki} zeigt die vorgenommene Konfiguration für den Aufbau des Servers. Dieser wird während des Tests die schon vorgeladene \acrshort{KOMA} Ontologie durchgehe und ausloggen, um anschließend wieder zu stoppen.
+Das \autoref{lst:fuseki} zeigt die vorgenommene Konfiguration für den Aufbau des Servers. Er wird während des Tests die schon vorgeladene \acrshort{KOMA} Ontologie durchgehen und ausloggen, um anschließend wieder zu stoppen.Dieser
 
 \begin{lstlisting}[language=Java,caption={Embedded Server in Lambda},label={lst:fuseki}]
 Dataset ds = DatasetFactory.createTxnMem();
@@ -1241,19 +1260,19 @@ server.start();
 \end{lstlisting}
 
 % RES
-Die folgende Graphik aufzeichnet die Ergebnisse der oben genannten Tests. 
+Die folgende Grafik zeichnet die Ergebnisse der oben genannten Tests auf. 
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.60]{./pics/cold-fuseky.eps}
 	\caption{Ausführungszeiten für Fuseki Server in Lambda }
 \end{figure}
 
-Die Ergebnisse Zeigen auf einer Seite, wie sich die Lambdalaufzeitumgebung initiiert ( siehe \ref{lambda-cold-warm} ). Da die Lambdafunktion für jede Anfrage neu instantiiert, muss das Server neu gestartet werden. Hierzu beweist die Graphik, dass \acrshort{IaaS} und \acrshort{PaaS} besser für längerfristige Prozesse als Lambda geeignet sind ( siehe \ref{lambda-yes-no} ). 
-Die bereitgestellte Speicherkapazität beschleunigt die Ausführung und dadurch verkürzt die Antwortzeiten. Diese Szenario nutzt die Fähigkeiten des eingebetteten Servers nicht, wie Transaktionsverwaltung oder \glqq In-Memory\grqq\ Caching. 
+Die Ergebnisse zeigen zunächst, wie sich die Lambdalaufzeitumgebung initiiert ( siehe \ref{lambda-cold-warm} ). Da die Laufzeitumgebung für jede Anfrage eine neue Lambdafunktion instantiiert, muss der Server neu gestartet werden. Hierzu beweist die Grafik, dass \acrshort{IaaS} und \acrshort{PaaS} besser für längerfristige Prozesse als Lambda geeignet sind ( siehe \ref{lambda-yes-no} ). 
 
-An dieser Stelle empfehlt sich das in \autoref{legacy-api-proxy} vorgestellte Legacy API Architekturmuster zu benutzen. Somit würde Anfragen die Transaktionsverwaltung bedürfen an den Server geführt und die Latenz verkürzt.
+Die bereitgestellte Speicherkapazität beschleunigt die Ausführung und dadurch verkürzen sich die Antwortzeiten. In diesem Szenario nutzt die Transaktionsverwaltung und die \glqq In-Memory\grqq\ Caching des Servers nicht.
 
+Bei zu niedrigen vorkonfigurierten Speicherkapazitäten sind folgende Fehler zu beobachten:
 
 \begin{table}[h]
 	\caption{Tests mit Frameworks in Lambda Ergebnisse}
@@ -1267,26 +1286,33 @@ An dieser Stelle empfehlt sich das in \autoref{legacy-api-proxy} vorgestellte Le
 		\noalign{\vskip\doublerulesep}
 		\noalign{\vskip\doublerulesep}
 		128 & Fehler & java.lang.OutOfMemoryError \tabularnewline[\doublerulesep]
-		
-	\end{tabular}
+	\end{tabular}\label{lambda-out-of-memory}
 \end{table}
 
+Allerdings verursacht die Rekonfiguration keinen neuen Einsatz ( Deployment ), damit werden Ausfallzeiten vermieden. 
 
-Frameworks helfen aber sind Plattform abhängig. Entweder \acrshort{JEE} und \acrshort{JVM} oder PHP.
-Es kann auf die Layer of Abstraction in FW verzichtet werden. 
-Die Ersetzbarkeit des FaaS entkoppelt die Anwendung und den Entwickler von der darunterliegende Technologie.
+An dieser Stelle empfiehlt es sich, dass in \autoref{legacy-api-proxy} vorgestellte Legacy API Architekturmuster zu benutzen. Somit würden Anfragen die Transaktionsverwaltung bedürfen an den Server geführt und die Latenz verkürzt.
 
-\paragraph{Anwendung}{Latenz}
-Die entstandene Webanwendung befindet sich in US-WEST-2, Oregon, in den USA. 
-Da keine Cache oder CDN Funktionalität weder Implementiert noch konfiguriert ist, ist die Latenz direkt proportional zur Ausführungsdauer der Lambda Funktion.
-@Benchmark testing curl 
-@Lambda Monitoring
+Durch die Ersetzbarkeit der \acrshort{FaaS}, es ist hier erreicht, dass die Entwickler und die Anwendung von der darunterliegenden Technologie entkoppelt werden.% Agnostic 
+ 
+Die visualisierte \autoref{fuseki-arq} zeigt die Ausführungszeiten der Abfrageverarbeitung des Servers und der Jena ARQ Bibliothek. 
+\begin{figure}[H]
+	\centering{}
+	\includegraphics[scale=0.60]{./pics/fuseki-arq.eps}
+	\caption{Ausführungszeiten für Fuseki und Jena ARQ }
+	\label{fuseki-arq}
+\end{figure}
+
+Die serverlose Variante ( Jena ARQ, in Orange ) ist erst ab der zweiten Ausführung deutlich schneller als mit Fuseki ( in Blau ).
+
 
 \paragraph{DevOps Frameworks}
-Die benötigte Fertigkeiten für die Umsetzung einer Serverless Anwendung werden mithilfe von Deploymentframeworks gemindert. Die Aufnahme von 3.Anbieter ist deswegen notwendig. Es existieren bereits solche Hilfe wie z.B Serverlessframework@Ref
+Die Anzahl von Diensten bzw. Funktionen kann in einem komplexen System unübersichtlich werden. Entsprechend steigt der Aufwand bei Deployments, der Verwaltung und der Kohäsion von Abhängigkeiten, sowie bei der Koordination des Entwicklerteams ( z.B. jeder wer entwickelt was, wann ). 
 
-Risiko:
-Entickler brauchen einen guten Testplan und eine gute DevOps Strategie.<- skills shortage
+Diese Schwierigkeit macht die Deploymentframeworks wertvoll, da sie nicht nur die oben genannten Problemen ansprechen, sondern auch den Umgang mit anbieterspezifischen Sicherheitsrichtlinien vereinfachen. Dazu sind \glqq Serverless Framework\grqq\ und \glqq Zappa\grqq\ die bekanntesten Beispiele.
+
+\acrshort{AWS} ermöglicht es, den Entwicklungsstand der Dienste zu bezeichnen, z.B \glqq Dev\grqq\ oder \glqq Produktion\grqq\ und Dienste in Browsern einzeln zu Testen. Dies ist nur bedingt ausreichend, denn Systemtests sind noch nicht möglich. Somit gewinnt die Deployment-Strategie an Bedeutung.
+
 
 \paragraph{Transaktionen}
 Transaktionen können nicht parallel ausgeführt werden. Sequenciel aka Messaging Pattern.
@@ -1322,9 +1348,10 @@ local testing braucht event-symulation.json
 
 
 \paragraph{Zur Entwicklung}
-Die Starke Komponentisierung und Dezentralisierung von Software, die Variabilität von Programmiermodellen, Frameworks, Tools, -Sprachen und dessen Entwicklungsumgebung erhöht die Komplexität des Enwicklungscyklus und hervorhebt die Bedürfnis von Tools zur Automatisierung von Tests, Deployment und Konfiguration. Also ein wohldefiniertes Handlungsplan bei der Softwareentwicklung dass von der nicht zu bearbeitende Details abstrahiert. 
-Die DevOps Kultur spricht solche Probleme an. Neben dem Entwurf der Softwareachitekture  muss, um derer Umsetzung Zeitgemäß zu gewährleisten, eine zum Projekt passende DevOps Strategie.
-Um Vorteil von der neuen Technologien zu nehmen, ist die Recherche nach schon existierenden DevOps Frameworks besonders wichtig. Dessen Integration in der DevOps Strategie diene für eine Agile Entwicklung.
+Die starke Komponentisierung und Dezentralisierung von Software, die Variabilität von Programmiermodellen, Frameworks, Tools, Sprachen und deren Entwicklungsumgebung erhöht die Komplexität des Entwicklungszyklus und weckt einen Bedarf an Tools zur Automatisierung von Deployment, Konfiguration und Tests. Ein klar definierter Handlungsplan bei der Softwareentwicklung  erleichtert das Abstrahieren von zu bearbeitenden Details.
+ 
+Die DevOps Kultur gibt dazu Hilfestellungen. Neben dem Entwurf der Softwarearchitektur muss, um deren Umsetzung zeitgemäß zu gewährleisten, eine zum Projekt passende DevOps Strategie aufstellen.
+Um einen Vorteil aus den neuen Technologien zu ziehen, ist die Recherche nach schon existierenden DevOps Frameworks besonders wichtig. Ihre Integration in die DevOps Strategie sind einer agilen Entwicklung dienlich.
 
 \paragraph{Zum Datenmodel}
 Aus der Anforderungs analyse einer Informations Techonologie Web Anwendung sind die Builder, Texste und dessen Darstellung das ergebniss, dass ohne Daten inhaltlos wäre. Auf eine Seite Das Relationale Datenschema stellt keine Semantik für sich dar, sondern durch von der Software entstandene Verknüpfung zwischen dem Endergebnis und dem Datenschema. Auf der Anderen Seite die  RDF Daten einer Ontologie \textit{is} das Modell.
