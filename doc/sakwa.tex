@@ -691,7 +691,7 @@ Bei dem Eintritt eines Events können ein oder mehrere Subscriber durch die gepu
 	\caption{Federated Identity}
 	\label{pic:federated-identity}
 \end{wrapfigure}
-Benutzer arbeiten mit multiplen Anwendungen von unterschiedlichen Organisationen. Um gleiche Zugangsdaten für Benutzter wiederverwenden zu können, wird dem Nutzer eine Identität bei einem Drittanbieter zugeteilt, diese wird mit einem Token an die Anwendung weitergeleitet. Der Authentisierungscode kann daher von dem Anwendungscode abgetrennt werden, damit kann zusätzliche Codierung für die Authentisierung vermieden werden .
+Benutzer arbeiten mit multiplen Anwendungen von unterschiedlichen Organisationen. Um gleiche Zugangsdaten für Benutzter wiederverwenden zu können, wird dem Nutzer eine Identität bei einem Drittanbieter zugeteilt, diese wird mit einem Token an die Anwendung weitergeleitet. Der Authentisierungscode kann daher von dem Anwendungscode abgetrennt werden, damit kann zusätzliche Komplexität bei der Codierung für die Authentisierung vermieden werden.
 
 \chapter{AWS-Serverless-Angebote}
 \label{chap:aws-serverless}
@@ -1040,7 +1040,7 @@ Bei einer Abfrage an die \lstinline|POST https://<host>/sparql| \acrshort{URL} w
 
 Die Funktion hinter dieser \acrshort{URL}, wie in \autoref{lst:lambda-sparql-endpoint} gezeigt, ist in Java 8 implementiert. Sie fordert die Implementierung der Schnittstelle RequestHandler. Die Generics-Parameter definieren den Klassentyp der Anfrage und des Ergebnisses, wie es im Fall der Abbildung \glqq RequestClass\grqq\ als Anfrage und \glqq String\grqq\ als Ergebnis ist. 
 
-Der Nutzer kann Umgebungsvariablen bei der Konfiguration von Lambdafunktionen anlegen und während Laufzeit auf sie zugreifen, z.B in der Zeile 7 mittels \lstinline|System.getenv(StringConstante)|.
+Der Nutzer kann Umgebungsvariablen\label{lambda-env} bei der Konfiguration von Lambdafunktionen anlegen und während Laufzeit auf sie zugreifen, z.B in der Zeile 7 mittels \lstinline|System.getenv(StringConstante)|.
 
 \begin{lstlisting}[language=Java,caption={Lambda Sparql-Endpoint},label={lst:lambda-sparql-endpoint}]
 public class Handler implements RequestHandler<RequestClass, String> {
@@ -1094,7 +1094,7 @@ Mit der bisher beschriebenen Implementierung der Webanwendung können Daten abge
 
 Ein wesentliches Merkmal von den oben beschriebenen Lambdafunktionen ist, dass sie für jeden Aufruf die komplette Datenbasis neu herunterladen. Für die Gebrauchstauglichkeit der Anwendung werden im Folgenden Verbesserungsansätze erläutert.
 
-Caching zielt auf die Verbesserung der Performance und Skalabilität eines Systems ab, in dem es die oft gelesenen Daten temporär zwischenspeichert. Daher können wiederholte Zugriffe auf die Ontologie in einem Cache gepuffert werden. Hierzu bietet \acrshort{AWS} \glqq ElastiCache\grqq\ als Serverless Dienst. 
+Caching zielt auf die Verbesserung der Performanz und Skalabilität eines Systems ab, in dem es die oft gelesenen Daten temporär zwischenspeichert. Daher können wiederholte Zugriffe auf die Ontologie in einem Cache gepuffert werden. Hierzu bietet \acrshort{AWS} \glqq ElastiCache\grqq\ als Serverless Dienst. 
 \begin{figure}[H]
 	\begin{center}
 \includegraphics[scale=0.60]{./pics/aws/pattern-cache-shared.eps}	
@@ -1106,6 +1106,7 @@ Es gibt zwei Typen von Software Cache: \glqq Shared-Cache\grqq\ und \glqq In-Mem
 
 Ein schnellerer Zugriff wird durch die Allokation eines Caches zwischen der Datenbasis und den Lambdafunktionen ( siehe \autoref{pic:shared-cache} ) gewährleistet. Da die Consumer den gleichen \glqq Snapshot\grqq\ der Daten abrufen, sinkt die Anzahl der inkonsistenten Ergebnisse.\cite{patternsCloud}\\
 
+Mit der Benutzung der Anwendung werden voraussichtlich die \acrshort{OWL} Dateien größer und somit die Latenz bei Abfragen verlängert.
 
 \newacronym{URI}{URI}{Universal Ressource Identifier}
 Eine zusätzliche Maßnahme zur Optimierung des Datenzugriffs ist die Datenpartitionierung. Diese kann je nach Benutzungsmuster horizontal, vertikal oder funktional erfolgen.
@@ -1116,28 +1117,30 @@ Eine zusätzliche Maßnahme zur Optimierung des Datenzugriffs ist die Datenparti
 		\label{pic:partitioning}
 	\end{center}
 \end{figure}
-% Individuals new concept !!  
-Im Folgenden wird die Anwendung als Beispiel zur Erklärung genutzt.\\ Bei der horitzontalen Datenpartitionierung wird die \acrshort{OWL} Datei nach \glqq Individuals\grqq\ aufgeteilt und in unterschiedliche Buckets einsortiert. Hingegen wird bei einer vertikalen Datenpartitionierung jeweils eine Tabelle für Subjekte, Merkmale ( Properties ) und für Objekte erstellt. DynamoDB eignet sich für diese Serverless Anwendung  als \glqq Key-Value Store\grqq\ , um als Keys die \glqq Individuals\grqq\ und als Values dessen \acrfull{URI}s darzustellen.\cite{ontoVerticalPartition}
+
+Im Folgenden wird die Anwendung als Beispiel zur Erklärung genutzt.\\ 
+Bei der horitzontalen Datenpartitionierung wird die \acrshort{OWL} Datei nach \glqq Individuals\grqq\ aufgeteilt und in unterschiedliche Buckets einsortiert. Hingegen wird bei einer vertikalen Datenpartitionierung jeweils eine Tabelle für Subjekte, Merkmale ( Properties ) und für Objekte erstellt. DynamoDB eignet sich für diese Serverless Anwendung  als \glqq Key-Value Store\grqq\ , um als Keys die \glqq Individuals\grqq\ und als Values dessen \acrfull{URI}s darzustellen.\cite{ontoVerticalPartition}
+
+Die funktionale Partitionierung richtet sich nach Benutzungsfällen oder Geschäftsprozessen ( bzw. Bounded Context ). Die \acrshort{OWL} Detei ließe sich beispielsweise nach der häufigsten Ergebnissen aufteilen.
 
 
-Mit der Benutzung der Anwendung werden voraussichtlich die \acrshort{OWL} Dateien größer und somit die Latenz bei Abfragen verlängert.
 
-Cloud Dienste werden oft in unterschiedlichen Datenzentren oder Regionen eingesetzt. Um die Verfügbarkeit, Performance und Konsistenz zu maximieren und die Datenübertragungskosten zu minimieren, kann eine Master-Datenbasis mit erlaubten Lese- und Schreiboperationen und eine Subordinate-Datenbasis nur mit Leseoperationen definiert werden. 
+Cloud Dienste werden oft in unterschiedlichen Datenzentren oder Regionen eingesetzt. Um die Verfügbarkeit, Performanz und Konsistenz\label{data-vorteile} zu maximieren und die Datenübertragungskosten zu minimieren, kann eine Master-Datenbasis mit erlaubten Lese- und Schreiboperationen und eine Subordinate-Datenbasis nur mit Leseoperationen definiert werden.\cite{patternsCloud}
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[scale=0.60]{./pics/aws/pattern-master-subordinate-data-replication.eps}
+		\includegraphics[scale=0.60]{./pics/aws/master-slave.eps}
 		\caption{Replizieren der Datenbasis}
 		\label{pic:master-slave}
 	\end{center}
 \end{figure}
 
-Der Master pusht oder ( one-way ) synchronisiert seine Subordinate-Repliken. 
-Diese Aufteilung favorisiert Leseoperationen.
-  
+Der Master pusht ( one-way Synchronisierung ) die Daten an seine Subordinate-Repliken. Diese Segregation favorisiert Lesezugriffe und vereinfacht die Datensynchronisierung, da sie nur in einer Richtung erfolgen.
+Bei angeforderter Auswahl der zu replizierenden Daten priorisiert man die statischen vor den dynamischen Daten.
+Latenz verkürzt sich bei der Zuteilung einer Replik ( siehe  \autoref{pic:master-slave} ) in der physische Nähe des Consumers.
 
 
 
-\subsection{Single Page Application}
+\section{Single Page Application}
 \label{sec:spa}
 
 Da KOMA ohne Vorkenntnisse zu benutzen sein soll, lässt sich die Entscheidung über die Art der Benutzeroberfläche leicht treffen. Die milliardenfache Nutzung von Web Browsern macht sie zum Favoriten.
@@ -1152,8 +1155,42 @@ Die Webseite wird statisch mittels S3 geliefert. Dies geschieht mit folgendem Be
 $ aws  --region us-west-2 s3 website --index-document index.html --error-document error.html 's3://koma.thb.de'
 \end{lstlisting} 
 
-Da der Zugriff auf die Datenspeicherung gesichert werden soll, wird die Login-Funktionalität hinzugefügt.
+Da der Zugriff auf die Datenspeicherung gesichert werden soll, wird die Login-Funktionalität hinzugefügt. In \autoref{pic:koma-components} kann eine Übersicht der nötigen Schritten zur Anmeldung bei AuthO, Authentisierung und Authorisierung erhalten.
 
+Der Nutzer meldet sich im ersten Schritt mit dem importierten Script \lstinline|<script src="https://cdn.auth0.com/js/lock-9.min.js">| und der von \acrshort{KOMA} mit gelieferten Konfiguration ( siehe  \autoref{lst:authO-anmeldung} ) an. 
+
+\begin{lstlisting}[language=JavaScript,caption={Auth0 Anmeldung},label={lst:authO-anmeldung}]
+
+auth0Lock = new Auth0Lock(config.auth0.clientId, config.auth0.domain);
+
+auth0Lock.getProfile(idToken, function (err, profile) {...}
+
+\end{lstlisting}
+\newacronym{JWT}{JWT}{JSON Web Token}
+\newacronym{XHR}{XHR}{XMLHttpRequest}
+\newacronym{JWS}{JWS}{JSON Web Signature}
+Nach der erfolgreiche Anmeldung erhält der Nutzer einen \acrfull{JWT}, um ihn bei weiteren Anfragen zu kodiert ( in \acrfull{JWS} ) präsentieren. Dies geschieht mithilfe von der \acrfull{XHR} Schnittstelle. In diesem Fall wurde deren Implementierung von jQuery benutzt.
+
+\begin{lstlisting}[language=JavaScript,caption={Remote Procedure Call mit XHR Schnittstelle},label={lst:xhr}]
+$.ajaxSetup({
+	'beforeSend': function (xhr) {
+	xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('userToken'));
+	...
+\end{lstlisting}
+
+Die Lambdafunktion mit \glqq UserProfile\grqq\ gekennzeichnet dekodiert den erhaltenen \acrshort{JWT} durch einen Schlüssel, der in Umgebungsvariablen ( siehe \autoref{lambda-env} ) angelegt wurde. Die Überprüfung erfolgt mit einer Abfrage an AuthO ( siehe \autoref{lst:verify} in Zeile 2 ).
+
+\begin{lstlisting}[language=JavaScript,caption={Authentisierung in Lambda},label={lst:verify}]
+var secretBuffer = new Buffer(process.env.AUTH0_SECRET);
+jwt.verify(token, secretBuffer, function(err, decoded){
+...
+url: 'https://'+ process.env.DOMAIN + '/tokeninfo',
+...
+\end{lstlisting}
+
+Diese Authentisierungsvorgehen ( siehe \ref{pic:federated-identity} ) basiert auf das Vertrauen Zwischen zwei den Cloudanbietern. Der Nutzer kann für mehrere Anwendungen die gleiche Zugangsdaten benutzen und die Anmeldung erfolgt über den Identitätsanbieter ( wie z.B Google oder Github ). 
+
+Der autorisierter Zugriff kann nun gewährleistet werden, da die Verwaltung bzw. die persistente Speicherung von Nutzerprofilen möglich ist. 
 
 \chapter{Bewertung}
 
@@ -1161,6 +1198,20 @@ Da der Zugriff auf die Datenspeicherung gesichert werden soll, wird die Login-Fu
 Der Zugang auf die Schnittstelle wird durch CORS konfiguriert um deren Ausnutzung zu vermeiden. 
 
 \paragraph{Zur Skalabilität}
+Die Partitionierung und das Replizieren von Datenbanken bringt zwar Vorteile ( wie in \autoref{data-vorteile} zitiert wurde ) aber auch Herausforderungen bei der Synchronisation und Konsistenz der Daten. Dies geschieht auf Grund des konsistent zu haltenden Zustandes der Datenbanken.
+
+Die Relevanz und Bedeutung der Daten hängt von dem zu betrachtenden Sichtpunkt ab. Z.B ein Schüler braucht schnell zu erfahren ob der Hochladevorgang seiner Arbeit erfolgreich war ( Schreibzugriff vorziehen ). Ein Professor überprüft ob alle Schüler ihre Arbeit hochgeladen haben ( Lesezugriff vorziehen ). Daher lässt sich eine Technologisch orientierte Strategie unklar definieren, da weder alle Faktoren bekannt noch berücksichtigt werden können. 
+
+Das Letztere widerspricht die Annahme, dass ein Service entweder eine Funktion oder eine Datenbank ist. 
+
+Unter Service in \glqq \acrlong{SOA}\grqq\ kann als ein Mehrwert für die Benutzer interpretiert werden. 
+
+Daraus ergibt sich, dass eine Funktionale Datenbankpartitionierung genauer die Benutzungsmuster der Anwendung entsprechen würde und damit, wenn korrekt implementiert, von höher Performanz. 
+
+Die \acrshort{EDA} eignet sich für die Steuerung von Benutzungsfällen besonders gut, da ein Event eine Interaktion zwischen dem Kunden und Anwendung darstellen kann.
+
+
+
 Skallabilität in Datenhaltung -> Entwerfe für Distribution + vorteile von Lokalität.
 Read replikas -> evtl. Konsistent. 
 Viele Perspektiven von Daten -> Lebenszyklus von Daten. 
