@@ -497,7 +497,7 @@ Der Fokus bei \acrshort{FaaS} liegt auf der Quellcodeentwicklung und nicht auf d
 %Funktionale programmierung abstrahiert. auf Infrastruktur. ??? 
 
 Für die Betrachtung, ob \acrshort{FaaS} eine Lösung für eine konkrete Problemstellung ist, folgt eine Auflistung von Kriterien:
-\paragraph{Es ist nicht empfehlenswert \acrshort{FaaS} zu benutzen, wenn:}
+\paragraph{Es ist nicht empfehlenswert \acrshort{FaaS} zu benutzen, wenn:}\label{lambda-yes-no}
 \begin{itemize}
 	\item der Entwickler Rootzugriffsrechte auf alle Ressourcen eines Servers benötigt.
 	\item die Priorisierung von Betriebssystemattributen wie CPU, GPU, Networking oder Speichergeschwindigkeit angefordert ist.
@@ -545,7 +545,7 @@ Auf einer Seite können Microservices ihren Zustand und Daten speichern und mit 
 
 
 \newacronym{EDA}{EDA}{Event Driven Architecture}
-\textit{\acrfull{EDA}} ist eine Softwarearchitektur, in der das Zusammenspiel der Komponenten durch Ereignisse gesteuert wird. Die Ereignisorientierung besitzt das Potenzial, dass die Architekturen von Anwendungen agiler, reaktionsschneller und
+\textit{\acrfull{EDA}}\label{sec:eda} ist eine Softwarearchitektur, in der das Zusammenspiel der Komponenten durch Ereignisse gesteuert wird. Die Ereignisorientierung besitzt das Potenzial, dass die Architekturen von Anwendungen agiler, reaktionsschneller und
 echtzeitfähig werden. Laut Ralf Bruns und Jürgen Dunkel ist \acrshort{EDA} für komplexe Fachlogik, große Datenvolumina, geringe Latenzzeit, Skalierbarkeit und Agilität geeignet.\cite{archEDA}\\
 Die Serverless Technologien können durch Benachrichtigungen gestartet werden. Dieser \acrshort{EDA}-Stil verstärkt die Entkopplung auf einer temporären Ebene zwischen Producer und Consumer. Weiterhin ermöglicht ein Kommunikationskanal zur Benachrichtigung eine asynchrone Verarbeitung, ohne dass das System auf Grund von Fehlern abstürzt. \cite{patternIntegrationEnterprise}
 
@@ -614,7 +614,12 @@ Zunächst werden die Aufgaben in diskrete Elemente ( oder Filter ) nach dem \acr
 
 \subsection{Legacy Api Proxy}
 \begin{wrapfigure}{l}{0.36\textwidth}
-	\includegraphics[width=0.9\linewidth]{./pics/legacy-api-proxy.eps}
+	\begin{center}
+		\includegraphics[width=0.9\linewidth]{./pics/legacy-api-proxy.eps}
+		\label{legacy-api-proxy}
+		\caption{Legacy API Muster}
+	\end{center}
+	
 \end{wrapfigure}
 Wenn eine \acrshort{API} veraltet oder schwer zu benutzen ist, kann eine extra ( RESTful ) \acrshort{API} in den Vordergrund gestellt werden, die in gesonderten Prozessen Daten transponieren und für die angeforderten Formate aufstellen ( marshall ). Dies ist besonders nützlich, wenn die Legacy-Services selten benutzt werden. Zusätzlich erleichtert die Api Proxy die Integration mit anderen Architekturansätzen.
 \\
@@ -703,7 +708,7 @@ Benutzer arbeiten mit multiplen Anwendungen von unterschiedlichen Organisationen
 \begin{wrapfigure}{l}{0.16\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Compute_GRAYSCALE_AWSLambda.eps}
 \end{wrapfigure}
-\paragraph{Lambda}\label{par:lambda} ist ein Rechenservice, der aus Quellcode und dessen Abhängigkeiten besteht. Die horizontale Skalierung erfolgt automatisch, elastisch und vom Cloudanbieter verwaltet; währenddessen die vertikale nach Konfiguration erfolgt. Lambda wird als Einheit für die Skalierung und das Deployment benutzt. \acrshort{AWS} unterstützt Javascript, Python, C\# und Java. Die letzte Programmiersprache betrifft das Konzept \glqq Cold- und Warm run\grqq\ besonders, da es nötig ist, die \acrfull{JVM} in ihrer Laufzeitumgebung hochzufahren ( cold run ). Der Cloudanbieter stützt sich auf das Pull- und Push- Kommunikationsmodell. Bei Pull überprüft die Lambda Laufzeitumgebung in regelmäßigen zeitlichen Abständen, ob Events z.B. bei Kinesis eingetreten sind und ruft die entsprechende Lambda Funktion mit einer Event-Datennutzlast auf. Bei Push ruft die Eventquelle z.B S3 je nach Konfiguration ( event source mapping ) die entprechende Lambda Funktion auf. 
+\paragraph{Lambda}\label{par:lambda} ist ein Rechenservice, der aus Quellcode und dessen Abhängigkeiten besteht. Die horizontale Skalierung erfolgt automatisch, elastisch und vom Cloudanbieter verwaltet; währenddessen die vertikale nach Konfiguration erfolgt. Lambda wird als Einheit für die Skalierung und das Deployment benutzt. \acrshort{AWS} unterstützt Javascript, Python, C\# und Java. Die letzte Programmiersprache betrifft das Konzept \glqq Cold- und Warm\label{lambda-cold-warm} run\grqq\ besonders, da es nötig ist, die \acrfull{JVM} in ihrer Laufzeitumgebung hochzufahren ( cold run ). Der Cloudanbieter stützt sich auf das Pull- und Push- Kommunikationsmodell. Bei Pull überprüft die Lambda Laufzeitumgebung in regelmäßigen zeitlichen Abständen, ob Events z.B. bei Kinesis eingetreten sind und ruft die entsprechende Lambda Funktion mit einer Event-Datennutzlast auf. Bei Push ruft die Eventquelle z.B S3 je nach Konfiguration ( event source mapping ) die entprechende Lambda Funktion auf. 
 
 
 \begin{wrapfigure}{l}{0.16\textwidth}
@@ -1192,10 +1197,8 @@ Diese Authentisierungsvorgehen ( siehe \ref{pic:federated-identity} ) basiert au
 
 Der autorisierter Zugriff kann nun gewährleistet werden, da die Verwaltung bzw. die persistente Speicherung von Nutzerprofilen möglich ist. 
 
-\chapter{Bewertung}
+\chapter{Auswertung}
 
-\paragraph{Regeln für Anfragen}
-Der Zugang auf die Schnittstelle wird durch CORS konfiguriert um deren Ausnutzung zu vermeiden. 
 
 \paragraph{Zur Skalabilität}
 Die Partitionierung und das Replizieren von Datenbanken bringt zwar Vorteile ( wie in \autoref{data-vorteile} zitiert wurde ) aber auch Herausforderungen bei der Synchronisation und Konsistenz der Daten. Dies geschieht auf Grund des konsistent zu haltenden Zustandes der Datenbanken.
@@ -1206,24 +1209,78 @@ Das Letztere widerspricht die Annahme, dass ein Service entweder eine Funktion o
 
 Unter Service in \glqq \acrlong{SOA}\grqq\ kann als ein Mehrwert für die Benutzer interpretiert werden. 
 
-Daraus ergibt sich, dass eine Funktionale Datenbankpartitionierung genauer die Benutzungsmuster der Anwendung entsprechen würde und damit, wenn korrekt implementiert, von höher Performanz. 
+Daraus ergibt sich, dass eine Funktionale Datenbankpartitionierung genauer die Benutzungsmuster der Anwendung entspricht und damit, wenn korrekt implementiert, von höher Performanz ist. 
 
 Die \acrshort{EDA} eignet sich für die Steuerung von Benutzungsfällen besonders gut, da ein Event eine Interaktion zwischen dem Kunden und der Anwendung darstellen kann. 
 
 Die Orchestrierung solcher Benutzungsfällen lässt sich mittels einer endlichen Zustandsmaschine definierten und einer Petrinetz darstellen, in der Events die Kanten und \acrshort{FaaS} die Ecken sind. Dieser Ansatz ähnelt dem Domain getriebenen Entwurf ( Domain Driven Design \cite{ddd} ), in dem Benutzungsfällen zusammen in Kontextgrenzen ( Bounded Context ) gefasst werden.
 
+Die starke Entkopplung ( siehe \autoref{sec:eda} ) von Diensten erfordert allerdings ihren Zusammenhalt.
+
+
+
+In Zeiten des Cloud computings 
+\newacronym{JEE}{JEE}{Java Enterprise Edition}
+\paragraph{Frameworks und FaaS}
+Frameworks helfen bei der Entwicklung von komplexen Systemen, in dem sie Abstraktionsschichten hinzufügen und damit komplexe Berechnungen wie bei der \glqq Dependency Injection \grqq\ von \acrfull{JEE}. 
+
+Für \acrshort{KOMA} wurde kein Framework benutzt, da die Implementierung der Funktionen das \acrshort{SRP} gefolgt haben und die Abstraktionsschichten nicht bedurften. Hingegen wurden folgende Tests durchgeführt, um die Verwendbarkeit von Frameworks innerhalb einer Lambdafunktion auszuwerten. 
+
+Das ausgewählte Framework ist Apache Jena \cite{fuseki} und als ein eingebetteter Server eingesetzt. Dieses unterstützt den Bau von Semantic Web und Linked Data Anwendugen.
+
+Die \autoref{lst:fuseki} zeigt die vorgenommene Konfiguration für den Aufbau des Servers. Dieser wird während des Tests die schon vorgeladene \acrshort{KOMA} Ontologie durchgehe und ausloggen, um anschließend wieder zu stoppen.
+
+\begin{lstlisting}[language=Java,caption={Embedded Server in Lambda},label={lst:fuseki}]
+Dataset ds = DatasetFactory.createTxnMem();
+server = FusekiServer.create()
+.setPort(3030)
+.add("/dataset", ds)
+.build();
+server.start();
+
+\end{lstlisting}
+
+% RES
+Die folgende Graphik aufzeichnet die Ergebnisse der oben genannten Tests. 
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.60]{./pics/cold-fuseky.eps}
+	\caption{Ausführungszeiten für Fuseki Server in Lambda }
+\end{figure}
+
+Die Ergebnisse Zeigen auf einer Seite, wie sich die Lambdalaufzeitumgebung initiiert ( siehe \ref{lambda-cold-warm} ). Da die Lambdafunktion für jede Anfrage neu instantiiert, muss das Server neu gestartet werden. Hierzu beweist die Graphik, dass \acrshort{IaaS} und \acrshort{PaaS} besser für längerfristige Prozesse als Lambda geeignet sind ( siehe \ref{lambda-yes-no} ). 
+Die bereitgestellte Speicherkapazität beschleunigt die Ausführung und dadurch verkürzt die Antwortzeiten. Diese Szenario nutzt die Fähigkeiten des eingebetteten Servers nicht, wie Transaktionsverwaltung oder \glqq In-Memory\grqq\ Caching. 
+
+An dieser Stelle empfehlt sich das in \autoref{legacy-api-proxy} vorgestellte Legacy API Architekturmuster zu benutzen. Somit würde Anfragen die Transaktionsverwaltung bedürfen an den Server geführt und die Latenz verkürzt.
+
+
+\begin{table}[h]
+	\caption{Tests mit Frameworks in Lambda Ergebnisse}
+	\centering{}
+	\begin{tabular}{ccc}
+		\noalign{\vskip\doublerulesep}
+		Ressourcen ( MB ) & Ausführungszeit ( ms ) & Benutzte Speicher ( MB ) \tabularnewline[\doublerulesep]
+		\hline
+		\noalign{\vskip\doublerulesep}
+		256 & 26100 & 101 \tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		\noalign{\vskip\doublerulesep}
+		128 & Fehler & java.lang.OutOfMemoryError \tabularnewline[\doublerulesep]
+		
+	\end{tabular}
+\end{table}
+
+
+Frameworks helfen aber sind Plattform abhängig. Entweder \acrshort{JEE} und \acrshort{JVM} oder PHP.
+Es kann auf die Layer of Abstraction in FW verzichtet werden. 
+Die Ersetzbarkeit des FaaS entkoppelt die Anwendung und den Entwickler von der darunterliegende Technologie.
 
 \paragraph{Anwendung}{Latenz}
 Die entstandene Webanwendung befindet sich in US-WEST-2, Oregon, in den USA. 
 Da keine Cache oder CDN Funktionalität weder Implementiert noch konfiguriert ist, ist die Latenz direkt proportional zur Ausführungsdauer der Lambda Funktion.
 @Benchmark testing curl 
 @Lambda Monitoring
-
-In Zeiten des Cloud computings 
-\paragraph{Frameworks und FaaS}
-Frameworks helfen aber sind platform abhängig. Entweder JEE und JVM oder PHP.
-Es kann auf die Layer of Abstraction in FW verzichtet werden. 
-Die Ersetzbarkeit des FaaS entkoppelt die Anwendung und den Entwickler von der darunterliegende Technologie.
 
 \paragraph{DevOps Frameworks}
 Die benötigte Fertigkeiten für die Umsetzung einer Serverless Anwendung werden mithilfe von Deploymentframeworks gemindert. Die Aufnahme von 3.Anbieter ist deswegen notwendig. Es existieren bereits solche Hilfe wie z.B Serverlessframework@Ref
