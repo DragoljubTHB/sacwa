@@ -1208,19 +1208,10 @@ Unter Service in \glqq \acrlong{SOA}\grqq\ kann als ein Mehrwert für die Benutz
 
 Daraus ergibt sich, dass eine Funktionale Datenbankpartitionierung genauer die Benutzungsmuster der Anwendung entsprechen würde und damit, wenn korrekt implementiert, von höher Performanz. 
 
-Die \acrshort{EDA} eignet sich für die Steuerung von Benutzungsfällen besonders gut, da ein Event eine Interaktion zwischen dem Kunden und Anwendung darstellen kann.
+Die \acrshort{EDA} eignet sich für die Steuerung von Benutzungsfällen besonders gut, da ein Event eine Interaktion zwischen dem Kunden und der Anwendung darstellen kann. 
 
+Die Orchestrierung solcher Benutzungsfällen lässt sich mittels einer endlichen Zustandsmaschine definierten und einer Petrinetz darstellen, in der Events die Kanten und \acrshort{FaaS} die Ecken sind. Dieser Ansatz ähnelt dem Domain getriebenen Entwurf ( Domain Driven Design \cite{ddd} ), in dem Benutzungsfällen zusammen in Kontextgrenzen ( Bounded Context ) gefasst werden.
 
-
-Skallabilität in Datenhaltung -> Entwerfe für Distribution + vorteile von Lokalität.
-Read replikas -> evtl. Konsistent. 
-Viele Perspektiven von Daten -> Lebenszyklus von Daten. 
----- Bounded Context ---- 
-Service ist nicht nur Funktion oder nur DB.
-Entkopplung fordert enkapsulation und Cohesion.
-
-Event als Bussinesmanager -> Coordinator / Orchestrator -> Lambda
-Als Finite State Machine oder WorkFlow
 
 \paragraph{Anwendung}{Latenz}
 Die entstandene Webanwendung befindet sich in US-WEST-2, Oregon, in den USA. 
