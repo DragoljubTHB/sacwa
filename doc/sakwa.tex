@@ -1488,6 +1488,17 @@ funktionx per second in lambda vs ec2
 
 
 \paragraph{TODO: downwards on}
+
+
+\paragraph{Transaktionen}
+Transaktionen können nicht parallel ausgeführt werden. Sequenciel aka Messaging Pattern.
+Zusammenspiel Arch. interfaces prog.modell und FW
+Arch 1st -> def interfaces and interactions. to program to a inteface
+
+
+Eventual consistency -> event driven + ontology quality
+Consistenty -> koma-standalone <- transaction mgm
+
 % ----
 The OpenLambda paper [15]
 outlines a number of challenges around performance such as supporting faster function
@@ -1503,14 +1514,31 @@ are not fully taking advantage of. In this case, a multi-tenant server applicati
 multiplexes requests may be cheaper to operate.
 
 
-\paragraph{Transaktionen}
-Transaktionen können nicht parallel ausgeführt werden. Sequenciel aka Messaging Pattern.
-Zusammenspiel Arch. interfaces prog.modell und FW
-Arch 1st -> def interfaces and interactions. to program to a inteface
+\paragraph{Nachteile}
+  
+Da HTTP und Lambda zustandslos sind, können die Sitzungen der Nutzer derzeit nur mithilfe von Datenbanken implementiert. Interaktionen die auf ältere basieren wurde in Front-End berücksichtigt. 
+
+Der Einsatz von großen Mengen von Quellcode lässt sich nicht  ... 
+
+Die Hardwareressourcen von Lambda skalieren zwar vertikal, aber nur proportional. Entsprechen werden diese nicht genutzt, aber abgerechnet. 
+
+Die Latenz bei der Bereitschaft auf neue Anfragen ist bei Lambda höher als bei \acrshort{PaaS}, daher sind Mechanismen zur Optimierung von Antwortzeiten wie eine periodische Ausführung zur Wiederverwendung der Lambdalaufzeitumgebung oder die Ableitung von Message Queues ( Nachrichtenschlangen ) von einer überlasteten \acrshort{PaaS} Anwendung zu Lambdafunktionen.
 
 
-Eventual consistency -> event driven + ontology quality
-Consistenty -> koma-standalone <- transaction mgm
+Es besteht ein Lock-in Risiko, wenn die Portierung von Quellcode auf unterschiedliche Cloudanbieter nicht im vorausgesehen wurde.
+
+Der Kontrollverlust über das Verhalten der Services kann die Entwurfsentscheidungen erschweren.
+
+DEbugging -> serverless + live breakpoints 
+SLA Service Level Agreement: Latency, Bank:High volume Transactions,
+Decentralisation of Services = Challenge = Overhead, time, energy <- orchestration of events.
+Decentralisation vs monotithik != --komplexity
+
+kurzlebige konfigurationen herausfinden ?? tracking?
+viel Konfiguration, kaum Konveniton -> .json 4 everything
+local testing braucht event-symulation.json
+
+
 
 \paragraph{Vorteile}
 Automatische Skalierung <!-- größe und kleine Apps --> und Fehlertoleranz
@@ -1519,20 +1547,6 @@ Flexible Ressourcenverwaltung
 Schnelle Bereitstellung der Ressourcen
 Exakte nutzungsabhängige Abrechnung der Ressourcen
 Konzentration auf den Kern des Source-Codes
-
-
-\paragraph{Nachteile}
-
-DEbugging -> serverless + live breakpoints 
-SLA Service Level Agreement: Latency, Bank:High volume Transactions,
-Decentralisation of Services = Challenge = Overhead, time, energy <- orchestration of events.
-Decentralisation vs monotithik != --komplexity
-Kontrollverlust
-Erhöhtes Lock-in Risiko
-
-kurzlebige konfigurationen herausfinden ?? tracking?
-viel Konfiguration, kaum Konveniton -> .json 4 everything
-local testing braucht event-symulation.json
 
 
 
