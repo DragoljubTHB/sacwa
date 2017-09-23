@@ -359,22 +359,22 @@ Ein Zeichen für die Existenz dieser Komplexität im Rahmen des Cloudcomputings 
 
 Je mehr Anforderungen auf ein System z.B. Webanwendung zukommen, desto komplexer wird es. Je mehr Softwarekomponenten, desto mehr Verwaltungsaufwand mittels Load Balancing, Messaging usw. entsteht. Je mehr Dynamik, desto schwieriger ihre Integration und Skalierung.\cite{patternIntegrationEnterprise} 
 
-Mittels dem Serveless Architekturstil versuchen die Cloudanbieter diesen Verwaltungsaufwand zu umgehen, die Skalierung zu vereinfachen und Integrationsschwierigkeiten zu lösen.
+Mittels des Serveless Architekturstils versuchen die Cloudanbieter diesen Verwaltungsaufwand zu umgehen, die Skalierung zu vereinfachen und Integrationsschwierigkeiten zu lösen.
 
 
 Um die Umsetzungsvorgänge einer Webanwendung möglichst simpel zu halten, werden in der vorliegenden Arbeit die Serverless Architekturen für konventionelle Webanwendungen untersucht.
 
 
 \section{Vorgehen}
-Auf dem Weg zur technologischen Umsetzung einer neuen Idee liegen unbekannte Schwierigkeiten
-bei den Entscheidungen über ihrer Umsetzung. Problematisch können sich der Architekturentwurf, die IT Infrastruktur, die Drittanbieter von Software, die Auswahl der Infrastruktur usw. gestalten. Hinzu kommen Schwierigkeiten, die spezialisierte Kompetenzen, Fertigkeiten und \glqq Know-How\grqq\ erfordern. Diese gehören jedoch nicht immer zum Problem der Domain der Anwendung.
+Auf dem Weg zur technologischen Umsetzung einer neuen Idee treten unbekannte Komplikationen
+bei den Entscheidungen über ihre Umsetzung auf. Problematisch können sich der Architekturentwurf, die IT Infrastruktur, die Drittanbieter von Software, die Auswahl der Infrastruktur usw. gestalten. Hinzu kommen Schwierigkeiten, die spezialisierte Kompetenzen, Fertigkeiten und \glqq Know-How\grqq\ erfordern. Diese gehören jedoch nicht immer zum Problem der Domain der Anwendung.
 
 Der Begriff Serverless weist darauf hin, dass die Verwaltung der zugrunde liegenden Serverinfrastruktur der Anwendung von Cloudanbietern übernommen wird. 
 
 \newacronym{FaaS}{FaaS}{Function as a Service}
-Für dieses Problem wurde \acrfull{FaaS} \autoref{sec:faas}, als Lösung unter der Rubrik \glqq\ Serverless\grqq\ \autoref{sec:serverless} von den Hauptanbietern von \glqq Cloud\grqq\ Technologien vorgestellt.
+Für die oben genannten Schwierigkeiten wird \acrfull{FaaS} \autoref{sec:faas}, als Lösung unter der Rubrik \glqq\ Serverless\grqq\ \autoref{sec:serverless} von den Hauptanbietern von \glqq Cloud\grqq\ Technologien vorgestellt.
 
-\acrshort{FaaS} definiert das Programmiermodel, eine Funktion oder auch \glqq Nano-Microservice\grqq genannt, um den serverless Architekturstil zu adoptieren.
+\acrshort{FaaS} definiert das Programmiermodel, eine Funktion oder auch \glqq Nano-Microservice\grqq genannt, um den serverless Architekturstil zu adaptieren.
 
 \newacronym{AWS}{AWS}{Amazon Web Services}
 \newacronym{KOMA}{KOMA}{Kompetenz Matrix}
@@ -386,11 +386,11 @@ Als Instrument zur Unterstützung von pädagogischer Diagnostik und Intervention
 \label{sec:task}
 \newacronym{MVP}{MVP}{Minimal Viable Product}
 \newacronym{SPA}{SPA}{Single Page Application}
-Das Ziel ist ein \acrlong{MVP},in Form von einer \acrfull{SPA} \autoref{sec:spa}, ausschließlich mit Serverless Technologien zur Verfügung zu stellen.
-
-Nach der Umsetzung werden die Erfahrungen und Ergebnisse ausgewertet, um bei zukünftigen Entscheidungsprozessen bei der Umsetzung einer Webanwendung zu unterstützen.
-
+Das Ziel ist ein \acrlong{MVP}, in Form von einer \acrfull{SPA} \autoref{sec:spa}, ausschließlich mit Serverless Technologien zur Verfügung zu stellen.
 Die Webanwendung soll möglichst flexibel für zukünftige Änderungen sein.
+
+Anschließend werden die Erfahrungen und Ergebnisse ausgewertet, um zukünftige Entscheidungsprozesse bei der Umsetzung einer Webanwendung zu unterstützen. Es wird hinterfragt, in wie fern der Serverless Ansatz am Beispiel von \acrfull{AWS} die Umsetzung tatsächlich erleichtert. 
+Eine weitere Analyse prüft, wie sich eine möglichst hohe Flexibilität bei \acrshort{AWS} erzielen lässt.
 
 \section{Aufbau der Arbeit}
 \label{sec:layout}
@@ -399,8 +399,8 @@ Die vorliegende Arbeit beschäftigt sich mit dem Serverless Ausschnitt der Cloud
 
 Zuerst wird der Leser in die klassischen Servicemodelle ( \autoref{chap:service-models} ) eingeführt. Zunächst werden die technischen Anforderungen und die dazugehörigen Beispiele des Serverless Ansatzes erläutert.
 Das nächste Kapitel überblickt die aktuellen Serverless Angebote der größten Cloud Anbieter.
-Den Kern der Arbeit bildet die Analyse und Darstellung von Serverless Architekturen ( \autoref{chap:aws-serverless} ) und sie fokussiert sich auf \acrfull{AWS}. In diesem Abschnitt  \autoref{chap:aws-serverless} werden die Serverless ( \autoref{sec:serverless} ) Architekturen und das Programmiermodell vorgestellt, sowie die Entscheidungsprinzipien ( \autoref{par:serverless-principles} ) erläutert.
-Der praktische Teil beschäftigt sich mit der Umsetzung und Bewertung von der oben genannten Serverless Webanwendung KOMA ( \autoref{sec:KOMA} ).
+Den Kern der Arbeit bildet die Analyse und Darstellung von Serverless Architekturen ( \autoref{chap:aws-serverless} ) und sie fokussiert sich auf \acrshort{AWS}. In diesem Abschnitt werden die Serverless Architekturen ( \autoref{chap:aws-serverless} ) und das Programmiermodell vorgestellt, sowie die Entscheidungsprinzipien ( \autoref{par:serverless-principles} ) erläutert.
+Der praktische Teil setzt sich aus der Umsetzung und Bewertung von der oben genannten Serverless Webanwendung KOMA ( \autoref{sec:KOMA} ) zusammen.
 
 Am Ende erfolgt eine Diskussion darüber, welche Trade-offs entstehen und welche Zukunftsperspektiven Serveless Technologien bieten.
 
@@ -410,7 +410,9 @@ Am Ende erfolgt eine Diskussion darüber, welche Trade-offs entstehen und welche
 \label{chap:principles}
 %\epigraph{\textit{\textquotedbl{}
 %There are only two hard things in computer science:\\ cache invalidation and naming %things.\textquotedbl{}}}{ Phil Karlton }
-Cloud Computing beschreibt die Bereitstellung von IT-Infrastruktur und IT-Leistungen wie beispielsweise Speicherplatz, Rechenleistung oder Anwendungssoftware als Service über das Internet.\cite{cloudEssentials}
+
+Um wiederkehrende IT-Probleme zu beheben, werden Service-Modelle entworfen. Als solches beschreibt
+Cloud Computing die Bereitstellung von IT-Infrastruktur und IT-Leistungen wie beispielsweise Speicherplatz, Rechenleistung oder Anwendungssoftware als Service über das Internet.\cite{cloudEssentials}
 %https://www.novadex.com/de/glossar-artikel/definition-cloud-computing-was-ist-cloud-computing/
 
 \section{Cloud Eigenschaften}
@@ -585,8 +587,42 @@ Zusammenfassend sind folgende Vorteile ersichtlich:
 
 \newacronym{REST}{REST}{REpresentational State Transfer}
 Im späteren Kapitel wird REST als Teil des \acrshort{EDA}-Architekturstils vorgestellt.
-%%%---------------
+%%%--------------- revise
+Hinter den Serverless Angeboten sind folgende Cloudanbieter zu finden: 
 
+\begin{table}
+	\caption{Vergleich \acrshort{FaaS} Angebote der Cloudanbietern}
+	\centering{}
+	\label{comparison-FaaS}
+	\begin{tabular}{ p{7em} | p{2cm} | p{2cm} | p{2cm} | p{2cm} | p{2cm} }
+		& AWS Lambda & Iron.io & Google Funktions & MS Funktions & IBM OpenWhisk  \\
+		\hline
+		JS & e & f & g & h & i \\
+		\hline
+		Python & e & f & g & h & i \\
+		\hline
+		Java & e & f & g & h & i \\
+		\hline
+		Ruby & e & f & g & h & i \\
+		\hline
+		.NET & e & f & g & h & i \\
+		\hline
+		Trigger & e & f & g & h & i \\
+		\hline
+		- Event Trigger  & e & f & g & h & i \\
+		\hline
+		- HTTP Trigger & e & f & g & h & i \\
+		\hline
+		d & e & f & g & h & i \\
+		\hline
+		d & e & f & g & h & i \\
+	\end{tabular}
+\end{table}
+
+
+Google Cloud Functions provides
+basic FaaS functionality to run serverless functions written in Node.js in response
+to HTTP calls or events from some Google Cloud services
 %%%% -------------------   
 Amazon’s AWS Lambda [1] was the first serverless platform and it defined several
 key dimensions including cost, programming model, deployment, resource limits,
@@ -595,10 +631,12 @@ C\#. Initial versions had limited composability but this has been addressed rece
 The platform takes advantage of a large AWS ecosystem of services and makes
 it easy to use Lambda functions as event handlers and to provide glue code when
 composing services.
+
 Currently available as an Alpha release, Google Cloud Functions [14] provides
 basic FaaS functionality to run serverless functions written in Node.js in response
 to HTTP calls or events from some Google Cloud services. The functionality is
 currently limited but expected to grow in future versions
+
 Microsoft Azure Functions [23] provides HTTP webhooks and integration with
 Azure services to run user provided functions. The platform supports C\#, F\#,
 Node.js, Python, PHP, bash, or any executable. The runtime code is open-source
@@ -610,7 +648,8 @@ ability to chain serverless functions to create composite functions. It supports
 Node.js, Java, Swift, Python, as well as arbitrary binaries embedded in a Docker
 container. OpenWhisk is available on GitHub under an Apache open source license.
 The main architectural components of the OpenWhisk platform are shown in Figure
-4. Compared to the generic architectural diagram in Figure 3, we can see there
+4. Compared to the generic architectural diagram in Figure 
+3, we can see there
 are additional components handling important requirements such as security, logging,
 and monitoring.
 
