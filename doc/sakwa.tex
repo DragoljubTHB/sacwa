@@ -365,9 +365,6 @@ Mittels dem Serveless Architekturstil versuchen die Cloudanbieter diesen Verwalt
 Um die Umsetzungsvorgänge einer Webanwendung möglichst simpel zu halten, werden in der vorliegenden Arbeit die Serverless Architekturen für konventionelle Webanwendungen untersucht.
 
 
-%Ideen Schneller Vorrantreiben
-%severless arch.
-
 \section{Vorgehen}
 Auf dem Weg zur technologischen Umsetzung einer neuen Idee liegen unbekannte Schwierigkeiten
 bei den Entscheidungen über ihrer Umsetzung. Problematisch können sich der Architekturentwurf, die IT Infrastruktur, die Drittanbieter von Software, die Auswahl der Infrastruktur usw. gestalten. Hinzu kommen Schwierigkeiten, die spezialisierte Kompetenzen, Fertigkeiten und \glqq Know-How\grqq\ erfordern. Diese gehören jedoch nicht immer zum Problem der Domain der Anwendung.
@@ -381,7 +378,8 @@ Für dieses Problem wurde \acrfull{FaaS} \autoref{sec:faas}, als Lösung unter d
 
 \newacronym{AWS}{AWS}{Amazon Web Services}
 \newacronym{KOMA}{KOMA}{Kompetenz Matrix}
-Im Rahmen des Cloud Computing handelt es sich in dieser Arbeit um eine Untersuchung der Serverless Architekturen am Beispiel einer konventionellen Webanwendung. Dabei wird besonders beachtet, ob und wie solche Technologien die Umsetzung erleichtern. Die Entwurfsmuster und die Kernfunktionalität werden ausschließlich mit Serverless Technologien am Beispiel einer Webanwendung ( \acrfull{KOMA}, siehe \autoref{sec:KOMA} ), mit \acrshort{AWS} umgesetzt.
+Im Rahmen des Cloud Computing handelt es sich in dieser Arbeit um eine Untersuchung der Serverless Architekturen am Beispiel einer konventionellen Webanwendung. Dabei wird besonders beachtet, ob und wie solche Technologien die Umsetzung erleichtern. Die Entwurfsmuster und die Kernfunktionalität werden ausschließlich mit Serverless Technologien am Beispiel einer Webanwendung ( \acrfull{KOMA}, siehe \autoref{sec:KOMA} ), mit \acrshort{AWS} umgesetzt.\\
+Als Instrument zur Unterstützung von pädagogischer Diagnostik und Intervention werden in \acrshort{KOMA} Kompetenzen und ihre Ausprägungen in Form einer Matrix dargestellt ( d.h. \acrshort{KOMA} ). 
 
 
 \section{Ziel}
@@ -420,7 +418,7 @@ Cloud Computing beschreibt die Bereitstellung von IT-Infrastruktur und IT-Leistu
 Als Softwarearchitekt, Entwickler oder Projektmanager ist es wichtig, die spezifischen Eigenschaften von Cloud Angeboten zu verstehen. Aus einem Meer von Cloud Diensten ist die richtige Auswahl je nach Anforderungen und Art der technologischen Umsetzung schwer zu treffen. 
 
 
-Im Allgemeinen teilen Cloud Angebote laut Chandrasekaran ( 2014 ) folgende Eigenschaften:
+Im Allgemeinen teilen Cloud Angebote laut Chandrasekaran ( \cite{cloudEssentials} ) folgende Eigenschaften:
 \begin{itemize}
 	\item On-Demand Self-Service - Nutzer können die IT-Kapazitäten, die sie benötigen, selbständig ordern und einrichten. Der Anbieter muss in den Prozess nicht eingebunden werden.
 	\item Broad Network Access bezeichnet den standardbasierten Netzzugriff von verschiedenen Endgeräten (z.B. Smartphones, Tablets, Laptops, PCs) aus.
@@ -485,7 +483,16 @@ Ein Großteil traditioneller Software bietet seine Version als \acrshort{SaaS} n
 \chapter{FaaS}%{nichtfunktionalen/technischen Anforderungen zur Entwicklung des Serverless-Ansatzes}
 
 \acrfull{FaaS}\label{sec:faas} kann als ein Rechenservice beschrieben werden, der nach Anfrage isoliert, unabhängig und granular ausgeführt wird. Komplexe Probleme wie horizontale und vertikale Skalierbarkeit, Fehlertoleranz und Elastizität werden von Kunden nur noch nach Bedarf konfiguriert und von dem Anbieter verwaltet. Die Besonderheit von \acrshort{FaaS} ist die \glqq Unit of Deployment\grqq\ und die Skalierung in Form einer Funktion. \cite{patternAWS}
+% - - - - -
+A cloud-native platform
+For short-running, stateless computation
+And event-driven applications
+which scales up and down instantly and
+automatically
+And charges for actual usage at a
+millisecond granularity
 
+%e (FaaS) is somewhat smaller as Software-asa-Service
 Somit lässt sich in der folgenden \autoref{comparison-xaaS} die Skalierungseinheit ( Unit of Deployment ) und die Abstraktionsebene von den relevanten Dienstmodellen vergleichen. 
 \begin{table}[H]
 	\caption{Vergleich IaaS PaaS FaaS Skalierung und Abstraktion}
@@ -502,7 +509,7 @@ Somit lässt sich in der folgenden \autoref{comparison-xaaS} die Skalierungseinh
 
 \end{table}
 
-Events\label{par:event-reaction} innerhalb eines verteilten Systems müssen verwaltet werden. Technologien wie Virtualisierte oder Containerized Server erzeugen neue Serverinstanzen zur Verarbeitung von einer Kette von variablen Events, die danach gelöscht wird.\cite{lambdaAWS} Die entstehende Problematik ergab sich durch eine starke Zunahme an Elementen, die einen hohen Verwaltungsaufwand forderten.  Was zurück auf die oben genannten Aufgaben \autoref{sec:iaas-aufgaben} führte.
+Events\label{par:event-reaction} innerhalb eines verteilten Systems müssen verwaltet werden. Technologien wie virtualisierte oder containerized Server erzeugen neue Serverinstanzen zur Verarbeitung von einer Kette von variablen Events, die danach gelöscht wird.\cite{lambdaAWS} Die entstehende Problematik ergab sich durch eine starke Zunahme an Elementen, die einen hohen Verwaltungsaufwand forderten.  Was zurück auf die oben genannten Aufgaben \autoref{sec:iaas-aufgaben} führte.
 
 Polling\label{par:polling} ist der Ausdruck für eine zyklische Abfrage über einen Status z.B. von Ports oder Locks über Ressourcen. Die Verwendung von Systemressourcen ist ineffizient im Vergleich zu Alternativansätzen wie z.B in dem Push- oder Pull- Kommunikationsmodell.\cite{lambdaAWS} 
 
@@ -520,20 +527,26 @@ Der Fokus bei \acrshort{FaaS} liegt auf der Quellcodeentwicklung und nicht auf d
 Für die Betrachtung, ob \acrshort{FaaS} eine Lösung für eine konkrete Problemstellung ist, folgt eine Auflistung von Kriterien:
 \paragraph{Es ist nicht empfehlenswert \acrshort{FaaS} zu benutzen, wenn:}\label{lambda-yes-no}
 \begin{itemize}
-	\item der Entwickler Rootzugriffsrechte auf alle Ressourcen eines Servers benötigt.
-	\item die Priorisierung von Betriebssystemattributen wie CPU, GPU, Networking oder Speichergeschwindigkeit angefordert ist.
-	\item Sicherheit relevant ist. Unautorisierte Zugriffe können mit \acrshort{FaaS} nur auf Systemebene erkannt werden.
-	\item dauerhaft laufende Prozesse angefordert sind.
+	\item der Entwickler Rootzugriffsrechte auf alle Ressourcen eines Servers benötigt
+	\item die Priorisierung von Betriebssystemattributen wie CPU, GPU, Networking oder Speichergeschwindigkeit angefordert ist
+	\item Sicherheit relevant ist. Unautorisierte Zugriffe können mit \acrshort{FaaS} nur auf Systemebene erkannt werden
+	\item dauerhaft laufende Prozesse angefordert sind
 \end{itemize}
 \paragraph{Es ist empfehlenswert \acrshort{FaaS} zu benutzen, wenn:}
 \begin{itemize}
-	\item Aufgaben als Reaktion auf Events erledigt werden. 
-	\item ein Scriptbehälter für z.B Cron Aufgaben benötigt wird. Die Zugriffsrechte sind beschränkter, Fehler sind einfacher zu erkennen und an einer Stelle aggregiert ( siehe CloudWatch ), des weiteren können Deployments einfacher angestoßen werden.
-	\item die Skalierung des Servers bei einer ressourcenintensiven Verarbeitung vermieden werden soll. \autoref{sec:pipes-filters}
-	\item Services vorgegeben sind, die selten benutzt werden.
-	\item die Verwaltung von \acrshort{API}-Server umgangen werden soll.
+	\item Aufgaben als Reaktion auf Events erledigt werden
+	\item ein Scriptbehälter für z.B Cron-Aufgaben benötigt wird. Die Zugriffsrechte sind beschränkter, Fehler sind einfacher zu erkennen und an einer Stelle aggregiert ( \cite{awsCloudWatch} ), des weiteren können Deployments einfacher angestoßen werden
+	\item die Skalierung des Servers bei einer ressourcenintensiven Verarbeitung vermieden werden soll \autoref{sec:pipes-filters}
+	\item Services vorgegeben sind, die selten benutzt werden
+	\item die Verwaltung von \acrshort{API}-Server umgangen werden soll
 \end{itemize}\cite{lambdaAWS}
 
+%%%% ------------
+The challenge is to implement such functionality while considering metrics such
+as cost, scalability, and fault tolerance. The platform must quickly and efficiently
+start a function and process its input. The platform also needs to queue events, and
+based on the state of the queues and arrival rate of events, schedule the execution
+of functions, and manage stopping and deallocating resources for idle function in-
 
 \chapter{Serverless-Angebote und Architekturen}
 
@@ -580,6 +593,35 @@ Zusammenfassend sind folgende Vorteile ersichtlich:
 
 \newacronym{REST}{REST}{REpresentational State Transfer}
 Im späteren Kapitel wird REST als Teil des \acrshort{EDA}-Architekturstils vorgestellt.
+%%%---------------
+
+%%%% -------------------   
+Amazon’s AWS Lambda [1] was the first serverless platform and it defined several
+key dimensions including cost, programming model, deployment, resource limits,
+security, and monitoring. Supported languages include Node.js, Java, Python, and
+C\#. Initial versions had limited composability but this has been addressed recently.
+The platform takes advantage of a large AWS ecosystem of services and makes
+it easy to use Lambda functions as event handlers and to provide glue code when
+composing services.
+Currently available as an Alpha release, Google Cloud Functions [14] provides
+basic FaaS functionality to run serverless functions written in Node.js in response
+to HTTP calls or events from some Google Cloud services. The functionality is
+currently limited but expected to grow in future versions
+Microsoft Azure Functions [23] provides HTTP webhooks and integration with
+Azure services to run user provided functions. The platform supports C\#, F\#,
+Node.js, Python, PHP, bash, or any executable. The runtime code is open-source
+and available on GitHub under an MIT License. To ease debugging, the Azure Functions
+CLI provides a local development experience for creating, developing, testing,
+running, and debugging Azure Functions.
+IBM OpenWhisk [16] provides event-based serverless programming with the
+ability to chain serverless functions to create composite functions. It supports
+Node.js, Java, Swift, Python, as well as arbitrary binaries embedded in a Docker
+container. OpenWhisk is available on GitHub under an Apache open source license.
+The main architectural components of the OpenWhisk platform are shown in Figure
+4. Compared to the generic architectural diagram in Figure 3, we can see there
+are additional components handling important requirements such as security, logging,
+and monitoring.
+
 
 
 \section{Serverless}
@@ -786,7 +828,8 @@ Benutzer arbeiten mit multiplen Anwendungen von unterschiedlichen Organisationen
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Compute_GRAYSCALE_AWSLambda.eps}
 \end{wrapfigure}
 \paragraph{Lambda}\label{par:lambda} ist ein Rechenservice, der aus Quellcode und dessen Abhängigkeiten besteht. Die horizontale Skalierung erfolgt automatisch, elastisch und vom Cloudanbieter verwaltet; währenddessen die vertikale nach Konfiguration erfolgt. Lambda wird als Einheit für die Skalierung und das Deployment benutzt. \acrshort{AWS} unterstützt Javascript, Python, C\# und Java. Die letzte Programmiersprache betrifft das Konzept \glqq Cold- und Warm\label{lambda-cold-warm} run\grqq\ besonders, da es nötig ist, die \acrfull{JVM} in ihrer Laufzeitumgebung hochzufahren ( cold run ). Der Cloudanbieter stützt sich auf das Pull- und Push- Kommunikationsmodell. Bei Pull überprüft die Lambda Laufzeitumgebung in regelmäßigen zeitlichen Abständen, ob Events z.B. bei Kinesis eingetreten sind und ruft die entsprechende Lambda Funktion mit einer Event-Datennutzlast auf. Bei Push ruft die Eventquelle z.B S3 je nach Konfiguration ( event source mapping ) die entprechende Lambda Funktion auf. 
-
+% STATE retrieval from other services such a DB
+% Skale up and down to Zero
 
 \begin{wrapfigure}{l}{0.16\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/MobileServices_GRAYSCALE_AmazonAPIGateway.eps}
@@ -1199,7 +1242,7 @@ Eine zusätzliche Maßnahme zur Optimierung des Datenzugriffs ist die Datenparti
 		\label{pic:partitioning}
 	\end{center}
 \end{figure}
-
+% ontoVerticalPartition < poor scales on triple stores
 Im Folgenden wird die Anwendung als Beispiel zur Erklärung genutzt.\\ 
 Bei der horitzontalen Datenpartitionierung wird die \acrshort{OWL} Datei nach \glqq Individuals\grqq\ aufgeteilt und in unterschiedliche Buckets einsortiert. Hingegen wird bei einer vertikalen Datenpartitionierung jeweils eine Tabelle für Subjekte, Merkmale ( Properties ) und für Objekte erstellt. DynamoDB eignet sich für diese Serverless Anwendung  als \glqq Key-Value Store\grqq\ , um als Keys die \glqq Individuals\grqq\ und als Values dessen \acrfull{URI}s darzustellen.\cite{ontoVerticalPartition}
 
@@ -1324,14 +1367,13 @@ Die folgende Grafik zeichnet die Ergebnisse der oben genannten Tests auf.
 	\caption{Ausführungszeiten für Fuseki Server in Lambda }
 \end{figure}
 
-Die Ergebnisse zeigen zunächst, wie sich die Lambdalaufzeitumgebung initiiert ( siehe \autoref{lambda-cold-warm} ). Da die Laufzeitumgebung für jede Anfrage eine neue Lambdafunktion instantiiert, muss der Server neu gestartet werden. Hierzu beweist die Grafik, dass \acrshort{IaaS} und \acrshort{PaaS} besser für längerfristige Prozesse als Lambda geeignet sind ( siehe \autoref{lambda-yes-no} ). 
+Die Ergebnisse zeigen zunächst, wie sich die \acrshort{JVM} in der Lambdalaufzeitumgebung initiiert ( siehe \autoref{lambda-cold-warm} ). Da die Laufzeitumgebung für jede Anfrage eine neue Lambdafunktion instantiiert, muss der Server neu gestartet werden. Hierzu beweist die Grafik, dass \acrshort{IaaS} und \acrshort{PaaS} besser für längerfristige Prozesse als Lambda geeignet sind ( siehe \autoref{lambda-yes-no} ). 
 
 Die bereitgestellte Speicherkapazität beschleunigt die Ausführung und dadurch verkürzen sich die Antwortzeiten. In diesem Szenario nutzt die Transaktionsverwaltung und die \glqq In-Memory\grqq\ Caching des Servers nicht.
 
 Bei zu niedrigen vorkonfigurierten Speicherkapazitäten sind folgende Fehler zu beobachten:
 
 \begin{table}[h]
-	\caption{Tests mit Frameworks in Lambda Ergebnisse}
 	\centering{}
 	\begin{tabular}{ccc}
 		\noalign{\vskip\doublerulesep}
@@ -1343,6 +1385,7 @@ Bei zu niedrigen vorkonfigurierten Speicherkapazitäten sind folgende Fehler zu 
 		\noalign{\vskip\doublerulesep}
 		128 & Fehler & java.lang.OutOfMemoryError \tabularnewline[\doublerulesep]
 	\end{tabular}\label{lambda-out-of-memory}
+\caption{Tests mit Frameworks in Lambda Ergebnisse}
 \end{table}
 
 Allerdings verursacht die Rekonfiguration keinen neuen Einsatz ( Deployment ), damit werden Ausfallzeiten vermieden. 
@@ -1361,9 +1404,38 @@ Die visualisierte \autoref{fuseki-arq} zeigt die Ausführungszeiten der Abfragev
 
 Die serverlose Variante ( Jena ARQ, in Orange ) ist erst ab der zweiten Ausführung deutlich schneller als mit Fuseki ( in Blau ).
 
+%--- revise 
+Sowhol zwischen der 5. und der 7. als auch der 10. und 11. Ausführung steigt die Latenz.Nach Ergebnissen von Herrn McGrath und Brenner lässt sich dieses Phänomen auf \glqq kalte Startzeiten ( siehe \autoref{lambda-cold-warm} ) zurückführen . Dabei zeigten Google Cloud Funktions und Lambda deutlich weniger Schwankungen bei der Latenzmessungen. \cite{servPerform}
+
+\paragraph{Große Bibliotheken}
+Die gebaute JAR Datei der oben erwähnten Lambdafunktion, Jena ARQ, beträgt 19 MB. Im Fall von wissenschaftliche Bibliotheken wie \glqq SciPy\grqq\ ( für die Programmiersprache Python ) beträgt diese bis 499 MB. Die Ladezeiten verlangsamen je größer die auszuführende Lambdafunktion ist. \cite{lambdaBibliothek}
+Daraus ergibt sich, dass eine Verwaltung für große Bibliotheken gerade dann nötig ist, wenn auch der Benutzungsfall sich nicht für containerbasierten Anwendungen gut eignet. 
+
+Das Letztere wird derzeit zwar nicht von \acrshort{AWS} Lambda unterstützt, aber von \glqq Pipsqueak\grqq\ ( ein package-bewusst Berechnungsplattform für OpenLambda \cite{lambdaBibliothek} ). Die Autoren schlagen eine von \glqq Shared-Cache\grqq\, die während der Laufzeit gelöst und an Lambdafunktionen geliefert werden.
 
 \paragraph{DevOps Frameworks}
 Die Anzahl von Diensten bzw. Funktionen kann in einem komplexen System unübersichtlich werden. Entsprechend steigt der Aufwand bei Deployments, der Verwaltung und der Kohäsion von Abhängigkeiten, sowie bei der Koordination des Entwicklerteams ( z.B. jeder wer entwickelt was, wann ). 
+
+% --- revise 
+Folgende \autoref{deploy-comparison} zeigt, dass die hohe Granularität des Einzatzes der Serverless Architekturen von Automatismen bedarf.
+
+\begin{table}
+	\centering{}
+	\begin{tabular}{c | c c c c}
+		\noalign{\vskip\doublerulesep}
+		& Vor Ort & VMs & Containers & Serverless \tabularnewline[\doublerulesep]
+		\hline
+		\noalign{\vskip\doublerulesep}
+		Bereitstellungszeit & bis Monaten & Minuten & bis Minuten & Millis. \tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		\noalign{\vskip\doublerulesep}
+		Benutzung & Gering & Hoch & Hoher & die Höchste \tabularnewline[\doublerulesep]
+		\noalign{\vskip\doublerulesep}
+		Ladegranularität & Keine & Stunden & Minuten &  Blöcke von Millis.\tabularnewline[\doublerulesep]
+	\end{tabular}
+\caption{Vergleich zwischen  von Verwendung und Deployment }
+\label{deploy-comparison}
+\end{table} \cite{servStatus}
 
 Diese Schwierigkeit macht die Deploymentframeworks wertvoll, da sie nicht nur die oben genannten Problemen ansprechen, sondern auch den Umgang mit anbieterspezifischen Sicherheitsrichtlinien vereinfachen. Dazu sind \glqq Serverless Framework\grqq\ und \glqq Zappa\grqq\ die bekanntesten Beispiele.
 
@@ -1377,7 +1449,27 @@ Die starke Komponentisierung und Dezentralisierung von Software, die Variabilit�
 Die DevOps Kultur gibt dazu Hilfestellungen. Neben dem Entwurf der Softwarearchitektur muss, um deren Umsetzung zeitgemäß zu gewährleisten, eine zum Projekt passende DevOps Strategie aufstellen.
 Um einen Vorteil aus den neuen Technologien zu ziehen, ist die Recherche nach schon existierenden DevOps Frameworks besonders wichtig. Ihre Integration in die DevOps Strategie sind einer agilen Entwicklung dienlich.
 
+\paragraph{Kosten EC2 und Lambda}
+
+funktionx per second in lambda vs ec2
+
+
 \paragraph{TODO: downwards on}
+% ----
+The OpenLambda paper [15]
+outlines a number of challenges around performance such as supporting faster function
+startup time for heterogenous language runtimes and across a load balanced
+pool of servers, deployment of large amounts of code, supporting stateful interactions
+(such as HTTP sessions) on top of stateless functions, using serverless functions
+with databases and data aggregators, legacy decomposition, and cost debugging
+%-------
+lambda ->  bursty, compute intensive workloads
+but
+I/O bound functions are paying for compute resources that they
+are not fully taking advantage of. In this case, a multi-tenant server application that
+multiplexes requests may be cheaper to operate.
+
+
 \paragraph{Transaktionen}
 Transaktionen können nicht parallel ausgeführt werden. Sequenciel aka Messaging Pattern.
 Zusammenspiel Arch. interfaces prog.modell und FW
@@ -1398,7 +1490,7 @@ Konzentration auf den Kern des Source-Codes
 
 \paragraph{Nachteile}
 
-
+DEbugging -> serverless + live breakpoints 
 SLA Service Level Agreement: Latency, Bank:High volume Transactions,
 Decentralisation of Services = Challenge = Overhead, time, energy <- orchestration of events.
 Decentralisation vs monotithik != --komplexity
@@ -1427,10 +1519,17 @@ Es kann daher auch als Serverless betrachtet wenn neue Quelldataien eine Docker 
 
 \chapter{Ausblick}
 
-
+%Can​ ​serverless​ ​work​ ​for​ ​longer​ ​running​ ​tasks?
 
 \paragraph{RESTful UI}
 RESTful Anfragen für bestimmte UI formate.
+
+
+%%-----
+
+computing supporting centralized
+and edge computing with a common event-driven programming model. Conversely the
+drivers of cloud computing are Edge Computing and Serverless.
 
 \lstlistoflistings
 
