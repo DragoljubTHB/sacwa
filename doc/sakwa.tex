@@ -483,14 +483,7 @@ Ein Großteil traditioneller Software bietet seine Version als \acrshort{SaaS} n
 \chapter{FaaS}%{nichtfunktionalen/technischen Anforderungen zur Entwicklung des Serverless-Ansatzes}
 
 \acrfull{FaaS}\label{sec:faas} kann als ein Rechenservice beschrieben werden, der nach Anfrage isoliert, unabhängig und granular ausgeführt wird. Komplexe Probleme wie horizontale und vertikale Skalierbarkeit, Fehlertoleranz und Elastizität werden von Kunden nur noch nach Bedarf konfiguriert und von dem Anbieter verwaltet. Die Besonderheit von \acrshort{FaaS} ist die \glqq Unit of Deployment\grqq\ und die Skalierung in Form einer Funktion. \cite{patternAWS}
-% - - - - -
-A cloud-native platform
-For short-running, stateless computation
-And event-driven applications
-which scales up and down instantly and
-automatically
-And charges for actual usage at a
-millisecond granularity
+
 
 %e (FaaS) is somewhat smaller as Software-asa-Service
 Somit lässt sich in der folgenden \autoref{comparison-xaaS} die Skalierungseinheit ( Unit of Deployment ) und die Abstraktionsebene von den relevanten Dienstmodellen vergleichen. 
@@ -509,7 +502,10 @@ Somit lässt sich in der folgenden \autoref{comparison-xaaS} die Skalierungseinh
 
 \end{table}
 
-Events\label{par:event-reaction} innerhalb eines verteilten Systems müssen verwaltet werden. Technologien wie virtualisierte oder containerized Server erzeugen neue Serverinstanzen zur Verarbeitung von einer Kette von variablen Events, die danach gelöscht wird.\cite{lambdaAWS} Die entstehende Problematik ergab sich durch eine starke Zunahme an Elementen, die einen hohen Verwaltungsaufwand forderten.  Was zurück auf die oben genannten Aufgaben \autoref{sec:iaas-aufgaben} führte.
+% ---- revise 
+Im Rahmen des \glqq Open Lambda\grqq\ Projekts wurde ein Test zum Vergleich der Latenz zwischen einer \acrshort{PaaS} und einer \acrshort{FaaS} Anwendung. Deren Autoren ( siehe \cite{lambdaOpen} ) stellten fest, dass die Funktion kürzere Antwortzeiten lieferte, weil sie für jede Anfrage eine neue Instanz diente, wogegen die \acrshort{PaaS} nicht skalierte u.d. die Anfragen in eine Queue ( Schlange ) stellte. 
+
+Events\label{par:event-reaction} innerhalb eines verteilten Systems müssen verwaltet werden. Technologien wie virtualisierte oder containerized Server erzeugen neue Serverinstanzen zur Verarbeitung von einer Kette von variablen Events, die danach gelöscht werden.\cite{lambdaAWS} Die entstehende Problematik ergab sich durch eine starke Zunahme an Elementen, die einen hohen Verwaltungsaufwand forderten.  Was zurück auf die oben genannten Aufgaben \autoref{sec:iaas-aufgaben} führte.
 
 Polling\label{par:polling} ist der Ausdruck für eine zyklische Abfrage über einen Status z.B. von Ports oder Locks über Ressourcen. Die Verwendung von Systemressourcen ist ineffizient im Vergleich zu Alternativansätzen wie z.B in dem Push- oder Pull- Kommunikationsmodell.\cite{lambdaAWS} 
 
@@ -519,7 +515,7 @@ Funktionale Programmierung ist ein Programmierparadigma, in dem Funktionen nicht
 Die Implementierung einer solchen Funktion geschieht durch die Auswahl der Programmiersprache und der von dem Cloudanbieter vorgegebenen Funktionsfassade. Diese wird vom Cloudanbieter aufgerufen, stellt aber keine zusätzlichen Bibliotheken bereit, daher ist es nötig, dass die auszuführende Datei alle Abhängigkeiten enthält.
 
 
-Der Fokus bei \acrshort{FaaS} liegt auf der Quellcodeentwicklung und nicht auf dem Provisioning von Servern, der Installation von Software, dem Deployment von Containern oder auf konkreten Details der Infrastruktur.
+Der Fokus bei \acrshort{FaaS} liegt auf der Quellcodeentwicklung und nicht auf dem Bereitstellung ( Provisioning ) von Servern, der Installation von Software, dem Einsatz ( Deployment ) von Containern oder auf konkreten Details der Infrastruktur.
 
 %HTTP, Funktionale Programmierung, Fassaden, ... ?? 
 %Funktionale programmierung abstrahiert. auf Infrastruktur. 
@@ -541,12 +537,8 @@ Für die Betrachtung, ob \acrshort{FaaS} eine Lösung für eine konkrete Problem
 	\item die Verwaltung von \acrshort{API}-Server umgangen werden soll
 \end{itemize}\cite{lambdaAWS}
 
-%%%% ------------
-The challenge is to implement such functionality while considering metrics such
-as cost, scalability, and fault tolerance. The platform must quickly and efficiently
-start a function and process its input. The platform also needs to queue events, and
-based on the state of the queues and arrival rate of events, schedule the execution
-of functions, and manage stopping and deallocating resources for idle function in-
+
+Die Frage, wie sich Architekturen mit einer \acrshort{FaaS} Technologie gestalten, wird im nächsten Kapitel erläutert.
 
 \chapter{Serverless-Angebote und Architekturen}
 
@@ -1335,7 +1327,8 @@ Die \acrshort{EDA} eignet sich für die Steuerung von Benutzungsfällen besonder
 
 Die Orchestrierung solcher Benutzungsfälle lässt sich mittels einer endlichen Zustandsmaschine definierten und einem Petrinetz darstellen, in der Events die Kanten und \acrshort{FaaS} die Ecken sind. Dieser Ansatz ähnelt dem Domain getriebenen Entwurf ( Domain Driven Design \cite{ddd} ), in dem Benutzungsfälle in Kontextgrenzen ( Bounded Context ) zusammengefasst werden.
 
-Die starke Entkopplung ( siehe \autoref{sec:eda} ) von Diensten erfordert allerdings ihren Kohäsion.
+% revise 
+Die starke Entkopplung ( siehe \autoref{sec:eda} ) von Diensten erfordert allerdings ihre Kohäsion. Daher gewinnt der Entwurfsphase eines Projekts bei Serverless Architekturen an Bedeutung.
 
 
 \newacronym{JEE}{JEE}{Java Enterprise Edition}
@@ -1407,11 +1400,12 @@ Die serverlose Variante ( Jena ARQ, in Orange ) ist erst ab der zweiten Ausführ
 %--- revise 
 Sowhol zwischen der 5. und der 7. als auch der 10. und 11. Ausführung steigt die Latenz.Nach Ergebnissen von Herrn McGrath und Brenner lässt sich dieses Phänomen auf \glqq kalte Startzeiten ( siehe \autoref{lambda-cold-warm} ) zurückführen . Dabei zeigten Google Cloud Funktions und Lambda deutlich weniger Schwankungen bei der Latenzmessungen. \cite{servPerform}
 
+% -- -revise 
 \paragraph{Große Bibliotheken}
-Die gebaute JAR Datei der oben erwähnten Lambdafunktion, Jena ARQ, beträgt 19 MB. Im Fall von wissenschaftliche Bibliotheken wie \glqq SciPy\grqq\ ( für die Programmiersprache Python ) beträgt diese bis 499 MB. Die Ladezeiten verlangsamen je größer die auszuführende Lambdafunktion ist. \cite{lambdaBibliothek}
+Die gebaute JAR Datei der oben erwähnten Lambdafunktion, Jena ARQ, beträgt 19 MB. Die Ladezeiten verlangsamen je größer die auszuführende Lambdafunktion ist \cite{lambdaBibliothek}. Im Fall von wissenschaftliche Bibliotheken wie \glqq SciPy\grqq\ ( für die Programmiersprache Python ) übersteigt die maximale Große einer Lambdafunktion ( 50 MB ).
 Daraus ergibt sich, dass eine Verwaltung für große Bibliotheken gerade dann nötig ist, wenn auch der Benutzungsfall sich nicht für containerbasierten Anwendungen gut eignet. 
 
-Das Letztere wird derzeit zwar nicht von \acrshort{AWS} Lambda unterstützt, aber von \glqq Pipsqueak\grqq\ ( ein package-bewusst Berechnungsplattform für OpenLambda \cite{lambdaBibliothek} ). Die Autoren schlagen eine von \glqq Shared-Cache\grqq\, die während der Laufzeit gelöst und an Lambdafunktionen geliefert werden.
+Das Letztere wird derzeit zwar nicht von \acrshort{AWS} Lambda unterstützt, aber von \glqq Pipsqueak\grqq\ ( ein package-bewusst Berechnungsplattform für OpenLambda \cite{lambdaBibliothek} ). Die Autoren schlagen den Ausbau einer \glqq Shared-Cache\grqq\ innerhalb der Lambdalaufzeitumgebung vor, die während der Laufzeit gelöst und an Lambdafunktionen geliefert werden.
 
 \paragraph{DevOps Frameworks}
 Die Anzahl von Diensten bzw. Funktionen kann in einem komplexen System unübersichtlich werden. Entsprechend steigt der Aufwand bei Deployments, der Verwaltung und der Kohäsion von Abhängigkeiten, sowie bei der Koordination des Entwicklerteams ( z.B. jeder wer entwickelt was, wann ). 
