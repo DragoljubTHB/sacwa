@@ -413,7 +413,6 @@ Am Ende erfolgt eine Diskussion darüber, welche Trade-offs entstehen und welche
 
 Um wiederkehrende IT-Probleme zu beheben, werden Service-Modelle entworfen. Als solches beschreibt
 Cloud Computing die Bereitstellung von IT-Infrastruktur und IT-Leistungen wie beispielsweise Speicherplatz, Rechenleistung oder Anwendungssoftware als Service über das Internet.\cite{cloudEssentials}
-%https://www.novadex.com/de/glossar-artikel/definition-cloud-computing-was-ist-cloud-computing/
 
 %\section{Cloud Eigenschaften}
 \label{sec:cloud-char}
@@ -519,8 +518,6 @@ Die Implementierung einer solchen Funktion geschieht durch die Auswahl der Progr
 
 Der Fokus bei \acrshort{FaaS} liegt auf der Quellcodeentwicklung und nicht auf der Bereitstellung ( Provisioning ) von Servern, der Installation von Software, dem Einsatz ( Deployment ) von Containern oder auf konkreten Details der Infrastruktur.
 
-%HTTP, Funktionale Programmierung, Fassaden, ... ?? 
-%Funktionale programmierung abstrahiert. auf Infrastruktur. 
 
 Für die Betrachtung, ob \acrshort{FaaS} eine Lösung für eine konkrete Problemstellung ist, folgt eine Auflistung von Kriterien nach King\cite{lambdaAWS}:\\
 Es ist nicht empfehlenswert \acrshort{FaaS} zu benutzen, wenn: \label{lambda-yes-no}
@@ -1432,11 +1429,11 @@ Um einen Vorteil aus den neuen Technologien zu ziehen, ist die Recherche nach sc
 \paragraph{Kosten und Performanz zwischen Lambda und Server}
 Auf der kleinsten Ebene rechnet Lambda nach zeitlichen Abschnitten von 100 ms ab. Da viele \acrshort{RPC} kürzer als 100 ms lang leben \cite{rpcTime}, wird laut den Autoren von \cite{lambdaOpen} ein 3.7 fache Zunahme an Abrechnungen verzeichnet.
 
-Da die \acrshort{PaaS} und \acrshort{IaaS} pro Stunde abgerechnet werden, \acrshort{FaaS} hingegen pro Anfrage, ergibt sich daraus, dass der Preis und die Performanz je Anfrage, invers proportional zu ihrer Anzahl ist.
+Da die \acrshort{PaaS} und \acrshort{IaaS} pro Stunde abgerechnet werden, \acrshort{FaaS} hingegen pro Anfrage, ergibt sich daraus, dass der Preis und die Performanz je Anfrage, umgekehrt proportional zu ihrer Anzahl ist.
 
 
 \paragraph{Nachteile} 
-Da HTTP und Lambda zustandslos sind, können die Sitzungen der Nutzer derzeitig nur mit Hilfe von Datenbanken implementiert werden. Interaktionen, die auf älteren basieren, wurden im Front-End berücksichtigt. Obwohl Zustände von Lambdafunktionen innerhalb eines \glqq Workers\grqq ( siehe \autoref{lambda-arch} ) sichtbar sind, wird die Kontrolle auf diese nicht gewährleistet.
+Da HTTP und Lambda zustandslos sind, können die Sitzungen der Nutzer derzeitig nur mit Hilfe von Datenbanken implementiert werden. Interaktionen, die auf älteren basieren, wurden im Front-End berücksichtigt. Obwohl Zustände von Lambdafunktionen innerhalb eines \glqq Workers\grqq ( siehe \autoref{lambda-arch} ) sichtbar sind \cite{lambdaOpen}, wird die Kontrolle auf diese nicht gewährleistet.
 
 Der Einsatz von großen Mengen von Quellcode verlangsamt die Ladezeiten des Servers ( siehe \autoref{lambda-arch} ), u.d. verschlechtert sich die Latenz der HTTP-Response.
 
@@ -1444,7 +1441,7 @@ Die Hardwareressourcen von Lambda skalieren zwar vertikal, aber nur proportional
 
 Die Latenz bei der Bereitschaft auf neue Anfragen ist bei Lambda höher als bei \acrshort{PaaS}, daher sind Mechanismen zur Optimierung von Antwortzeiten nötig, z.B: eine periodische Ausführung zur Wiederverwendung der Lambdalaufzeitumgebung, oder das Ableiten einer Message Queue ( Nachrichtenschlange ) von einer überlasteten \acrshort{PaaS} Anwendung zu Lambdafunktionen.
 
-Es besteht ein Lock-in Risiko, wenn die Portierung von Quellcode auf unterschiedliche Cloudanbieter nicht im Voraus berücksichtigt wurde.
+Es besteht ein Lock-in Risiko, wenn die Portierung von Quellcode auf unterschiedliche Cloudanbieter nicht im Voraus eingeplant wurde.
 
 Der Kontrollverlust über das Verhalten der Serverless Dienste kann die Entwurfsentscheidungen erschweren.
 
@@ -1452,14 +1449,13 @@ Der Kontrollverlust über das Verhalten der Serverless Dienste kann die Entwurfs
 Die AWS-Umgebung lässt das Debuggen von Lambdafunktionen nicht zu, obwohl Werkzeuge zum lokalen Testen und Debuggen diese Umgebung emulieren.
 
 % revise
-Je spezifischer die Anforderungen sind, desto mehr Eigenschaften der zugrundeliegenden Technologie zu beherrschen ist. Z.B. eine Erweiterung der Funktionalität einer bestimmten Datenbanken durch Lambda, um Konsistente Lese- und Schreiboperationen zu gewährleisten.
-
+Je spezifischer sich die Anforderungen gestalten, desto mehr Eigenschaften der zugrundeliegenden Technologie sind zu beherrschen, z.B.: eine Benutzer definierte Erweiterung der Funktionalität einer Datenbank durch Lambda.
 
 \paragraph{Vorteile}
 Die automatische Skalierung erleichtert das Wachstum einer Webanwendung, denn sowohl deren Erfolg als auch die Anzahl von Anfragen ist nicht einfach vorherzusehen.
 
 Durch die garantierte Lieferung von Nachrichten ( siehe \autoref{par:sns} ) können auch stark skalierte 
-Webanwendungen von Fehlertoleranz profitieren.
+Webanwendungen von der Fehlertoleranz profitieren.
 
 Der zeitliche Aufwand bei dem Planen von Ressourcenbereitstellung hat sich, wegen der automatischen Skalierung und fast exakten nutzungsabhängigen Abrechnung, aufgelöst.
 
@@ -1467,7 +1463,7 @@ So lange ein Architekturentwurf vorhanden ist, können sich die Entwickler auf d
 
 
 
-\section{Ausblick}
+\chapter{Ausblick}
 
 Da der Architekturentwurf komplexer wird, bietet sich die Implementierung von unterstützenden Werkzeugen an, die einen kohärenten Entwurf z.B. durch Petrinetzmodellierung erleichtern.
 
@@ -1476,15 +1472,13 @@ Da der Architekturentwurf komplexer wird, bietet sich die Implementierung von un
 Die Komposition von unbekannten Inhalten in einer Benutzeroberfläche, wie es der Fall bei einer \glqq Linked Data Driven\grqq\ Webanwendung ist, lässt sich mittels \acrshort{REST} Schnittstellen gestalten. Da Dienste von Drittanbieter aufgerufen und deren Inhalte eingebettet werden können. Die Konfiguration ihrer Darstellung kann mit Parametern in der Anfrage festgelegt werden.
 
 
-
-
 %\paragraph{in wie fern erleichtert Serv. die Umsetzung Tatsächlich}
-Der Bedarf an Werkzeuge für die Entwicklung, den Einsatz, das Testen usw. bleibt, wie in \ref{devops-critic} erläutert wurde,  auch mit dem Serverless Ansatz unberuht.
+Der Bedarf an Werkzeugen für die Entwicklung, den Einsatz, das Testen usw. besteht, wie in \ref{devops-critic} erläutert wurde, auch mit dem Serverless Ansatz weiterhin.
 
 
 %\paragraph{Zukunftsperspektiven und Trade-Offs}
 %Ontologien habe potenzial dieses Falles hinaus 
-Der Begriff \glqq Edge-Computing\grqq\ bezeichnet die Verlagerung von Rechenleistung, Anwendungen, Daten und Services an die Endpunkte eines Netzwerkes. Diese Verlagerung wurde bei der Umsetzung von \acrshort{KOMA} in \autoref{sec:spa} in Form einer \acrshort{SPA} implementiert. Die Vereinigung von Edge- mit Cloud-Computing durch die Verwendung von \acrshort{FaaS} kann einen neuen Potenzial für die Entwicklung von IoT darstellen.
+Die Vereinigung von Edge- mit Cloud-Computing durch die Verwendung von \acrshort{FaaS} kann ein neues Potenzial für die Entwicklung von IoT darstellen. Der Begriff \glqq Edge-Computing\grqq\ bezeichnet die Verlagerung von Rechenleistung, Anwendungen, Daten und Services an die Endpunkte eines Netzwerkes \cite{edge}. Diese Verlagerung wurde bei der Umsetzung von \acrshort{KOMA} in \autoref{sec:spa} in Form einer \acrshort{SPA} implementiert. 
 
 
 
@@ -1495,11 +1489,7 @@ Die starke Entkopplung ( siehe \autoref{sec:eda} ) von Diensten, die aus der Umw
 
 %\paragraph{wie lässt sich bei AWS eine möglichst höhe flexibilität erzielen}
 
-Hierzu hilf es zu differenzieren zwischen einer zeitlichen und einer technologischen Flexibilität. 
-
-Die Zeitliche kann dadurch erreicht werden, in dem die Kernfunktionalität einer Anwendung in \acrshort{FaaS} Dienste kapselt, um einen konzeptionellen Beweis durchzuführen. 
-
-Die Technologische durch die oben vorgestellten Architekturendwurfmuster ( siehe \autoref{chap:aws-serverless} ) . Da die unter \acrshort{EDA} integrierte Dienste von einander stark entkoppelt sind, lassen sie sich einfach aggregieren.
+An dieser Stelle ist es hilfreich zwischen einer zeitlichen und einer technologischen Flexibilität zu differenzieren. Die Zeitliche kann erreicht werden, in dem die Kernfunktionalität einer Anwendung in \acrshort{FaaS} Dienste kapselt, um einen konzeptionellen Beweis durchzuführen; die Technologische durch die oben vorgestellten Architekturentwurfsmuster ( siehe \autoref{chap:aws-serverless} ) . Da die unter \acrshort{EDA} integrierten Dienste von einander stark entkoppelt sind, lassen sie sich einfach aggregieren.
 
 
 
