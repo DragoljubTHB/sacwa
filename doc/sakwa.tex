@@ -759,76 +759,32 @@ Benutzer arbeiten mit multiplen Anwendungen von unterschiedlichen Organisationen
 \chapter{AWS-Serverless-Angebote}
 \label{chap:aws-serverless}
 \acrshort{AWS} ist ein Cloudandbieter unter vielen.
-Hier ein Überblick über verschiedene Serverless Angebote:\\
+Hier ein Überblick über verschiedene \acrshort{FaaS} Angebote:\\
 
 \begin{table}[H]
-	
 	\centering{}
 	\label{comparison-FaaS}
 	\begin{tabular}{ p{7em} | p{2cm} | p{2cm} | p{2cm} | p{2cm} | p{2cm} }
 		& AWS Lambda & Iron.io & Google Funktions & MS Funktions & IBM OpenWhisk  \\
 		\hline
-		JS & e & f & g & h & i \\
+		JS & + &  & + & + & + \\
 		\hline
-		Python & e & f & g & h & i \\
+		Python & + & + &  & + & + \\
 		\hline
-		Java & e & f & g & h & i \\
+		Java & + & + &  &  & + \\
 		\hline
-		Ruby & e & f & g & h & i \\
+		Trigger &  &  &  &  &  \\
 		\hline
-		.NET & e & f & g & h & i \\
+		- Event Trigger  & + &  & + &  & + \\
 		\hline
-		Trigger & e & f & g & h & i \\
-		\hline
-		- Event Trigger  & e & f & g & h & i \\
-		\hline
-		- HTTP Trigger & e & f & g & h & i \\
-		\hline
-		d & e & f & g & h & i \\
-		\hline
-		d & e & f & g & h & i \\		
+		- HTTP Trigger & + &  & + &  &  \\
 	\end{tabular}
 \\
 \caption{Vergleich \acrshort{FaaS} Angebote der Cloudanbietern}
 \end{table}
 
+\acrshort{AWS} zeichnet sich dadurch aus, dass \acrshort{FaaS} gut in seinem Ökosystem integriert ist. Da \acrshort{KOMA} mit \acrshort{AWS} umgesetzt ist, folgt eine Beschreibung der unterschiedlichen \acrshort{FaaS} Angebote.
 
-Google Cloud Functions provides
-basic FaaS functionality to run serverless functions written in Node.js in response
-to HTTP calls or events from some Google Cloud services
-%%%% -------------------   
-Amazon’s AWS Lambda [1] was the first serverless platform and it defined several
-key dimensions including cost, programming model, deployment, resource limits,
-security, and monitoring. Supported languages include Node.js, Java, Python, and
-C\#. Initial versions had limited composability but this has been addressed recently.
-The platform takes advantage of a large AWS ecosystem of services and makes
-it easy to use Lambda functions as event handlers and to provide glue code when
-composing services.
-
-Currently available as an Alpha release, Google Cloud Functions [14] provides
-basic FaaS functionality to run serverless functions written in Node.js in response
-to HTTP calls or events from some Google Cloud services. The functionality is
-currently limited but expected to grow in future versions
-
-Microsoft Azure Functions [23] provides HTTP webhooks and integration with
-Azure services to run user provided functions. The platform supports C\#, F\#,
-Node.js, Python, PHP, bash, or any executable. The runtime code is open-source
-and available on GitHub under an MIT License. To ease debugging, the Azure Functions
-CLI provides a local development experience for creating, developing, testing,
-running, and debugging Azure Functions.
-IBM OpenWhisk [16] provides event-based serverless programming with the
-ability to chain serverless functions to create composite functions. It supports
-Node.js, Java, Swift, Python, as well as arbitrary binaries embedded in a Docker
-container. OpenWhisk is available on GitHub under an Apache open source license.
-The main architectural components of the OpenWhisk platform are shown in Figure
-4. Compared to the generic architectural diagram in Figure 
-3, we can see there
-are additional components handling important requirements such as security, logging,
-and monitoring.
-
-
-
-% 3 sätze über AWS als Anbieter
 
 \newacronym{JVM}{JVM}{Java Virtual Machine}
 \begin{wrapfigure}{l}{0.16\textwidth}
@@ -1434,7 +1390,7 @@ Daraus ergibt sich, dass eine Verwaltung für große Bibliotheken gerade dann n�
 Das Verwaltung von großen Bibliotheken wird derzeit zwar nicht von \acrshort{AWS} Lambda unterstützt, dafür aber von \glqq Pipsqueak\grqq\ ( ein package-bewusst Berechnungsplattform für OpenLambda \cite{lambdaBibliothek} ). Die Autoren schlagen den Ausbau einer \glqq Shared-Cache\grqq\ innerhalb der Lambdalaufzeitumgebung vor, die während der Laufzeit Bibliothekenabhängigkeiten an Lambdafunktionen liefert.
 
 
-\paragraph{DevOps Frameworks}
+\paragraph{DevOps Frameworks}\label{devops-critic}
 Die Anzahl von Diensten bzw. Funktionen kann in einem komplexen System unübersichtlich werden. Entsprechend steigt der Aufwand bei Deployments, der Verwaltung und der Kohäsion von Abhängigkeiten, sowie bei der Koordination des Entwicklerteams ( z.B. Wer entwickelt was wann? ). 
 
 Folgende \autoref{deploy-comparison} \cite{servStatus} zeigt, dass die hohe Granularität des Einzatzes der Serverless Architekturen Automatismen unweigerlich mit sich führt.
@@ -1469,99 +1425,88 @@ Die starke Komponentisierung und Dezentralisierung von Software, die Variabilit�
 Die DevOps Kultur gibt dazu Hilfestellungen. Neben dem Entwurf der Softwarearchitektur ist es nötig, um deren Umsetzung innerhalb des zeitlich vorgegebenen Rahmens zu gewährleisten, eine zum Projekt passende DevOps Strategie aufzustellen.
 Um einen Vorteil aus den neuen Technologien zu ziehen, ist die Recherche nach schon existierenden DevOps Frameworks besonders wichtig. Ihre Integration in die DevOps Strategie sind einer agilen Entwicklung dienlich.
 
-\paragraph{Zum API Gateway}
-Bei Frameworks wie JEE werden Schnittstellen zwischen Layers und Tiers bereitgestellt und diese am Laufzeit entdeckt aka Service Discovery. 
-Im Fall der API Gateway wird die Kopplung bei derer Konfiguration festgelegt wo derer Rekonfiguration ein neues Deployment ohne Downtime bedeutet. Die Der Quellcode der Dienste bleiben unberührt und kein Load Balancer muss rekonfiguriert werden. 
 
-
-\paragraph{Zum Serverless}
-In dieser Arbeit wurde eine "nach buch" weise die Architektur gestalltet. Die unterschiedliche Interpretationen des Begriffs Serverless kann auch zu Kreativen anzätzen führen@AdamBien JEE
-Es kann daher auch als Serverless betrachtet wenn neue Quelldataien eine Docker Instance neu Erzeugen oder nur Updaten, dessen LoadBalancing auch als Serverless Quellcode verpakt werden kann. 
+\paragraph{Zu Serverless} Die unterschiedlichen Interpretationen des Begriffs Serverless führen mitunter zu kreativen Ansätzen wie die Containerisierung einer Lambdalaufzeitumgebung. Dies ist vorteilhaft, weil dadurch alle Programmiersprachen unterstützt werden können.
 
 
 \paragraph{Kosten und Performanz zwischen Lambda und Server}
-Auf der kleinste ebene rechnet Lambda nach zeitlichen Inkrementen von 100 ms ab. Da viele \acrshort{RPC} kürzer als 100 ms leben \cite{rpcTime}, wird laut den Autoren von \cite{lambdaOpen} ein 3.7 faches mehr abgerechnet.
+Auf der kleinsten Ebene rechnet Lambda nach zeitlichen Abschnitten von 100 ms ab. Da viele \acrshort{RPC} kürzer als 100 ms lang leben \cite{rpcTime}, wird laut den Autoren von \cite{lambdaOpen} ein 3.7 fache Zunahme an Abrechnungen verzeichnet.
 
-Da die \acrshort{PaaS} und \acrshort{IaaS} für Stunde abgerechnet werden, und die \acrshort{FaaS} für Anfrage. Schließt sich daraus, dass der Preis und die Performanz für Anfrage, invers proportional auf die Anzahl ist.
-
-
-\paragraph{Nachteile} zunächst,
-  % - revise
-Da HTTP und Lambda zustandslos sind, können die Sitzungen der Nutzer derzeit nur mithilfe von Datenbanken implementiert. Interaktionen die auf Ältere basieren wurde in Front-End berücksichtigt. Obwohl Zustände von Lambdafunktionen innerhalb eines \glqq Workers\grqq ( siehe \autoref{lambda-arch} ) sichtbar sind, wird die Kontrolle auf diese nicht gewährleistet.
-
-Der Einsatz von großen Mengen von Quellcode verlangsamt die Ladezeiten des Servers ( siehe \autoref{lambda-arch} ), u.d. verschlechtert sich die Latenz des HTTP- Requests und Responses.
-
-Die Hardwareressourcen von Lambda skalieren zwar vertikal, aber nur proportional. Entsprechen werden diese nicht genutzt, aber abgerechnet. 
-
-Die Latenz bei der Bereitschaft auf neue Anfragen ist bei Lambda höher als bei \acrshort{PaaS}, daher sind Mechanismen zur Optimierung von Antwortzeiten wie eine periodische Ausführung zur Wiederverwendung der Lambdalaufzeitumgebung oder die Ableitung von Message Queues ( Nachrichtenschlangen ) von einer überlasteten \acrshort{PaaS} Anwendung zu Lambdafunktionen.
+Da die \acrshort{PaaS} und \acrshort{IaaS} pro Stunde abgerechnet werden, \acrshort{FaaS} hingegen pro Anfrage, ergibt sich daraus, dass der Preis und die Performanz je Anfrage, invers proportional zu ihrer Anzahl ist.
 
 
-Es besteht ein Lock-in Risiko, wenn die Portierung von Quellcode auf unterschiedliche Cloudanbieter nicht im vorausgesehen wurde.
+\paragraph{Nachteile} 
+Da HTTP und Lambda zustandslos sind, können die Sitzungen der Nutzer derzeitig nur mit Hilfe von Datenbanken implementiert werden. Interaktionen, die auf älteren basieren, wurden im Front-End berücksichtigt. Obwohl Zustände von Lambdafunktionen innerhalb eines \glqq Workers\grqq ( siehe \autoref{lambda-arch} ) sichtbar sind, wird die Kontrolle auf diese nicht gewährleistet.
 
-Der Kontrollverlust über das Verhalten der Serverless Diensten kann die Entwurfsentscheidungen erschweren.
+Der Einsatz von großen Mengen von Quellcode verlangsamt die Ladezeiten des Servers ( siehe \autoref{lambda-arch} ), u.d. verschlechtert sich die Latenz der HTTP-Response.
+
+Die Hardwareressourcen von Lambda skalieren zwar vertikal, aber nur proportional. Entsprechend werden diese nicht genutzt, aber abgerechnet. 
+
+Die Latenz bei der Bereitschaft auf neue Anfragen ist bei Lambda höher als bei \acrshort{PaaS}, daher sind Mechanismen zur Optimierung von Antwortzeiten nötig, z.B: eine periodische Ausführung zur Wiederverwendung der Lambdalaufzeitumgebung, oder das Ableiten einer Message Queue ( Nachrichtenschlange ) von einer überlasteten \acrshort{PaaS} Anwendung zu Lambdafunktionen.
+
+Es besteht ein Lock-in Risiko, wenn die Portierung von Quellcode auf unterschiedliche Cloudanbieter nicht im Voraus berücksichtigt wurde.
+
+Der Kontrollverlust über das Verhalten der Serverless Dienste kann die Entwurfsentscheidungen erschweren.
 
 
-Die AWS-Umgebung lässt das Debuggen von Lambdafunktionen nicht. Obwohl Werkzeuge zum lokalen Testen und Debuggen diese Umgebung emulieren
+Die AWS-Umgebung lässt das Debuggen von Lambdafunktionen nicht zu, obwohl Werkzeuge zum lokalen Testen und Debuggen diese Umgebung emulieren.
+
+% revise
+Je spezifischer die Anforderungen sind, desto mehr Eigenschaften der zugrundeliegenden Technologie zu beherrschen ist. Z.B. eine Erweiterung der Funktionalität einer bestimmten Datenbanken durch Lambda, um Konsistente Lese- und Schreiboperationen zu gewährleisten.
 
 
 \paragraph{Vorteile}
-Automatische Skalierung <!-- größe und kleine Apps --> und Fehlertoleranz
-Automatisches Kapazitätsmanagement
-Flexible Ressourcenverwaltung
-Schnelle Bereitstellung der Ressourcen
-Exakte nutzungsabhängige Abrechnung der Ressourcen
-Konzentration auf den Kern des Source-Codes
+Die automatische Skalierung erleichtert das Wachstum einer Webanwendung, denn sowohl deren Erfolg als auch die Anzahl von Anfragen ist nicht einfach vorherzusehen.
+
+Durch die garantierte Lieferung von Nachrichten ( siehe \autoref{par:sns} ) können auch stark skalierte 
+Webanwendungen von Fehlertoleranz profitieren.
+
+Der zeitliche Aufwand bei dem Planen von Ressourcenbereitstellung hat sich, wegen der automatischen Skalierung und fast exakten nutzungsabhängigen Abrechnung, aufgelöst.
+
+So lange ein Architekturentwurf vorhanden ist, können sich die Entwickler auf den Kern des Quellcodes konzentrieren.
+
 
 
 \section{Ausblick}
 
-Da der Architekturentwurf komplexer wird, bietet sich die Implementierung von unterstützende Werkzeuge, die einen kohärenten Entwurf, z.B durch Petrinetzmodellierung, erleichtern.
+Da der Architekturentwurf komplexer wird, bietet sich die Implementierung von unterstützenden Werkzeugen an, die einen kohärenten Entwurf z.B. durch Petrinetzmodellierung erleichtern.
+
+
+%\paragraph{RESTful UI}
+Die Komposition von unbekannten Inhalten in einer Benutzeroberfläche, wie es der Fall bei einer \glqq Linked Data Driven\grqq\ Webanwendung ist, lässt sich mittels \acrshort{REST} Schnittstellen gestalten. Da Dienste von Drittanbieter aufgerufen und deren Inhalte eingebettet werden können. Die Konfiguration ihrer Darstellung kann mit Parametern in der Anfrage festgelegt werden.
 
 
 
-%Konsistenz bei Lese- und Schreibzugriffe bei großem Transaktionsvolum bleibt noch zu beweisen. 
-%Can​ ​serverless​ ​work​ ​for​ ​longer​ ​running​ ​tasks?
 
-\paragraph{RESTful UI}
-Die Komposition von unbekannten Inhalten in einer Benutzeroberfläche, wie es im Fall von einer \glqq Linked Data Driven\grqq\ Webanwendung, lässt sich mittels \acrshort{REST} Schnittstellen gestalten. Da können Dienste von Drittanbieter aufgerufen, und deren Inhalten einbetten. Als Parameter können deren Darstellung konfiguriert.
+%\paragraph{in wie fern erleichtert Serv. die Umsetzung Tatsächlich}
+Der Bedarf an Werkzeuge für die Entwicklung, den Einsatz, das Testen usw. bleibt, wie in \ref{devops-critic} erläutert wurde,  auch mit dem Serverless Ansatz unberuht.
 
 
-Ontologien habe potenzial dieses Falles hinaus 
+%\paragraph{Zukunftsperspektiven und Trade-Offs}
+%Ontologien habe potenzial dieses Falles hinaus 
+Der Begriff \glqq Edge-Computing\grqq\ bezeichnet die Verlagerung von Rechenleistung, Anwendungen, Daten und Services an die Endpunkte eines Netzwerkes. Diese Verlagerung wurde bei der Umsetzung von \acrshort{KOMA} in \autoref{sec:spa} in Form einer \acrshort{SPA} implementiert. Die Vereinigung von Edge- mit Cloud-Computing durch die Verwendung von \acrshort{FaaS} kann einen neuen Potenzial für die Entwicklung von IoT darstellen.
 
 
-\paragraph{Fazit} 
+
+%\paragraph{Fazit} 
 
 % revise 
-Die starke Entkopplung ( siehe \autoref{sec:eda} ) von Diensten, die aus der Umwandlung von einer monolithischen auf einer dezentralisierten Architektur entsteht, bringt mehr Komplexität, mehr Flexibilität und die Entkopplung des Entwicklers von der darunterliegenden Technologie mit sich. Daher gewinnt die Entwurfsphase eines Projekts bei Serverless Architekturen an Bedeutung, um die Kohäsion von Diensten zu gewährleisten.
+Die starke Entkopplung ( siehe \autoref{sec:eda} ) von Diensten, die aus der Umwandlung von einer monolithischen in eine dezentralisierte Architektur entsteht, bringt mehr Komplexität, mehr Flexibilität und die Entkopplung des Entwicklers von der zugrundeliegenden Technologie mit sich. Daher gewinnt die Entwurfsphase eines Projekts bei Serverless Architekturen an Bedeutung, um die Kohäsion von Diensten zu gewährleisten. Als Konsequenz tritt die Modellierung und Entwicklung der Problemdomain in den Vordergrund.
+
+%\paragraph{wie lässt sich bei AWS eine möglichst höhe flexibilität erzielen}
+
+Hierzu hilf es zu differenzieren zwischen einer zeitlichen und einer technologischen Flexibilität. 
+
+Die Zeitliche kann dadurch erreicht werden, in dem die Kernfunktionalität einer Anwendung in \acrshort{FaaS} Dienste kapselt, um einen konzeptionellen Beweis durchzuführen. 
+
+Die Technologische durch die oben vorgestellten Architekturendwurfmuster ( siehe \autoref{chap:aws-serverless} ) . Da die unter \acrshort{EDA} integrierte Dienste von einander stark entkoppelt sind, lassen sie sich einfach aggregieren.
 
 
 
-%%-----
-
-computing supporting centralized
-and edge computing with a common event-driven programming model. Conversely the
-drivers of cloud computing are Edge Computing and Serverless.
 
 \lstlistoflistings
 
-
 \listoftables
-
-
-\chapter*{Abkürzungen}
-\markboth{Abkürzungen}{}
-
-
-\begin{acronym}[Bash]
-
-
-\acro{GC}{Garbage Collection}
-
-\glqq Garbage Collection\grqq{} bezeichnet die automatische Speicherwaltung zur Minimierung des Speicherbedarfes eines Programmes.
-\ac{GC} wird zur Laufzeit durch Identifikation von nicht mehr benötigten Speicherbereichen ausgeführt.
-Im Vergleich zur manuellen Speicherverwaltung benötigt \ac{GC} mehr Ressourcen.
-
-\end{acronym}
 
 \bibliographystyle{alpha}
 \bibliography{sources}
