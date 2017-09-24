@@ -415,38 +415,37 @@ Um wiederkehrende IT-Probleme zu beheben, werden Service-Modelle entworfen. Als 
 Cloud Computing die Bereitstellung von IT-Infrastruktur und IT-Leistungen wie beispielsweise Speicherplatz, Rechenleistung oder Anwendungssoftware als Service über das Internet.\cite{cloudEssentials}
 %https://www.novadex.com/de/glossar-artikel/definition-cloud-computing-was-ist-cloud-computing/
 
-\section{Cloud Eigenschaften}
+%\section{Cloud Eigenschaften}
 \label{sec:cloud-char}
-Als Softwarearchitekt, Entwickler oder Projektmanager ist es wichtig, die spezifischen Eigenschaften von Cloud Angeboten zu verstehen. Aus einem Meer von Cloud Diensten ist die richtige Auswahl je nach Anforderungen und Art der technologischen Umsetzung schwer zu treffen. 
+Aus einem Meer von Cloud Diensten ist die richtige Auswahl je nach Anforderungen und Art der technologischen Umsetzung schwer zu treffen. Als Softwarearchitekt, Entwickler oder Projektmanager ist es daher wichtig, die spezifischen Eigenschaften von Cloud Angeboten zu verstehen. 
 
 
-Im Allgemeinen teilen Cloud Angebote laut Chandrasekaran ( \cite{cloudEssentials} ) folgende Eigenschaften:
+Im Allgemeinen teilen Cloud Angebote laut Chandrasekaran ( \cite{cloudEssentials} ) folgende Merkmale:
 \begin{itemize}
 	\item On-Demand Self-Service - Nutzer können die IT-Kapazitäten, die sie benötigen, selbständig ordern und einrichten. Der Anbieter muss in den Prozess nicht eingebunden werden.
-	\item Broad Network Access bezeichnet den standardbasierten Netzzugriff von verschiedenen Endgeräten (z.B. Smartphones, Tablets, Laptops, PCs) aus.
-	\item Measured Service bietet eine automatische Kontrolle und Optimierung der genutzten Ressourcen durch Metering, wodurch Transparenz für Anbieter und Nutzer sichergestellt wird. Somit bezahlen Kunden nur die Dienstleistungen, die sie auch tatsächlich in Anspruch nehmen.
-	\item Resource Pooling - \autoref{par:polling} – Ressourcen des Anbieters (z.B. Speicher oder Bandbreite) werden gebündelt, multimandantenfähig bereitgestellt und nach Bedarf zugewiesen.
-	\item Rapid Elasticity - \autoref{app-char:elascitity} – Kapazitäten sind schnell und dynamisch verfügbar und können je nach Bedarf skaliert werden.\cite{cloudEssentials}
+	\item Broad Network Access bezeichnet den standardbasierten Netzzugriff von verschiedenen Endgeräten ( z.B. Smartphones, Tablets, Laptops, PCs ) aus.
+	\item Measured Service bietet eine automatische Kontrolle und Optimierung der genutzten Ressourcen durch ihre Dosierung ( Metering ), wodurch Transparenz für Anbieter und Nutzer sichergestellt wird. Somit bezahlen Kunden nur die Dienstleistungen, die sie auch tatsächlich in Anspruch nehmen.
+	\item Resource Pooling ( \ref{par:polling} ) - Ressourcen des Anbieters (z.B. Speicher oder Bandbreite) werden gebündelt, multimandantenfähig bereitgestellt und nach Bedarf zugewiesen.
+	\item Rapid Elasticity ( \autoref{app-char:elascitity} ) - Kapazitäten sind schnell und dynamisch verfügbar und können je nach Bedarf skaliert werden.
 \end{itemize}
 
-Daher ergeben sich für die, in der Cloud betriebenen Anwendungen, folgende Eigenschaften: 
+Daher ergeben sich für die, in der Cloud betriebenen Anwendungen, folgende Eigenschaften \cite{cloudEssentials}: 
 \begin{itemize}
-	\item Isolated state - Der Zustand wird in kleinen Einheiten der Anwendung isoliert, so dass sie besser skaliert. Eine zustandslose IT Ressource kann ohne Synchronisierungen aggregiert oder gelöscht werden. Dieser Zustand bezieht sich nicht nur auf die Verwaltung der Interaktionen eines Clients, sondern auch auf dessen Datenverarbeitung. 
+	\item Isolated state - Der Zustand wird in kleinen Einheiten der Anwendung isoliert, so dass sie besser skalieren. Eine zustandslose IT Ressource kann ohne Synchronisierungen aggregiert oder gelöscht werden. Dieser Zustand bezieht sich nicht nur auf die Verwaltung der Interaktionen eines Clients, sondern auch auf dessen Datenverarbeitung. 
 	\item Distribution - Anwendungen müssen so in Komponenten zerlegt werden, dass sich ihre Ressourcen weltweit auf-/verteilen.
-%	Weltweit verteilte Anwendungen müssen in Komponenten so zerteilt werden, dass sie für unterschiedlichen Ressourcen zu verteilen.
 	\item Elasticity\label{app-char:elascitity} - Die Anpassung sowohl auf die Anzahl als auch auf die Leistungsfähigkeit der zu benutzenden IT Ressourcen kann im Sinne einer Addition oder Subtraktion erfolgen. Im ersten Fall nimmt auf der Ebene der horizontalen Skalierung ( scale out ) die Anzahl der Server zu. Während bei der vertikalen Skalierung ( scale up ) die Leistungsfähigkeit der Ressourcen der Server steigt.
-%	Die Addition oder Subtraktion, also Anpassung, sowohl auf die Anzahl als auch auf die Fähigkeit der zu benutzenden IT Ressourcen je nach Workload. Daher steigt bei Scale out oder Horizontale Skalierung die Anzahl von Server, und steigt bei Scale up oder Vertikale Skalierung die Fähigkeiten der Einzelnen Servers. Diese Anpassung besteht aus Addition und Substraktion 
 	\item Automated management - Die konstanten Aufgaben zur Verwaltung von Elasticity sollen automatisiert werden, um eine Cloudanwendung fehlerresitent auf Ressourcenebene zu implementieren.
-	\item Loose coupling - Die Minimierung von Abhängigkeiten einer Anwendung von IT Ressourcen vereinfacht die Bereitstellung, die Fehlerkontrolle und Wiederverwendung von Komponenten. \autoref{sec:soa} \cite{cloudEssentials}
+	\item Loose coupling - Die Minimierung von Abhängigkeiten einer Anwendung von IT Ressourcen vereinfacht die Bereitstellung, die Fehlerkontrolle und Wiederverwendung von Komponenten. \autoref{sec:soa} 
 \end{itemize}
 
+Die nächsten Unterkapitel stellen exemplarisch klassische Service-Modelle vor.
 
 \section{IaaS}
 \label{sec:iaas}
 \newacronym{IaaS}{IaaS}{Infrastructure as a Service}
-\acrfull{IaaS} kann als ein Service beschrieben werden, der Abstraktionen für Hardware, Server und Netzwerkkomponenten bereitstellt. Der Serviceanbieter besitzt die Ausrüstung und ist für die Unterbringung, die Inbetriebnahme und die Wartung der Server verantwortlich\cite{patternAWS}. Der Benutzer bezahlt nicht für die Hardware, deren Lagerung und den Zugriff, sondern für die Nutzung des gesamten Servicemodells z.B.: Zahlung nach benutzten Stunden, Ressourcen usw.
+\acrfull{IaaS} kann als ein Service beschrieben werden, der Abstraktionen für Hardware, Server und Netzwerkkomponenten bereitstellt. Der Serviceanbieter stellt die Ausrüstung zur Verfügung und ist für die Unterbringung, die Inbetriebnahme und die Wartung der Server verantwortlich\cite{patternAWS}. Der Benutzer bezahlt nicht für die Hardware, deren Lagerung und den Zugriff, sondern für die Nutzung des gesamten Servicemodells z.B.: Zahlung nach benutzten Stunden, Ressourcen usw.
 
-Die Aufgaben\label{sec:iaas-aufgaben} für Systeme mit Softwareelementen wie Load Balancing, Transaktionen, Gruppierung ( Clustering ), Caching, Benachrichtigung ( Messaging ), und Datenredundanz werden komplexer. Diese Elemente fordern an, dass Server verwaltet, gewartet, geflickt ( patched ) und gesichert werden brauchen. In einer nicht-trivialen Systemumgebung sind solche Aufgaben zeitintensiv und ebenso aufwändig fertigzustellen, wie effizient zu betreiben. Infrastruktur und Hardware sind zwar nötige Komponenten für jegliche IT-Systeme, aber gleichzeitig stellen sie nur das Medium für deren Anwendung dar - sei es Geschäftslogik, oder ein darauf aufbauender Dienst.
+Die Aufgaben\label{sec:iaas-aufgaben} für Systeme mit Softwareelementen wie Load Balancing, Transaktionen, Gruppierung ( Clustering ), Caching, Benachrichtigung ( Messaging ) und Datenredundanz werden komplexer. Diese Elemente fordern an, dass Server zu verwalten, warten, flicken ( patched ) und zu sichern sind. In einer nicht-trivialen Systemumgebung sind solche Aufgaben zeitintensiv, aufwändig fertigzustellen und daher schwer effizient zu betreiben. Infrastruktur und Hardware sind zwar nötige Komponenten für jegliche IT-Systeme, aber gleichzeitig stellen sie nur das Medium für deren Anwendung dar - sei es Geschäftslogik, oder ein darauf aufbauender Dienst.\cite{cloudEssentials}
 
 \section{PaaS}
 \label{sec:paas}
@@ -454,9 +453,9 @@ Die Aufgaben\label{sec:iaas-aufgaben} für Systeme mit Softwareelementen wie Loa
 \acrfull{PaaS}, kann als ein Service beschrieben werden, der eine Rechenplattform liefert, z.B. ein Betriebssystem, eine Ausführungsumgebung für Programmiersprachen (siehe ElasticBeanstalk \cite{ebs}), eine Datenbank oder einen Webserver. Dieser Dienst übernimmt je nach benutzerdefinierter Konfiguration sowohl die Wartung der Datenbank, des Webservers und der Versionen des Laufzeitquellcodes, als auch deren Skalierbarkeit.\cite{patternAWS}.
 
 
-Inkonsistenzen in der Infrastruktur oder den Umgebungen können durch den hohen Aufwand der Serververwaltung entstehen. Sie werden durch standardisierte und automatisierte Angebote von \acrshort{PaaS} umgangen. Deren effiziente Benutzung is abhängig davon, wie gezielt der Quellcode auf die Features der Plattform abgestimmt ist. Dies ergibt auf einer Seite weniger Wartung, aber andererseits erfordern die importierten Anwendungen ( z.B. für ein \glqq Standalone\grqq\ Server ) eine Anpassung an die Plattform.
+\textit{Inkonsistenzen} in der Infrastruktur oder den Umgebungen können durch den hohen Aufwand der Serververwaltung entstehen. Sie werden durch standardisierte und automatisierte Angebote von \acrshort{PaaS} umgangen. Deren effiziente Benutzung ist abhängig davon, wie gezielt der Quellcode auf die Features der Plattform abgestimmt ist. Dies ergibt auf einer Seite weniger Wartung, aber andererseits erfordern die importierten Anwendungen ( z.B. für ein \glqq Standalone\grqq\ Server ) eine Anpassung an die Plattform.
 
-Die Containerisierung\label{par:containerisation} ist eine Isolierung der Anwendung von ihrer Umgebung. Die Konfiguration des Containers, sowie dessen ( Einsatz ) Deployment ist nicht trivial und erfordert daher spezialisiertes Wissen über Containerisierung. Für das Monitoring werden bestimmte Tools wie Boot2Docker \cite{Boot2Docker} oder cAdvisor \cite{cAdvisor} benötigt. Jedoch bietet die Containerisierung eine ausgezeichnete Lösung für Anwendungen mit starker Kopplung zu anderen Softwarekomponenten.\cite{patternAWS}
+Die \textit{Containerisierung}\label{par:containerisation} ist eine Isolierung der Anwendung von ihrer Umgebung. Die Konfiguration des Containers, sowie dessen Einsatz ( Deployment ) ist nicht trivial und erfordert daher spezialisiertes Wissen über Containerisierung. Für das Monitoring werden bestimmte Tools wie Boot2Docker \cite{Boot2Docker} oder cAdvisor \cite{cAdvisor} benötigt. Jedoch bietet die Containerisierung eine ausgezeichnete Lösung für Anwendungen mit starker Kopplung zu anderen Softwarekomponenten.\cite{patternAWS}
 
 %Der Container muss konfiguriert und gebaut werden und der Deploymentprozess ist nicht trivial. 
 
@@ -466,14 +465,14 @@ Die Containerisierung\label{par:containerisation} ist eine Isolierung der Anwend
 \section{SaaS} 
 \label{sec:saas}
 \newacronym{SaaS}{SaaS}{Software as a Service}
-\acrfull{SaaS} kann als ein Service beschrieben werden, der OS-Images mit konfigurierbaren Diensten wie Datenbanken, Webanwendungen usw. bereitstellt. \acrshort{SaaS} gestaltet sich benutzerfreundlich, da die Konfiguration und das Deployment dieser Softwaredienste nicht erlernt werden müssen, um sie in eine größere Anwendung einzubinden. Anfallende Gebühren berechnen sich nach der Nutzungsdauer.
-Ein Großteil traditioneller Software bietet seine Version als \acrshort{SaaS} nicht an. Dies impliziert laut Chandrasekaran, K. dass dieses Serviceliefermodell sich für Anwendungen nicht gut eignet wegen folgenden Punkten:
+\acrfull{SaaS} kann als ein Service beschrieben werden, der OS-Images mit konfigurierbaren Diensten wie Datenbanken, Webanwendungen usw. bereitstellt. \acrshort{SaaS} gestaltet sich benutzerfreundlich, da die Konfiguration und das Deployment dieser Softwaredienste nicht erlernt werden müssen, um sie in eine größere Anwendung einzubinden. Anfallende Gebühren berechnen sich nach der Nutzungsdauer.\\
+Ein Großteil traditioneller Software bietet seine Version als \acrshort{SaaS} nicht an. Dies impliziert laut Chandrasekaran, dass dieses Serviceliefermodell sich für Anwendungen nicht gut eignet wegen der folgenden Punkte:
 \newacronym{SLA}{SLA}{Service Level Agreement}
 \begin{itemize}
 	\item Geringe Latenz kann durch die Entfernung der gespeicherten Daten für Echtzeitanwendungen nicht gewährleistet werden.
-	\item Die Datensicherheit kann nicht sichergestellt werden, da die mitbeteiligten Drittanbieter bei \acrshort{SaaS} die \acrfull{SLA} von Kunden nicht immer erfüllen.
+	\item Die Datensicherheit kann nicht sichergestellt werden, da die mitbeteiligten Drittanbieter bei \acrshort{SaaS} die \acrfull{SLA}s von Kunden nicht immer erfüllen.
 	\item Anforderungen bestimmter Software verlangen eine Zentralisierung und eine Lokalisierung vor Ort, anders als bei \acrshort{SaaS}. 
-\end{itemize}
+\end{itemize}\cite{cloudEssentials}
 
 \newglossaryentry{virtualization}{name={Virtualisation},description={Abstraktion der Anwendung, OS oder DB von der darunterliegende Infrastruktur z.B. ein Server.}}
 
@@ -482,7 +481,7 @@ Ein Großteil traditioneller Software bietet seine Version als \acrshort{SaaS} n
 %Das \glqq\Gls{virtualization}\grqq\ einer ganzen Umgebung oder Stack zerteilt sich in eine Sammlung von kleinen spezialisierten Aufgaben, die durch Drittanbieter implementiert wurden. Dieser Fakt steigerte die wirtschaftlichen Kosten und machte die Skalierungsmöglichkeiten komplexer\cite{patternAWS}.
 
 
-\chapter{FaaS}%{nichtfunktionalen/technischen Anforderungen zur Entwicklung des Serverless-Ansatzes}
+\chapter{FaaS als Grundlage der Serverless Architekturen}%{nichtfunktionalen/technischen Anforderungen zur Entwicklung des Serverless-Ansatzes}
 
 \acrfull{FaaS}\label{sec:faas} kann als ein Rechenservice beschrieben werden, der nach Anfrage isoliert, unabhängig und granular ausgeführt wird. Komplexe Probleme wie horizontale und vertikale Skalierbarkeit, Fehlertoleranz und Elastizität werden von Kunden nur noch nach Bedarf konfiguriert und von dem Anbieter verwaltet. Die Besonderheit von \acrshort{FaaS} ist die \glqq Unit of Deployment\grqq\ und die Skalierung in Form einer Funktion. \cite{patternAWS}
 
@@ -490,9 +489,8 @@ Ein Großteil traditioneller Software bietet seine Version als \acrshort{SaaS} n
 %e (FaaS) is somewhat smaller as Software-asa-Service
 Somit lässt sich in der folgenden \autoref{comparison-xaaS} die Skalierungseinheit ( Unit of Deployment ) und die Abstraktionsebene von den relevanten Dienstmodellen vergleichen. 
 \begin{table}[H]
-	\caption{Vergleich IaaS PaaS FaaS Skalierung und Abstraktion}
+	\caption{Vergleich IaaS PaaS FaaS Skalierung und Abstraktion}	
 	\centering{}
-	\label{comparison-xaaS}
 	\begin{tabular}{ c | c c c }
 		\noalign{\vskip\doublerulesep}
 		& IaaS & PaaS & FaaS 
@@ -501,58 +499,62 @@ Somit lässt sich in der folgenden \autoref{comparison-xaaS} die Skalierungseinh
 		Skalierungseinheit & Virtuelle Maschine & Anwendung & Funktion \tabularnewline
 		Abstraktion & Hardware & Betriebssystem & Laufzeitumgebung der Sprache
 	\end{tabular}
-
+\label{comparison-xaaS}
 \end{table}
 
 % ---- revise 
-Im Rahmen des \glqq Open Lambda\grqq\ Projekts wurde ein Test zum Vergleich der Latenz zwischen einer \acrshort{PaaS} und einer \acrshort{FaaS} Anwendung. Deren Autoren ( siehe \cite{lambdaOpen} ) stellten fest, dass die Funktion kürzere Antwortzeiten lieferte, weil sie für jede Anfrage eine neue Instanz diente, wogegen die \acrshort{PaaS} nicht skalierte u.d. die Anfragen in eine Queue ( Schlange ) stellte. 
+Im Rahmen des \glqq Open Lambda\grqq\ Projekts wurde die Latenz zwischen einer \acrshort{PaaS} und einer \acrshort{FaaS} Anwendung verglichen. Deren Autoren ( siehe \cite{lambdaOpen} ) stellten fest, dass die Funktion kürzere Antwortzeiten lieferte, weil sie für jede Anfrage eine neue Instanz kreierte, wogegen die \acrshort{PaaS} nicht skalierte u.d. die Anfragen in eine Queue ( Schlange ) einreihte. 
 
-Events\label{par:event-reaction} innerhalb eines verteilten Systems müssen verwaltet werden. Technologien wie virtualisierte oder containerized Server erzeugen neue Serverinstanzen zur Verarbeitung von einer Kette von variablen Events, die danach gelöscht werden.\cite{lambdaAWS} Die entstehende Problematik ergab sich durch eine starke Zunahme an Elementen, die einen hohen Verwaltungsaufwand forderten.  Was zurück auf die oben genannten Aufgaben \autoref{sec:iaas-aufgaben} führte.
+Es werden nun die konzeptionellen Bestandteile von \acrshort{FaaS} näher ausgeführt.
 
-Polling\label{par:polling} ist der Ausdruck für eine zyklische Abfrage über einen Status z.B. von Ports oder Locks über Ressourcen. Die Verwendung von Systemressourcen ist ineffizient im Vergleich zu Alternativansätzen wie z.B in dem Push- oder Pull- Kommunikationsmodell.\cite{lambdaAWS} 
+\textit{Events}\label{par:event-reaction} innerhalb eines verteilten Systems müssen verwaltet werden. Technologien wie virtualisierte oder containerized Server erzeugen neue Serverinstanzen zur Verarbeitung von einer Kette von variablen Events, die danach gelöscht werden.\cite{lambdaAWS} Die entstehende Problematik ergab sich durch eine starke Zunahme an Elementen, die einen hohen Verwaltungsaufwand forderten.  Was zurück auf die oben genannten Aufgaben \autoref{sec:iaas-aufgaben} führte.
 
-Funktionale Programmierung ist ein Programmierparadigma, in dem Funktionen nicht nur definiert und angewendet werden können, sondern auch wie Daten miteinander verknüpft, als Parameter verwendet und als Funktionsergebnisse auftreten können. Zustand und mutable Daten werden vermieden damit Seiteneffekten nicht entstehen und die Komposition flexibler wird. Das stellt einen Vorteil für die Skalierung eines Softwarekomponenten dar.\cite{funcScala}
+\textit{Polling}\label{par:polling} ist der Ausdruck für eine zyklische Abfrage über einen Status den Ressource z.B. von Ports oder Locks. Die Verwendung von Systemressourcen ist ineffizient im Vergleich zu Alternativansätzen wie z.B in dem Push- oder Pull- Kommunikationsmodell.\cite{lambdaAWS} 
+
+\textit{Funktionale Programmierung} ist ein Programmierparadigma, in dem Funktionen nicht nur definiert und angewendet werden können, sondern auch wie Daten miteinander verknüpft, als Parameter verwendet und als Funktionsergebnisse auftreten können. Zustand und mutable Daten werden vermieden, damit Nebeneffekte nicht entstehen und die Komposition flexibler wird. Das stellt einen Vorteil für die Skalierung eines Softwarekomponenten dar.\cite{funcScala}
 
 
-Die Implementierung einer solchen Funktion geschieht durch die Auswahl der Programmiersprache und der von dem Cloudanbieter vorgegebenen Funktionsfassade. Diese wird vom Cloudanbieter aufgerufen, stellt aber keine zusätzlichen Bibliotheken bereit, daher ist es nötig, dass die auszuführende Datei alle Abhängigkeiten enthält.
+Die Implementierung einer solchen Funktion geschieht durch die Auswahl der Programmiersprache und der von dem Cloudanbieter vorgegebenen Funktionsfassade. Diese wird vom Cloudanbieter aufgerufen, stellt aber keine zusätzlichen Bibliotheken zur Verfügung, daher ist es nötig, dass die auszuführende Datei alle Abhängigkeiten enthält.
 
 
-Der Fokus bei \acrshort{FaaS} liegt auf der Quellcodeentwicklung und nicht auf dem Bereitstellung ( Provisioning ) von Servern, der Installation von Software, dem Einsatz ( Deployment ) von Containern oder auf konkreten Details der Infrastruktur.
+Der Fokus bei \acrshort{FaaS} liegt auf der Quellcodeentwicklung und nicht auf der Bereitstellung ( Provisioning ) von Servern, der Installation von Software, dem Einsatz ( Deployment ) von Containern oder auf konkreten Details der Infrastruktur.
 
 %HTTP, Funktionale Programmierung, Fassaden, ... ?? 
 %Funktionale programmierung abstrahiert. auf Infrastruktur. 
 
-Für die Betrachtung, ob \acrshort{FaaS} eine Lösung für eine konkrete Problemstellung ist, folgt eine Auflistung von Kriterien:
-\paragraph{Es ist nicht empfehlenswert \acrshort{FaaS} zu benutzen, wenn:}\label{lambda-yes-no}
+Für die Betrachtung, ob \acrshort{FaaS} eine Lösung für eine konkrete Problemstellung ist, folgt eine Auflistung von Kriterien nach King\cite{lambdaAWS}:\\
+Es ist nicht empfehlenswert \acrshort{FaaS} zu benutzen, wenn: \label{lambda-yes-no}
 \begin{itemize}
 	\item der Entwickler Rootzugriffsrechte auf alle Ressourcen eines Servers benötigt
 	\item die Priorisierung von Betriebssystemattributen wie CPU, GPU, Networking oder Speichergeschwindigkeit angefordert ist
 	\item Sicherheit relevant ist. Unautorisierte Zugriffe können mit \acrshort{FaaS} nur auf Systemebene erkannt werden
 	\item dauerhaft laufende Prozesse angefordert sind
 \end{itemize}
-\paragraph{Es ist empfehlenswert \acrshort{FaaS} zu benutzen, wenn:}
+
+
+Es ist empfehlenswert \acrshort{FaaS} zu benutzen, wenn:
 \begin{itemize}
 	\item Aufgaben als Reaktion auf Events erledigt werden
-	\item ein Scriptbehälter für z.B Cron-Aufgaben benötigt wird. Die Zugriffsrechte sind beschränkter, Fehler sind einfacher zu erkennen und an einer Stelle aggregiert ( \cite{awsCloudWatch} ), des weiteren können Deployments einfacher angestoßen werden
+	\item ein Scriptbehälter für z.B Cron-Aufgaben benötigt wird. Hier sind die Zugriffsrechte beschränkter, Fehler einfacher zu erkennen und an einer Stelle aggregiert ( \cite{awsCloudWatch} ), des Weiteren können Deployments einfacher angestoßen werden
 	\item die Skalierung des Servers bei einer ressourcenintensiven Verarbeitung vermieden werden soll \autoref{sec:pipes-filters}
 	\item Services vorgegeben sind, die selten benutzt werden
 	\item die Verwaltung von \acrshort{API}-Server umgangen werden soll
-\end{itemize}\cite{lambdaAWS}
+\end{itemize}
 
 
 Die Frage, wie sich Architekturen mit einer \acrshort{FaaS} Technologie gestalten, wird im nächsten Kapitel erläutert.
 
 \chapter{Serverless-Angebote und Architekturen}
 
-Die Softwarearchitekturen helfen uns zu kommunizieren, welchen Zweck unsere Software erreichen möchte. Ihre Entwurfsmuster bieten generische Lösungen für wiederkehrende Probleme bei der Softwareentwicklung.
+Durch Softwarearchitekturen wird kommuniziert, für welchen Zweck die Software konzipiert ist. Ihre Entwurfsmuster bieten generische Lösungen für wiederkehrende Probleme bei der Softwareentwicklung.
 
 
-Auf konventionelle Webanwendungen wird hier Bezug genommen, als ein System, das über Presentation-, Data-, and Logikschicht verfügt. Jede Schicht kann mehrere Logik-Layers enthalten, die für unterschiedliche Funktionalitäten der Domains verantwortlich sind. Logging ist ein Beispiel für Cross-Cutting Concern, das Layers überspannt. Die Komplexität der Anwendung wächst zusammen mit der Anzahl der Schichten.
+Eine konventionelle Webanwendung in diesem Sinne, ist ein System, das über eine Präsentation-, Daten- und Logikschicht verfügt. Jede Schicht kann mehrere Logik-Layers enthalten, die für unterschiedliche Funktionalitäten der Domains verantwortlich sind. Logging ist ein Beispiel für das Cross-Cutting Concern, das Layers überspannt. Die Komplexität der Anwendung wächst zusammen mit der Anzahl der Schichten.
 Eine Überprüfung der Architektur ist sinnvoll, wenn eine erfolgreiche Codeänderung von einer Anderen abhängt.
 
 \newacronym{SOA}{SOA}{Service Oriented Architecture}
 \acrfull{SOA}
-\label{sec:soa} unterlegt der Annahme, dass ein System aus mehreren kleinen, austauschbaren, wiederverwendbaren und entkoppelten Diensten besteht. Für die Entwicklung und Integration solcher Systeme bietet \acrshort{SOA} eine Menge von Entwurfsprinzipien und Standards. Entwickler stellen autonome Services her, die durch Nachrichtenübergabe kommunizieren und oft einen Schema haben oder eine Schnittstelle, die definiert wie die Nachrichten erzeugt werden.\cite{cloudEssentials}
+\label{sec:soa} unterliegt der Annahme, dass ein System aus mehreren kleinen, austauschbaren, wiederverwendbaren und entkoppelten Diensten besteht. Für die Entwicklung und Integration solcher Systeme liefert \acrshort{SOA} eine Reihe von Entwurfsprinzipien und Standards. Entwickler erstellen autonome Services, die durch Nachrichtenübergabe kommunizieren und oft ein Schema haben oder eine Schnittstelle, die definiert, wie die Nachrichten erzeugt werden.\cite{cloudEssentials}
 
 \begin{figure}[H]
 	\centering	
@@ -567,31 +569,200 @@ SOA ermöglicht gegenseitigen Datenaustausch zwischen Programmen von unterschied
 Der Fokus in der Cloud liegt daher auf Service und Servicekomposition \cite{cloudEssentials}.
 
 \newacronym{DSL}{DSL}{Domain Specific Language}
-Microservices und Serverless versuchen die Komplexität der SOA ( \autoref{pic:arch-soa} ) anzusprechen. Beide Ansätze führen  Separation of Concerns, häufige Deployments und Heterogene \acrfull{DSL} mit sich.\cite{microAdv}
+Microservices und Serverless versuchen die Komplexität der SOA ( \autoref{pic:arch-soa} ) anzusprechen. Beide Ansätze führen  Separation of Concerns, häufige Deployments und heterogene \acrfull{DSL}s mit sich.\cite{microAdv}
 
-Auf einer Seite können Microservices ihren Zustand und Daten speichern und mit Hilfe von Frameworks implementiert werden. Auf der anderen Seite sind Serverless Architekturen zustandlos, ihre Datenspeicherung ist zeitlich begrenzt und sie unterstützen Frameworks nicht direkt. ConnectWise\cite{ConnectWise}, Netflix\cite{Netflix} und UNLESS\cite{UNLESS} sind Beispiele für Unternehmen, die auch von Serverless Architekturen profitieren.
+Auf einer Seite können Microservices ihren Zustand sowie ihre Daten speichern und mit Hilfe von Frameworks implementiert werden. Auf der anderen Seite sind Serverless Architekturen zustandlos, ihre Datenspeicherung ist zeitlich begrenzt und sie unterstützen Frameworks nicht direkt. ConnectWise\cite{ConnectWise}, Netflix\cite{Netflix} und UNLESS\cite{UNLESS} sind Beispiele für Unternehmen, die auch von Serverless Architekturen profitieren.
 
 
 \newacronym{EDA}{EDA}{Event Driven Architecture}
 \textit{\acrfull{EDA}}\label{sec:eda} ist eine Softwarearchitektur, in der das Zusammenspiel der Komponenten durch Ereignisse gesteuert wird. Die Ereignisorientierung besitzt das Potenzial, dass die Architekturen von Anwendungen agiler, reaktionsschneller und
-echtzeitfähig werden. Laut Ralf Bruns und Jürgen Dunkel ist \acrshort{EDA} für komplexe Fachlogik, große Datenvolumina, geringe Latenzzeit, Skalierbarkeit und Agilität geeignet.\cite{archEDA}\\
+echtzeitfähig werden. Laut Ralf Bruns und Jürgen Dunkel zeichnet sich \acrshort{EDA} durch komplexe Fachlogik, große Datenvolumina, geringe Latenzzeit, Skalierbarkeit und Agilität aus.\cite{archEDA}\\
 Die Serverless Technologien können durch Benachrichtigungen gestartet werden. Dieser \acrshort{EDA}-Stil verstärkt die Entkopplung auf einer temporären Ebene zwischen Producer und Consumer. Weiterhin ermöglicht ein Kommunikationskanal zur Benachrichtigung eine asynchrone Verarbeitung, ohne dass das System auf Grund von Fehlern abstürzt. \cite{patternIntegrationEnterprise}
 
-Zusammenfassend sind folgende Vorteile ersichtlich:
+Zusammenfassend sind folgende Vorteile ersichtlich \cite{cloudEssentials}:
 \begin{itemize}
 	\item Die Wiederverwendung von Services in unterschiedlichen Anwendungen senkt die Entwicklungskosten und den Time-To-Market.
 	\item Durch die Standarisierung der Services kann ein System mit einer Rekonfiguration und ohne Weiterentwicklung schnell auf die geschäftlichen oder externen Bedürfnisse angepasst werden. Somit wird ein agiles Arbeiten möglich.
 	\item Das Monitoring hilft Fehler zu erkennen und die Leistung zu messen.
 	\item Aggregate von bereitgestellten Services können komplexere und domainübergreifende Aufgaben ausführen.
-\end{itemize}\cite{cloudEssentials}
+\end{itemize}
 
 \newacronym{REST}{REST}{REpresentational State Transfer}
-Im späteren Kapitel wird REST als Teil des \acrshort{EDA}-Architekturstils vorgestellt.
-%%%--------------- revise
-Hinter den Serverless Angeboten sind folgende Cloudanbieter zu finden: 
+Im späteren Kapitel wird REST als Teil des \acrshort{EDA}-Architekturstils vorgestellt.\\
 
-\begin{table}
-	\caption{Vergleich \acrshort{FaaS} Angebote der Cloudanbietern}
+\section{Serverless}
+\label{sec:serverless}
+
+\newacronym{API}{API}{Application Interface}
+Serverless kann als ein Ansatz beschrieben werden, der die Verwendung von einem Rechenservice, Dienste von Drittanbietern, von \acrfull{API}s und die Anwendung von Architekturmustern fördert. Ein solcher Anwendungsfall ist die Kommunikation mithilfe eines \glqq Delegation-Tokens\grqq\ zwischen den Front- und Back-End Diensten. \acrshort{FaaS} ist nur ein Aspekt dessen.
+
+
+Serverless übernimmt die Entwurfsprinzipien von \acrshort{SOA} und \acrshort{EDA} ( siehe \autoref{sec:soa} ) und daher ergeben sich laut Sbarski folgende Richtlinien:
+\newacronym{SRP}{SRP}{Single Responsability Principle}
+\begin{itemize}\label{par:serverless-principles}
+	\item Ein Rechenservice wird genutzt, um Quellcode auf Anfrage auszuführen, kein Server.
+	\item Zustandslose Funktionen unterliegen dem \acrfull{SRP}.
+	\item Für den Architekturentwurf werden Push basierte ereignisorientierte Pipelines genutzt.
+	\item Front-Ends werden durch die Einbettung von mehr Zuständigkeiten verstärkt.
+	\item Dienste von Drittanbieter werden dem Schreiben von eigenem Quellcode bevorzugt.
+\end{itemize}\cite{serverlessArchAWS}
+
+Die Vernetzung von zustandslosen Funktionen erlaubt, komplexe Systeme zu entwerfen, die einfach zu skalieren sind.
+\newacronym{MVC}{MVC}{Model View Controller}
+Die Komplexität und längerfristige Wartbarkeit des Systems lässt sich dadurch reduzieren, dass der Controller und/oder Router aus dem \acrfull{MVC} \cite{fowlerBlogMVC} vom Back- zum Front-End verschoben wird und Dienste von Drittanbieter hinzugefügt werden. \cite{patternAWS}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.60]{./pics/classic-example.eps}
+	\caption{Classic Add Server}
+	\label{pic:classic-add}
+\end{figure}
+In einem beispielhaften konventionellen AdServer wird nach einem Klick auf eine Werbung eine Nachricht über einen Kanal an einen Klickprozessor geschickt, der innerhalb einer Anwendung ausgeführt wird.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.60]{./pics/serverless-example.eps}
+	\caption{Serverless Add Server}
+	\label{pic:serverless-add}
+\end{figure}
+%\begin{wrapfigure}{l}{0.36\textwidth}
+%	\includegraphics[scale=0.30]{./pics/serverless-example.eps}
+%	\caption{Serverless Add Server}
+%	\label{pic:serverless-add}
+%\end{wrapfigure}
+
+Mit dem Serverless Ansatz wird dieser Klickprozessor pro Nachricht als eine neue Instanz der Funktion ausgeführt. Ihre Laufzeitumgebung und ihr Messagebroker wird von dem Cloudanbieter verwaltet. \cite{fowlerBlogServerless}
+ 
+Dazu wird für den Entwurf von Serverless Architekturen eine Reihe von Mustern von unterschiedlichen Autoren vorgeschlagen.
+
+
+\section{Pipes and Filters, Compute as a Glue}
+\label{sec:pipes-filters}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.60]{./pics/pipes-and-filters.eps}
+	\caption{Pipes and Filters Entwurfsmuster}
+	\label{pic:pipes-and-filters}
+\end{figure}
+%\begin{wrapfigure}{l}{0.36\textwidth}
+%	\includegraphics[width=0.9\linewidth]{./pics/pipes-and-filters.eps}
+%\end{wrapfigure}
+Eine Anwendung kann Aufgaben von unterschiedlicher Komplexität bewältigen. In einem monolithischen Modul sind das Refactoring, die Optimierung und die Wiederverwendung erschwert. \\
+Zunächst werden die Aufgaben in diskrete Elemente ( oder Filter ) nach dem \acrshort{SRP} zerteilt und in einer Pipeline kombiniert. Dies hilft redundanten Quellcode zu vermeiden, ihn zu löschen, zu ersetzen oder in zusätzliche Komponenten zu integrieren, sobald sich die Aufgabenanforderungen ändern\cite{patternsCloud}. Ein weiterer Vorteil besteht darin, dass ein Flaschenhalseffekt vermieden wird, in dem mehrere Instanzen erzeugt werden, falls ein Element nicht genug Ressourcen für die Verarbeitung hat. 
+
+
+\section{Legacy Api Proxy}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.60]{./pics/legacy-api-proxy.eps}
+	\caption{Legacy API Muster}
+	\label{legacy-api-proxy}
+\end{figure}
+%\begin{wrapfigure}{l}{0.36\textwidth}
+%	\begin{center}
+%		\includegraphics[width=0.9\linewidth]{./pics/legacy-api-proxy.eps}
+%		\label{legacy-api-proxy}
+%		\caption{Legacy API Muster}
+%	\end{center}
+	
+%\end{wrapfigure}
+Wenn eine \acrshort{API} veraltet oder schwer zu benutzen ist, kann eine extra ( RESTful ) \acrshort{API} in den Vordergrund gestellt werden, die in gesonderten Prozessen Daten transponieren und für die angeforderten Formate aufstellen ( marshall ). Dies ist besonders nützlich, wenn die Legacy-Services selten benutzt werden. Zusätzlich erleichtert der Api Proxy die Integration mit anderen Architekturansätzen.
+
+
+\section{Compute as a Backend}
+\begin{figure}[H]
+	\centering
+		\includegraphics[scale=0.60]{./pics/compute-as-a-backend.eps}
+	\caption{Compute as a Backend Muster}
+	\label{pic:compute-backend}
+\end{figure}
+%\begin{wrapfigure}{l}{0.46\textwidth}
+%	\includegraphics[scale=0.36]{./pics/compute-as-a-backend.eps}
+%	\caption{Compute as a Backend}
+%	\label{pic:compute-backend}
+%\end{wrapfigure}
+Obwohl der Client direkt mit Services kommunizieren kann, müssen vertrauliche Informationen geschützt werden, indem sie das Back-End verarbeitet\cite{serverlessArchAWS}. Diese Aufgaben können hinter einer \acrshort{REST} Schnittstelle koordiniert werden. Wie in  \autoref{par:serverless-principles} erwähnt, minimieren die Einbettung der Dienste von Drittanbietern und verstärkte Front-Ends den Fußabdruck des eigenen Back-Ends.
+
+\section{Graph Query}
+\begin{figure}[H]
+	\centering
+		\includegraphics[scale=0.60]{./pics/GraphQuery.eps}
+	\caption{Graph Query Muster}
+	\label{pic:graph-query}
+\end{figure}
+%\begin{wrapfigure}{l}{0.36\textwidth}
+%	\includegraphics[scale=0.36]{./pics/GraphQuery.eps}
+%	\caption{Graph Query}
+%	\label{pic:graph-query}
+%\end{wrapfigure}
+Wenn mit einer Anfrage mehrere Datenbanken abgefragt werden, entstehen multiple Paketumlaufzeiten ( Round-Trip ). Stellt eine \acrshort{REST} Schnittstelle in einer Anfrage zu wenig Queryparameter zur Verfügung, dann entsteht Overfetching, weil die Anfrage nicht präzise genug ist. Dagegen kann der Client die Parameter für die Abfrage spezifizieren und das Back-End baut sie zusammen und führt sie aus.
+
+
+\section{Real time processing}
+\begin{figure}[H]
+	\centering
+		\includegraphics[scale=0.60]{./pics/real-time-processing.eps}
+	\caption{Real Time Processing Muster}
+	\label{pic:real-time-processing}
+\end{figure}
+%\begin{wrapfigure}{l}{0.36\textwidth}
+%	\includegraphics[scale=0.36]{./pics/real-time-processing.eps}
+%	\caption{Real Time Processing}
+%	\label{pic:real-time-processing}
+%\end{wrapfigure}
+Die Verarbeitung von Streams in Echtzeit kann durch einen Puffer erfolgen, der je nach Konfiguration die Daten weiter an den Worker leitet. Einen wesentlichen Vorteil stellt die unabhängige Skalierung des Streams und des Workers je nach Anfrage dar. Bei fehlerhafter Verarbeitung werden die Prozesse neu angestoßen.
+
+\section{Priority Queue}\label{sec:priority-queue}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.60]{./pics/pattern-priority-queue.eps}
+	\caption{Priority Queue Muster}
+	\label{pic:priority-queue}
+\end{figure}
+%\begin{wrapfigure}{l}{0.36\textwidth}
+%	\includegraphics[scale=0.36]{./pics/pattern-priority-queue.eps}
+%	\caption{Priority Queue}
+%	\label{pic:priority-queue}
+%\end{wrapfigure}
+Anwendungen können spezifische Aufgaben delegieren, wie z.B die Integration mit anderen Anwendungen und Services. Anders als bei einer FIFO  ( First In First Out ) Queue können die Nachrichten nach Priorität automatisch sortiert und asynchron verarbeitet werden. Für Systeme ohne integrierte Priorisierung können mehrere Queues für unterschiedliche Prioritäten benutzt werden und die Anzahl von Consumerprozessen wird entsprechend angepasst. Im letzteren Fall wird dabei die Starvation von Nachrichten, mit geringer Priorität, vermieden.
+
+Das Priority Queue wird im Rahmen des Entwurfsmusters Competing Consumers als ein Consumerservice aufgefasst. Steigt stark die Anzahl von Anfragen an die Kapazitäten des Systems, kommt es zu seiner Überbelastung. Ein Consumerservice als Moderator von Anfragen ist im Stande das zu verhindern.
+
+\section{Fan Out}
+\label{sec:fan-out}
+\begin{figure}[H]
+	\centering
+\includegraphics[scale=0.60]{./pics/pattern-fan-out.eps}
+\caption{Fan Out}
+\label{pic:fan-out}
+\end{figure}
+%\begin{wrapfigure}{l}{0.45\textwidth}
+%	\includegraphics[height=3cm]{./pics/pattern-fan-out.eps}
+%	\caption{Fan Out}
+%	\label{pic:fan-out}
+%\end{wrapfigure}
+Bei dem Eintritt eines Events können ein oder mehrere Subscriber durch die gepushte Benachrichtigung angestoßen werden. Damit wird ein Kommunikationskanal  \autoref{sec:priority-queue} zur Verwaltung von Nachrichten wiederverwendet und extra Geschäftslogik umgangen, z.B. kein Command Pattern für die gleiche Funktionalität\cite{serverlessArchAWS}.
+
+\section{Federated Identity}\label{sec:federated-identity}
+\begin{figure}[H]
+	\centering
+\includegraphics[scale=0.60]{./pics/pattern-federated-identity.eps}
+\caption{Federated Identity}
+\label{pic:federated-identity}
+\end{figure}
+%\begin{wrapfigure}{l}{0.36\textwidth}
+%	\includegraphics[scale=0.36]{./pics/pattern-federated-identity.eps}
+%	\caption{Federated Identity}
+%	\label{pic:federated-identity}
+%\end{wrapfigure}
+Benutzer arbeiten mit multiplen Anwendungen von unterschiedlichen Organisationen. Um gleiche Zugangsdaten für Benutzter wiederverwenden zu können, wird dem Nutzer eine Identität bei einem Drittanbieter zugeteilt, diese wird mit einem Token an die Anwendung weitergeleitet. Der Authentisierungscode kann daher von dem Anwendungscode abgetrennt werden, damit kann zusätzliche Komplexität bei der Codierung für die Authentisierung vermieden werden.
+
+\chapter{AWS-Serverless-Angebote}
+\label{chap:aws-serverless}
+\acrshort{AWS} ist ein Cloudandbieter unter vielen.
+Hier ein Überblick über verschiedene Serverless Angebote:\\
+
+\begin{table}[H]
+	
 	\centering{}
 	\label{comparison-FaaS}
 	\begin{tabular}{ p{7em} | p{2cm} | p{2cm} | p{2cm} | p{2cm} | p{2cm} }
@@ -615,8 +786,10 @@ Hinter den Serverless Angeboten sind folgende Cloudanbieter zu finden:
 		\hline
 		d & e & f & g & h & i \\
 		\hline
-		d & e & f & g & h & i \\
+		d & e & f & g & h & i \\		
 	\end{tabular}
+\\
+\caption{Vergleich \acrshort{FaaS} Angebote der Cloudanbietern}
 \end{table}
 
 
@@ -655,203 +828,6 @@ and monitoring.
 
 
 
-\section{Serverless}
-\label{sec:serverless}
-
-\newacronym{API}{API}{Application Interface}
-Serverless kann als ein Ansatz beschrieben werden, der die Verwendung von einem Rechenservice, Dienste von Drittanbietern, von \acrfull{API}s und die Anwendung von Architekturmustern fördert. Ein solcher Anwendungsfall ist die Kommunikation mithilfe eines \glqq Delegation-Tokens\grqq\ zwischen den Front- und Back-End Diensten. \acrshort{FaaS} ist nur ein Aspekt dessen.
-
-
-Serverless übernimmt die Entwurfsprinzipien von \acrshort{SOA} und \acrshort{EDA} ( siehe \autoref{sec:soa} ) und daher ergeben sich laut Sbarski folgende Richtlinien:
-\newacronym{SRP}{SRP}{Single Responsability Principle}
-\begin{itemize}\label{par:serverless-principles}
-	\item Ein Rechenservice wird genutzt, um Quellcode auf Anfrage auszuführen, kein Server.
-	\item Zustandslose Funktionen unterliegen dem \acrshort{SRP} Prinzip.
-	\item Für den Architekturentwurf werden Push basierte ereignisorientierte Pipelines genutzt.
-	\item Front-Ends werden durch die Einbettung von mehr Zuständigkeiten verstärkt.
-	\item Dienste von Drittanbieter werden dem Schreiben von eigenem Quellcode bevorzugt.
-\end{itemize}\cite{serverlessArchAWS}
-
-Die Vernetzung von zustandslosen Funktionen erlaubt, komplexe Systeme zu entwerfen, die einfach zu skalieren sind.
-\newacronym{MVC}{MVC}{Model View Controller}
-Die Komplexität und längerfristige Wartbarkeit des Systems lässt sich dadurch reduzieren, dass der Controller und/oder Router aus dem \acrfull{MVC} \cite{fowlerBlogMVC} vom Back- zum Front-End verschoben wird und Dienste von Drittanbieter hinzugefügt werden. \cite{patternAWS}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.60]{./pics/classic-example.eps}
-	\caption{Classic Add Server}
-	\label{pic:classic-add}
-\end{figure}
-%\begin{wrapfigure}{l}{0.36\textwidth}
-
-%\end{wrapfigure}
-
-In einem beispielhaften konventionellen AdServer wird nach einem Klick auf eine Werbung eine Nachricht über einen Kanal an einen Klickprozessor geschickt, der innerhalb einer Anwendung ausgeführt wird.
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.60]{./pics/serverless-example.eps}
-	\caption{Serverless Add Server}
-	\label{pic:serverless-add}
-\end{figure}
-%\begin{wrapfigure}{l}{0.36\textwidth}
-%	\includegraphics[scale=0.30]{./pics/serverless-example.eps}
-%	\caption{Serverless Add Server}
-%	\label{pic:serverless-add}
-%\end{wrapfigure}
-
-Mit dem Serverless Ansatz wird dieser Klickprozessor pro Nachricht als eine neue Instanz der Funktion ausgeführt. Ihre Laufzeitumgebung und ihr Messagebroker wird von dem Cloudanbieter verwaltet. \cite{fowlerBlogServerless}\\
- 
-
-Dazu wird für den Entwurf von Serverless Architekturen eine Reihe von Mustern von unterschiedlichen Autoren vorgeschlagen.\\
-
-
-\section{Pipes and Filters, Compute as a Glue}
-\label{sec:pipes-filters}
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.60]{./pics/pipes-and-filters.eps}
-	\caption{Pipes and Filters Entwurfsmuster}
-	\label{pic:pipes-and-filters}
-\end{figure}
-%\begin{wrapfigure}{l}{0.36\textwidth}
-%	\includegraphics[width=0.9\linewidth]{./pics/pipes-and-filters.eps}
-%\end{wrapfigure}
-Eine Anwendung kann Aufgaben von unterschiedlicher Komplexität ausführen. In einem monolithischen Modul sind das Refactoring, die Optimierung und die Wiederverwendung erschwert. \\
-Zunächst werden die Aufgaben in diskrete Elemente ( oder Filter ) nach dem \acrshort{SRP} zerteilt und in einer Pipeline kombiniert. Dies hilft redundanten Quellcode zu vermeiden, ihn zu löschen, zu ersetzen oder in zusätzliche Komponenten zu integrieren, sobald sich die Aufgabenanforderungen ändern\cite{patternsCloud}. Ein weiterer Vorteil besteht darin, dass ein Flaschenhalseffekt vermieden wird, in dem mehrere Instanzen erzeugt werden, falls ein Element nicht genug Ressourcen für die Verarbeitung hat. 
-
-
-\section{Legacy Api Proxy}
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.60]{./pics/legacy-api-proxy.eps}
-	\caption{Legacy API Muster}
-	\label{legacy-api-proxy}
-\end{figure}
-%\begin{wrapfigure}{l}{0.36\textwidth}
-%	\begin{center}
-%		\includegraphics[width=0.9\linewidth]{./pics/legacy-api-proxy.eps}
-%		\label{legacy-api-proxy}
-%		\caption{Legacy API Muster}
-%	\end{center}
-	
-%\end{wrapfigure}
-Wenn eine \acrshort{API} veraltet oder schwer zu benutzen ist, kann eine extra ( RESTful ) \acrshort{API} in den Vordergrund gestellt werden, die in gesonderten Prozessen Daten transponieren und für die angeforderten Formate aufstellen ( marshall ). Dies ist besonders nützlich, wenn die Legacy-Services selten benutzt werden. Zusätzlich erleichtert der Api Proxy die Integration mit anderen Architekturansätzen.
-\\
-\\
-
-
-\section{Compute as a Backend}
-\begin{figure}[H]
-	\centering
-		\includegraphics[scale=0.60]{./pics/compute-as-a-backend.eps}
-	\caption{Compute as a Backend}
-	\label{pic:compute-backend}
-\end{figure}
-%\begin{wrapfigure}{l}{0.46\textwidth}
-%	\includegraphics[scale=0.36]{./pics/compute-as-a-backend.eps}
-%	\caption{Compute as a Backend}
-%	\label{pic:compute-backend}
-%\end{wrapfigure}
-Obwohl der Client direkt mit Services kommunizieren kann, müssen vertraute Informationen geschützt werden, indem sie das Back-End verarbeitet\cite{serverlessArchAWS}. Diese Aufgaben können hinter einer \acrshort{REST} Schnittstelle koordiniert werden. Wie in  \autoref{par:serverless-principles} erwähnt, minimieren die Einbettung der Dienste von Drittanbietern und verstärkte Front-Ends den Fußabdruck des eigenen Back-Ends.
-
-\section{Graph Query}
-\begin{figure}[H]
-	\centering
-		\includegraphics[scale=0.60]{./pics/GraphQuery.eps}
-	\caption{Graph Query}
-	\label{pic:graph-query}
-\end{figure}
-%\begin{wrapfigure}{l}{0.36\textwidth}
-%	\includegraphics[scale=0.36]{./pics/GraphQuery.eps}
-%	\caption{Graph Query}
-%	\label{pic:graph-query}
-%\end{wrapfigure}
-Wenn mit einer Anfrage mehrere Datenbanken abgefragt werden, entstehen multiple Paketumlaufzeiten ( Round-Trip ). Stellt eine \acrshort{REST} Schnittstelle in einer Anfrage zu wenig Queryparameter zur Verfügung, dann entsteht Overfetching, weil die Anfrage nicht präzise genug ist. Dagegen kann der Client die Parameter für die Abfrage spezifizieren und das Back-End baut sie zusammen und führt sie aus.
-
-
-\section{Real time processing}
-\begin{figure}[H]
-	\centering
-		\includegraphics[scale=0.60]{./pics/real-time-processing.eps}
-	\caption{Real Time Processing}
-	\label{pic:real-time-processing}
-\end{figure}
-%\begin{wrapfigure}{l}{0.36\textwidth}
-%	\includegraphics[scale=0.36]{./pics/real-time-processing.eps}
-%	\caption{Real Time Processing}
-%	\label{pic:real-time-processing}
-%\end{wrapfigure}
-Die Verarbeitung von Streams in Echtzeit kann durch einen Buffer, der je nach Konfiguration die Daten weiter an den Worker leitet. Einen wesentlichen Vorteil stellt die unabhängige Skalierung des Streams und des Workers je nach Anfrage dar. Bei fehlerhafter Verarbeitung werden die Prozesse neu angestoßen.
-\\
-\\
-
-%Competing consumers als pattern für die implementaiton vom Kommunikation kanal für events die lambdas triggern.
-
-%Pipes and Filters\cite{patternsCloud} <-> lambda event driven
-%Health endpoint monitoring <-> EC2 certificate
-%Leader election -> TRansaction mngmt S3
-
-
-%Queue Based Load Leveling -> Not appliable for Lambda Computing Model
-%Retry ->
-%Runtime Reconfiguration <-> Api Gateway Zero Downtime on Redploy
-%Scheduler Agent supervisor -> Not needed if Design to Failure.
-%Sharding -> Divide DataStore to Scale better -> Dynamo db + S3
-%Static Content Hosting -> Solved by S3
-%Throttling -> Scallability of Serverless Solved vs Transaction
-%Vallet key <-> Auht0
-
-\section{Priority Queue}\label{sec:priority-queue}
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.60]{./pics/pattern-priority-queue.eps}
-	\caption{Priority Queue}
-	\label{pic:priority-queue}
-\end{figure}
-%\begin{wrapfigure}{l}{0.36\textwidth}
-%	\includegraphics[scale=0.36]{./pics/pattern-priority-queue.eps}
-%	\caption{Priority Queue}
-%	\label{pic:priority-queue}
-%\end{wrapfigure}
-Anwendungen können spezifische Aufgaben delegieren, wie z.B die Integration mit anderen Anwendungen und Services. Anders als bei einer FIFO  ( First In First Out ) Queue können die Nachrichten nach Priorität automatisch sortiert und asynchron verarbeitet werden. Für Systeme ohne integrierte Priorisierung können mehrere Queues für unterschiedliche Prioritäten benutzt werden und die Anzahl von Consumerprozessen wird entsprechend angepasst. Im letzteren Fall wird dabei die Starvation von Nachrichten, mit geringer Priorität, vermieden.
-
-Das Priority Queue wird im Rahmen des Entwurfsmusters Competing Consumers als ein Consumerservice aufgefasst. Steigt stark die Anzahl von Anfragen an die Kapazitäten des Systems, kommt es zu seiner Überbelastung. Ein Consumerservice als Moderator von Anfragen ist im Stande das zu verhindern.
-
-
-
-\section{Fan Out}
-\label{sec:fan-out}
-\begin{figure}[H]
-	\centering
-\includegraphics[height=3cm]{./pics/pattern-fan-out.eps}
-\caption{Fan Out}
-\label{pic:fan-out}
-\end{figure}
-%\begin{wrapfigure}{l}{0.45\textwidth}
-%	\includegraphics[height=3cm]{./pics/pattern-fan-out.eps}
-%	\caption{Fan Out}
-%	\label{pic:fan-out}
-%\end{wrapfigure}
-Bei dem Eintritt eines Events können ein oder mehrere Subscriber durch die gepushte Benachrichtigung angestoßen werden. Damit wird ein Kommunikationskanal  \autoref{sec:priority-queue} zur Verwaltung von Nachrichten wiederverwendet und extra Geschäftslogik umgangen, z.B. kein Command Pattern für die gleiche Funktionalität\cite{serverlessArchAWS}.
-
-\section{Federated Identity}\label{sec:federated-identity}
-\begin{figure}[H]
-	\centering
-\includegraphics[scale=0.60]{./pics/pattern-federated-identity.eps}
-\caption{Federated Identity}
-\label{pic:federated-identity}
-\end{figure}
-%\begin{wrapfigure}{l}{0.36\textwidth}
-%	\includegraphics[scale=0.36]{./pics/pattern-federated-identity.eps}
-%	\caption{Federated Identity}
-%	\label{pic:federated-identity}
-%\end{wrapfigure}
-Benutzer arbeiten mit multiplen Anwendungen von unterschiedlichen Organisationen. Um gleiche Zugangsdaten für Benutzter wiederverwenden zu können, wird dem Nutzer eine Identität bei einem Drittanbieter zugeteilt, diese wird mit einem Token an die Anwendung weitergeleitet. Der Authentisierungscode kann daher von dem Anwendungscode abgetrennt werden, damit kann zusätzliche Komplexität bei der Codierung für die Authentisierung vermieden werden.
-
-\chapter{AWS-Serverless-Angebote}
-\label{chap:aws-serverless}
-\acrshort{AWS} ist ein Cloudandbieter
-% Andere Anbieter 
 % 3 sätze über AWS als Anbieter
 
 \newacronym{JVM}{JVM}{Java Virtual Machine}
@@ -860,12 +836,12 @@ Benutzer arbeiten mit multiplen Anwendungen von unterschiedlichen Organisationen
 \end{wrapfigure}
 \paragraph{Lambda}\label{par:lambda} ist ein Rechenservice, der aus Quellcode und dessen Abhängigkeiten besteht. Die horizontale Skalierung erfolgt automatisch, elastisch und vom Cloudanbieter verwaltet; währenddessen die vertikale nach Konfiguration erfolgt. Lambda wird als Einheit für die Skalierung und das Deployment benutzt. \acrshort{AWS} unterstützt Javascript, Python, C\# und Java. Die letzte Programmiersprache betrifft das Konzept \glqq Cold- und Warm\label{lambda-cold-warm} run\grqq\ besonders, da es nötig ist, die \acrfull{JVM} in ihrer Laufzeitumgebung hochzufahren ( cold run ). Der Cloudanbieter stützt sich auf das Pull- und Push- Kommunikationsmodell. Bei Pull überprüft die Lambda Laufzeitumgebung in regelmäßigen zeitlichen Abständen, ob Events z.B. bei Kinesis eingetreten sind und ruft die entsprechende Lambda Funktion mit einer Event-Datennutzlast auf. Bei Push ruft die Eventquelle z.B S3 je nach Konfiguration ( event source mapping ) die entprechende Lambda Funktion auf. 
 
-Zustand kann von andere Dienste wie eine Datenbank aufgerufen werden.
+Zustände können von anderen Dienste wie einer Datenbank aufgerufen werden.
 
 
 % --- revise 
 \newacronym{RPC}{RPC}{Remote Procedure Call}
-In der folgenden \autoref{lambda-arch} befindet sich eine Übersicht der Architektur der Lambda. Nachdem ein Event ( 1 ) in Form einer \acrfull{RPC} vom Load Balancer aufgenommen ist, wird der Server benachrichtigt ( 2 ) und lädt ( 3 ) er entsprechenden Quellcode in die Arbeitsspeicher ( 4 ), um ihn auszuführen und die Ergebnisse zurück an den ursprünglichen Loadbalancer zu liefern( 5 ). 
+In der folgenden \autoref{lambda-arch} findet sich eine Übersicht der Architektur von Lambda. Nachdem der Load Balancer ein Event ( 1 ) in Form eines \acrfull{RPC}s aufgenommen hat, wird der Server benachrichtigt ( 2 ) und lädt ( 3 ) entsprechenden Quellcode in die Arbeitsspeicher ( 4 ), um ihn auszuführen und die Ergebnisse zurück an den ursprünglichen Load Balancer zu senden( 5 ). 
 
 \begin{figure}[H]
 	\centering{}
@@ -876,7 +852,7 @@ In der folgenden \autoref{lambda-arch} befindet sich eine Übersicht der Archite
 
 Der Ausgangspunkt dieses Entwurfs legt die gemeinschaftliche Benutzung von vorhandenen Ressourcen, so oft es sich anbietet, nahe.
 
-Steigt die Anzahl der \glqq Workers\grqq\, entsteht die horizontale Skalierung. Diese kann bis Null senken, u.d. kann der Benutzer sich die Kosten für nicht benutzten Ressourcen sparen.  
+Steigt die Anzahl der \glqq Worker\grqq\ , entsteht die horizontale Skalierung. Diese kann bis Null sinken, u.d. kann der Benutzer sich die Kosten für nicht benutzte Ressourcen sparen.  
 
 
 \begin{wrapfigure}{l}{0.16\textwidth}
@@ -888,7 +864,7 @@ Steigt die Anzahl der \glqq Workers\grqq\, entsteht die horizontale Skalierung. 
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Messaging_GRAYSCALE_AmazonSNS.eps}
 \end{wrapfigure}
 \newacronym{SNS}{SNS}{Simple Notification Service}
-\paragraph{\acrfull{SNS}}\label{par:sns} erweitert das schon gut etablierte Beobachtermuster, in dem es einen Kanal für Events hinzufügt. Die konzeptionelle Technologie hinter \acrshort{SNS} wird \glqq Publish-Subscribe Channel\cite{patternIntegrationEnterprise}\grqq\ Muster genannt und entspricht den oben genannten \glqq Fan Out\grqq\ \autoref{sec:fan-out} Architekturmustern. AWS kann durch Redundanz mindestens eine Lieferung der Nachricht gewährleisten.
+\paragraph{\acrfull{SNS}}\label{par:sns} erweitert das schon gut etablierte Beobachtermuster, in dem es einen Kanal für Events hinzufügt. Die konzeptionelle Technologie hinter \acrshort{SNS} wird als \glqq Publish-Subscribe Channel\cite{patternIntegrationEnterprise}\grqq\ Muster bezeichnet und entspricht den oben genannten \glqq Fan Out\grqq\ \autoref{sec:fan-out} Architekturmustern. AWS kann durch Redundanz mindestens eine Lieferung der Nachricht gewährleisten.
 
 
 \newacronym{S3}{S3}{Simple Storage Service}
@@ -1369,30 +1345,27 @@ Der autorisierter Zugriff kann nun gewährleistet werden, da die Verwaltung bzw.
 
 
 \paragraph{Zur Skalabilität}
-Die Partitionierung und das Replizieren von Datenbanken bringt zwar Vorteile ( wie in \autoref{data-vorteile} zitiert wurde ), aber auch Herausforderungen bei der Synchronisation und Konsistenz der Daten mit sich. Dies geschieht auf Grund des konsistent zu haltenden Zustandes der Datenbanken.
+Die Partitionierung und das Replizieren von Datenbanken bringt zwar Vorteile ( wie in \autoref{data-vorteile} gezeigt wurde ), aber auch Herausforderungen bei der Synchronisation und Konsistenz der Daten mit sich. Dies geschieht auf Grund des konsistent zu haltenden Zustandes der Datenbanken.
 
 Die Relevanz und Bedeutung der Daten hängt von dem Standpunkt ab. Z.B ein Schüler möchte schnell zu erfahren, ob der Hochladevorgang seiner Arbeit erfolgreich war ( Schreibzugriff vorziehen ). Ein Professor überprüft, ob alle Schüler ihre Arbeit hochgeladen haben ( Lesezugriff vorziehen ). Daher lässt sich eine technologisch orientierte Strategie unklar definieren, da weder alle Faktoren bekannt, noch beachtet werden können. 
 
 
-Die Unmöglichkeit, alle Perspektiven zu berücksichtigen, erfordert eine Entscheidung ob ein Service entweder eine Funktion oder eine Datenbank ist; auf die Gefahr hin, dass nicht alle Benutzerinteressen umgesetzt werden. Obwohl der Begriff Service in \glqq \acrlong{SOA}\grqq\ als ein Mehrwert für die Benutzer verstanden wird. 
+Die Unmöglichkeit, alle Perspektiven zu berücksichtigen, erfordert eine Entscheidung ob ein Service entweder eine Funktion oder eine Datenbank ist; auf die Gefahr hin, dass nicht alle Benutzerinteressen umgesetzt werden, obwohl der Begriff Service in \glqq \acrlong{SOA}\grqq\ als ein Mehrwert für die Benutzer verstanden wird. 
 
 Um eine möglichst hohe Performanz zu erzielen, wird die Anwendung entsprechend der Benutzungsmuster gestaltet. Die funktionale Datenbankpartitionierung erfüllt, wenn korrekt implementiert, diese Forderung.
 
-
-Die \acrshort{EDA} eignet sich für die Steuerung von Benutzungsfällen besonders gut, da ein Event beispielsweise eine Interaktion zwischen dem Kunden und der Anwendung repräsentiert. 
-
-Die Orchestrierung solcher Benutzungsfälle lässt sich mittels einer endlichen Zustandsmaschine definierten und einem Petrinetz darstellen, in der Events die Kanten und \acrshort{FaaS} die Ecken sind. Dieser Ansatz ähnelt dem Domain getriebenen Entwurf ( Domain Driven Design \cite{ddd} ), in dem Benutzungsfälle in Kontextgrenzen ( Bounded Context ) zusammengefasst werden.
+Da ein Event beispielsweise eine Interaktion zwischen dem Kunden und der Anwendung repräsentiert, eignet sich die \acrshort{EDA} für die Steuerung von Benutzungsfällen besonders gut. Deren Orchestrierung lässt sich mittels einer endlichen Zustandsmaschine definieren und einem Petrinetz darstellen, in dem Events die Kanten und \acrshort{FaaS} die Ecken sind. Dieser Ansatz ähnelt dem Domain getriebenen Entwurf ( Domain Driven Design \cite{ddd} ), in dem Benutzungsfälle in Kontextgrenzen ( Bounded Context ) zusammengefasst werden.
 
 
 \newacronym{JEE}{JEE}{Java Enterprise Edition}
 \paragraph{Frameworks und FaaS}
-Frameworks helfen bei der Entwicklung von komplexen Systemen, in dem sie Abstraktionsschichten hinzufügen und damit komplexe Berechnungen wie bei der \glqq Dependency Injection \grqq\ von \acrfull{JEE} übernehmen. 
+Frameworks helfen bei der Entwicklung von komplexen Systemen, in dem sie Abstraktionsschichten hinzufügen und damit komplexe Berechnungen wie bei der \glqq Dependency Injection\grqq\ von \acrfull{JEE} übernehmen. 
 
-Für \acrshort{KOMA} wurde kein Framework benutzt, da die Implementierung der Funktionen dem \acrshort{SRP} folgte und die Abstraktionsschichten nicht bedurften. Hingegen wurden die unten beschriebenen Tests durchgeführt, um die Verwendbarkeit von Frameworks innerhalb einer Lambdafunktion auszuwerten. 
+Für \acrshort{KOMA} wurde kein Framework benutzt, da die Implementierung der Funktionen dem \acrshort{SRP} folgte und der Abstraktionsschichten nicht bedurften. Hingegen wurden die unten beschriebenen Tests durchgeführt, um die Verwendbarkeit von Frameworks innerhalb einer Lambdafunktion auszuwerten. 
 
-Das ausgewählte Framework ist Apache Jena \cite{fuseki}, es wird als ein eingebetteter Server eingesetzt. Dieser unterstützt den Bau von Semantic Web und Linked Data Anwendungen.
+Das ausgewählte Framework ist Apache Jena \cite{fuseki}, es wird als ein eingebetteter Server eingesetzt. Dieser unterstützt den Ausbau von Semantic Web und Linked Data Anwendungen.
 
-Das \autoref{lst:fuseki} zeigt die vorgenommene Konfiguration für den Aufbau des Servers. Er wird während des Tests die schon vorgeladene \acrshort{KOMA} Ontologie durchgehen und ausloggen, um anschließend wieder zu stoppen.Dieser
+Das \autoref{lst:fuseki} zeigt die vorgenommene Konfiguration für den Aufbau des Servers. Er wird während des Tests die schon vorgeladene \acrshort{KOMA} Ontologie durchgehen und ausloggen, um anschließend wieder zu stoppen.
 
 \begin{lstlisting}[language=Java,caption={Embedded Server in Lambda},label={lst:fuseki}]
 Dataset ds = DatasetFactory.createTxnMem();
@@ -1408,12 +1381,12 @@ server.start();
 Die folgende Grafik zeichnet die Ergebnisse der oben genannten Tests auf. 
 
 \begin{figure}[H]
-	\centering
+	\centering{}
 	\includegraphics[scale=0.60]{./pics/cold-fuseky.eps}
 	\caption{Ausführungszeiten für Fuseki Server in Lambda }
 \end{figure}
 
-Die Ergebnisse zeigen zunächst, wie sich die \acrshort{JVM} in der Lambdalaufzeitumgebung initiiert ( siehe \autoref{lambda-cold-warm} ). Da die Laufzeitumgebung für jede Anfrage eine neue Lambdafunktion instantiiert, muss der Server neu gestartet werden. Hierzu beweist die Grafik, dass \acrshort{IaaS} und \acrshort{PaaS} besser für längerfristige Prozesse als Lambda geeignet sind ( siehe \autoref{lambda-yes-no} ). 
+Die Ergebnisse zeigen, wie sich die \acrshort{JVM} in der Lambdalaufzeitumgebung initiiert ( siehe \autoref{lambda-cold-warm} ). Da die Laufzeitumgebung für jede Anfrage eine neue Lambdafunktion instantiiert, muss der Server neu gestartet werden. Hierzu beweist die Grafik, dass \acrshort{IaaS} und \acrshort{PaaS} besser für längerfristige Prozesse als Lambda geeignet sind ( siehe \autoref{lambda-yes-no} ). 
 
 Die bereitgestellte Speicherkapazität beschleunigt die Ausführung und dadurch verkürzen sich die Antwortzeiten. In diesem Szenario nutzt die Transaktionsverwaltung und die \glqq In-Memory\grqq\ Caching des Servers nicht.
 
@@ -1436,11 +1409,11 @@ Bei zu niedrigen vorkonfigurierten Speicherkapazitäten sind folgende Fehler zu 
 
 Allerdings verursacht die Rekonfiguration keinen neuen Einsatz ( Deployment ), damit werden Ausfallzeiten vermieden. 
 
-An dieser Stelle empfiehlt es sich, dass in \autoref{legacy-api-proxy} vorgestellte Legacy API Architekturmuster zu benutzen. Somit würden Anfragen die Transaktionsverwaltung bedürfen an den Server geführt und die Latenz verkürzt.
+An dieser Stelle empfiehlt es sich, dass in \autoref{legacy-api-proxy} vorgestellte Legacy API Architekturmuster zu benutzen. Somit würden Anfragen, die eine Transaktionsverwaltung benötigen, an den Server weitergeleitet und die Latenz verkürzt.
 
-Durch die Ersetzbarkeit der \acrshort{FaaS}, es ist hier erreicht, dass die Entwickler und die Anwendung von der darunterliegenden Technologie entkoppelt werden.% Agnostic 
+Durch die Ersetzbarkeit der \acrshort{FaaS} ist hier erreicht, dass die Entwickler und die Anwendung von der darunterliegenden Technologie entkoppelt werden.% Agnostic 
  
-Die visualisierte \autoref{fuseki-arq} zeigt die Ausführungszeiten der Abfrageverarbeitung des Servers und der Jena ARQ Bibliothek. 
+Die \autoref{fuseki-arq} zeigt die Ausführungszeiten der Abfrageverarbeitung des Servers und der Jena ARQ Bibliothek. 
 \begin{figure}[H]
 	\centering{}
 	\includegraphics[scale=0.60]{./pics/fuseki-arq.eps}
@@ -1450,23 +1423,23 @@ Die visualisierte \autoref{fuseki-arq} zeigt die Ausführungszeiten der Abfragev
 
 Die serverlose Variante ( Jena ARQ, in Orange ) ist erst ab der zweiten Ausführung deutlich schneller als mit Fuseki ( in Blau ).
 
-%--- revise 
-Sowhol zwischen der 5. und der 7. als auch der 10. und 11. Ausführung steigt die Latenz.Nach Ergebnissen von Herrn McGrath und Brenner lässt sich dieses Phänomen auf \glqq kalte Startzeiten ( siehe \autoref{lambda-cold-warm} ) zurückführen . Dabei zeigten Google Cloud Funktions und Lambda deutlich weniger Schwankungen bei der Latenzmessungen. \cite{servPerform}
 
-% -- -revise 
+Sowohl zwischen der 5. und der 7. als auch der 10. und 11. Ausführung steigt die Latenz. Nach Ergebnissen von Herrn McGrath und Brenner lässt sich dieses Phänomen auf \glqq kalte Startzeiten\grqq\ ( siehe \autoref{lambda-cold-warm} ) zurückführen . Dabei zeigten Google Cloud Funktions und Lambda deutlich weniger Schwankungen bei den Latenzmessungen. \cite{servPerform}
+
+
 \paragraph{Große Bibliotheken}
-Die gebaute JAR Datei der oben erwähnten Lambdafunktion, Jena ARQ, beträgt 19 MB. Die Ladezeiten verlangsamen je größer die auszuführende Lambdafunktion ist \cite{lambdaBibliothek}. Im Fall von wissenschaftliche Bibliotheken wie \glqq SciPy\grqq\ ( für die Programmiersprache Python ) übersteigt die maximale Große einer Lambdafunktion ( 50 MB ).
-Daraus ergibt sich, dass eine Verwaltung für große Bibliotheken gerade dann nötig ist, wenn auch der Benutzungsfall sich nicht für containerbasierten Anwendungen gut eignet. 
+Die gebaute JAR Datei der oben erwähnten Lambdafunktion, Jena ARQ, beträgt 19 MB. Die Ladezeiten verlangsamen sich, je größer die auszuführende Lambdafunktion ist \cite{lambdaBibliothek}. Wissenschaftliche Bibliotheken wie \glqq SciPy\grqq\ ( für die Programmiersprache Python ) übersteigen die maximale Größe einer Lambdafunktion ( 50 MB ).
+Daraus ergibt sich, dass eine Verwaltung für große Bibliotheken gerade dann nötig ist, wenn auch der Benutzungsfall sich nicht für containerbasierte Anwendungen gut eignet. 
 
-Das Letztere wird derzeit zwar nicht von \acrshort{AWS} Lambda unterstützt, aber von \glqq Pipsqueak\grqq\ ( ein package-bewusst Berechnungsplattform für OpenLambda \cite{lambdaBibliothek} ). Die Autoren schlagen den Ausbau einer \glqq Shared-Cache\grqq\ innerhalb der Lambdalaufzeitumgebung vor, die während der Laufzeit gelöst und an Lambdafunktionen geliefert werden.
+Das Verwaltung von großen Bibliotheken wird derzeit zwar nicht von \acrshort{AWS} Lambda unterstützt, dafür aber von \glqq Pipsqueak\grqq\ ( ein package-bewusst Berechnungsplattform für OpenLambda \cite{lambdaBibliothek} ). Die Autoren schlagen den Ausbau einer \glqq Shared-Cache\grqq\ innerhalb der Lambdalaufzeitumgebung vor, die während der Laufzeit Bibliothekenabhängigkeiten an Lambdafunktionen liefert.
+
 
 \paragraph{DevOps Frameworks}
-Die Anzahl von Diensten bzw. Funktionen kann in einem komplexen System unübersichtlich werden. Entsprechend steigt der Aufwand bei Deployments, der Verwaltung und der Kohäsion von Abhängigkeiten, sowie bei der Koordination des Entwicklerteams ( z.B. jeder wer entwickelt was, wann ). 
+Die Anzahl von Diensten bzw. Funktionen kann in einem komplexen System unübersichtlich werden. Entsprechend steigt der Aufwand bei Deployments, der Verwaltung und der Kohäsion von Abhängigkeiten, sowie bei der Koordination des Entwicklerteams ( z.B. Wer entwickelt was wann? ). 
 
-% --- revise 
-Folgende \autoref{deploy-comparison} zeigt, dass die hohe Granularität des Einzatzes der Serverless Architekturen von Automatismen bedarf.
+Folgende \autoref{deploy-comparison} \cite{servStatus} zeigt, dass die hohe Granularität des Einzatzes der Serverless Architekturen Automatismen unweigerlich mit sich führt.
 
-\begin{table}
+\begin{table}[H]
 	\centering{}
 	\begin{tabular}{c | c c c c}
 		\noalign{\vskip\doublerulesep}
@@ -1482,63 +1455,37 @@ Folgende \autoref{deploy-comparison} zeigt, dass die hohe Granularität des Einz
 	\end{tabular}
 \caption{Vergleich zwischen  von Verwendung und Deployment }
 \label{deploy-comparison}
-\end{table} \cite{servStatus}
+\end{table} 
 
-Diese Schwierigkeit macht die Deploymentframeworks wertvoll, da sie nicht nur die oben genannten Problemen ansprechen, sondern auch den Umgang mit anbieterspezifischen Sicherheitsrichtlinien vereinfachen. Dazu sind \glqq Serverless Framework\grqq\ und \glqq Zappa\grqq\ die bekanntesten Beispiele.
+Diese Schwierigkeit macht die Deploymentframeworks wertvoll, da sie nicht nur die oben genannten Probleme ansprechen, sondern auch den Umgang mit anbieterspezifischen Sicherheitsrichtlinien vereinfachen. Dazu sind \glqq Serverless Framework\grqq\ und \glqq Zappa\grqq\ die bekanntesten Beispiele.
 
-\acrshort{AWS} ermöglicht es, den Entwicklungsstand der Dienste zu bezeichnen, z.B \glqq Dev\grqq\ oder \glqq Produktion\grqq\ und Dienste in Browsern einzeln zu Testen. Dies ist nur bedingt ausreichend, denn Systemtests sind noch nicht möglich. Somit gewinnt die Deployment-Strategie an Bedeutung.
+\acrshort{AWS} ermöglicht es, den Entwicklungsstand der Dienste zu bezeichnen, z.B \glqq Dev\grqq\ oder \glqq Produktion\grqq\ und Dienste in Browsern einzeln zu testen. Dies ist nur bedingt ausreichend, denn Systemtests sind noch nicht möglich. Somit gewinnt die Deployment-Strategie an Bedeutung.
 
 
 
 \paragraph{Zur Entwicklung}
 Die starke Komponentisierung und Dezentralisierung von Software, die Variabilität von Programmiermodellen, Frameworks, Tools, Sprachen und deren Entwicklungsumgebung erhöht die Komplexität des Entwicklungszyklus und weckt einen Bedarf an Tools zur Automatisierung von Deployment, Konfiguration und Tests. Ein klar definierter Handlungsplan bei der Softwareentwicklung  erleichtert das Abstrahieren von zu bearbeitenden Details.
 
-Die DevOps Kultur gibt dazu Hilfestellungen. Neben dem Entwurf der Softwarearchitektur muss, um deren Umsetzung zeitgemäß zu gewährleisten, eine zum Projekt passende DevOps Strategie aufstellen.
+Die DevOps Kultur gibt dazu Hilfestellungen. Neben dem Entwurf der Softwarearchitektur ist es nötig, um deren Umsetzung innerhalb des zeitlich vorgegebenen Rahmens zu gewährleisten, eine zum Projekt passende DevOps Strategie aufzustellen.
 Um einen Vorteil aus den neuen Technologien zu ziehen, ist die Recherche nach schon existierenden DevOps Frameworks besonders wichtig. Ihre Integration in die DevOps Strategie sind einer agilen Entwicklung dienlich.
 
-\paragraph{Kosten EC2 und Lambda}
+\paragraph{Zum API Gateway}
+Bei Frameworks wie JEE werden Schnittstellen zwischen Layers und Tiers bereitgestellt und diese am Laufzeit entdeckt aka Service Discovery. 
+Im Fall der API Gateway wird die Kopplung bei derer Konfiguration festgelegt wo derer Rekonfiguration ein neues Deployment ohne Downtime bedeutet. Die Der Quellcode der Dienste bleiben unberührt und kein Load Balancer muss rekonfiguriert werden. 
+
+
+\paragraph{Zum Serverless}
+In dieser Arbeit wurde eine "nach buch" weise die Architektur gestalltet. Die unterschiedliche Interpretationen des Begriffs Serverless kann auch zu Kreativen anzätzen führen@AdamBien JEE
+Es kann daher auch als Serverless betrachtet wenn neue Quelldataien eine Docker Instance neu Erzeugen oder nur Updaten, dessen LoadBalancing auch als Serverless Quellcode verpakt werden kann. 
+
+
+\paragraph{Kosten und Performanz zwischen Lambda und Server}
 Auf der kleinste ebene rechnet Lambda nach zeitlichen Inkrementen von 100 ms ab. Da viele \acrshort{RPC} kürzer als 100 ms leben \cite{rpcTime}, wird laut den Autoren von \cite{lambdaOpen} ein 3.7 faches mehr abgerechnet.
 
-Ein Berechnung zwischen Lambda un EC2
-
-$ kosten(sekunde) = anfrage x ausfürungszeit = ausführungszeit der ec2  $
-
-funktionx per second in lambda vs ec2
+Da die \acrshort{PaaS} und \acrshort{IaaS} für Stunde abgerechnet werden, und die \acrshort{FaaS} für Anfrage. Schließt sich daraus, dass der Preis und die Performanz für Anfrage, invers proportional auf die Anzahl ist.
 
 
-\paragraph{Fazit}
-
-% revise 
-Die starke Entkopplung ( siehe \autoref{sec:eda} ) von Diensten, die aus der Umwandlung von einer monolithischen auf einer dezentralisierten Architektur entsteht, bringt mehr Komplexität, mehr Flexibilität und die Entkopplung des Entwicklers von der darunterliegenden Technologie mit sich. Daher gewinnt die Entwurfsphase eines Projekts bei Serverless Architekturen an Bedeutung, um die Kohäsion von Diensten zu gewährleisten.
-
-\paragraph{TODO: downwards on}
-
-
-\paragraph{Transaktionen}
-Transaktionen können nicht parallel ausgeführt werden. Sequenciel aka Messaging Pattern.
-Zusammenspiel Arch. interfaces prog.modell und FW
-Arch 1st -> def interfaces and interactions. to program to a inteface
-
-
-Eventual consistency -> event driven + ontology quality
-Consistenty -> koma-standalone <- transaction mgm
-
-% ----
-The OpenLambda paper [15]
-outlines a number of challenges around performance such as supporting faster function
-startup time for heterogenous language runtimes and across a load balanced
-pool of servers, deployment of large amounts of code, supporting stateful interactions
-(such as HTTP sessions) on top of stateless functions, using serverless functions
-with databases and data aggregators, legacy decomposition, and cost debugging
-%-------
-lambda ->  bursty, compute intensive workloads
-but
-I/O bound functions are paying for compute resources that they
-are not fully taking advantage of. In this case, a multi-tenant server application that
-multiplexes requests may be cheaper to operate.
-
-
-\paragraph{Nachteile}
+\paragraph{Nachteile} zunächst,
   % - revise
 Da HTTP und Lambda zustandslos sind, können die Sitzungen der Nutzer derzeit nur mithilfe von Datenbanken implementiert. Interaktionen die auf Ältere basieren wurde in Front-End berücksichtigt. Obwohl Zustände von Lambdafunktionen innerhalb eines \glqq Workers\grqq ( siehe \autoref{lambda-arch} ) sichtbar sind, wird die Kontrolle auf diese nicht gewährleistet.
 
@@ -1557,18 +1504,6 @@ Der Kontrollverlust über das Verhalten der Serverless Diensten kann die Entwurf
 Die AWS-Umgebung lässt das Debuggen von Lambdafunktionen nicht. Obwohl Werkzeuge zum lokalen Testen und Debuggen diese Umgebung emulieren
 
 
-
-DEbugging -> serverless + live breakpoints 
-SLA Service Level Agreement: Latency, Bank:High volume Transactions,
-Decentralisation of Services = Challenge = Overhead, time, energy <- orchestration of events.
-Decentralisation vs monotithik != --komplexity
-
-kurzlebige konfigurationen herausfinden ?? tracking?
-viel Konfiguration, kaum Konveniton -> .json 4 everything
-local testing braucht event-symulation.json
-
-
-
 \paragraph{Vorteile}
 Automatische Skalierung <!-- größe und kleine Apps --> und Fehlertoleranz
 Automatisches Kapazitätsmanagement
@@ -1578,30 +1513,27 @@ Exakte nutzungsabhängige Abrechnung der Ressourcen
 Konzentration auf den Kern des Source-Codes
 
 
+\section{Ausblick}
 
-\paragraph{Zum Datenmodel}
-Aus der Anforderungs analyse einer Informations Techonologie Web Anwendung sind die Builder, Texste und dessen Darstellung das ergebniss, dass ohne Daten inhaltlos wäre. Auf eine Seite Das Relationale Datenschema stellt keine Semantik für sich dar, sondern durch von der Software entstandene Verknüpfung zwischen dem Endergebnis und dem Datenschema. Auf der Anderen Seite die  RDF Daten einer Ontologie \textit{is} das Modell.
-
-\paragraph{Zum API Gateway}
-Bei Frameworks wie JEE werden Schnittstellen zwischen Layers und Tiers bereitgestellt und diese am Laufzeit entdeckt aka Service Discovery. 
-Im Fall der API Gateway wird die Kopplung bei derer Konfiguration festgelegt wo derer Rekonfiguration ein neues Deployment ohne Downtime bedeutet. Die Der Quellcode der Dienste bleiben unberührt und kein Load Balancer muss rekonfiguriert werden. 
+Da der Architekturentwurf komplexer wird, bietet sich die Implementierung von unterstützende Werkzeuge, die einen kohärenten Entwurf, z.B durch Petrinetzmodellierung, erleichtern.
 
 
-\paragraph{Zum Serverless}
-In dieser Arbeit wurde eine "nach buch" weise die Architektur gestalltet. Die unterschiedliche Interpretationen des Begriffs Serverless kann auch zu Kreativen anzätzen führen@AdamBien JEE
-Es kann daher auch als Serverless betrachtet wenn neue Quelldataien eine Docker Instance neu Erzeugen oder nur Updaten, dessen LoadBalancing auch als Serverless Quellcode verpakt werden kann. 
-
-\paragraph{Zur Annahme} dass Quellcode schneller entwickelt werden kann, wenn der Entwickler sich nur damit beschäftigt.
-
-\chapter{Ausblick}
-
-Mehr Anforderungen aufnehmen. 
 
 %Konsistenz bei Lese- und Schreibzugriffe bei großem Transaktionsvolum bleibt noch zu beweisen. 
 %Can​ ​serverless​ ​work​ ​for​ ​longer​ ​running​ ​tasks?
 
 \paragraph{RESTful UI}
-RESTful Anfragen für bestimmte UI formate.
+Die Komposition von unbekannten Inhalten in einer Benutzeroberfläche, wie es im Fall von einer \glqq Linked Data Driven\grqq\ Webanwendung, lässt sich mittels \acrshort{REST} Schnittstellen gestalten. Da können Dienste von Drittanbieter aufgerufen, und deren Inhalten einbetten. Als Parameter können deren Darstellung konfiguriert.
+
+
+Ontologien habe potenzial dieses Falles hinaus 
+
+
+\paragraph{Fazit} 
+
+% revise 
+Die starke Entkopplung ( siehe \autoref{sec:eda} ) von Diensten, die aus der Umwandlung von einer monolithischen auf einer dezentralisierten Architektur entsteht, bringt mehr Komplexität, mehr Flexibilität und die Entkopplung des Entwicklers von der darunterliegenden Technologie mit sich. Daher gewinnt die Entwurfsphase eines Projekts bei Serverless Architekturen an Bedeutung, um die Kohäsion von Diensten zu gewährleisten.
+
 
 
 %%-----
