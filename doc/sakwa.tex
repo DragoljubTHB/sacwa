@@ -275,7 +275,7 @@ morestring=[b]"
 {\huge }\begin{tabular}{rl}
 Vorgelegt von: & Dragoljub Milasinovic\tabularnewline
 Matrikelnummer: & 20140076\tabularnewline
-am: & 23. September 2017\tabularnewline
+am: & 25. September 2017\tabularnewline
 \end{tabular}
 \par\end{center}{\huge \par}
 
@@ -315,7 +315,7 @@ Zweitbetreuer: & Jonas Brüstel, M.Sc.\tabularnewline
 
 Ich versichere hiermit, dass ich die von mir eingereichte Bachelorarbeit selbstständig verfasst, ausschließlich die angegebenen Hilfsmittel benutzt und sowohl wörtliche, als auch sinngemäße entlehnte Stellen als solche kenntlich gemacht habe. Die Arbeit hat in gleicher oder ähnlicher Form noch keiner anderen Prüfungsbehörde vorgelegen.
 
-Brandenburg an der Havel, 21. September 2017
+Brandenburg an der Havel, 25. September 2017
 
 \vspace{3cm}
 
@@ -563,7 +563,7 @@ Eine Überprüfung der Architektur ist sinnvoll, wenn eine erfolgreiche Codeänd
 \acrfull{SOA}
 \label{sec:soa} unterliegt der Annahme, dass ein System aus mehreren kleinen, austauschbaren, wiederverwendbaren und entkoppelten Diensten besteht. Für die Entwicklung und Integration solcher Systeme liefert \acrshort{SOA} eine Reihe von Entwurfsprinzipien und Standards. Entwickler erstellen autonome Services, die durch Nachrichtenübergabe kommunizieren und oft ein Schema haben oder eine Schnittstelle, die definiert, wie die Nachrichten erzeugt werden.\cite{cloudEssentials}
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering	
 	\includegraphics[scale=0.80]{./pics/arch-soa.eps}
 	\caption{SOA Architekturreferenz\cite{archSoa}}
@@ -658,7 +658,7 @@ Zunächst werden die Aufgaben in diskrete Elemente ( oder Filter ) nach dem \acr
 
 
 \section{Legacy Api Proxy}
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.60]{./pics/legacy-api-proxy.eps}
 	\caption{Legacy API Muster}
@@ -719,7 +719,7 @@ Wenn mit einer Anfrage mehrere Datenbanken abgefragt werden, entstehen multiple 
 Die Verarbeitung von Streams in Echtzeit kann durch einen Puffer erfolgen, der je nach Konfiguration die Daten weiter an den Worker leitet. Einen wesentlichen Vorteil stellt die unabhängige Skalierung des Streams und des Workers je nach Anfrage dar. Bei fehlerhafter Verarbeitung werden die Prozesse neu angestoßen.
 
 \section{Priority Queue}\label{sec:priority-queue}
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.60]{./pics/pattern-priority-queue.eps}
 	\caption{Priority Queue Muster}
@@ -736,11 +736,11 @@ Das Priority Queue wird im Rahmen des Entwurfsmusters Competing Consumers als ei
 
 \section{Fan Out}
 \label{sec:fan-out}
-\begin{figure}[H]
-	\centering
-\includegraphics[scale=0.60]{./pics/pattern-fan-out.eps}
-\caption{Fan Out}
-\label{pic:fan-out}
+\begin{figure}[h!]
+	\centering{}
+	\includegraphics[scale=0.50]{./pics/pattern-fan-out.eps}
+	\caption{Fan Out}
+	\label{pic:fan-out}
 \end{figure}
 %\begin{wrapfigure}{l}{0.45\textwidth}
 %	\includegraphics[height=3cm]{./pics/pattern-fan-out.eps}
@@ -789,6 +789,7 @@ Hier ein Überblick über verschiedene \acrshort{FaaS} Angebote:\\
 \\
 \caption{Vergleich \acrshort{FaaS} Angebote der Cloudanbietern}
 \end{table}
+Die oben angezeigten Eigenschaften entsprechen dem \acrshort{FaaS} Angebot als solches, ohne zusätzliche Kombination mit Technologien wie Containerisierung der Lambdalaufzeitumgebung.
 
 \acrshort{AWS} zeichnet sich dadurch aus, dass \acrshort{FaaS} gut in seinem Ökosystem integriert ist. Da \acrshort{KOMA} mit \acrshort{AWS} umgesetzt ist, folgt eine Beschreibung der unterschiedlichen \acrshort{FaaS} Angebote.
 
@@ -877,7 +878,7 @@ Im Folgenden wird eine Beispielanwendung, unter Verwendung der in \autoref{chap:
 Die Beschleunigung der Veränderungen in der heutigen Gesellschaft und der technologischen Landschaft prägt sich in Bildung und Beruf in so fern aus, dass die heutigen Rahmenlehrpläne nicht mehr fachlich, sondern an der Kompetenzentwicklung orientiert sind, um u.a Kompetenzprofile für Lerner zu erstellen. Es existiert bereits ein anerkannter Europäischer Rahmen\cite{EQF} für Kompetenzbildung: \acrfull{EQF}. Am Beispiel von Sachsen-Anhalt\cite{BildungsServerSachsen} werden diese Kompetenzorientierung auf die spezifischen Bedürfnisse der Schule beschrieben und die Unterrichsstunden entsprechend gestaltet.
 
 Die Anwendung soll für die pädagogische Diagnostik und Intervention genutzt werden.
-Ziel der Umsetzung ist es daher, auf einer Seite die von einem Schüler erworbenen und zu erwerbenden Kompetenzen und deren Niveau nachzuvollziehen. Andererseits bietet sie das Potenzial die Bildungs-, Unterrichts- und Stundenplanung zu unterstützen.\\
+Ziel der Umsetzung ist es daher, auf einer Seite die von einem Schüler erworbenen und zu erwerbenden Kompetenzen und deren Niveau nachzuvollziehen. Andererseits bietet sie das Potenzial die Bildungs-, Unterrichts- und Stundenplanung zu unterstützen.
 
 Kommt diese Anwendung in Bildungsinstitutionen zum Einsatz, dienen die Rahmenlehrpläne als Leitpfad für die Bezeichnungen und Anforderungen der Kompetenzen, wohingegen \acrshort{KOMA} für die Organisation der einzelnen Fachrichtungen oder Lehrveranstaltungen zuständig ist. Da der \acrshort{EQF} als Basis mit internationaler Anerkennung genutzt wird, den Kompetenzstand eines Individuums abzubilden, wird die Bildungsqualität international vergleichbar.
 
@@ -1207,7 +1208,7 @@ Mit der bisher beschriebenen Implementierung der Webanwendung können Daten abge
 Ein wesentliches Merkmal von den oben beschriebenen Lambdafunktionen ist, dass sie für jeden Aufruf die komplette Datenbasis neu herunterladen. Für die Gebrauchstauglichkeit der Anwendung werden im Folgenden Verbesserungsansätze erläutert.
 
 Caching zielt auf die Verbesserung der Performanz und Skalabilität eines Systems ab, in dem es die oft gelesenen Daten temporär zwischenspeichert. Daher können wiederholte Zugriffe auf die Ontologie in einem Cache gepuffert werden. Hierzu bietet \acrshort{AWS} \glqq ElastiCache\grqq\ als Serverless Dienst. 
-\begin{figure}[H]
+\begin{figure}[h]
 	\begin{center}
 \includegraphics[scale=0.60]{./pics/aws/pattern-cache-shared.eps}	
 \caption{Shared Cache Muster}	
@@ -1341,19 +1342,20 @@ server.start();
 \end{lstlisting}
 
 % RES
-Die folgende Grafik zeichnet die Ergebnisse der oben genannten Tests auf. 
+Die \autoref{fig:fuseki-lambda} zeichnet die Ergebnisse der oben genannten Tests auf. 
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering{}
 	\includegraphics[scale=0.60]{./pics/cold-fuseky.eps}
 	\caption{Ausführungszeiten für Fuseki Server in Lambda }
+	\label{fig:fuseki-lambda}
 \end{figure}
 
 Die Ergebnisse zeigen, wie sich die \acrshort{JVM} in der Lambdalaufzeitumgebung initiiert ( siehe \autoref{lambda-cold-warm} ). Da die Laufzeitumgebung für jede Anfrage eine neue Lambdafunktion instantiiert, muss der Server neu gestartet werden. Hierzu beweist die Grafik, dass \acrshort{IaaS} und \acrshort{PaaS} besser für längerfristige Prozesse als Lambda geeignet sind ( siehe \autoref{lambda-yes-no} ). 
 
 Die bereitgestellte Speicherkapazität beschleunigt die Ausführung und dadurch verkürzen sich die Antwortzeiten. In diesem Szenario nutzt die Transaktionsverwaltung und die \glqq In-Memory\grqq\ Caching des Servers nicht.
 
-Bei zu niedrigen vorkonfigurierten Speicherkapazitäten sind folgende Fehler zu beobachten:
+Bei zu niedrigen vorkonfigurierten Speicherkapazitäten sind die in der \autoref{lambda-out-of-memory} zusammengefassten Fehler zu beobachten:
 
 \begin{table}[h]
 	\centering{}
@@ -1366,8 +1368,9 @@ Bei zu niedrigen vorkonfigurierten Speicherkapazitäten sind folgende Fehler zu 
 		\noalign{\vskip\doublerulesep}
 		\noalign{\vskip\doublerulesep}
 		128 & Fehler & java.lang.OutOfMemoryError \tabularnewline[\doublerulesep]
-	\end{tabular}\label{lambda-out-of-memory}
+	\end{tabular}
 \caption{Tests mit Frameworks in Lambda Ergebnisse}
+\label{lambda-out-of-memory}
 \end{table}
 
 Allerdings verursacht die Rekonfiguration keinen neuen Einsatz ( Deployment ), damit werden Ausfallzeiten vermieden. 
@@ -1377,7 +1380,7 @@ An dieser Stelle empfiehlt es sich, dass in \autoref{legacy-api-proxy} vorgestel
 Durch die Ersetzbarkeit der \acrshort{FaaS} ist hier erreicht, dass die Entwickler und die Anwendung von der darunterliegenden Technologie entkoppelt werden.% Agnostic 
  
 Die \autoref{fuseki-arq} zeigt die Ausführungszeiten der Abfrageverarbeitung des Servers und der Jena ARQ Bibliothek. 
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering{}
 	\includegraphics[scale=0.60]{./pics/fuseki-arq.eps}
 	\caption{Ausführungszeiten für Fuseki und Jena ARQ }
