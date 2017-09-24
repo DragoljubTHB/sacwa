@@ -859,8 +859,25 @@ Benutzer arbeiten mit multiplen Anwendungen von unterschiedlichen Organisationen
 	\includegraphics[width=0.9\linewidth]{./pics/aws/Compute_GRAYSCALE_AWSLambda.eps}
 \end{wrapfigure}
 \paragraph{Lambda}\label{par:lambda} ist ein Rechenservice, der aus Quellcode und dessen Abhängigkeiten besteht. Die horizontale Skalierung erfolgt automatisch, elastisch und vom Cloudanbieter verwaltet; währenddessen die vertikale nach Konfiguration erfolgt. Lambda wird als Einheit für die Skalierung und das Deployment benutzt. \acrshort{AWS} unterstützt Javascript, Python, C\# und Java. Die letzte Programmiersprache betrifft das Konzept \glqq Cold- und Warm\label{lambda-cold-warm} run\grqq\ besonders, da es nötig ist, die \acrfull{JVM} in ihrer Laufzeitumgebung hochzufahren ( cold run ). Der Cloudanbieter stützt sich auf das Pull- und Push- Kommunikationsmodell. Bei Pull überprüft die Lambda Laufzeitumgebung in regelmäßigen zeitlichen Abständen, ob Events z.B. bei Kinesis eingetreten sind und ruft die entsprechende Lambda Funktion mit einer Event-Datennutzlast auf. Bei Push ruft die Eventquelle z.B S3 je nach Konfiguration ( event source mapping ) die entprechende Lambda Funktion auf. 
-% STATE retrieval from other services such a DB
-% Skale up and down to Zero
+
+Zustand kann von andere Dienste wie eine Datenbank aufgerufen werden.
+
+
+% --- revise 
+\newacronym{RPC}{RPC}{Remote Procedure Call}
+In der folgenden \autoref{lambda-arch} befindet sich eine Übersicht der Architektur der Lambda. Nachdem ein Event ( 1 ) in Form einer \acrfull{RPC} vom Load Balancer aufgenommen ist, wird der Server benachrichtigt ( 2 ) und lädt ( 3 ) er entsprechenden Quellcode in die Arbeitsspeicher ( 4 ), um ihn auszuführen und die Ergebnisse zurück an den ursprünglichen Loadbalancer zu liefern( 5 ). 
+
+\begin{figure}[H]
+	\centering{}
+	\includegraphics[scale=0.60]{./pics/lambda-arch.eps}
+	\caption{Vereinfachte Architektur von Lambda}
+	\label{lambda-arch}
+\end{figure}
+
+Der Ausgangspunkt dieses Entwurfs legt die gemeinschaftliche Benutzung von vorhandenen Ressourcen, so oft es sich anbietet, nahe.
+
+Steigt die Anzahl der \glqq Workers\grqq\, entsteht die horizontale Skalierung. Diese kann bis Null senken, u.d. kann der Benutzer sich die Kosten für nicht benutzten Ressourcen sparen.  
+
 
 \begin{wrapfigure}{l}{0.16\textwidth}
 	\includegraphics[width=0.9\linewidth]{./pics/aws/MobileServices_GRAYSCALE_AmazonAPIGateway.eps}
@@ -1366,9 +1383,6 @@ Die \acrshort{EDA} eignet sich für die Steuerung von Benutzungsfällen besonder
 
 Die Orchestrierung solcher Benutzungsfälle lässt sich mittels einer endlichen Zustandsmaschine definierten und einem Petrinetz darstellen, in der Events die Kanten und \acrshort{FaaS} die Ecken sind. Dieser Ansatz ähnelt dem Domain getriebenen Entwurf ( Domain Driven Design \cite{ddd} ), in dem Benutzungsfälle in Kontextgrenzen ( Bounded Context ) zusammengefasst werden.
 
-% revise 
-Die starke Entkopplung ( siehe \autoref{sec:eda} ) von Diensten erfordert allerdings ihre Kohäsion. Daher gewinnt der Entwurfsphase eines Projekts bei Serverless Architekturen an Bedeutung.
-
 
 \newacronym{JEE}{JEE}{Java Enterprise Edition}
 \paragraph{Frameworks und FaaS}
@@ -1483,9 +1497,19 @@ Die DevOps Kultur gibt dazu Hilfestellungen. Neben dem Entwurf der Softwarearchi
 Um einen Vorteil aus den neuen Technologien zu ziehen, ist die Recherche nach schon existierenden DevOps Frameworks besonders wichtig. Ihre Integration in die DevOps Strategie sind einer agilen Entwicklung dienlich.
 
 \paragraph{Kosten EC2 und Lambda}
+Auf der kleinste ebene rechnet Lambda nach zeitlichen Inkrementen von 100 ms ab. Da viele \acrshort{RPC} kürzer als 100 ms leben \cite{rpcTime}, wird laut den Autoren von \cite{lambdaOpen} ein 3.7 faches mehr abgerechnet.
+
+Ein Berechnung zwischen Lambda un EC2
+
+$ kosten(sekunde) = anfrage x ausfürungszeit = ausführungszeit der ec2  $
 
 funktionx per second in lambda vs ec2
 
+
+\paragraph{Fazit}
+
+% revise 
+Die starke Entkopplung ( siehe \autoref{sec:eda} ) von Diensten, die aus der Umwandlung von einer monolithischen auf einer dezentralisierten Architektur entsteht, bringt mehr Komplexität, mehr Flexibilität und die Entkopplung des Entwicklers von der darunterliegenden Technologie mit sich. Daher gewinnt die Entwurfsphase eines Projekts bei Serverless Architekturen an Bedeutung, um die Kohäsion von Diensten zu gewährleisten.
 
 \paragraph{TODO: downwards on}
 
@@ -1515,10 +1539,10 @@ multiplexes requests may be cheaper to operate.
 
 
 \paragraph{Nachteile}
-  
-Da HTTP und Lambda zustandslos sind, können die Sitzungen der Nutzer derzeit nur mithilfe von Datenbanken implementiert. Interaktionen die auf ältere basieren wurde in Front-End berücksichtigt. 
+  % - revise
+Da HTTP und Lambda zustandslos sind, können die Sitzungen der Nutzer derzeit nur mithilfe von Datenbanken implementiert. Interaktionen die auf Ältere basieren wurde in Front-End berücksichtigt. Obwohl Zustände von Lambdafunktionen innerhalb eines \glqq Workers\grqq ( siehe \autoref{lambda-arch} ) sichtbar sind, wird die Kontrolle auf diese nicht gewährleistet.
 
-Der Einsatz von großen Mengen von Quellcode lässt sich nicht  ... 
+Der Einsatz von großen Mengen von Quellcode verlangsamt die Ladezeiten des Servers ( siehe \autoref{lambda-arch} ), u.d. verschlechtert sich die Latenz des HTTP- Requests und Responses.
 
 Die Hardwareressourcen von Lambda skalieren zwar vertikal, aber nur proportional. Entsprechen werden diese nicht genutzt, aber abgerechnet. 
 
@@ -1527,7 +1551,12 @@ Die Latenz bei der Bereitschaft auf neue Anfragen ist bei Lambda höher als bei 
 
 Es besteht ein Lock-in Risiko, wenn die Portierung von Quellcode auf unterschiedliche Cloudanbieter nicht im vorausgesehen wurde.
 
-Der Kontrollverlust über das Verhalten der Services kann die Entwurfsentscheidungen erschweren.
+Der Kontrollverlust über das Verhalten der Serverless Diensten kann die Entwurfsentscheidungen erschweren.
+
+
+Die AWS-Umgebung lässt das Debuggen von Lambdafunktionen nicht. Obwohl Werkzeuge zum lokalen Testen und Debuggen diese Umgebung emulieren
+
+
 
 DEbugging -> serverless + live breakpoints 
 SLA Service Level Agreement: Latency, Bank:High volume Transactions,
@@ -1566,6 +1595,9 @@ Es kann daher auch als Serverless betrachtet wenn neue Quelldataien eine Docker 
 
 \chapter{Ausblick}
 
+Mehr Anforderungen aufnehmen. 
+
+%Konsistenz bei Lese- und Schreibzugriffe bei großem Transaktionsvolum bleibt noch zu beweisen. 
 %Can​ ​serverless​ ​work​ ​for​ ​longer​ ​running​ ​tasks?
 
 \paragraph{RESTful UI}
