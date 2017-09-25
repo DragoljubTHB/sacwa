@@ -1,4 +1,13 @@
-# ontology.thb.de 
+# KOMA Ontologie 
+### s3://ontology.thb.de
+
+### Datenbasis für den konzeptionellen Beweis 
+
+
+
+-----------
+## Notizen
+
 ##Large Files: Values of Keys stored in DynamoDB
 # https://ec.europa.eu/esco/resources/data/static/model/html/model.xhtml#Skill
 Intelligent Learning Infrastructures in Knowledge Intensive Organizations: A Semantic Web Perspective

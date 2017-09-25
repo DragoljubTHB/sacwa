@@ -1,3 +1,7 @@
+# Lambda funktion mit Jena ARQ
+
+### Liest die Ontologie und führt Abfragen aus
+
 
 ontol- engineering for methodology
 types : top - domain - app
