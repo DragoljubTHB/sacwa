@@ -117,7 +117,8 @@ var userController = {
             let reqBody = {};
             let query = $('#sparqlNativeQuery').val();
             reqBody.bucketKey = "koma-complex.owl";
-            reqBody.query = query;
+            //reqBody.query = query;
+            reqBody.query = executeQuery(query)
             $.ajax({
                 url: url,
                 dataType: 'json',
